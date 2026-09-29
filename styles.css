@@ -162,6 +162,13 @@ section.section-alt > *{max-width:var(--maxw);margin-left:auto;margin-right:auto
 .footer{max-width:var(--maxw);margin:0 auto;padding:34px 24px;display:flex;justify-content:space-between;
   align-items:center;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem;flex-wrap:wrap;gap:10px}
 
+/* ===== ROLES (added Sep 2026) ===== */
+.skill-group p{color:var(--muted);font-size:.95rem;line-height:1.55}
+@media (min-width:861px){
+  #roles .skills{grid-template-columns:repeat(4,1fr)}
+  #expertise .skills{grid-template-columns:repeat(2,1fr)}
+}
+
 /* ===== REVEAL ANIMATION ===== */
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
