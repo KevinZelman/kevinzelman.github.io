@@ -57,7 +57,7 @@
     "TEL;TYPE=CELL,VOICE:+" + phDigits,
     "ADR;TYPE=WORK:;;;Brooklyn;NY;;United States",
     "URL;TYPE=LinkedIn:https://www.linkedin.com/in/kevin-zelman",
-    "NOTE:IT & operations leader — strategy to execution: identity, security, cloud, telephony modernization; budget, vendors & team leadership.",
+    "NOTE:I make IT the easiest department to call — identity, Microsoft 365, networking, security, endpoint, Teams Phone and automation. Free IT & cybersecurity mentoring: kevinzelman.github.io/mentoring.html",
     "END:VCARD"
   ].join("\r\n");
   document.querySelectorAll("[data-vcard]").forEach(function (a) {
