@@ -203,3 +203,66 @@ section.section-alt > *{max-width:var(--maxw);margin-left:auto;margin-right:auto
   .card,.stat{box-shadow:none;border:1px solid #ccc}
   .nav{display:none}
 }
+
+/* ===== PROJECTS MENU (added Oct 2026) ===== */
+.dd{position:relative;display:flex;align-items:center}
+.dd-top{display:flex;align-items:center;gap:6px;background:none;border:0;cursor:pointer;
+  font:inherit;color:var(--muted);font-weight:500;font-size:.94rem;padding:0}
+.dd-top:hover,.dd.open>.dd-top{color:var(--ink)}
+.dd-top .caret{font-size:.7rem;transition:transform .2s}
+.dd.open>.dd-top .caret{transform:rotate(180deg)}
+.dd-menu,.dd-sub{list-style:none;position:absolute;min-width:250px;padding:8px;
+  background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);
+  opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .15s,transform .15s,visibility .15s;z-index:60}
+.dd-menu{top:calc(100% + 14px);left:-14px}
+.dd-menu::before{content:"";position:absolute;left:0;right:0;top:-16px;height:16px}
+.dd.open>.dd-menu{opacity:1;visibility:visible;transform:none}
+.dd-menu a,.dd-menu .dd-label{display:flex;justify-content:space-between;align-items:center;gap:14px;
+  padding:9px 12px;border-radius:8px;color:var(--ink);font-size:.92rem;font-weight:500}
+.dd-menu a:hover,.dd-menu a:focus-visible,.has-sub.open>.dd-label{background:var(--bg-alt);text-decoration:none}
+.dd-menu small{display:block;color:var(--muted);font-size:.78rem;font-weight:400;margin-top:1px}
+.has-sub{position:relative}
+.has-sub>.dd-label{cursor:pointer;width:100%;background:none;border:0;font:inherit;text-align:left}
+.has-sub>.dd-label .caret{font-size:.7rem;color:var(--muted)}
+.dd-sub{top:-8px;left:calc(100% + 8px)}
+.dd-sub::before{content:"";position:absolute;top:0;bottom:0;left:-12px;width:12px}
+.has-sub.open>.dd-sub{opacity:1;visibility:visible;transform:none}
+.dd-sub .sep{height:1px;background:var(--line);margin:6px 4px}
+.dd-sub .grp{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);padding:8px 12px 2px}
+@media (hover:hover) and (min-width:861px){
+  .dd:hover>.dd-menu,.dd:focus-within>.dd-menu{opacity:1;visibility:visible;transform:none}
+  .has-sub:hover>.dd-sub,.has-sub:focus-within>.dd-sub{opacity:1;visibility:visible;transform:none}
+}
+@media (max-width:860px){
+  .nav-links.open{max-height:80vh;overflow-y:auto}
+  .dd{flex-direction:column;align-items:flex-start;width:100%}
+  .dd-top{padding:9px 0;width:100%}
+  .dd-menu,.dd-sub{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;
+    border:0;border-left:2px solid var(--line);border-radius:0;padding:0 0 0 12px;min-width:0;display:none}
+  .dd.open>.dd-menu,.has-sub.open>.dd-sub{display:block}
+  .dd-menu::before,.dd-sub::before{display:none}
+  .nav-links .dd-menu a{padding:8px 0}
+}
+
+/* Projects page */
+.project-hero{display:grid;grid-template-columns:1.4fr 1fr;gap:34px;align-items:start}
+.project-hero p{color:var(--muted);margin-bottom:16px}
+.project-hero p:first-child{color:var(--ink);font-size:1.08rem}
+.jump{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.jump a{display:block;padding:24px;color:var(--ink);transition:.2s}
+.jump a:hover{text-decoration:none;transform:translateY(-2px);border-color:var(--accent)}
+.jump h3{font-size:1.05rem;margin-bottom:6px}
+.jump p{color:var(--muted);font-size:.95rem}
+.jump .go{display:inline-block;margin-top:10px;font-weight:600;color:var(--accent);font-size:.9rem}
+.badge{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 10px;border-radius:30px;background:rgba(79,147,214,.16);color:var(--accent-2);margin-bottom:14px}
+@media (max-width:860px){.project-hero,.jump{grid-template-columns:1fr}}
+.dd-menu{min-width:290px}
+.dd-menu a{display:block}
+.dd-sub{left:auto;right:calc(100% + 8px);min-width:240px}
+.dd-sub::before{left:auto;right:-12px}
+.has-sub>.dd-label .caret{transform:rotate(180deg)}
+@media (max-width:860px){
+  .has-sub>.dd-label .caret{transform:rotate(90deg)}
+  .has-sub.open>.dd-label .caret{transform:rotate(-90deg)}
+}

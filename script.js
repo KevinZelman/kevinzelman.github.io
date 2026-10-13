@@ -22,6 +22,37 @@
     });
   }
 
+  // Projects dropdown: click/tap toggles (hover handles desktop mice in CSS)
+  function setOpen(el, btn, open) {
+    el.classList.toggle("open", open);
+    if (btn) btn.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+  document.querySelectorAll(".dd").forEach(function (dd) {
+    var top = dd.querySelector(".dd-top");
+    top.addEventListener("click", function (ev) {
+      ev.stopPropagation();
+      setOpen(dd, top, !dd.classList.contains("open"));
+    });
+    dd.querySelectorAll(".has-sub").forEach(function (hs) {
+      var lbl = hs.querySelector(".dd-label");
+      lbl.addEventListener("click", function (ev) {
+        ev.stopPropagation();
+        setOpen(hs, lbl, !hs.classList.contains("open"));
+      });
+    });
+  });
+  function closeAll() {
+    document.querySelectorAll(".dd.open, .has-sub.open").forEach(function (el) {
+      setOpen(el, el.querySelector(":scope > button"), false);
+    });
+  }
+  document.addEventListener("click", function (ev) {
+    if (!ev.target.closest(".dd")) closeAll();
+  });
+  document.addEventListener("keydown", function (ev) {
+    if (ev.key === "Escape") closeAll();
+  });
+
   // Contact details assembled at runtime — kept out of the static HTML so
   // address-harvesting bots scraping the page source come up empty.
   function rev(s) { return s.split("").reverse().join(""); }
