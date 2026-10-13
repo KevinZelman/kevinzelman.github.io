@@ -1,0 +1,712 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M365-15 · Data Classification &amp; Handling | Known Good</title>
+<meta name="description" content="Four levels, applied to places rather than files — and the handling rules that follow from each. Written as a proposal for leadership to decide.">
+<meta property="og:title" content="M365-15 · Data Classification &amp; Handling | Known Good">
+<meta property="og:description" content="Four levels, applied to places rather than files — and the handling rules that follow from each. Written as a proposal for leadership to decide.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="m365-15--data-classification--handling">M365-15 · Data
+Classification &amp; Handling</h1>
+<p><em>Four levels, applied to places rather than files — and the
+handling rules that follow from each. Written as a proposal for
+leadership to decide.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/M365-15-Data-Classification-and-Handling.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/M365-15.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/M365-15">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>M365-15</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>A. Microsoft 365</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 4 — IT Management. Classification is an organization decision
+that IT implements, not an IT decision.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually, and whenever a new regulated data type enters the
+organization.</td>
+</tr>
+<tr class="even">
+<td>Related existing policy</td>
+<td>Your organization's information security policy, if it has one. If
+more than one copy exists, deciding which is authoritative is a
+prerequisite to publishing this document (§9).</td>
+</tr>
+<tr class="odd">
+<td>Decision status</td>
+<td>Written as the proposal that closes an open classification decision,
+rather than as a procedure waiting on one.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>Almost every rule in the Microsoft 365 domain — who may share what,
+with whom, for how long, and what happens when somebody leaves — has to
+answer the question “how sensitive is this?” A typical information
+security policy says sensitive data must be protected. What it usually
+lacks is a working scheme that tells a person which bucket the thing in
+front of them falls into.</p>
+<p>Without that, every decision is made individually and inconsistently.
+A typical example: HR and IT work through payroll drive permissions
+during a file share retirement with no shared vocabulary for what
+payroll data requires. The conversation can be careful and go well; it
+still has to be had from first principles, and it will have to be had
+again for the next department.</p>
+<blockquote>
+<p><strong>This document is a proposal, not a procedure</strong></p>
+<p>Classification is an institutional decision with legal and regulatory
+implications. IT can propose a scheme and implement whatever is adopted;
+it cannot decide what the organization considers confidential.</p>
+<p>So section 3 is written to be argued with, and section 9 lists what
+must happen before it becomes binding. The purpose is to turn an open
+question into a decision executive leadership can actually take, rather
+than leaving a gap that blocks four other documents indefinitely.</p>
+</blockquote>
+<h2 id="2-the-design-choice-that-makes-this-work">2. The design choice
+that makes this work</h2>
+<blockquote>
+<p><strong>Classify places, not files.</strong></p>
+<p>The conventional approach asks every person to label every document.
+In an organization with no dedicated records staff and a service desk
+already carrying a backlog, that will not happen — and a labelling
+scheme that is applied to a small fraction of documents is worse than
+none, because it creates the appearance of control.</p>
+<p>So classification attaches to the container: a SharePoint site, a
+document library, a shared mailbox, a Team. The site is classified once,
+by its owner, at the point it is created. Everything in it inherits that
+level.</p>
+<p>A person then never has to classify anything. They only have to put
+the thing in the right place — which is a question they can answer, and
+which <a href="/sops/M365-12">M365-12</a> already asks them.</p>
+</blockquote>
+<p>Three consequences follow, and all three are improvements:</p>
+<ul>
+<li>The decision is made once, by somebody who knows the department’s
+work, rather than repeatedly by whoever happens to be saving a
+file.</li>
+<li>It is enforceable by configuration. Sharing restrictions, retention
+and access reviews can be applied to a site; they cannot realistically
+be applied to individually-labelled files at this scale.</li>
+<li>It makes the <a href="/sops/M365-10">M365-10</a> site request the moment classification happens,
+which is exactly where a named owner is already being appointed.
+Individual file labelling stays available for the small number of
+documents that genuinely need to travel with their protection — a board
+paper, a legal document — but it is an exception, not the
+mechanism.</li>
+</ul>
+<h2 id="3-the-four-levels">3. The four levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Level</th>
+<th>Means</th>
+<th>Typical examples</th>
+<th>If it got out</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PUBLIC</td>
+<td>Already published, or fit to be. No harm in disclosure.</td>
+<td>Product or service catalogue. Press releases. Published policies.
+Published reports. Office locations and maps.</td>
+<td>Nothing. It is already public.</td>
+</tr>
+<tr class="even">
+<td>INTERNAL</td>
+<td>The working material of the organization. Not secret, not for
+publication. This is the default.</td>
+<td>Meeting notes. Departmental procedures. Draft plans. Most email.
+Project documents. This catalogue.</td>
+<td>Embarrassing rather than harmful. No notification obligation.</td>
+</tr>
+<tr class="odd">
+<td>CONFIDENTIAL</td>
+<td>Access on a need-to-know basis. Disclosure would harm an individual
+or the organization.</td>
+<td>Customer and client records. Job applicant files. Personnel files
+and hiring records. Contracts. Budgets before publication. Conduct and
+disciplinary records. Donor or supporter records.</td>
+<td>Real harm to a named person, contractual breach, or a privacy
+complaint. Likely to require notification.</td>
+</tr>
+<tr class="even">
+<td>RESTRICTED</td>
+<td>Small volume, tightly held, regulated. Disclosure is a reportable
+event.</td>
+<td>Social security numbers. Payment card data. Health records (HIPAA).
+Credentials, keys and recovery keys. Anything under a
+breach-notification regime.</td>
+<td>Regulatory exposure, statutory notification, and institutional
+consequence. Assume counsel is involved.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Four levels is a deliberate choice. Three is too coarse to separate
+“client records” from “social security numbers”, which have genuinely
+different handling. Five or more produces boundary arguments that
+consume more time than the distinction saves.</p>
+<blockquote>
+<p><strong>INTERNAL is the default, and that matters</strong></p>
+<p>A scheme whose default is CONFIDENTIAL sounds safer and is worse:
+everything becomes confidential, the label stops carrying information,
+and people route around it to get work done.</p>
+<p>Anything not deliberately classified is INTERNAL. That is a real
+level with real rules — it is simply not restrictive enough to obstruct
+ordinary work.</p>
+</blockquote>
+<h2 id="4-which-level-is-this--the-test">4. Which level is this? — the
+test</h2>
+<p>Work down. Stop at the first line that matches. This is the whole
+decision, and a site owner should be able to make it in under a
+minute.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Does it contain…</th>
+<th>Then</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Social security numbers, payment card data, health information, or
+credentials and keys?</td>
+<td>RESTRICTED</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Anything the organization would have to notify a regulator or an
+individual about if it leaked?</td>
+<td>RESTRICTED</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Customer or client records protected by privacy law or contract —
+for example education, financial or legal records?</td>
+<td>CONFIDENTIAL</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Applicant, personnel, donor or conduct records about identifiable
+people?</td>
+<td>CONFIDENTIAL</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Contracts, unpublished budgets, or commercially sensitive
+material?</td>
+<td>CONFIDENTIAL</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Is it already published, or would the organization be content to
+publish it tomorrow?</td>
+<td>PUBLIC</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Anything else.</td>
+<td>INTERNAL — the default, and most things</td>
+</tr>
+</tbody>
+</table></div>
+<p>Where a site would contain a mix, it takes the highest level present.
+Where that makes the site unworkably restrictive, the answer is two
+sites rather than a compromise classification — and that is a useful
+signal that two different kinds of work were being stored together.</p>
+<h2 id="5-handling-rules">5. Handling rules</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>PUBLIC</th>
+<th>INTERNAL</th>
+<th>CONFIDENTIAL</th>
+<th>RESTRICTED</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Who may access</td>
+<td>Anyone</td>
+<td>All staff by default</td>
+<td>Named members only, approved by the site owner</td>
+<td>A named, minimal list. Reviewed quarterly.</td>
+</tr>
+<tr class="even">
+<td>Sharing inside the organization</td>
+<td>Free</td>
+<td>Free</td>
+<td>By the owner, to named people</td>
+<td>By the owner, with Tier 4 aware</td>
+</tr>
+<tr class="odd">
+<td>Sharing outside the organization</td>
+<td>Free</td>
+<td>Named guests, with a sponsor and expiry (<a href="/sops/M365-14">M365-14</a>)</td>
+<td>Named guests only, expiry ≤ 90 days, owner and Tier 3 approval</td>
+<td>Not by sharing. Use an agreed secure channel and record it.</td>
+</tr>
+<tr class="even">
+<td>“Anyone with the link”</td>
+<td>Permitted</td>
+<td>Discouraged</td>
+<td>Prohibited</td>
+<td>Prohibited</td>
+</tr>
+<tr class="odd">
+<td>In email</td>
+<td>Fine</td>
+<td>Fine</td>
+<td>Avoid — link to the site instead of attaching</td>
+<td>Never as an attachment</td>
+</tr>
+<tr class="even">
+<td>In Teams chat</td>
+<td>Fine</td>
+<td>Fine</td>
+<td>Link, do not upload</td>
+<td>Never</td>
+</tr>
+<tr class="odd">
+<td>On a personal device</td>
+<td>Fine</td>
+<td>Permitted per <a href="/sops/DEV-07">DEV-07</a></td>
+<td>Only through managed apps, no local copies</td>
+<td>Prohibited</td>
+</tr>
+<tr class="even">
+<td>Local copies on an organization device</td>
+<td>Fine</td>
+<td>Fine</td>
+<td>Discouraged; the site is the record</td>
+<td>Prohibited</td>
+</tr>
+<tr class="odd">
+<td>Retention</td>
+<td>As useful</td>
+<td>Per <a href="/sops/M365-16">M365-16</a></td>
+<td>Per <a href="/sops/M365-16">M365-16</a> and any records schedule</td>
+<td>Per statute. Assume the longest.</td>
+</tr>
+<tr class="even">
+<td>On separation</td>
+<td>No action</td>
+<td>Per <a href="/sops/ACC-01">ACC-01</a> §7.3</td>
+<td>Owner reviews access within 5 days</td>
+<td>Access removed same day, and reviewed by Tier 4</td>
+</tr>
+<tr class="odd">
+<td>Disposal</td>
+<td>Delete</td>
+<td>Delete</td>
+<td>Per your sensitive-data disposal policy</td>
+<td>Per that policy, with certificate</td>
+</tr>
+</tbody>
+</table></div>
+<p>One rule cuts across all of them: link, do not copy. A link respects
+the site’s permissions and keeps one version; an attachment creates an
+uncontrolled copy that outlives every control on this page. It is also,
+usefully, the faster thing to do.</p>
+<h2 id="6-where-each-level-is-allowed-to-live">6. Where each level is
+allowed to live</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Level</th>
+<th>May live in</th>
+<th>May not live in</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PUBLIC</td>
+<td>Anywhere, including the public website.</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>INTERNAL</td>
+<td>Departmental SharePoint sites, Teams, mailboxes, personal OneDrive
+while genuinely a draft.</td>
+<td>Nowhere prohibited, but see <a href="/sops/M365-12">M365-12</a> — if the organization needs it
+after you leave, it belongs in a site.</td>
+</tr>
+<tr class="odd">
+<td>CONFIDENTIAL</td>
+<td>A SharePoint site classified CONFIDENTIAL, with a named owner. A
+shared mailbox with a named owner.</td>
+<td>Personal OneDrive. An unclassified site. A Team created by
+self-service without a classification decision.</td>
+</tr>
+<tr class="even">
+<td>RESTRICTED</td>
+<td>A site classified RESTRICTED with a minimal named membership, or the
+system of record itself — the HR and user system of record, the payroll
+system.</td>
+<td>Personal OneDrive. Email attachments. Teams uploads. Any general
+departmental site. Any personal device.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The strongest single control here is the last row of the third
+column: RESTRICTED data mostly should not be in Microsoft 365 as
+documents at all. It should stay in the system of record. A payroll
+extract in a spreadsheet is a copy of something that was already
+safe.</p>
+<h2 id="7-applying-this-during-the-file-share-retirement">7. Applying
+this during the file share retirement</h2>
+<blockquote>
+<p><strong>Classify before you migrate, not after</strong></p>
+<p>When old network drives are retired, every folder on them lands
+somewhere. A retirement is therefore the single largest classification
+opportunity an organization gets, and the single largest risk of getting
+it wrong at scale.</p>
+<p>The order matters: classify the destination site, permission it, then
+move the content. Moving first and classifying later means the content
+sits in an unclassified place for however long “later” turns out to
+be.</p>
+<p>When HR asks what the retirement means for payroll access, this
+section is the answer: payroll content is CONFIDENTIAL at minimum, its
+destination site is classified and permissioned before anything moves,
+and access is by named membership approved by an HR owner rather than
+inherited from a drive letter.</p>
+</blockquote>
+<p><a href="/sops/M365-13">M365-13</a> carries the migration runbook. This document supplies the
+classification step within it, and the two should be read together.</p>
+<h2 id="8-worked-examples">8. Worked examples</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>The thing</th>
+<th>Level</th>
+<th>What follows</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>This SOP catalogue</td>
+<td>INTERNAL</td>
+<td>Any staff member may read it. Publishable summaries are PUBLIC.</td>
+</tr>
+<tr class="even">
+<td>A front-desk shared mailbox</td>
+<td>CONFIDENTIAL</td>
+<td>Customer correspondence is about identifiable people. Named
+membership, owner-approved, temporary-worker access expiring at the end
+of the engagement (<a href="/sops/M365-03">M365-03</a>, <a href="/sops/ACC-09">ACC-09</a>).</td>
+</tr>
+<tr class="odd">
+<td>Payroll folders on an old network drive</td>
+<td>CONFIDENTIAL, with RESTRICTED elements</td>
+<td>Anything containing SSNs is RESTRICTED and should ideally stay in
+the payroll system rather than migrate as files.</td>
+</tr>
+<tr class="even">
+<td>A leadership handover site</td>
+<td>CONFIDENTIAL</td>
+<td>Contracts and financial records. Named membership; a handover
+belongs in a site rather than a shared OneDrive.</td>
+</tr>
+<tr class="odd">
+<td>BitLocker recovery keys</td>
+<td>RESTRICTED</td>
+<td>Held in Entra, never copied into a ticket. Retrieval is verified and
+audited (<a href="/sops/DEV-03">DEV-03</a> §7).</td>
+</tr>
+<tr class="even">
+<td>A departmental procedure document</td>
+<td>INTERNAL</td>
+<td>Departmental site. No special handling.</td>
+</tr>
+<tr class="odd">
+<td>Staff conduct records</td>
+<td>CONFIDENTIAL</td>
+<td>Need-to-know. Not in a general HR site alongside INTERNAL material —
+separate site (§4).</td>
+</tr>
+<tr class="even">
+<td>An emergency action plan</td>
+<td>PUBLIC or INTERNAL</td>
+<td>An organization decision. If it is already on the staff intranet, it
+is INTERNAL at least.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="9-what-must-happen-before-this-is-published">9. What must happen
+before this is published</h2>
+<ol type="1">
+<li>Where more than one copy of the information security policy exists,
+decide which is authoritative. Two copies of a security policy is itself
+a finding, and this document must extend one of them rather than float
+alongside both.</li>
+<li>Executive leadership endorses the four levels in §3. Not the
+handling detail — the levels and what falls into each. That is the
+decision; everything else follows from it.</li>
+<li>Confirm with counsel which regulated categories apply to the
+organization in practice: privacy law for the records it holds (e.g.
+HIPAA, FERPA, GDPR), PCI if it takes card payments, and the state
+breach-notification threshold. RESTRICTED is defined by that list.</li>
+<li>Agree who classifies. This document proposes the site owner at the
+point of request, with Tier 4 confirming anything CONFIDENTIAL or
+above.</li>
+<li>Decide whether existing sites are classified retrospectively or only
+at review. Retrospective is better and slower; the honest compromise is
+to classify at the next review and immediately for anything touched by
+the file share retirement.</li>
+</ol>
+<blockquote>
+<p><strong>What IT is asking for, in one sentence</strong></p>
+<p>Endorse four levels and who assigns them. IT will build the
+configuration, write the guidance, and classify the sites — but it
+cannot be the body that decides what the organization treats as
+confidential, and it should not be.</p>
+</blockquote>
+<h2 id="10-records">10. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Classification of every site, with who set it and when</td>
+<td>Site register (<a href="/sops/M365-10">M365-10</a>)</td>
+<td>Life of the site</td>
+</tr>
+<tr class="even">
+<td>Executive leadership endorsement of §3</td>
+<td>IT governance record</td>
+<td>Permanent</td>
+</tr>
+<tr class="odd">
+<td>Counsel advice on regulated categories</td>
+<td>IT governance record</td>
+<td>Permanent</td>
+</tr>
+<tr class="even">
+<td>Reclassification decisions</td>
+<td>Site register + ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Exceptions granted</td>
+<td>Tier 4 record</td>
+<td>3 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-related-documents">11. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Info Sec Policy</td>
+<td>Your organization's information security policy</td>
+<td>This extends it. Where there are several copies, §9 step 1 settles
+which is authoritative.</td>
+</tr>
+<tr class="even">
+<td>Disposal Policy</td>
+<td>Your organization's sensitive-data disposal policy</td>
+<td>Governs the disposal row of §5.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-10">M365-10</a></td>
+<td>SharePoint Site Request, Provisioning &amp; Ownership</td>
+<td>Where classification is assigned — §2 depends on it entirely.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-11">M365-11</a></td>
+<td>SharePoint &amp; OneDrive Permission Management</td>
+<td>Implements the access rows of §5.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-13">M365-13</a></td>
+<td>Legacy File Share Retirement &amp; Migration Runbook</td>
+<td>§7. Classify before you migrate.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-14">M365-14</a></td>
+<td>External Sharing &amp; Guest Access Governance</td>
+<td>Implements the external-sharing rows of §5.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-12">M365-12</a></td>
+<td>OneDrive Appropriate Use</td>
+<td>The boundary that keeps CONFIDENTIAL out of personal OneDrive.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-16">M365-16</a></td>
+<td>Retention, Legal Hold &amp; eDiscovery</td>
+<td>Retention rows of §5.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-03">M365-03</a></td>
+<td>Shared Mailbox Request &amp; Ownership</td>
+<td>Mailboxes are containers and are classified the same way.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-17">ACC-17</a></td>
+<td>Periodic Access Review</td>
+<td>Quarterly review of RESTRICTED membership.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-07">DEV-07</a></td>
+<td>Personally-Owned Device Access Standard</td>
+<td>The personal-device rows of §5.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response</td>
+<td>What happens when a level is breached.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--handling-matrix-one-page">Appendix A — Handling
+matrix, one page</h2>
+<p>Print this. It is the whole scheme.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>PUBLIC</th>
+<th>INTERNAL</th>
+<th>CONFIDENTIAL</th>
+<th>RESTRICTED</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Lives in</td>
+<td>Anywhere</td>
+<td>Dept site, Teams, OneDrive drafts</td>
+<td>Classified site, named members</td>
+<td>Restricted site or system of record</td>
+</tr>
+<tr class="even">
+<td>Share inside</td>
+<td>Free</td>
+<td>Free</td>
+<td>Owner approves, named people</td>
+<td>Owner + Tier 4</td>
+</tr>
+<tr class="odd">
+<td>Share outside</td>
+<td>Free</td>
+<td>Sponsored guest, expiry</td>
+<td>Guest + owner + Tier 3, ≤90 days</td>
+<td>Not by sharing</td>
+</tr>
+<tr class="even">
+<td>Anyone-with-link</td>
+<td>OK</td>
+<td>Avoid</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>Email attachment</td>
+<td>OK</td>
+<td>OK</td>
+<td>Link instead</td>
+<td>Never</td>
+</tr>
+<tr class="even">
+<td>Teams upload</td>
+<td>OK</td>
+<td>OK</td>
+<td>Link instead</td>
+<td>Never</td>
+</tr>
+<tr class="odd">
+<td>Personal device</td>
+<td>OK</td>
+<td>Per <a href="/sops/DEV-07">DEV-07</a></td>
+<td>Managed apps only</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>On separation</td>
+<td>None</td>
+<td><a href="/sops/ACC-01">ACC-01</a> §7.3</td>
+<td>Owner reviews in 5 days</td>
+<td>Removed same day</td>
+</tr>
+</tbody>
+</table></div>
+<p>Not sure? It is INTERNAL unless it contains identifiable people’s
+records (CONFIDENTIAL) or SSNs, card data, health data or credentials
+(RESTRICTED).</p>
+<h2 id="appendix-b--site-owners-classification-card">Appendix B — Site
+owner’s classification card</h2>
+<div class="tbl"><table>
+<tbody>
+<tr class="odd">
+<td>You are being asked to classify a site</td>
+<td>You know what your department stores; IT does not. It is one
+decision, made once, and everything in the site inherits it.</td>
+</tr>
+<tr class="even">
+<td>The question</td>
+<td>What is the most sensitive thing that will ever go in here?</td>
+</tr>
+<tr class="odd">
+<td>Most sites are INTERNAL</td>
+<td>Ordinary working material. No special handling. This is the right
+answer for the majority.</td>
+</tr>
+<tr class="even">
+<td>Choose CONFIDENTIAL if</td>
+<td>It will hold records about identifiable people — clients,
+applicants, staff — or contracts and unpublished financials.</td>
+</tr>
+<tr class="odd">
+<td>Choose RESTRICTED if</td>
+<td>It will hold social security numbers, card payment data, health
+records or credentials. Talk to IT first; there may be a better home
+than a site.</td>
+</tr>
+<tr class="even">
+<td>If it is a mix</td>
+<td>Ask for two sites rather than compromising. That is usually a sign
+two different kinds of work were being kept together.</td>
+</tr>
+<tr class="odd">
+<td>What changes for you</td>
+<td>CONFIDENTIAL and above means you approve who gets access, and you
+confirm the membership once a year. That is the whole obligation.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

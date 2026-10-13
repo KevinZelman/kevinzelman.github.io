@@ -1,0 +1,1107 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DEV-01 · Device Enrollment &amp; Lifecycle | Known Good</title>
+<meta name="description" content="How an organization-owned endpoint is enrolled, made compliant, assigned, reassigned and retired — through a move to Intune and after it.">
+<meta property="og:title" content="DEV-01 · Device Enrollment &amp; Lifecycle | Known Good">
+<meta property="og:description" content="How an organization-owned endpoint is enrolled, made compliant, assigned, reassigned and retired — through a move to Intune and after it.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="dev-01--device-enrollment--lifecycle">DEV-01 · Device Enrollment
+&amp; Lifecycle</h1>
+<p><em>How an organization-owned endpoint is enrolled, made compliant,
+assigned, reassigned and retired — through a move to Intune and after
+it.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/DEV-01-Device-Enrollment-and-Lifecycle.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/DEV-01.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/DEV-01">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>DEV-01</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>C. Device Usage</td>
+</tr>
+<tr class="even">
+<td>Primary audience</td>
+<td>IT administrators and desktop support. Section 10 and Appendix C are
+used by the service desk.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Every six months while co-management is in place, then
+annually.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>This procedure defines how an organization-owned endpoint enters
+management, what “managed” means as a testable condition, and how the
+device is assigned, reassigned and retired. It is written to survive a
+move from a legacy endpoint tool to Intune rather than to be replaced by
+it.</p>
+<p>It exists because enrollment often runs from per-wave instructions
+rather than a standing procedure. The usual signs:</p>
+<ul>
+<li>Intune enrollment runs as waves driven by individual emails, each
+with its own bespoke package of scripts, flyers and trackers. Each wave
+re-derives the steps, and nothing accumulates.</li>
+<li>Several transitions are in flight at once: a legacy endpoint tool to
+Intune, Configuration Manager co-management workload switching, a pilot
+on shared devices, and macOS enrollment.</li>
+<li>BitLocker key custody becomes inconsistent. A move between
+encryption tools only reaches machines that are online and healthy, so
+some devices show a recovery key in Entra and others show nothing at
+all.</li>
+</ul>
+<blockquote>
+<p><strong>Why the escrow gap is the sharpest risk here</strong></p>
+<p>A device with no escrowed recovery key is a device whose data is
+unrecoverable the first time it prompts for recovery, and which cannot
+be safely wiped and reissued. It also cannot be closed out on a leaver
+checklist (<a href="/sops/ACC-01">ACC-01</a> §7.2 step 8).</p>
+<p>This procedure therefore makes escrow verification a mandatory exit
+criterion in section 7, not a post-hoc report. A device is not enrolled
+until its key is confirmed present.</p>
+</blockquote>
+<h2 id="2-scope">2. Scope</h2>
+<h3 id="in-scope">In scope</h3>
+<ul>
+<li>All organization-owned Windows and macOS endpoints: staff laptops
+and desktops, lab and meeting room machines, loaners, kiosks and
+conference-room PCs.</li>
+<li>Enrollment, compliance attainment, encryption and key escrow,
+assignment, reassignment and retirement.</li>
+<li>The inventory record that ties a device to a person and an asset
+tag.</li>
+</ul>
+<h3 id="out-of-scope">Out of scope</h3>
+<ul>
+<li>Personally-owned devices, governed by <a href="/sops/DEV-07">DEV-07</a>. A personal device is
+never enrolled under this procedure.</li>
+<li>Mobile phones and tablets, governed by <a href="/sops/DEV-08">DEV-08</a> — including the phone
+carrying a person’s Authenticator method.</li>
+<li>Servers and infrastructure, including business systems maintained
+with a vendor under <a href="/sops/DEV-13">DEV-13</a>.</li>
+<li>Network equipment, printers and peripherals (<a href="/sops/DEV-17">DEV-17</a>), and
+meeting-room AV (<a href="/sops/DEV-18">DEV-18</a>).</li>
+<li>Software selection and licensing, governed by <a href="/sops/DEV-11">DEV-11</a>.</li>
+</ul>
+<h2 id="3-current-state-target-state-and-the-cutover-trigger">3. Current
+state, target state and the cutover trigger</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Current state — governs today</th>
+<th>Target state — governs after cutover</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Management authority</td>
+<td>Co-management. Configuration Manager holds some workloads; Intune
+holds others. Which workload sits where must be recorded per workload,
+not assumed.</td>
+<td>Intune is the single management authority for endpoints.
+Configuration Manager retired for endpoint workloads.</td>
+</tr>
+<tr class="even">
+<td>Inventory and ticketing</td>
+<td>The ticketing system, or a legacy endpoint tool, holds the asset
+record.</td>
+<td>Intune holds device state; the ticketing system holds the service
+record. The join key between them is the asset tag and must be
+maintained deliberately.</td>
+</tr>
+<tr class="odd">
+<td>New device provisioning</td>
+<td>Mixed: imaging and manual build alongside Autopilot.</td>
+<td>Autopilot only. No manually-built endpoint enters service.</td>
+</tr>
+<tr class="even">
+<td>Encryption</td>
+<td>Mixed estate. A previous encryption tool on some devices, BitLocker
+under Intune on others, and a residue with neither a healthy agent nor
+an escrowed key.</td>
+<td>BitLocker via Intune on all Windows devices, recovery key escrowed
+in Entra ID, verified per §9.</td>
+</tr>
+<tr class="odd">
+<td>macOS</td>
+<td>Often still being tested.</td>
+<td>Per <a href="/sops/DEV-09">DEV-09</a>. Until that is adopted, macOS follows the interim path in
+§6.5.</td>
+</tr>
+<tr class="even">
+<td>Labs and shared devices</td>
+<td>Often a pilot.</td>
+<td>Per <a href="/sops/DEV-06">DEV-06</a>.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Cutover trigger — per workload, per device class</strong></p>
+<p>A workload moves from Configuration Manager to Intune when all of the
+following hold for the device class in question:</p>
+<ol type="1">
+<li><p>A pilot group of at least 10 devices has carried the workload in
+Intune for 10 business days with no regression in the §7 exit
+criteria.</p></li>
+<li><p>Every device in the class that is expected to be online has
+checked in to Intune. Devices that have not checked in are listed and
+chased, not written off — a silent device is where the last escrow gap
+came from.</p></li>
+<li><p>Escrow verification per §9 returns a key for every encrypted
+device in the pilot group.</p></li>
+<li><p>The rollback path from Intune back to Configuration Manager for
+that workload has been written down and tested once.</p></li>
+</ol>
+<p>Record the decision, the date and the evidence in the project record.
+Do not switch a workload tenant-wide on the strength of a pilot that
+only covered healthy, online machines.</p>
+</blockquote>
+<h2 id="4-device-classes-and-target-configuration">4. Device classes and
+target configuration</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Class</th>
+<th>Join type</th>
+<th>Primary user</th>
+<th>Encryption</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Staff / staff laptop</td>
+<td>Entra joined</td>
+<td>Named individual</td>
+<td>BitLocker, key in Entra</td>
+<td>Standard case. Windows Hello for Business eligible, which <a href="/sops/ACC-03">ACC-03</a>
+depends on.</td>
+</tr>
+<tr class="even">
+<td>Staff desktop</td>
+<td>Entra joined</td>
+<td>Named individual</td>
+<td>BitLocker, key in Entra</td>
+<td>As above.</td>
+</tr>
+<tr class="odd">
+<td>Loaner</td>
+<td>Entra joined</td>
+<td>None — pool device</td>
+<td>BitLocker, key in Entra</td>
+<td>Must pass §7 before every issue, not only at first build. See
+<a href="/sops/DEV-05">DEV-05</a>.</td>
+</tr>
+<tr class="even">
+<td>Computer lab</td>
+<td>Entra joined</td>
+<td>None — shared</td>
+<td>BitLocker, key in Entra</td>
+<td>Provisional pending <a href="/sops/DEV-06">DEV-06</a>. Shared-use profile; no standing local
+admin.</td>
+</tr>
+<tr class="odd">
+<td>Meeting room / lectern PC</td>
+<td>Entra joined</td>
+<td>None — shared</td>
+<td>BitLocker, key in Entra</td>
+<td>Availability matters more than flexibility. Locked
+configuration.</td>
+</tr>
+<tr class="even">
+<td>Conference room PC</td>
+<td>Entra joined</td>
+<td>None — shared</td>
+<td>BitLocker, key in Entra</td>
+<td>See <a href="/sops/DEV-18">DEV-18</a> for the AV chain around it.</td>
+</tr>
+<tr class="odd">
+<td>Kiosk / single-purpose</td>
+<td>Entra joined</td>
+<td>None</td>
+<td>BitLocker, key in Entra</td>
+<td>Assigned-access configuration.</td>
+</tr>
+<tr class="even">
+<td>macOS staff device</td>
+<td>Entra registered / Intune enrolled</td>
+<td>Named individual</td>
+<td>FileVault, key escrowed</td>
+<td>Provisional per §6.5 pending <a href="/sops/DEV-09">DEV-09</a>.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Every class carries the same encryption and escrow requirement. There
+is no device class at the organization for which an unescrowed recovery
+key is acceptable.</p>
+<h2 id="5-roles-and-responsibilities">5. Roles and responsibilities</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Desktop support</th>
+<th>IT admin (Intune)</th>
+<th>Service desk</th>
+<th>IT Security</th>
+<th>Head of IT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Register a new device with Autopilot</td>
+<td>R</td>
+<td>A</td>
+<td>I</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Build and hand over a device</td>
+<td>R / A</td>
+<td>C</td>
+<td>I</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>Verify the §7 exit criteria</td>
+<td>R</td>
+<td>A</td>
+<td>I</td>
+<td>I</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Verify BitLocker escrow (§9)</td>
+<td>R</td>
+<td>A</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr class="odd">
+<td>Remediate a device with no escrowed key</td>
+<td>R</td>
+<td>A</td>
+<td>I</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Plan and run a wave (§8)</td>
+<td>R</td>
+<td>R / A</td>
+<td>C</td>
+<td>I</td>
+<td>I</td>
+</tr>
+<tr class="odd">
+<td>Approve a workload cutover (§3)</td>
+<td>C</td>
+<td>R</td>
+<td>I</td>
+<td>C</td>
+<td>A</td>
+</tr>
+<tr class="even">
+<td>Retrieve a recovery key for a user</td>
+<td>R</td>
+<td>C</td>
+<td>R</td>
+<td>I</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>Authorise a remote wipe</td>
+<td>C</td>
+<td>R</td>
+<td>I</td>
+<td>A</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Approve disposal and certify data destruction</td>
+<td>R</td>
+<td>C</td>
+<td>I</td>
+<td>C</td>
+<td>A</td>
+</tr>
+</tbody>
+</table></div>
+<p>Recovery-key retrieval requires an Entra role carrying the
+bitlockerKeys/key/read permission — Cloud Device Administrator, Helpdesk
+Administrator, Intune Administrator or a purpose-built custom role.
+Every retrieval is audited under Key Management in the Entra audit log.
+Grant the narrowest role that works, and review holders quarterly under
+<a href="/sops/ACC-07">ACC-07</a>.</p>
+<h2 id="6-enrollment-paths">6. Enrollment paths</h2>
+<h3 id="61-new-device--autopilot-user-driven-default-for-staff">6.1 New
+device — Autopilot, user-driven (default for staff)</h3>
+<ol type="1">
+<li>Confirm the device is registered to the tenant as an Autopilot
+device before it reaches the person. Where the supplier can register at
+order time, use that; otherwise register the hardware hash on
+receipt.</li>
+<li>Assign the device to the correct Autopilot deployment profile for
+its class per §4.</li>
+<li>Record the asset tag, serial and class in the inventory before
+hand-over. A device that reaches a desk before it exists in inventory is
+how the estate stops being countable.</li>
+<li>Hand the device to the person sealed or freshly reset. They power
+on, select language and keyboard, connect to network, and sign in with
+their the organization credential.</li>
+<li>The Enrollment Status Page holds the desktop until device-phase and
+user-phase policies and applications have applied. Do not disable it to
+make hand-over feel faster; it is the only thing preventing a person
+from starting work on a half-configured machine.</li>
+<li>Verify every §7 exit criterion, including escrow per §9, before the
+ticket closes.</li>
+</ol>
+<h3
+id="62-new-device--autopilot-pre-provisioned-bulk-and-time-critical-hand-overs">6.2
+New device — Autopilot, pre-provisioned (bulk and time-critical
+hand-overs)</h3>
+<p>IT completes the device phase in advance, so the person only
+completes the user phase. Use for batch refreshes and for any hand-over
+where the person cannot spend the device-phase time waiting. Exit
+criteria are identical; only the sequence differs.</p>
+<h3 id="63-existing-device--co-management-wave-current-state">6.3
+Existing device — co-management wave (current state)</h3>
+<p>Existing domain-joined devices move by wave per section 8. Do not
+enroll ad hoc between waves except to remediate a fault, because an
+untracked enrollment is invisible to the wave record and becomes a
+silent device later.</p>
+<h3 id="64-reimage">6.4 Reimage</h3>
+<p>Reimaging through Autopilot is a normal, healthy outcome, not a
+failure. A reimaged device returns enrolled, encrypted and with its key
+escrowed automatically — which is frequently better than the state it
+was in. Before reimaging:</p>
+<ol type="1">
+<li>Confirm what data is resident locally and whether it is in OneDrive
+or a departmental SharePoint site. If institutional records are only on
+the local disk, move them first (<a href="/sops/M365-12">M365-12</a>).</li>
+<li>Record the existing recovery key state. If no key is escrowed, treat
+the device under §9 before proceeding — a reimage destroys the last
+chance to recover the current volume.</li>
+<li>Reimage, then run the full §7 exit criteria as though it were a new
+device.</li>
+</ol>
+<h3 id="65-macos-interim-path">6.5 macOS (interim path)</h3>
+<p>Where macOS management is not yet mature and <a href="/sops/DEV-09">DEV-09</a> is not yet
+adopted, macOS devices follow this path and are individually recorded as
+interim:</p>
+<ol type="1">
+<li>Enroll in Intune and confirm the device appears with the expected
+user affinity.</li>
+<li>Enable FileVault by policy and confirm the recovery key is escrowed.
+A macOS device with FileVault on and no escrowed key carries exactly the
+same risk as its Windows equivalent.</li>
+<li>Apply the available baseline, and record explicitly which controls
+the Windows baseline has that macOS does not yet. That list is the
+specification for <a href="/sops/DEV-09">DEV-09</a>.</li>
+</ol>
+<h3 id="66-lab-meeting-room-and-shared-devices-interim-path">6.6 Lab,
+meeting-room and shared devices (interim path)</h3>
+<p>Shared-device pilots proceed under this section until <a href="/sops/DEV-06">DEV-06</a> is
+adopted. Shared devices have no primary user, so the person-to-device
+link in §10 is replaced by a room-and-position record. No standing local
+administrator rights (<a href="/sops/DEV-12">DEV-12</a>).</p>
+<h2 id="7-definition-of-done--mandatory-exit-criteria">7. Definition of
+done — mandatory exit criteria</h2>
+<blockquote>
+<p><strong>A device is “enrolled” only when every line below is true and
+recorded.</strong></p>
+<p>This is the single most important section of this document.
+“Enrolled” has been treated as “appears in the console”, and that is
+what allowed a population of devices to exist that are encrypted with no
+recoverable key. A checkbox that is verified rather than assumed is the
+whole difference.</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Criterion</th>
+<th>How it is evidenced</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Device appears in Intune and has checked in within the last 24
+hours</td>
+<td>Intune device record, last check-in timestamp</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Device is Entra joined with the expected join type for its
+class</td>
+<td>Entra device record</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Correct deployment profile and configuration profiles have applied,
+with no conflicts</td>
+<td>Intune profile assignment status; policy-conflict view checked and
+clear</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Device reports compliant against the <a href="/sops/DEV-02">DEV-02</a> baseline</td>
+<td>Intune compliance status</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Disk is encrypted</td>
+<td>Intune encryption report</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Recovery key is present in Entra ID — confirmed by looking, not
+inferred</td>
+<td>Key ID recorded on the ticket (§9)</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Required applications for the class have installed</td>
+<td>Intune app install status</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Primary user is set correctly, or the device is correctly recorded
+as shared</td>
+<td>Intune primary user field; §10 record</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Asset tag, serial, class and location are in the inventory
+record</td>
+<td>Inventory system</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>No standing local administrator account beyond the <a href="/sops/DEV-12">DEV-12</a>
+standard</td>
+<td>Local group membership checked</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>For a loaner: the <a href="/sops/DEV-05">DEV-05</a> pre-issue functional check has passed</td>
+<td>Loaner log — camera, audio, Teams, sign-in all tested</td>
+</tr>
+</tbody>
+</table></div>
+<p>Criterion 6 is the one that is easiest to skip and most expensive to
+have skipped. Criterion 11 exists because loaner pools produce repeated
+in-meeting failures — a non-working speaker, a machine that cannot open
+Settings, a camera that does not work — all of which a two-minute
+pre-issue check catches.</p>
+<h2 id="8-wave-runbook-for-existing-devices">8. Wave runbook for
+existing devices</h2>
+<p>This turns what a good enrollment wave does into a procedure, so that
+the next wave starts from it instead of from a fresh email.</p>
+<h3 id="81-before-the-wave-t-5-business-days">8.1 Before the wave (T-5
+business days)</h3>
+<ol type="1">
+<li>Define the wave by a stable attribute — location, department or
+device class — and produce the target list with a count. A wave of
+seventy machines across two locations is specific enough to review.</li>
+<li>Check the target list against Intune for devices already enrolled,
+and against the inventory for devices that no longer exist. Both
+categories are common and both distort the completion figure.</li>
+<li>Create or confirm the wave group and confirm profile and application
+assignments resolve to it.</li>
+<li>Record the pre-wave escrow position for every device in the list:
+key present, or no key. This is the baseline the wave is measured
+against.</li>
+<li>Prepare the technician sheet and the end-user notice. The end-user
+notice states what will change, what may need a restart, and who to
+contact — not a request for consent.</li>
+<li>Confirm the rollback path for this wave and this workload, and that
+someone has actually performed it once.</li>
+</ol>
+<h3 id="82-during-the-wave">8.2 During the wave</h3>
+<ol type="1">
+<li>Work the list in a recorded order. Mark each device: enrolled,
+deferred, or failed — with a reason for anything not enrolled.</li>
+<li>Do not mark a device complete on enrollment alone. Complete means
+the §7 criteria, including escrow.</li>
+<li>Escalate a device that will not enroll after two attempts rather
+than repeating the attempt. Repeated identical attempts are how a wave
+loses a day.</li>
+</ol>
+<h3 id="83-after-the-wave-t2-business-days">8.3 After the wave (T+2
+business days)</h3>
+<ol type="1">
+<li>Produce the completion figure as three numbers, never one: targeted,
+completed to §7, and outstanding with reasons.</li>
+<li>List every device that did not check in. These are the silent
+devices, and they are the population that generated the current escrow
+gap. Chase them individually; do not let them age into the estate.</li>
+<li>Re-run escrow verification across the whole wave and compare against
+the §8.1 baseline. Any device encrypted with no key goes to §9
+immediately.</li>
+<li>Record what went wrong and what would be done differently. That
+record is the input to the next wave, and it is what stops each wave
+being the first one.</li>
+</ol>
+<h2 id="9-bitlocker-key-escrow-verification-and-remediation">9.
+BitLocker key escrow verification and remediation</h2>
+<h3 id="91-why-this-section-is-separate">9.1 Why this section is
+separate</h3>
+<p>Silent BitLocker enablement backs the recovery key up to Entra ID
+automatically at the point encryption occurs — but only where the device
+is Entra joined, no policy conflict blocks the backup, and the backup
+actually succeeds before encryption starts. Where a migration between
+encryption tools reached only the machines that were online and healthy,
+the estate now contains devices in three different states and they are
+not distinguishable without looking.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>State</th>
+<th>What it means</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Encrypted, key in Entra</td>
+<td>Correct. Recoverable and safe to wipe.</td>
+<td>None. Record the key ID against the device.</td>
+</tr>
+<tr class="even">
+<td>Encrypted, no key in Entra</td>
+<td>The dangerous state. Data is unrecoverable at the next recovery
+prompt and the device cannot be safely reissued.</td>
+<td>Remediate per §9.3. Treat as a priority, not a backlog item.</td>
+</tr>
+<tr class="odd">
+<td>Not encrypted</td>
+<td>Non-compliant, but not yet at risk of unrecoverable loss.</td>
+<td>Apply the encryption policy, then verify escrow per §9.2.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="92-verification">9.2 Verification</h3>
+<ol type="1">
+<li>For a single device: open the device in Intune, and under Monitor
+select Recovery keys. Where no key exists, Intune states plainly that no
+BitLocker key was found for the device — that message is a finding, not
+a display problem.</li>
+<li>For a population: use the Intune encryption report (Devices →
+Monitor → Encryption report) to list encryption state, then confirm key
+presence for every device the report shows as encrypted.</li>
+<li>Record the key ID, not the key itself, against the device in the
+inventory. The key stays in Entra; the inventory records only that it is
+there.</li>
+<li>Every retrieval of an actual recovery key is audited in Entra under
+Key Management, including the retriever and the key ID. Treat that audit
+trail as the reason to retrieve narrowly, not as a reason to avoid
+retrieving when a user needs it.</li>
+</ol>
+<h3 id="93-remediation-for-an-encrypted-device-with-no-escrowed-key">9.3
+Remediation for an encrypted device with no escrowed key</h3>
+<ol type="1">
+<li>Confirm the device is Entra joined. Automatic backup does not occur
+otherwise, and this is the most common single cause.</li>
+<li>Check for policy conflicts between the encryption profile and any
+security baseline. A conflict can prevent the backup silently while
+encryption itself proceeds.</li>
+<li>Trigger a key rotation from Intune, then re-verify per §9.2. A
+rotation generates a new recovery password and stores it in Entra, which
+resolves the majority of cases without touching the volume.</li>
+<li>Where rotation does not produce a key, escalate. Do not wipe,
+reimage or reissue the device until a key exists or the volume has been
+deliberately decrypted with the data preserved.</li>
+<li>Where a device cannot be brought into escrow and must be recovered,
+reimage via Autopilot after confirming resident data is safe. The device
+returns enrolled, encrypted and escrowed.</li>
+<li>Record the remediation and the resulting key ID on the ticket. Note
+for the future: Entra holds a maximum of 200 recovery keys per device. A
+device that has churned through rotations near that ceiling will fail
+silent encryption because the key backup fails first. Worth knowing
+before it is diagnosed the hard way.</li>
+</ol>
+<h2 id="10-assignment-primary-user-and-the-inventory-record">10.
+Assignment, primary user and the inventory record</h2>
+<p>The device-to-person link is what makes a leaver checklist closable,
+a recovery-key request answerable, and a refresh budget forecastable. It
+is administrative work with no visible reward until the moment it is
+missing.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Asset tag</td>
+<td>The join key between the management system and the service record.
+Physically present on the device and recorded in both systems.</td>
+</tr>
+<tr class="even">
+<td>Serial number</td>
+<td>Recorded at receipt, from the supplier record where possible rather
+than transcribed by hand.</td>
+</tr>
+<tr class="odd">
+<td>Device class</td>
+<td>Per §4. Drives every profile assignment, so an incorrect class is a
+silent misconfiguration.</td>
+</tr>
+<tr class="even">
+<td>Primary user</td>
+<td>Set for individually-assigned devices. Cleared and replaced on
+reassignment, never simply left. Note that where an Autopilot device is
+reused by a new owner, the previous owner’s access to the recovery key
+does not automatically transfer — the new owner must ask an
+administrator.</td>
+</tr>
+<tr class="odd">
+<td>Shared-device record</td>
+<td>Room and position instead of a person, for every class in §4 with no
+primary user.</td>
+</tr>
+<tr class="even">
+<td>Location</td>
+<td>Building and room. This is what makes a wave definable by location,
+per §8.1.</td>
+</tr>
+<tr class="odd">
+<td>Status</td>
+<td>In stock, issued, loaned, in repair, retired, disposed. One value at
+a time, changed at the moment the physical state changes.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-reassignment-retirement-and-disposal">11. Reassignment,
+retirement and disposal</h2>
+<p><a href="/sops/DEV-15">DEV-15</a> holds the full procedure. This section states the three checks
+that must not be skipped, because they are the ones that fail
+quietly.</p>
+<ol type="1">
+<li>Before wipe: confirm the recovery key is escrowed (§9). A wipe of an
+unescrowed encrypted volume is unrecoverable, and this is also the check
+<a href="/sops/ACC-01">ACC-01</a> §7.2 step 8 depends on to close a leaver ticket.</li>
+<li>Before reissue: confirm resident institutional data has been moved
+to OneDrive or a departmental SharePoint site, and confirm the previous
+primary user has been cleared and the new one set. A reissued device
+carrying the previous holder’s local data is a data incident waiting to
+be noticed.</li>
+<li>Before disposal: certify data destruction, remove the device from
+Intune, Entra and Autopilot registration, release the licence
+entitlement (<a href="/sops/M365-20">M365-20</a>), and set the inventory status to disposed. A
+device left registered in Autopilot after disposal will attempt to
+reappear.</li>
+</ol>
+<h2 id="12-service-levels">12. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>New device, Autopilot, from receipt to hand-over ready</td>
+<td>3 business days</td>
+</tr>
+<tr class="even">
+<td>New starter device, request received 5+ days before start date</td>
+<td>Ready on the start date (<a href="/sops/ACC-01">ACC-01</a> §8)</td>
+</tr>
+<tr class="odd">
+<td>Recovery-key retrieval for a verified user</td>
+<td>30 minutes</td>
+</tr>
+<tr class="even">
+<td>Encrypted device found with no escrowed key</td>
+<td>Remediation started same business day</td>
+</tr>
+<tr class="odd">
+<td>Loaner pre-issue functional check</td>
+<td>Before every issue, no exceptions</td>
+</tr>
+<tr class="even">
+<td>Device reassignment, wipe and reissue</td>
+<td>2 business days</td>
+</tr>
+<tr class="odd">
+<td>Wave completion report after wave close</td>
+<td>2 business days</td>
+</tr>
+</tbody>
+</table></div>
+<p>Proposals for ratification under <a href="/sops/GOV-06">GOV-06</a>, not commitments currently in
+force.</p>
+<h2 id="13-records">13. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Completed §7 exit criteria per device</td>
+<td>Service desk ticket</td>
+<td>Life of the asset + 1 year</td>
+</tr>
+<tr class="even">
+<td>Recovery key ID against the device</td>
+<td>Inventory record</td>
+<td>Life of the asset</td>
+</tr>
+<tr class="odd">
+<td>Escrow remediation actions</td>
+<td>Ticket + project record</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Wave plan, target list and three-number completion report</td>
+<td>Project record</td>
+<td>Life of the migration + 2 years</td>
+</tr>
+<tr class="odd">
+<td>Silent-device list per wave, with chase outcome</td>
+<td>Project record</td>
+<td>Until every device is resolved</td>
+</tr>
+<tr class="even">
+<td>Workload cutover decisions and evidence</td>
+<td>Project record</td>
+<td>Life of the migration + 2 years</td>
+</tr>
+<tr class="odd">
+<td>Loaner pre-issue check per issue</td>
+<td>Loaner log</td>
+<td>1 year</td>
+</tr>
+<tr class="even">
+<td>Data destruction certificate</td>
+<td>Asset register</td>
+<td>7 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="14-related-documents">14. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/DEV-02">DEV-02</a></td>
+<td>Device Compliance &amp; Configuration Baseline</td>
+<td>Defines “compliant” for exit criterion 4. Must exist before
+Conditional Access enforces device compliance.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-03">DEV-03</a></td>
+<td>Disk Encryption &amp; BitLocker Recovery Key Handling</td>
+<td>Section 9 is the operational summary; <a href="/sops/DEV-03">DEV-03</a> is the full
+standard.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-05">DEV-05</a></td>
+<td>Loaner Device Issue, Support &amp; Return</td>
+<td>Owns the pre-issue check in exit criterion 11.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-06">DEV-06</a></td>
+<td>Computer Lab, Meeting Room &amp; Shared Device Standard</td>
+<td>Replaces the interim §6.6 once adopted.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-07">DEV-07</a></td>
+<td>Personally-Owned Device (BYOD) Access Standard</td>
+<td>Covers everything explicitly out of scope here. Read it alongside
+your acceptable use policy.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-09">DEV-09</a></td>
+<td>macOS Device Management Standard</td>
+<td>Replaces the interim §6.5 once adopted. The gap list from §6.5 step
+3 shows what it must cover.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-11">DEV-11</a></td>
+<td>Software Request, Approval, Licensing &amp; Deployment</td>
+<td>Application delivery behind exit criterion 7.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-12">DEV-12</a></td>
+<td>Local Administrator Rights on Endpoints</td>
+<td>Exit criterion 10.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-13">DEV-13</a></td>
+<td>Patch, Update &amp; Maintenance Window Standard</td>
+<td>Ongoing device state after enrollment.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-15">DEV-15</a></td>
+<td>Device Reassignment, Wipe, Retirement &amp; Disposal</td>
+<td>Full procedure behind section 11.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-16">DEV-16</a></td>
+<td>Lost, Stolen or Compromised Device Response</td>
+<td>Depends on the §10 inventory record and §9 escrow position.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle: Joiner, Mover, Leaver</td>
+<td>Device provisioning at joiner; escrow check at leaver.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA Enrollment, Reset &amp; Account Recovery</td>
+<td>Windows Hello for Business depends on the join and compliance
+achieved here.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-20">M365-20</a></td>
+<td>License Assignment, Reclamation &amp; Cost Attribution</td>
+<td>Entitlement release at disposal.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-04">GOV-04</a> / <a href="/sops/GOV-06">GOV-06</a></td>
+<td>Change Management / SLA Definition</td>
+<td>Wave scheduling and target ratification.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--per-device-enrollment-checklist">Appendix A —
+Per-device enrollment checklist</h2>
+<p>One per device. Paste into the ticket. Nothing here is optional and
+nothing is inferred.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Done</th>
+<th>Criterion</th>
+<th>Evidence recorded</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>☐</td>
+<td>Asset tag, serial, class and location in inventory BEFORE
+hand-over</td>
+<td>Inventory ID</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Appears in Intune, checked in within 24 hours</td>
+<td>Last check-in timestamp</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Entra joined with the correct join type for its class</td>
+<td>Entra device ID</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Profiles applied; policy-conflict view checked and clear</td>
+<td>Assignment status</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Reports compliant against <a href="/sops/DEV-02">DEV-02</a></td>
+<td>Compliance status</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Disk encrypted</td>
+<td>Encryption report</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Recovery key CONFIRMED PRESENT in Entra — looked at, not
+assumed</td>
+<td>Key ID (or “none found” → §9)</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Required applications for the class installed</td>
+<td>App install status</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Primary user set, or correctly recorded as shared</td>
+<td>Username or room/position</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>No standing local admin beyond <a href="/sops/DEV-12">DEV-12</a></td>
+<td>Local group checked</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Loaner only: pre-issue functional check passed (camera, audio,
+Teams, sign-in)</td>
+<td>Loaner log entry</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--wave-runbook-checklist">Appendix B — Wave runbook
+checklist</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Done</th>
+<th>Step</th>
+<th>Evidence recorded</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>☐</td>
+<td>Wave defined by a stable attribute; target list produced with a
+count</td>
+<td>List + count</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Target list reconciled against Intune (already enrolled) and
+inventory (no longer exists)</td>
+<td>Reconciled list</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Wave group created; profile and app assignments resolve to it</td>
+<td>Group ID</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Pre-wave escrow position recorded for every device</td>
+<td>Baseline export</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Technician sheet and end-user notice prepared</td>
+<td>Both attached</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Rollback path for this workload written down and performed once</td>
+<td>Rollback note</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>List worked in a recorded order; each device marked enrolled /
+deferred / failed with reason</td>
+<td>Working list</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>No device marked complete on enrollment alone — §7 criteria met</td>
+<td>Per-device checklists</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Completion reported as three numbers: targeted / completed /
+outstanding with reasons</td>
+<td>Report</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Silent devices (never checked in) listed and chased
+individually</td>
+<td>Silent list + outcomes</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Post-wave escrow verification run and compared to baseline</td>
+<td>Comparison</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Lessons recorded as input to the next wave</td>
+<td>Wave retrospective</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-c--escrow-verification-and-remediation-card">Appendix C
+— Escrow verification and remediation card</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Check</th>
+<th>If it fails</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Intune → device → Monitor → Recovery keys. Is a key present?</td>
+<td>“No BitLocker key found” is a finding. Continue to step 2.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Is the device Entra joined?</td>
+<td>Not joined → automatic backup never happens. Resolve the join first.
+This is the most common cause.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Any policy conflict between the encryption profile and a security
+baseline?</td>
+<td>Conflict can block backup silently while encryption proceeds.
+Resolve the conflict, then step 4.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Trigger key rotation from Intune, then re-check step 1.</td>
+<td>Key now present → record the key ID and close.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Still no key?</td>
+<td>ESCALATE. Do not wipe, reimage or reissue. The volume is currently
+unrecoverable and a wipe makes that permanent.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Device must be recovered and no key can be produced.</td>
+<td>Confirm resident data is safe, then reimage via Autopilot. It
+returns enrolled, encrypted and escrowed.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Retrieving a key for a user: verify their identity per <a href="/sops/ACC-03">ACC-03</a> §6
+first. Recovery-key retrieval is an account action and the same
+verification gate applies — a 48-digit key handed to the wrong person
+defeats the encryption entirely.</p>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

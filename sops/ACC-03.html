@@ -1,0 +1,1227 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACC-03 · MFA Enrollment, Reset &amp; Account Recovery | Known Good</title>
+<meta name="description" content="How multifactor authentication is registered, how a person who cannot sign in is verified and restored, and how repeat incidents escalate.">
+<meta property="og:title" content="ACC-03 · MFA Enrollment, Reset &amp; Account Recovery | Known Good">
+<meta property="og:description" content="How multifactor authentication is registered, how a person who cannot sign in is verified and restored, and how repeat incidents escalate.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="acc-03--mfa-enrollment-reset--account-recovery">ACC-03 · MFA
+Enrollment, Reset &amp; Account Recovery</h1>
+<p><em>How multifactor authentication is registered, how a person who
+cannot sign in is verified and restored, and how repeat incidents
+escalate.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/ACC-03-MFA-Enrollment-Reset-and-Account-Recovery.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/ACC-03.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/ACC-03">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>ACC-03</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>B. Account Usage</td>
+</tr>
+<tr class="even">
+<td>Primary audience</td>
+<td>All account holders for sections 5 and 7. Service desk and IT
+administrators for sections 6, 8, 9 and 10.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Every six months while the Entra migration is in progress, then
+annually.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>This procedure covers how a person registers multifactor
+authentication, how somebody who cannot sign in is verified and
+restored, and what happens when the same account fails repeatedly. It
+exists because account access is the largest single category of work on
+most service desks, and it is often handled without a documented
+decision path.</p>
+<p>Before changing anything, measure your own desk over a recent few
+months:</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Measure</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Lockout tickets in the period</td>
+<td>The headline number this document exists to bring down.</td>
+</tr>
+<tr class="even">
+<td>Of those, how many say “locked out” or “unlock”</td>
+<td>Separates true lockouts from sign-in confusion.</td>
+</tr>
+<tr class="odd">
+<td>Which population opens the most</td>
+<td>Usually the least-managed group. It decides wave order in §11.</td>
+</tr>
+<tr class="even">
+<td>Share that were MFA problems</td>
+<td>The share a better registration path removes.</td>
+</tr>
+<tr class="odd">
+<td>Share that were password resets</td>
+<td>The share self-service reset should absorb.</td>
+</tr>
+<tr class="even">
+<td>Median time to close</td>
+<td>What a person locked out actually waits.</td>
+</tr>
+</tbody>
+</table></div>
+<p>On many desks, identity and access is the largest share of genuine
+ticket volume, and most of it is absorbable by a documented self-service
+path and a triage card. Three patterns shape this document:</p>
+<ul>
+<li>A reset request arrives from a personal email address on behalf of a
+differently-named person, with no verification step recorded. That is
+the textbook help desk social-engineering vector, and section 6 is the
+control against it.</li>
+<li>A rushed rollout of phishing-resistant MFA breaks access and traps
+people in an MFA setup loop. Section 11 documents the usual cause and
+how to avoid it.</li>
+<li>A managed security partner asks which MFA system the organization
+uses, and the answer is not self-evident from anything written down.
+Section 3 fixes that.</li>
+</ul>
+<h2 id="2-scope">2. Scope</h2>
+<h3 id="in-scope">In scope</h3>
+<ul>
+<li>MFA registration, re-registration and method removal for every
+account class in <a href="/sops/ACC-01">ACC-01</a> §3.</li>
+<li>Password reset, both self-service and assisted.</li>
+<li>Account lockout and sign-in failure triage.</li>
+<li>Account recovery where the person has lost every registered
+method.</li>
+<li>Escalation of repeat lockouts and suspected account compromise.</li>
+</ul>
+<h3 id="out-of-scope">Out of scope</h3>
+<ul>
+<li>Password composition and expiry rules, which are in <a href="/sops/ACC-04">ACC-04</a>.</li>
+<li>Privileged account authentication requirements, which are in
+<a href="/sops/ACC-07">ACC-07</a>.</li>
+<li>Application-side MFA and claim configuration, which is in
+<a href="/sops/ACC-16">ACC-16</a>.</li>
+<li>Formal incident declaration, which is in <a href="/sops/GOV-03">GOV-03</a>. This procedure
+escalates into it.</li>
+</ul>
+<h2 id="3-current-state-target-state-and-the-cutover-trigger">3. Current
+state, target state and the cutover trigger</h2>
+<p>Many organizations are mid-migration between MFA systems or methods.
+Rather than write a procedure that is wrong now or wrong later, each
+affected section below states both. Where the two differ, the
+current-state text governs until the cutover trigger fires.</p>
+<blockquote>
+<p><strong>Read your tenant before you start, because it may change the
+urgency of this document</strong></p>
+<p>Check the authentication methods policy and your domains, read-only:
+in the Entra admin center, or with GET
+/v1.0/policies/authenticationMethodsPolicy and GET /v1.0/domains.</p>
+<p>IS ANY PHISHING-RESISTANT METHOD ENABLED? If FIDO2, certificate-based
+authentication and Windows Hello for Business are all off, every enabled
+method is phishable, and a vendor that starts enforcing
+phishing-resistant MFA will find nothing your people can register.
+Enabling a phishing-resistant method is then the first step of §11, not
+the last.</p>
+<p>ARE YOUR DOMAINS MANAGED OR FEDERATED? authenticationType=Managed
+means Microsoft Entra ID is the authentication authority. If a
+third-party identity provider also runs, write down which system
+authenticates whom and send it to any managed security partner, because
+a partner working from a wrong model of the estate is a risk in
+itself.</p>
+<p>WHICH WEAK METHODS ARE STILL ON? SMS and voice are SIM-swappable, and
+email as a factor is close to circular when the mailbox is what is being
+protected. Scope them out with the same wave discipline as everything
+else in §11.</p>
+</blockquote>
+<h3 id="31-authentication-methods-what-to-set">3.1 Authentication
+methods: what to set</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Recommended setting</th>
+<th>Assessment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Microsoft Authenticator</td>
+<td>Enabled, with number matching</td>
+<td>The workhorse. Phishable without number matching; confirm number
+matching is enforced.</td>
+</tr>
+<tr class="even">
+<td>Temporary Access Pass</td>
+<td>Enabled</td>
+<td>Correct, and a prerequisite for onboarding people onto passkeys
+(§11). Confirm the lifetime and one-time-use settings.</td>
+</tr>
+<tr class="odd">
+<td>Software OATH token</td>
+<td>Allowed as a fallback</td>
+<td>Acceptable fallback. Phishable.</td>
+</tr>
+<tr class="even">
+<td>Voice call</td>
+<td>Retire</td>
+<td>WEAK. SIM-swappable and phishable.</td>
+</tr>
+<tr class="odd">
+<td>Email OTP</td>
+<td>Guests only</td>
+<td>WEAK. Circular where the protected resource is the mailbox.
+Legitimate for guests only — scope it to guests rather than all
+users.</td>
+</tr>
+<tr class="even">
+<td>SMS</td>
+<td>Disabled</td>
+<td>Interceptable. Turn it off once people have something better.</td>
+</tr>
+<tr class="odd">
+<td>FIDO2 security key</td>
+<td>Enabled</td>
+<td>Must be enabled before any population facing a phishing-resistant
+requirement can register anything that satisfies it.</td>
+</tr>
+<tr class="even">
+<td>X.509 certificate</td>
+<td>Optional</td>
+<td>The alternative phishing-resistant route if smart cards suit a
+population better than keys.</td>
+</tr>
+<tr class="odd">
+<td>QR code PIN, Verifiable credentials</td>
+<td>Only if needed</td>
+<td>Rarely needed in a small shop.</td>
+</tr>
+</tbody>
+</table></div>
+<p>If every method is targeted at all users, there is no per-population
+scoping yet. Section 11 depends on that scoping existing — building the
+wave groups is a prerequisite to the wave plan, not part of it.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Current state — governs today</th>
+<th>Target state — governs after cutover</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Primary MFA system</td>
+<td>A third-party identity provider may remain in force for some
+populations. IT must maintain, and publish, the authoritative list of
+which population authenticates through which system.</td>
+<td>Microsoft Entra ID is the single MFA authority. Any third-party MFA
+is decommissioned.</td>
+</tr>
+<tr class="even">
+<td>Approved methods</td>
+<td>Whatever your tenant read shows. Commonly Authenticator, software
+OATH, voice, email and TAP, with no phishing-resistant method — see
+§3.1.</td>
+<td>Passkeys — Windows Hello for Business, platform credential, FIDO2
+security key — and Authenticator passkey. Voice and email disabled or
+scoped to guests only.</td>
+</tr>
+<tr class="odd">
+<td>Self-service password reset</td>
+<td>Not consistently available. Most resets are assisted, which is why
+password resets fill so much of the queue.</td>
+<td>Entra self-service password reset enabled for all account classes,
+with two registered methods required.</td>
+</tr>
+<tr class="even">
+<td>Recovery when all methods lost</td>
+<td>Assisted reset after verification per section 6.</td>
+<td>Temporary Access Pass issued after verification per section 6,
+forcing re-registration at next sign-in.</td>
+</tr>
+<tr class="odd">
+<td>Conditional Access enforcement</td>
+<td>Limited. No authentication-strength requirement in force.</td>
+<td>Authentication strength “Phishing-resistant MFA”, rolled out in
+platform-based waves per section 11.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Cutover trigger</strong></p>
+<p>A population moves from current state to target state when all three
+of the following are true, and not before:</p>
+<ol type="1">
+<li><p>Every account in the wave group has at least one
+phishing-resistant method registered, evidenced from the Entra
+authentication-methods report.</p></li>
+<li><p>A report-only Conditional Access policy has run over that group
+for at least ten business days with no unexplained would-be
+blocks.</p></li>
+<li><p>The service desk has the section 6 verification script and the
+section 8 triage card in hand, and has run at least one rehearsal of the
+total-loss recovery path.</p></li>
+</ol>
+<p>Known external constraint: where a vendor enforces phishing-resistant
+MFA by a date, that date drives the population using that vendor to the
+front of the wave order in section 11. It does not license skipping the
+three conditions above — rushing exactly that is what produces the setup
+loop.</p>
+</blockquote>
+<h2 id="4-roles-and-responsibilities">4. Roles and responsibilities</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Account holder</th>
+<th>Service desk</th>
+<th>IT admin</th>
+<th>IT Security</th>
+<th>Head of IT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Register two MFA methods on time</td>
+<td>R / A</td>
+<td>I</td>
+<td>C</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Verify identity before any account action (§6)</td>
+<td>C</td>
+<td>R / A</td>
+<td>R</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr class="odd">
+<td>Perform an assisted reset or issue a TAP</td>
+<td>—</td>
+<td>R</td>
+<td>R</td>
+<td>I</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Remove or re-register MFA methods</td>
+<td>C</td>
+<td>R</td>
+<td>R / A</td>
+<td>C</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>Triage a lockout (§8)</td>
+<td>C</td>
+<td>R / A</td>
+<td>C</td>
+<td>I</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Escalate a repeat or suspected compromise (§9)</td>
+<td>I</td>
+<td>R</td>
+<td>C</td>
+<td>R / A</td>
+<td>I</td>
+</tr>
+<tr class="odd">
+<td>Act on a risky sign-in or impossible-travel alert (§10)</td>
+<td>C</td>
+<td>I</td>
+<td>R</td>
+<td>R / A</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Approve a wave moving to enforcement (§11)</td>
+<td>—</td>
+<td>I</td>
+<td>R</td>
+<td>C</td>
+<td>A</td>
+</tr>
+<tr class="odd">
+<td>Approve any standing exception to MFA</td>
+<td>—</td>
+<td>—</td>
+<td>C</td>
+<td>C</td>
+<td>A</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="5-mfa-enrollment">5. MFA enrollment</h2>
+<h3 id="51-requirement-by-account-class">5.1 Requirement by account
+class</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Account class</th>
+<th>Methods required</th>
+<th>Deadline</th>
+<th>Grace behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Employee, staff (all)</td>
+<td>Two, at least one phishing-resistant in target state</td>
+<td>Within 24 hours of first sign-in</td>
+<td>Blocked from all but registration after 5 days</td>
+</tr>
+<tr class="even">
+<td>User</td>
+<td>Two</td>
+<td>Within 7 days of first sign-in</td>
+<td>Blocked from all but registration after 14 days</td>
+</tr>
+<tr class="odd">
+<td>Temporary worker — departmental access</td>
+<td>Two, registered separately from the user identity</td>
+<td>Before departmental access is granted</td>
+<td>Access not granted until registered</td>
+</tr>
+<tr class="even">
+<td>Vendor, contractor, guest</td>
+<td>Two</td>
+<td>Before first resource access</td>
+<td>No access until registered</td>
+</tr>
+<tr class="odd">
+<td>Administrative (privileged)</td>
+<td>Phishing-resistant only. No SMS or voice, in either state.</td>
+<td>Before the role is assigned</td>
+<td>Role not assigned until registered (<a href="/sops/ACC-07">ACC-07</a>)</td>
+</tr>
+<tr class="even">
+<td>Service / non-human</td>
+<td>Not applicable — migrate to workload identity or certificate
+auth</td>
+<td>—</td>
+<td>See <a href="/sops/ACC-08">ACC-08</a></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="52-approved-and-prohibited-methods">5.2 Approved and prohibited
+methods</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Windows Hello for Business / platform credential</td>
+<td>Preferred</td>
+<td>Phishing-resistant. Requires the device to be Entra-joined and
+compliant (<a href="/sops/DEV-01">DEV-01</a>, <a href="/sops/DEV-02">DEV-02</a>).</td>
+</tr>
+<tr class="even">
+<td>Passkey in Microsoft Authenticator</td>
+<td>Preferred</td>
+<td>Phishing-resistant. Requires Android 14+, iOS 17+ or Windows 10
+1903+ and a WebAuthn-capable browser. Devices below those versions need
+a different method — plan for it rather than discovering it during a
+wave.</td>
+</tr>
+<tr class="odd">
+<td>FIDO2 security key</td>
+<td>Preferred</td>
+<td>Phishing-resistant. The answer for shared-use staff, lab staff and
+anyone whose device cannot carry a platform credential.</td>
+</tr>
+<tr class="even">
+<td>Microsoft Authenticator push with number matching</td>
+<td>Permitted</td>
+<td>Not phishing-resistant. Acceptable in current state; retired for
+enforced populations in target state.</td>
+</tr>
+<tr class="odd">
+<td>A third-party authenticator app</td>
+<td>Permitted — current state only</td>
+<td>Retire with the third-party identity provider. Any procedure or
+guide referencing it must be reviewed at cutover.</td>
+</tr>
+<tr class="even">
+<td>SMS or voice call</td>
+<td>Discouraged; prohibited in target state</td>
+<td>Interceptable. Permitted today only as a fallback where no other
+method is possible, and recorded as an exception.</td>
+</tr>
+<tr class="odd">
+<td>Email to a personal address</td>
+<td>Prohibited</td>
+<td>Never an approved factor, in either state.</td>
+</tr>
+<tr class="even">
+<td>Security questions</td>
+<td>Prohibited</td>
+<td>Answers are discoverable. Not to be enabled as an SSPR method.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="53-enrollment-procedure--account-holder">5.3 Enrollment
+procedure — account holder</h3>
+<ol type="1">
+<li>Sign in with the credential issued per <a href="/sops/ACC-01">ACC-01</a> §5.2, on a device you
+control.</li>
+<li>When prompted for security information, register the highest-ranked
+method in §5.2 that your device supports.</li>
+<li>Register a second, different method. Two methods on the same phone
+is one method with extra steps — if that phone is lost you have lost
+both.</li>
+<li>Record nothing about your methods in a shared document, ticket or
+email.</li>
+<li>If you replace or lose a device, remove the old method and register
+the new one before you dispose of the old device. Doing it in that order
+avoids section 6 entirely.</li>
+</ol>
+<h3 id="54-enrollment-where-the-person-has-no-working-device">5.4
+Enrollment where the person has no working device</h3>
+<p>Verify identity per section 6, then issue a Temporary Access Pass
+rather than a password. A TAP is time-bound, single-purpose and forces
+method registration at sign-in, so no reusable shared secret is created.
+Record the TAP issue on the ticket, including who authorised it and
+which verification tier was used.</p>
+<h2
+id="6-identity-verification-before-any-account-action--mandatory-gate">6.
+Identity verification before any account action — mandatory gate</h2>
+<blockquote>
+<p><strong>The rule</strong></p>
+<p>No password reset, MFA method removal, TAP issue, or access change is
+performed until the requester’s identity has been verified by one of the
+tiers in §6.2, and the tier used has been recorded on the ticket.</p>
+<p>The verification tier is a required field. A ticket closed without it
+is an incomplete ticket, regardless of whether the request was
+genuine.</p>
+</blockquote>
+<p>This section exists because of a common event: a request to complete
+MFA sign-in arrives at the service desk from a personal email address,
+naming a different person as the account holder. Whether or not that
+particular request is legitimate is beside the point — without this
+section, the process has no step at which it would be caught.</p>
+<h3 id="62-verification-tiers">6.2 Verification tiers</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Tier</th>
+<th>Method</th>
+<th>What it requires</th>
+<th>Use when</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>T1</td>
+<td>In person</td>
+<td>Government or organization photo ID presented at the service desk,
+checked against the directory record.</td>
+<td>Default and strongest. Always preferred for privileged
+accounts.</td>
+</tr>
+<tr class="even">
+<td>T2</td>
+<td>Live video call</td>
+<td>Camera on, face visible, photo ID held to camera, plus two directory
+facts the requester supplies unprompted (HR/client record ID,
+department, manager name, device asset tag). The staff member records
+which facts were used.</td>
+<td>Remote staff, staff and remote users. Standard remote path.</td>
+</tr>
+<tr class="odd">
+<td>T3</td>
+<td>Vouching by a known party</td>
+<td>The requester’s manager or department head confirms identity from
+their own organization account, on the ticket. The voucher must
+themselves already be signed in.</td>
+<td>The requester cannot do T1 or T2 — no camera, no ID to hand.</td>
+</tr>
+<tr class="even">
+<td>T4</td>
+<td>Callback to the directory number</td>
+<td>Call the number in the directory record, not a number the requester
+supplies. Combine with two directory facts.</td>
+<td>Fallback only, and never on its own for a privileged account.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Privileged accounts (<a href="/sops/ACC-07">ACC-07</a>) require T1 or T2. No exceptions, and no
+vouching.</p>
+<h3 id="63-requests-that-are-never-actioned">6.3 Requests that are never
+actioned</h3>
+<ul>
+<li>Any request arriving from a non-the organization email address,
+including one that names the account holder correctly.</li>
+<li>Any request made by a third party on the account holder’s behalf,
+unless that third party is the manager using T3 and the account holder
+is separately contactable.</li>
+<li>Any request where the requester supplies the verification facts only
+after being told what is needed. Facts must be volunteered, not
+prompted.</li>
+<li>Any request under time pressure that also declines verification.
+Urgency is the standard pretext; treat it as a signal rather than a
+reason.</li>
+<li>Any request to add a new MFA method while an existing method remains
+registered and reachable — remove the old one via §5.3 instead. Where a
+request is declined, tell the requester which verification path is
+available to them and offer to arrange it. The answer is “here is how we
+can do this”, not “no”.</li>
+</ul>
+<h2 id="7-password-reset">7. Password reset</h2>
+<h3
+id="71-self-service--target-state-and-the-highest-leverage-change-available">7.1
+Self-service — target state, and the highest-leverage change
+available</h3>
+<p>Entra self-service password reset lets a person who has two
+registered methods reset their own password with no service desk
+involvement. Against the lockout volume you measured in §1, this is the
+single control with the largest effect on queue volume.</p>
+<ol type="1">
+<li>Enable SSPR for a pilot group first, not the whole tenant. Confirm
+the reset actually completes for a real account before widening.</li>
+<li>Require two registered methods. One method means one lost phone
+becomes a service desk ticket anyway.</li>
+<li>Do not enable security questions as a method (§5.2).</li>
+<li>Enable password reset from the Windows sign-in screen for
+Entra-joined devices, so a person locked out of their laptop is not
+dependent on a second device.</li>
+<li>Publish the reset address to end-users through <a href="/sops/GOV-05">GOV-05</a>, and put it in
+the mail signature of every service desk reply about access.</li>
+<li>Widen by account class in the wave order of §11, measuring
+assisted-reset volume at each step. A control that does not move the
+number is not working, and that is worth knowing early.</li>
+</ol>
+<h3
+id="72-assisted-reset--current-state-and-the-fallback-in-target-state">7.2
+Assisted reset — current state, and the fallback in target state</h3>
+<ol type="1">
+<li>Verify identity per section 6 and record the tier.</li>
+<li>Confirm the account is not disabled, unlicensed or blocked by policy
+rather than by password. Section 8 distinguishes these; resetting a
+password that was never the problem is the commonest wasted action in
+the queue.</li>
+<li>Where the platform supports it, issue a Temporary Access Pass rather
+than a temporary password. A temporary password does not expire on use
+and will still work weeks later.</li>
+<li>Where a temporary password must be used, require change at next
+sign-in, and deliver it in person, by T2 video, or to the manager. Never
+to a personal address, and never in the ticket body.</li>
+<li>Confirm with the person that they have signed in successfully before
+closing. A reset is not the outcome; access is.</li>
+<li>Record: verification tier, method used, who authorised, and
+confirmation of successful sign-in.</li>
+</ol>
+<h2 id="8-lockout-triage">8. Lockout triage</h2>
+<p>“I’m locked out” describes a symptom with at least five distinct
+causes, each with a different fix. Treating them all as password resets
+is how a few hundred real lockouts become twice as many tickets.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Cause</th>
+<th>How it presents</th>
+<th>How to confirm</th>
+<th>Correct action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>On-premises AD lockout from repeated bad passwords</td>
+<td>Sign-in fails immediately, everywhere, including on-site.</td>
+<td>AD account lockout flag; bad-password count.</td>
+<td>Unlock. Then find the source — a stale credential on a phone or
+mapped drive is the usual cause, and resetting the password alone will
+not stop it recurring.</td>
+</tr>
+<tr class="even">
+<td>Entra smart lockout</td>
+<td>Fails from one location or client but works from another.</td>
+<td>Entra sign-in logs show the smart-lockout result.</td>
+<td>Wait out the lockout or unlock. Investigate the source IP; a burst
+from an unfamiliar address is a §10 matter.</td>
+</tr>
+<tr class="odd">
+<td>MFA method unavailable — lost, replaced or wiped device</td>
+<td>Password accepted, then the second factor never arrives or the app
+has no account in it.</td>
+<td>Ask what changed about their phone. Almost always a new or reset
+device.</td>
+<td>Verify per §6, then re-register per §5.4. Do not reset the password
+— it is not broken.</td>
+</tr>
+<tr class="even">
+<td>Conditional Access or risk-based block</td>
+<td>A clear policy message, or failure only from a specific device,
+network or app.</td>
+<td>Entra sign-in log names the policy or the risk detection.</td>
+<td>Resolve the condition — device compliance, location, risk. A reset
+will not clear it and will mask the cause.</td>
+</tr>
+<tr class="odd">
+<td>Not a lockout at all</td>
+<td>Sign-in succeeds; a specific application or portal denies
+access.</td>
+<td>Check licence assignment, group membership, and the application
+itself.</td>
+<td>Licence (<a href="/sops/M365-20">M365-20</a>), group (<a href="/sops/M365-04">M365-04</a>), or application (<a href="/sops/ACC-16">ACC-16</a>).
+Reclassify the ticket.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Record the confirmed cause on every lockout ticket, using these five
+categories. Within a few months that turns an undifferentiated lockout
+count into a ranked list of fixable root causes — which is the only way
+the number comes down rather than moving around.</p>
+<h2 id="9-repeat-incident-and-compromise-escalation">9. Repeat-incident
+and compromise escalation</h2>
+<p>A typical case: an account is blocked for the third time in a few
+months. The person is told not to use a VPN or share access, and IT
+intends to notify their manager and IT Security. That is the right
+instinct, and this section makes it a standing ladder rather than a
+judgement call each time.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Occurrence</th>
+<th>Action</th>
+<th>Who decides</th>
+<th>Recorded where</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1st</td>
+<td>Restore per §7 or §5.4. Record the confirmed §8 cause. Brief the
+person on credential sharing (<a href="/sops/ACC-15">ACC-15</a>).</td>
+<td>Service desk</td>
+<td>Ticket</td>
+</tr>
+<tr class="even">
+<td>2nd within 90 days</td>
+<td>Restore, then review sign-in history for shared-credential or
+unfamiliar-location patterns. Require re-registration of all MFA
+methods. Flag the account for watch.</td>
+<td>Service desk, IT Security informed</td>
+<td>Ticket + watch list</td>
+</tr>
+<tr class="odd">
+<td>3rd within 90 days</td>
+<td>Treat as suspected compromise or credential sharing until shown
+otherwise. Force password reset, revoke all sessions, remove and
+re-register every method. Notify the account holder’s department head or
+manager in writing.</td>
+<td>IT Security decides; Head of IT informed</td>
+<td>Ticket + security record</td>
+</tr>
+<tr class="even">
+<td>Confirmed sharing or sale of credentials</td>
+<td>Suspend per <a href="/sops/ACC-13">ACC-13</a>. Refer to the department head or HR. Do not
+restore access until the referral concludes.</td>
+<td>Head of IT approves; IT Security executes</td>
+<td>Security record + referral</td>
+</tr>
+<tr class="odd">
+<td>Confirmed compromise by a third party</td>
+<td>Declare an incident under <a href="/sops/GOV-03">GOV-03</a>. Preserve sign-in and mailbox audit
+data before remediating.</td>
+<td>IT Security declares</td>
+<td>Incident record</td>
+</tr>
+</tbody>
+</table></div>
+<p>“Told not to use VPN or provide access to anyone” must also exist as
+a published rule the organization can point to, not only as verbal
+guidance in the moment. Most organizations already have an acceptable
+use policy; <a href="/sops/ACC-15">ACC-15</a> should confirm it explicitly covers credential
+sharing and VPN misuse and then make it the document the desk cites,
+rather than writing a new one.</p>
+<h2 id="10-risky-sign-in-and-impossible-travel">10. Risky sign-in and
+impossible travel</h2>
+<p>Where a managed detection partner or Entra raises a risky sign-in —
+impossible travel, unfamiliar sign-in properties, anomalous token use —
+the account is locked pending review. That is correct, and it also means
+an alert has an end-user consequence, so the two halves need to run
+together.</p>
+<ol type="1">
+<li>Confirm the detection in the Entra sign-in logs and note the IP,
+location, device and application.</li>
+<li>Preserve the evidence before remediating. Once sessions are revoked
+and the password is changed, the trail is harder to reconstruct.</li>
+<li>Contact the account holder through a channel independent of the
+account — directory phone number, or their manager. Not the mailbox in
+question.</li>
+<li>Verify identity per section 6 before restoring anything.</li>
+<li>Where the sign-in is confirmed as the account holder travelling,
+document it and restore. Where it is not, treat it as confirmed
+compromise and go to §9.</li>
+<li>Where several accounts show the same source IP granted
+authentication — treat it as one investigation, not several tickets.
+Notify IT Security and open a single record.</li>
+<li>Close the loop with the partner case so the external record matches
+the internal one.</li>
+</ol>
+<h2
+id="11-phishing-resistant-mfa-rollout--how-not-to-repeat-the-setup-loop">11.
+Phishing-resistant MFA rollout — how not to repeat the setup loop</h2>
+<blockquote>
+<p><strong>What usually goes wrong</strong></p>
+<p>A rushed rollout of phishing-resistant MFA breaks access and leaves
+people stuck in an MFA setup loop. The mechanism is well understood and
+entirely avoidable: a Conditional Access policy requiring
+phishing-resistant authentication was in scope for the
+security-information registration endpoint itself.</p>
+<p>The user then cannot register a phishing-resistant method, because
+registering one requires a completed authentication, and the only
+authentication the policy will accept is with a method they do not yet
+have. That is the loop. It is not a user error and no amount of guidance
+documentation fixes it.</p>
+</blockquote>
+<h3 id="111-rules-that-prevent-it">11.1 Rules that prevent it</h3>
+<ul>
+<li>Conditional Access guards sign-in, never the registration flow.
+Scope the authentication-strength policy to resources, and exclude the
+registration endpoint.</li>
+<li>Every user in an enforced wave must already hold a registered
+phishing-resistant method before the policy moves out of report-only.
+Enforcement follows registration; it never drives it.</li>
+<li>A person who has lost everything is recovered with a Temporary
+Access Pass, which satisfies the requirement long enough to register a
+real method. Without TAP configured, total-loss recovery has no exit and
+becomes a second loop.</li>
+<li>Break-glass accounts are excluded from every enforcement policy, and
+their exclusion is tested before the first wave.</li>
+<li>Waves are scoped by device platform, because platform support is the
+real constraint. A user on an OS below the passkey minimum in §5.2 needs
+a FIDO2 key, and that must be in hand before their wave, not ordered
+after they are blocked.</li>
+</ul>
+<h3 id="112-wave-sequence">11.2 Wave sequence</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Wave</th>
+<th>Population</th>
+<th>Rationale</th>
+<th>Gate to proceed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>IT staff and administrative accounts</td>
+<td>The people who will support everyone else should hit the problems
+first. Privileged accounts also carry the highest risk.</td>
+<td>All §3 cutover conditions met for this group.</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>Staff facing an external deadline</td>
+<td>A vendor that enforces phishing-resistant MFA by a date. This wave
+is date-driven, not readiness-driven, which makes its gate more
+important, not less.</td>
+<td>Registration complete; report-only clean for 10 business days; FIDO2
+keys in hand for any unsupported device.</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>Remaining full-time staff, by platform</td>
+<td>Largest population with predictable, managed devices.</td>
+<td>Per-platform readiness report; Wave 1 assisted-reset volume flat or
+falling.</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>Part-time and contract staff</td>
+<td>Shorter engagements, less managed devices, more personal
+hardware.</td>
+<td>Wave 2 complete; FIDO2 stock confirmed.</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>End users, by platform</td>
+<td>Usually the largest and least managed population. Also where
+lockouts concentrate, so the biggest prize and the biggest risk.</td>
+<td>Waves 0–3 complete; SSPR live and measurably reducing assisted
+resets.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="113-measures-that-tell-you-it-is-working">11.3 Measures that
+tell you it is working</h3>
+<ul>
+<li>Share of accounts in each wave with a registered phishing-resistant
+method.</li>
+<li>Share of sign-ins satisfied by a phishing-resistant method.</li>
+<li>Assisted password resets per week, against the baseline you measured
+in §1.</li>
+<li>Lockout tickets per week, by confirmed §8 cause.</li>
+<li>Total-loss recovery events, and median time to restore. Publish
+these to the Head of IT monthly. The §1 measurement is the baseline;
+without it a later claim of improvement cannot be substantiated.</li>
+</ul>
+<h2 id="12-service-levels">12. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Request type</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Self-service reset</td>
+<td>Immediate, no ticket</td>
+</tr>
+<tr class="even">
+<td>Assisted reset, identity verified</td>
+<td>1 business hour from completed verification</td>
+</tr>
+<tr class="odd">
+<td>MFA method re-registration after device change</td>
+<td>1 business hour from completed verification</td>
+</tr>
+<tr class="even">
+<td>Total-loss recovery (all methods lost)</td>
+<td>4 business hours from completed verification</td>
+</tr>
+<tr class="odd">
+<td>Lockout triage to confirmed cause</td>
+<td>1 business hour</td>
+</tr>
+<tr class="even">
+<td>Risky sign-in — account holder contacted</td>
+<td>1 business hour of the alert</td>
+</tr>
+<tr class="odd">
+<td>Suspected compromise escalated to IT Security</td>
+<td>30 minutes of the third occurrence or first confirmation</td>
+</tr>
+</tbody>
+</table></div>
+<p>Proposals for ratification under <a href="/sops/GOV-06">GOV-06</a>, not commitments currently in
+force.</p>
+<h2 id="13-records">13. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Verification tier used, and facts relied on</td>
+<td>Service desk ticket — required field</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Confirmed §8 lockout cause</td>
+<td>Service desk ticket — required field</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>TAP issue: who authorised, why, tier used</td>
+<td>Ticket + Entra audit log</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>MFA method removals, with reason</td>
+<td>Ticket + Entra audit log</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Repeat-incident watch list</td>
+<td>IT Security record</td>
+<td>Rolling 12 months</td>
+</tr>
+<tr class="even">
+<td>Wave readiness and report-only evidence</td>
+<td>Project record</td>
+<td>Life of the migration + 2 years</td>
+</tr>
+<tr class="odd">
+<td>Monthly measures to Head of IT</td>
+<td>Project record</td>
+<td>3 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="14-related-documents">14. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle: Joiner, Mover, Leaver</td>
+<td>Creates the identity and sets the enrollment deadline this procedure
+enforces.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-04">ACC-04</a></td>
+<td>Password Standard &amp; Self-Service Password Reset</td>
+<td>Password composition and the SSPR configuration referenced at
+§7.1.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-05">ACC-05</a></td>
+<td>Account Lockout Triage &amp; Repeat-Incident Escalation</td>
+<td>Expands §8 and §9 into full desk-level detail.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-06">ACC-06</a></td>
+<td>Identity Verification Before Any Account Action</td>
+<td>Section 6 is the summary; <a href="/sops/ACC-06">ACC-06</a> is the full standard and the
+training material.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-07">ACC-07</a></td>
+<td>Privileged &amp; Administrative Account Standard</td>
+<td>Stricter method and verification requirements for admin
+accounts.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-13">ACC-13</a></td>
+<td>Account Suspension for Misuse or Policy Investigation</td>
+<td>Destination of the §9 sharing pathway.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-15">ACC-15</a></td>
+<td>Acceptable Use &amp; Credential-Sharing Standard</td>
+<td>The published rule §9 relies on. Aligns to your existing acceptable
+use policy rather than replacing it.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-16">ACC-16</a></td>
+<td>Application Onboarding, SSO &amp; SAML Claims Standard</td>
+<td>How an application consumes the authentication strength set here —
+including any vendor with its own MFA requirement.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-01">DEV-01</a> / <a href="/sops/DEV-02">DEV-02</a></td>
+<td>Device Enrollment / Compliance Baseline</td>
+<td>Windows Hello for Business and platform credentials depend on device
+join and compliance.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-16">DEV-16</a></td>
+<td>Lost, Stolen or Compromised Device Response</td>
+<td>Runs alongside §5.3 and §10 when the device itself is the loss.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response &amp; Escalation Matrix</td>
+<td>Where §9 and §10 escalate to.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-05">GOV-05</a></td>
+<td>Knowledge Base Article Standard</td>
+<td>Format for the end-user guide derived from Appendix C.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>SLA Definition, Priority Matrix &amp; Escalation</td>
+<td>Ratifies §12.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--help-desk-verification-script">Appendix A — Help
+desk verification script</h2>
+<p>Read this, in order, before any account action. Record the tier and
+the facts relied on.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Say / do</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>“Before I can make any change to the account, I need to verify who
+I’m speaking to. I can do that in person at the service desk, or on a
+short video call — whichever is easier for you.”</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>If the request arrived from a non-the organization address: “I can’t
+action a request from an outside address, but I can help you directly.
+Are you able to join a quick video call?” Do not proceed on the email
+thread.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>On video: “Please turn your camera on and hold your photo ID up to
+the camera.” Check the name and photo against the directory record.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>“Without me prompting you, can you tell me two of the following:
+your HR/client record ID, your department, your manager’s name, or the
+asset tag on your organization laptop.” Do not list which one you are
+expecting. Note which facts they gave.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>If they cannot: “I can accept confirmation from your manager
+instead. May I copy them on this ticket?” That is Tier 3, and the
+manager must reply from their own organization account.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Before acting, check: is the account actually disabled, unlicensed,
+or blocked by policy rather than by password? Run Appendix B first.</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Act. Prefer a Temporary Access Pass over a temporary password.</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Record on the ticket: verification tier, facts relied on, action
+taken, confirmed §8 cause.</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Confirm the person has signed in successfully. Then close.</td>
+</tr>
+</tbody>
+</table></div>
+<p>If anything about the request feels wrong — urgency plus refusal to
+verify, a third party pressing on someone’s behalf, facts supplied only
+after prompting — stop and escalate to IT Security. You will never be
+criticised for verifying.</p>
+<h2 id="appendix-b--lockout-triage-card">Appendix B — Lockout triage
+card</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Ask</th>
+<th>Answer</th>
+<th>Then</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Does the sign-in fail everywhere, immediately, including on
+site?</td>
+<td>Yes → AD lockout. Unlock, then hunt the stale credential.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Does it work from one place or client but not another?</td>
+<td>Yes → Entra smart lockout. Check the source IP; unfamiliar burst →
+§10.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Is the password accepted but the second factor never arrives?</td>
+<td>Yes → MFA method problem. Verify per §6, re-register per §5.4. Do
+NOT reset the password.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Did they get a specific policy or compliance message?</td>
+<td>Yes → Conditional Access or risk block. Read the sign-in log; fix
+the condition, not the password.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Does sign-in succeed but one app or portal deny access?</td>
+<td>Yes → not a lockout. Licence, group, or application. Reclassify the
+ticket.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Has this account been here before in the last 90 days?</td>
+<td>Yes → go to the §9 ladder before restoring.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-c--end-user-quick-reference">Appendix C — End-user
+quick reference</h2>
+<p>Source text for the published guide. Format per <a href="/sops/GOV-05">GOV-05</a> before
+publishing.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>If…</th>
+<th>Do this</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>You forgot your password</td>
+<td>Use the self-service reset link in any IT email signature or on the
+IT pages. It works without contacting anyone, provided you registered
+two methods.</td>
+</tr>
+<tr class="even">
+<td>You are getting a new phone</td>
+<td>Register a method on the new phone BEFORE you wipe or trade in the
+old one. This takes two minutes and avoids everything below.</td>
+</tr>
+<tr class="odd">
+<td>You already lost the phone with your only method</td>
+<td>Contact the service desk. You will be asked to verify your identity
+in person or on a short video call with photo ID. This is not a
+formality and cannot be waived.</td>
+</tr>
+<tr class="even">
+<td>You think your account has been accessed by someone else</td>
+<td>Contact the service desk immediately and say so explicitly. Do not
+change the password first — IT needs to see the sign-in trail before it
+changes.</td>
+</tr>
+<tr class="odd">
+<td>Someone asks for your password or an MFA code</td>
+<td>Never provide it. IT will never ask for either. Report the request
+to the service desk.</td>
+</tr>
+<tr class="even">
+<td>You are locked out and it is urgent</td>
+<td>Say so, and still expect to verify. Urgency is the most common
+pretext used against help desks, so the verification step applies
+especially when time is short.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

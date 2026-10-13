@@ -1,0 +1,982 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M365-19 · Power Platform Governance (Power Automate / Power Apps) | Known Good</title>
+<meta name="description" content="A flow built by one person, running on their personal connection, moving organization data, that stops silently when they change role. The register, the guardrails, and the point at which a departmental solution has become an application.">
+<meta property="og:title" content="M365-19 · Power Platform Governance (Power Automate / Power Apps) | Known Good">
+<meta property="og:description" content="A flow built by one person, running on their personal connection, moving organization data, that stops silently when they change role. The register, the guardrails, and the point at which a departmental solution has become an application.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1
+id="m365-19--power-platform-governance-power-automate--power-apps">M365-19
+· Power Platform Governance (Power Automate / Power Apps)</h1>
+<p><em>A flow built by one person, running on their personal connection,
+moving organization data, that stops silently when they change role. The
+register, the guardrails, and the point at which a departmental solution
+has become an application.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/M365-19-Power-Platform-Governance-Power-Automate-Power-Apps.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/M365-19.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/M365-19">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>M365-19</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>A. Microsoft 365</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 3 — Expert Services owns the environments, the DLP policies and
+the register. Tier 4 approves the connector classification and every
+exception to it. Tier 2 supports departmental builders on connections
+and permissions, which is where most faults actually are.</td>
+</tr>
+<tr class="odd">
+<td>Primary audience</td>
+<td>IT administrators. Departmental builders are the population this
+document governs rather than its audience — §3, §7 and Appendix B are
+written for them and should be published separately.</td>
+</tr>
+<tr class="even">
+<td>Review cycle</td>
+<td>Annually, and on any change to the connector classification in
+§6.</td>
+</tr>
+<tr class="odd">
+<td>Relationship to <a href="/sops/ACC-16">ACC-16</a> and <a href="/sops/GOV-04">GOV-04</a></td>
+<td>A departmental solution that has grown past §9’s triggers is an
+application. It goes through <a href="/sops/ACC-16">ACC-16</a> onboarding, and once adopted its
+changes are changes under <a href="/sops/GOV-04">GOV-04</a>. This document owns the point at which
+that transition is recognised.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose--the-flow-that-stops-when-somebody-leaves">1. Purpose
+— the flow that stops when somebody leaves</h2>
+<p>Power Automate and Power Apps are, on balance, good for a small or
+mid-sized organization. A department that can build its own approval
+flow does not have to wait in a queue behind a stretched IT department
+for a developer who does not exist. Where IT is understaffed and most
+staff wear several hats, a records office that can automate its own
+reminder is solving a problem nobody else was going to get to. This
+document is written to keep that possible, not to stop it.</p>
+<p>And then the person who built it changes role.</p>
+<p>The failure is specific. A flow built by one person, running under
+their personal connection, moving organization data between systems,
+stops on the day their account is disabled. No alert reaches anybody who
+still works here. No ticket is raised, because nothing has been
+reported. The first symptom is somebody downstream noticing, several
+weeks later, that a spreadsheet has not updated since March, or that the
+notifications they had been relying on stopped arriving and they had
+assumed things were quiet. By then nobody can say what the flow did,
+because the person who knew has gone.</p>
+<blockquote>
+<p><strong>The same pathology as records in a personal OneDrive, on a
+worse surface</strong></p>
+<p>A common case: a departing senior staff member’s organization records
+turn out to be held in a personal OneDrive, started years earlier. The
+organization recovers them by standing up a transition SharePoint site
+and re-permissioning the content under time pressure.</p>
+<p>That is organization function running on a personal asset — and it is
+the better of the two outcomes, because the files were still there to
+find.</p>
+<p>A flow is worse in three ways. The asset is a process rather than a
+document, so there is nothing to recover, only something that has
+stopped. The failure is silent, so the clock starts long before anybody
+notices. And nobody knows what stopped, because the flow was never
+written down anywhere but in itself.</p>
+</blockquote>
+<p>Most organizations have no register of flows and apps today. This
+document assumes that rather than pretending otherwise, and §4 —
+building the first register — is therefore the first numbered thing it
+asks for, with an owner and a date.</p>
+<h2 id="2-the-core-failure-mode-stage-by-stage">2. The core failure
+mode, stage by stage</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>What is happening</th>
+<th>Who knows</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Build</td>
+<td>A member of staff builds a flow to solve a real problem, in an
+afternoon, because waiting was not going to work. It does what it
+should.</td>
+<td>They do.</td>
+</tr>
+<tr class="even">
+<td>Adoption</td>
+<td>Colleagues start relying on it. It becomes part of how the
+department works. It is never documented, because it was never a project
+and nobody thought of it as a system.</td>
+<td>Their team, informally.</td>
+</tr>
+<tr class="odd">
+<td>Drift</td>
+<td>It gets extended. It now touches a second system, then a third.
+Nobody reviews it, because there is nothing on any list to review.</td>
+<td>Increasingly, nobody.</td>
+</tr>
+<tr class="even">
+<td>Departure</td>
+<td>Their account is disabled under <a href="/sops/ACC-01">ACC-01</a> §7.2 — correctly, promptly,
+exactly as the procedure requires. The connection the flow runs on was
+theirs. The flow stops.</td>
+<td>Nobody. There is no alert addressed to a person who still
+exists.</td>
+</tr>
+<tr class="odd">
+<td>Discovery</td>
+<td>Somebody notices a downstream effect weeks later and raises a ticket
+about the symptom, not the cause.</td>
+<td>Whoever is affected.</td>
+</tr>
+<tr class="even">
+<td>Recovery</td>
+<td>There is no owner, no documentation, and no way to know what it did
+without reading it — assuming anyone can still open it, which depends on
+where it was built (§5).</td>
+<td>IT, under time pressure, with no context.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Every stage of that is normal behaviour by reasonable people. Which
+is why the remedy is a register and an ownership rule, rather than an
+instruction to be careful.</p>
+<h2 id="3-what-departments-may-build-without-asking">3. What departments
+may build without asking</h2>
+<p>Most of what people build needs no permission at all, and saying so
+first is important. The three categories below are meant to be quick to
+self-assess.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>Examples</th>
+<th>What is required</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GREEN — personal productivity</td>
+<td>A flow that files your own mail, reminds you about your own tasks,
+saves your own meeting notes to your own OneDrive, or copies your own
+attachments somewhere sensible. Nothing organizational, nobody else’s
+data, nothing anybody else depends on.</td>
+<td>Nothing. Build it, in the default environment, and enjoy it. Not
+registered and not reviewed.</td>
+</tr>
+<tr class="even">
+<td>AMBER — departmental, registered</td>
+<td>An approval flow behind a departmental Form. A notification when a
+document lands in the team site. A Power App the department uses to
+track its own equipment or room requests. Organization data, but inside
+one department and inside Microsoft 365.</td>
+<td>Registered under §4. Runs on a group-owned connection or a service
+account (§7). Reviewed annually (§10). Built in a departmental
+environment (§5).</td>
+</tr>
+<tr class="odd">
+<td>RED — not a citizen solution</td>
+<td>Anything in §8 — anything touching the core business system of
+record, writing to a system of record, handling payroll or client
+records, changing accounts or permissions, or sending to a
+population.</td>
+<td>Comes to IT as an application request (<a href="/sops/ACC-16">ACC-16</a>) or a change (<a href="/sops/GOV-04">GOV-04</a>).
+Not built first and disclosed afterwards.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>If you are not sure whether you are amber or red, register it and
+ask. Registering something that turns out to be green costs five
+minutes. Not registering something that turns out to be red costs
+somebody a Tuesday afternoon in about eighteen months, usually while
+they are covering for the person who built it.</li>
+<li>“Registered” is not “approved by IT”, for amber. It means IT knows
+the thing exists, knows who owns it, and can tell the department when a
+migration is going to break it. That last point is the part departments
+actually benefit from, and it should be how the register is sold to
+them.</li>
+<li>Green solutions do occasionally become amber without anybody
+deciding to — the moment a colleague starts relying on it, it has
+changed category. §9 names the triggers.</li>
+</ul>
+<h2 id="4-the-register--and-building-the-first-one">4. The register —
+and building the first one</h2>
+<p>This section is first among the operational sections because nothing
+else in the document can be done without it. A DLP policy protects flows
+you know about. An attestation asks owners you can name. Neither exists
+yet.</p>
+<ol type="1">
+<li>Tier 3 produces an inventory of every flow and app in the tenant
+from the Power Platform admin centre: name, owner, environment,
+connectors used, last run, and run failure count. This is an export and
+a morning’s work, not a project. OWNER: Tier 3. DUE: within 30 days of
+approval.</li>
+<li>Triage first anything whose owner has already left, or whose
+connections are failing. Each one is dispositioned as still needed /
+stop it / rebuild it properly under §7. Expect this list to be longer
+than anybody predicts, and expect at least one item on it to
+matter.</li>
+<li>Everything remaining gets an owner confirmed in writing by the
+department, plus one line saying what it does and one saying what breaks
+if it stops. Two sentences per solution is the entire documentation
+requirement, and it is enough.</li>
+<li>Publish the register back to the departments, by department. This is
+what makes it useful to them rather than an audit imposed on them, and a
+department reading its own list will reliably find one it had forgotten
+about. That is the register earning its keep on day one.</li>
+<li>From then on, registration happens at build time via Appendix A, and
+Tier 3 reconciles the register against a fresh admin-centre export
+quarterly (§10). A register maintained only by self-declaration decays
+quietly; one reconciled against the platform does not.</li>
+<li>Cross-check the register against <a href="/sops/ACC-01">ACC-01</a> §7.2 at every separation:
+does this person own a registered flow, app or connection? The register
+is what turns that from an unanswerable question into a thirty-second
+lookup.</li>
+</ol>
+<blockquote>
+<p><strong>Open question — who actually keeps the register</strong></p>
+<p>Often there is no Power Platform administrator role assigned. This
+document assumes one is named, and it should be named before §4 step 1
+rather than after.</p>
+<p>RECOMMENDATION: a named Tier 3 administrator holds it, with a
+nominated deputy. Not one keeper — a register maintained by exactly one
+person is subject to precisely the failure mode described in §1, which
+would be an unusually poor joke to build into the control.</p>
+<p>ACTION: Head of IT to name the role and the deputy at approval.
+Owner: Head of IT.</p>
+</blockquote>
+<h2 id="5-environments-and-the-default-environment-problem">5.
+Environments, and the default-environment problem</h2>
+<p>Every tenant has a default environment. It is created automatically,
+it cannot be deleted, every licensed user can build in it, and by
+default it is where everything gets built because it is the path of
+least resistance. Left alone, it becomes the organization’s largest
+undocumented system.</p>
+<ul>
+<li>NO ISOLATION. Everything shares one data store and one policy. A
+permissive setting made for one purpose applies to everything anybody
+has ever built.</li>
+<li>NO LIFECYCLE. There is no development, test or production
+separation, so every change is made live, in the thing people are
+currently depending on.</li>
+<li>WEAK POLICY BY DEFAULT. A permissive default environment is the most
+common Power Platform governance failure there is, and it is entirely
+silent until it is not.</li>
+<li>INVISIBLE SPRAWL. Personal flows and abandoned apps accumulate with
+no owner review, which is exactly the population §4 step 2 has to
+triage. The position this document takes:</li>
+</ul>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Environment</th>
+<th>Purpose</th>
+<th>Who can build</th>
+<th>DLP policy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Default</td>
+<td>Green personal productivity only (§3). Nothing organizational and
+nothing anybody else depends on.</td>
+<td>All licensed users</td>
+<td>Strictest. Business connectors only, HTTP blocked.</td>
+</tr>
+<tr class="even">
+<td>Departmental</td>
+<td>Registered amber solutions, one per department or grouped where that
+is simpler.</td>
+<td>Named makers per department</td>
+<td>Standard classification (§6).</td>
+</tr>
+<tr class="odd">
+<td>Production</td>
+<td>Solutions IT has adopted under §9, and anything supporting an
+organization process.</td>
+<td>IT makers only</td>
+<td>Standard, with per-solution exceptions recorded.</td>
+</tr>
+<tr class="even">
+<td>Test</td>
+<td>Paired with production. Where a change is proved before it reaches
+people.</td>
+<td>IT makers only</td>
+<td>As production.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Creating environments has licensing and capacity implications,
+Dataverse capacity in particular. Confirm what the organization’s
+licensing actually supports before designing four of them (<a href="/sops/M365-20">M365-20</a>). A
+three-environment shape that exists is better than a four-environment
+shape that is proposed.</li>
+<li>Moving an existing solution between environments is not always
+trivial — connections have to be re-established and references updated.
+Plan the departmental migration as a piece of work rather than as an
+afternoon.</li>
+</ul>
+<h2 id="6-data-loss-prevention-connector-groupings">6. Data loss
+prevention: connector groupings</h2>
+<p>It is worth being precise about what a DLP policy on this platform
+actually does, because the name misleads people into expecting something
+else. It does not inspect data. It does not look for Social Security
+numbers or scan attachments. It controls which connectors may be used
+together in the same flow or app: Business connectors may be combined
+with each other, Non-business connectors may be combined with each
+other, and a solution may not bridge the two groups. Blocked connectors
+cannot be used at all.</p>
+<p>Once that is understood, the classification stops being arbitrary.
+The point is to prevent a bridge between a system holding organization
+data and a service outside the organization — not to catch a sensitive
+string in transit.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Group</th>
+<th>Connectors</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>BUSINESS</td>
+<td>SharePoint, OneDrive for Business, Office 365 Outlook, Office 365
+Users, Microsoft Teams, Excel Online (Business), Microsoft Forms,
+Planner, Approvals, Dataverse, SQL Server, Azure / Entra ID, Power BI,
+and the organization’s vetted line-of-business connectors.</td>
+<td>Inside the tenant boundary, or covered by an organization agreement.
+These are the connectors organization data is allowed to move
+between.</td>
+</tr>
+<tr class="even">
+<td>NON-BUSINESS</td>
+<td>General-purpose utilities with no organization data in them: RSS,
+weather, date and time helpers, public reference data, translation
+utilities where the content is not organizational.</td>
+<td>Legitimate, and deliberately kept a short list. Their whole purpose
+is to be usable without touching anything in the Business group.</td>
+</tr>
+<tr class="odd">
+<td>BLOCKED — consumer social</td>
+<td>X / Twitter, Facebook, Instagram, LinkedIn, Pinterest, Reddit,
+YouTube posting connectors.</td>
+<td>A flow that posts a record to social media is almost never the
+intended design, and occasionally is the actual one. Departmental social
+media is published by people, not by automation reaching into a data
+source.</td>
+</tr>
+<tr class="even">
+<td>BLOCKED — personal cloud storage and mail</td>
+<td>Dropbox, Google Drive, Google Sheets, Gmail, consumer OneDrive,
+iCloud, WeTransfer-style file services. Box likewise unless the
+organization holds an agreement for it, in which case it moves to
+Business with the decision recorded.</td>
+<td>These move organization data out of the tenant to a service with no
+agreement behind it, and they do it on a schedule, silently, which is
+worse than a person doing it once.</td>
+</tr>
+<tr class="odd">
+<td>BLOCKED — unvetted HTTP</td>
+<td>HTTP, HTTP with Microsoft Entra ID, HTTP Webhook, and custom
+connector creation outside the production environment.</td>
+<td>These can send anything to anywhere. They are the standard way a
+governance model is bypassed — usually with no bad intent, by somebody
+solving a problem. Permitted in production only, by named makers, per
+solution, with a recorded Tier 4 approval.</td>
+</tr>
+<tr class="even">
+<td>BLOCKED — consumer AI and unvetted assistants</td>
+<td>Third-party AI connectors, and any assistant the organization has no
+agreement with (<a href="/sops/M365-18">M365-18</a> §3).</td>
+<td>A flow that pipes organization content to a consumer model provider
+is a standing disclosure rather than a one-off paste.</td>
+</tr>
+<tr class="odd">
+<td>BLOCKED — generic file transfer</td>
+<td>FTP and SFTP to hosts not named in a reviewed integration.</td>
+<td>Where an integration genuinely needs SFTP, it is an application
+under <a href="/sops/ACC-16">ACC-16</a> with a named endpoint, not a citizen flow with a hostname
+typed into it.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Two things a DLP policy will not do — and one it
+will</strong></p>
+<p>It will not stop somebody emailing a spreadsheet to themselves, and
+it will not classify data. It is a coarse structural control.</p>
+<p>What it will do is make an entire category of accident impossible:
+the flow that quietly copies a departmental list to a personal Google
+Drive every night, built by somebody who had a genuine reason and no
+idea it was a problem. That is perhaps an hour of configuration and it
+is the highest-value hour available on this platform. The coarseness is
+not an argument against setting it.</p>
+<p>PUBLISH the classification, with the reasons. A blocked connector
+discovered at build time, with no explanation and no route to ask, is
+how a department concludes that IT is the obstacle and rebuilds the
+whole thing in Excel and email instead — which is worse in every respect
+and entirely invisible.</p>
+<p>EXCEPTIONS: named connector, named environment, named solution, named
+requester, Tier 4 approval, time-bound, recorded in the register. An
+exception route that exists and is used occasionally is a healthier sign
+than a policy nobody has ever asked to bend.</p>
+</blockquote>
+<h2 id="7-connections-service-accounts-and-ownership">7. Connections,
+service accounts and ownership</h2>
+<blockquote>
+<p><strong>The rule</strong></p>
+<p>A registered flow does not run on an individual’s personal
+connection.</p>
+<p>This is the single control that prevents §1. Everything else in this
+document is supporting work.</p>
+</blockquote>
+<ul>
+<li>Flows that run unattended, or that move data between systems,
+authenticate through a service account under <a href="/sops/ACC-08">ACC-08</a> — named, owned by a
+department, credentials held in the password vault, and emphatically not
+a person’s account whose password has been shared with a colleague
+(<a href="/sops/ACC-15">ACC-15</a> §3).</li>
+<li>Every registered solution has at least two owners, and where the
+platform allows it one of them is a group rather than a person. A
+single-owner flow is a single point of failure by construction, whoever
+that owner is.</li>
+<li>Where a solution genuinely must run under a named person’s
+connection — some connectors offer nothing else — that is recorded in
+the register as a known risk against that person’s name, and it becomes
+a trigger in the leaver checklist (<a href="/sops/ACC-01">ACC-01</a> §7.2, <a href="/sops/ACC-12">ACC-12</a> Appendix A). A
+known risk with a name on it is manageable; the same risk unrecorded is
+§1.</li>
+<li>Add the question to the separation checklist in plain words: does
+this person own any registered flow, app or connection? Without the
+register the honest answer is “nobody can say”. With it, the answer
+takes thirty seconds.</li>
+<li>Connections need re-consenting after a password change, an MFA
+reset, or a conditional access change. A flow that stops working the day
+after a password reset is not broken — it is a connection awaiting
+consent. Tier 2 should recognise this pattern, because otherwise it
+arrives as five unrelated faults from five departments in the same week
+and gets diagnosed five times.</li>
+<li>Service accounts used by flows are subject to <a href="/sops/ACC-08">ACC-08</a> in full: no
+interactive use, no mail sending beyond what the solution requires,
+reviewed at the same cadence as every other non-human account, and never
+given administrative roles because it was easier than scoping them
+(<a href="/sops/ACC-07">ACC-07</a>).</li>
+</ul>
+<h2 id="8-what-must-never-be-built-as-a-citizen-solution">8. What must
+never be built as a citizen solution</h2>
+<p>These are not “ask first” items. They are “this is an application,
+and it goes through §9”.</p>
+<ul>
+<li>THE CORE BUSINESS SYSTEM. Nothing reads from or writes to the core
+business system of record as a citizen flow. It is typically
+vendor-supported, integrations to it are designed, tested and supported,
+and a flow built against it is a data integrity incident waiting for the
+next schema change or upgrade window.</li>
+<li>ANY SYSTEM OF RECORD. No writing to the core business system, the HR
+system, the finance system, the ticketing system or Entra ID. Reading
+may be permissible under §9 with a reviewed, scoped connection; writing
+is not, ever, from a citizen solution.</li>
+<li>PAYROLL DATA, in any form, including moving it between two places
+that are both allowed to hold it.</li>
+<li>REGULATED CLIENT RECORDS, beyond the boundary of the office that
+already holds them. Moving a record from the office that owns it to a
+departmental site is a disclosure decision, not a file copy.</li>
+<li>IDENTITY AND ACCESS ACTIONS. Nothing that creates, modifies,
+disables or deletes accounts, changes group membership, alters
+permissions, or assigns licences. That is administrative action by
+automation, and it belongs to <a href="/sops/ACC-01">ACC-01</a>, <a href="/sops/ACC-07">ACC-07</a> and <a href="/sops/M365-20">M365-20</a>.</li>
+<li>BROADCAST MAIL. A message to a population is a mass communication
+and needs approval under <a href="/sops/M365-06">M365-06</a> regardless of what sends it. A flow is
+not an exemption from an approval; if anything it is the case the
+approval exists for, because it can send to everybody at three in the
+morning without a human in the loop.</li>
+<li>DECISIONS ABOUT PEOPLE. Anything that assigns a rating, determines
+an award or eligibility, triggers a conduct process, or produces a
+decision about an individual. Automation that produces an outcome about
+a person needs to be an accountable system with an owner, not a
+flow.</li>
+<li>SECRETS IN THE OPEN. Credentials, API keys or connection strings
+held in flow variables, in a SharePoint list, or in an environment
+variable that anybody with maker access can read. This happens more
+often than people expect and it is usually done by somebody being
+resourceful.</li>
+</ul>
+<h2 id="9-when-a-departmental-solution-has-become-an-application">9.
+When a departmental solution has become an application</h2>
+<p>The transition is what nobody currently notices. Solutions accrete
+function until something breaks, and the conversation that should have
+happened at month four happens instead in an incident at month thirty.
+Naming the triggers gives both sides a moment to have it on purpose.</p>
+<p>Any one of these means the solution is now an application:</p>
+<ul>
+<li>More than one department depends on it.</li>
+<li>It runs unattended, and something visible breaks if it stops for a
+day.</li>
+<li>It touches a system of record, or crosses a boundary between two
+systems.</li>
+<li>It handles data in the sensitive classes of <a href="/sops/M365-15">M365-15</a>.</li>
+<li>It has an interface used by people outside the department that built
+it.</li>
+<li>It has been running for more than a year and nobody can now explain
+how it works without opening it.</li>
+<li>Its ownership has changed twice. Each handover loses context, and
+the second one usually loses all of it.</li>
+</ul>
+<h3 id="91-what-happens-then">9.1 What happens then</h3>
+<ol type="1">
+<li>Either the department raises it, or IT raises it from the quarterly
+register reconciliation (§10). Raising it is not a criticism of the
+person who built it — in most cases it is a compliment about how useful
+the thing turned out to be, and it is worth saying so.</li>
+<li>It goes through <a href="/sops/ACC-16">ACC-16</a> application onboarding: what it does, what it
+touches, who owns it, how it authenticates, what happens when it fails,
+and who is called when it does.</li>
+<li>IT decides one of three outcomes, and says which: ADOPT — IT takes
+ownership, moves it to the production environment, and supports it under
+<a href="/sops/GOV-04">GOV-04</a> change control. SUPPORT IN PLACE — it stays with the department,
+IT has documented it and monitors it, and the department knows what it
+is responsible for. RETIRE AND REPLACE — it is doing something an
+existing supported system already does, and the right answer is to stop
+maintaining a second one.</li>
+<li>“Adopt” is a real commitment and it is made deliberately, against
+the capacity to honour it. An IT department that adopts every
+departmental flow and then cannot maintain them has made the situation
+worse, not better, and has taken the department’s ownership away in
+exchange for nothing. It is honest and better to say: we are not
+adopting this, here is what you must do to keep running it safely, and
+here is what we will help with.</li>
+<li>Once adopted, it is under <a href="/sops/GOV-04">GOV-04</a> from that day. Changes are changes,
+they go in a window, and they have a rollback. That is the trade the
+department gets in exchange for handing it over, and it is worth being
+explicit that the flexibility they had is part of what they are giving
+up.</li>
+</ol>
+<h2 id="10-annual-attestation-and-quarterly-reconciliation">10. Annual
+attestation and quarterly reconciliation</h2>
+<ul>
+<li>ANNUALLY, alongside everything else under <a href="/sops/ACC-17">ACC-17</a>, each registered
+solution’s owner attests to five things: it is still needed; it still
+does what the register says it does; the named owner and deputy are
+correct; the connection is healthy and not personal (§7); and nothing it
+touches has changed.</li>
+<li>No response after two reminders escalates to the department head.
+Still no response means the flow is DISABLED — not deleted — with thirty
+days’ notice, a named contact, and a route to turn it straight back on.
+Disabling something people quietly depend on is a real action with real
+consequences, and the notice and the contact are what make it fair
+rather than punitive.</li>
+<li>QUARTERLY, Tier 3 reconciles the register against a fresh
+admin-centre export and reports orphans: owner has left, connection
+failing, no successful run in 90 days, or a run failure rate above the
+threshold Tier 4 sets. Orphans are the population §1 is about.</li>
+<li>ANNUALLY to Tier 4: number of registered solutions, orphans found
+and dispositioned, solutions adopted or retired under §9, DLP exceptions
+in force and whether each is still needed.</li>
+<li>A solution that has not run in twelve months is a candidate for
+retirement. Asking the department is cheaper than keeping it, and the
+answer is usually “oh — no, we stopped doing that”.</li>
+</ul>
+<h2 id="11-support--what-it-will-and-will-not-do">11. Support — what IT
+will and will not do</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>IT will</th>
+<th>IT will not</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Maintain the environments and the DLP policies, and publish the
+connector classification with its reasons (§6).</td>
+<td>Debug a citizen-built flow line by line. Tier 2 will help with
+connections, permissions and authentication, which is where the great
+majority of faults actually are.</td>
+</tr>
+<tr class="even">
+<td>Answer “can I use this connector?” at Tier 2, in the conversation,
+with a reason rather than a refusal.</td>
+<td>Write the flow for you outside an agreed piece of work. Advice is
+free; building is a project.</td>
+</tr>
+<tr class="odd">
+<td>Hold the register, and tell a department in advance when a migration
+or a change is going to break their solution. This is the benefit
+departments should be sold on.</td>
+<td>Support anything running in the default environment beyond green
+personal productivity (§3, §5).</td>
+</tr>
+<tr class="even">
+<td>Review a design before you build it. This is the cheapest support IT
+can offer on this platform and it should be offered warmly and
+often.</td>
+<td>Grant an HTTP or blocked-connector exception because a deadline is
+close. The exception route in §6 exists and it takes a Tier 4 approval,
+which takes longer than planning ahead would have.</td>
+</tr>
+<tr class="odd">
+<td>Help move a personal-connection flow onto a service account, and
+treat that as a good day’s work rather than an imposition (§7).</td>
+<td>Take ownership of an undocumented solution at the moment it fails.
+Adoption is a decision made in advance under §9, not a rescue accepted
+under pressure.</td>
+</tr>
+<tr class="even">
+<td>Adopt solutions that have outgrown their department, where there is
+capacity to maintain them, and say so plainly when there is not
+(§9).</td>
+<td>Treat a department that built something useful as having done
+something wrong. They solved a problem IT did not get to.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="12-service-levels">12. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“Can I build this? Which category is it?”</td>
+<td>Answered at Tier 2 from §3, in the conversation.</td>
+</tr>
+<tr class="even">
+<td>Registration of a new solution (Appendix A)</td>
+<td>Acknowledged within 2 coverage days; recorded within 5.</td>
+</tr>
+<tr class="odd">
+<td>Design review before build</td>
+<td>Offered within 5 coverage days. Worth waiting for and worth saying
+so.</td>
+</tr>
+<tr class="even">
+<td>Connector exception request (§6)</td>
+<td>Tier 4 decision within 5 coverage days, with the reason given either
+way.</td>
+</tr>
+<tr class="odd">
+<td>Service account for a registered flow (<a href="/sops/ACC-08">ACC-08</a>)</td>
+<td>P3 — 5 coverage days.</td>
+</tr>
+<tr class="even">
+<td>Orphaned flow found to be moving organization data</td>
+<td>P2 — assessed within 1 coverage day; disabled where the risk
+warrants it, with the department told the same day.</td>
+</tr>
+<tr class="odd">
+<td>A flow found to be doing anything in §8</td>
+<td>Disabled the same coverage day, then discussed. The order matters
+and the department is told why.</td>
+</tr>
+<tr class="even">
+<td>Quarterly reconciliation, annual attestation</td>
+<td>On schedule (§10).</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13-records">13. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>The register: solution, purpose, owner, deputy, environment,
+connectors, connection type</td>
+<td>IT register, published by department</td>
+<td>Life of the solution + 3 years</td>
+</tr>
+<tr class="even">
+<td>Registration forms (Appendix A)</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>DLP connector classification and its version history</td>
+<td>IT governance record</td>
+<td>Permanent</td>
+</tr>
+<tr class="even">
+<td>Connector exceptions: solution, connector, approver, expiry</td>
+<td>IT governance record</td>
+<td>Life of the exception + 3 years</td>
+</tr>
+<tr class="odd">
+<td>Annual attestations</td>
+<td>IT register (<a href="/sops/ACC-17">ACC-17</a>)</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Quarterly reconciliation reports and orphan dispositions</td>
+<td>IT governance record</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>§9 adoption decisions, including decisions not to adopt</td>
+<td>Application register (<a href="/sops/ACC-16">ACC-16</a>)</td>
+<td>Permanent</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="14-related-documents">14. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/ACC-08">ACC-08</a></td>
+<td>Service, Application &amp; Non-Human Account Standard</td>
+<td>§7 — what a flow authenticates as. The companion document.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-16">ACC-16</a></td>
+<td>Application Onboarding, SSO &amp; SAML Claims</td>
+<td>§9 — where a solution goes when it has outgrown its department.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-04">GOV-04</a></td>
+<td>IT Change Management &amp; Maintenance Windows</td>
+<td>What governs an adopted solution from adoption onward.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>§7.2 leaver checklist — the moment a personal connection is
+caught.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-12">ACC-12</a></td>
+<td>Separation, Retiree &amp; Affiliate Disposition</td>
+<td>Appendix A of that document asks the ownership question.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-17">ACC-17</a></td>
+<td>Periodic Access Review &amp; Entitlement Recertification</td>
+<td>The §10 attestation runs with it.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-07">ACC-07</a></td>
+<td>Privileged &amp; Administrative Account Standard</td>
+<td>Why a flow’s service account is not given admin roles for
+convenience.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-15">ACC-15</a></td>
+<td>Acceptable Use &amp; Credential-Sharing Standard</td>
+<td>A shared personal credential is not a service account (§7).</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-15">M365-15</a></td>
+<td>Data Classification &amp; Handling</td>
+<td>§8 and §9 — what sensitive means.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-17">M365-17</a></td>
+<td>Microsoft Forms &amp; Bookings Standard</td>
+<td>What people build a flow around when Forms will not do it
+alone.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-18">M365-18</a></td>
+<td>Generative AI &amp; Copilot Use in Microsoft 365</td>
+<td>§6 — AI connectors, and what a flow may call.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-06">M365-06</a></td>
+<td>Mass Communication &amp; Broadcast Email Approval</td>
+<td>§8 — a flow is not an exemption from the approval.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-13">M365-13</a></td>
+<td>Legacy File Share Retirement &amp; Migration</td>
+<td>Flows referencing legacy share paths break at cutover.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-20">M365-20</a></td>
+<td>License Assignment, Reclamation &amp; Cost Attribution</td>
+<td>Environment, Dataverse and premium connector licensing (§5).</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments, Priority &amp; Escalation</td>
+<td>Supplies §12.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--registration-form">Appendix A — Registration
+form</h2>
+<p>Submitted to the service desk address, or completed with Tier 2 in a
+five-minute conversation, which is usually quicker. Green solutions (§3)
+do not need one.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Solution name</td>
+<td>Something a colleague would recognise in a list</td>
+</tr>
+<tr class="even">
+<td>What it does, in one sentence</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>What breaks if it stops</td>
+<td>The most useful field on this form</td>
+</tr>
+<tr class="even">
+<td>Department</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Owner and DEPUTY</td>
+<td>Two named people. One is not enough (§7).</td>
+</tr>
+<tr class="even">
+<td>Type</td>
+<td>Flow / Power App / both</td>
+</tr>
+<tr class="odd">
+<td>Environment</td>
+<td>Default / Departmental / Production (§5)</td>
+</tr>
+<tr class="even">
+<td>Systems and data it touches</td>
+<td>Where it reads from, where it writes to</td>
+</tr>
+<tr class="odd">
+<td>Connectors used</td>
+<td>Including anything in the blocked list — say so here rather than
+finding out at build time</td>
+</tr>
+<tr class="even">
+<td>Runs unattended?</td>
+<td>YES / NO. If yes, §7 requires a service account.</td>
+</tr>
+<tr class="odd">
+<td>Connection type</td>
+<td>Service account (name it) / personal connection (name the person and
+the reason)</td>
+</tr>
+<tr class="even">
+<td>Any data in the sensitive classes of <a href="/sops/M365-15">M365-15</a>?</td>
+<td>YES / NO / not sure — “not sure” is a fine answer and gets a
+conversation</td>
+</tr>
+<tr class="odd">
+<td>Does it do anything in §8?</td>
+<td>If yes, this is an <a href="/sops/ACC-16">ACC-16</a> request rather than a registration</td>
+</tr>
+<tr class="even">
+<td>— IT USE — Category assigned</td>
+<td>Green / Amber / Red</td>
+</tr>
+<tr class="odd">
+<td>— IT USE — Registered by, date, review date</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h2
+id="appendix-b--for-departmental-builders-building-something-that-outlives-you">Appendix
+B — For departmental builders: building something that outlives you</h2>
+<p>Source text for the knowledge base, format per <a href="/sops/GOV-05">GOV-05</a>. Written for
+the people this document is about rather than the people it is addressed
+to.</p>
+<p>If you have built something in Power Automate or Power Apps that your
+department now relies on: thank you. Genuinely. You solved a problem
+that was not going to reach the top of anybody else’s list, and the
+organization is better off for it. This page is about making sure it
+survives you — not because you are going anywhere, but because that is
+exactly when these things break.</p>
+<h3 id="the-one-thing-that-matters-most">The one thing that matters
+most</h3>
+<p>Your flow almost certainly runs on your connection — your account,
+your sign-in, your permissions. That means that on the day your account
+is switched off, whether because you take a new role, retire, or move to
+another department, the flow stops. It does not warn anyone. It does not
+send an error to your colleagues. It just quietly stops, and the first
+anyone knows is when somebody notices, weeks later, that something has
+not been happening. Ask us to move it onto a service account instead. It
+is a small job, we are pleased to be asked, and it is the difference
+between a tool and a time bomb.</p>
+<h3 id="tell-us-it-exists">Tell us it exists</h3>
+<p>Not so we can take it away — we almost certainly do not want it, and
+we do not have the capacity to run everybody’s. The point of the
+register is that when we migrate a system, retire an old shared drive,
+or change how sign-in works, we can tell you in advance that your flow
+is about to break, instead of you finding out afterwards. Right now we
+cannot do that, because we do not know what exists. Five minutes with
+the form in Appendix A, or a five-minute conversation with Tier 2, and
+you are on the list.</p>
+<h3 id="give-it-a-second-owner">Give it a second owner</h3>
+<p>Somebody else in your department should be able to open it, and
+should know roughly what it does. One person who understands a thing is
+one holiday away from nobody understanding it. Two sentences written
+down — what it does, and what breaks if it stops — is all the
+documentation we are asking for, and it is more than most solutions
+have.</p>
+<h3 id="things-to-bring-to-us-rather-than-build">Things to bring to us
+rather than build</h3>
+<p>Anything touching the core business system. Anything that writes into
+a system where the organization keeps its official records. Anything
+involving payroll, or client records leaving the office that holds them.
+Anything that creates accounts or changes people’s permissions. Anything
+that emails a whole population. None of that is a judgement about your
+ability — these are things that need to be supported when they break at
+an awkward moment, and supported by more than one person.</p>
+<h3 id="if-a-connector-is-blocked">If a connector is blocked</h3>
+<p>You will occasionally find that a connector you wanted is not
+available. That is deliberate, and there is a list with the reasons on
+it. It is usually about data leaving the organization rather than about
+the tool itself. There is a route to ask for an exception, it takes a
+senior approval and a few days, and it is much better than the
+alternative of rebuilding the whole thing by hand in email — please come
+and ask instead of working around it.</p>
+<h3 id="ask-before-you-build-not-after">Ask before you build, not
+after</h3>
+<p>A fifteen-minute conversation before you start is the cheapest thing
+we offer, and it usually makes the thing you build simpler rather than
+more complicated. Sometimes we will know that a system already does what
+you are about to build. Sometimes we will know that the connector you
+were planning to use is about to change. And sometimes we will just say:
+that sounds fine, go ahead, put it on the register when it works.</p>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

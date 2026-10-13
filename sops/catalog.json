@@ -1,0 +1,443 @@
+[
+ {
+  "id": "ACC-01",
+  "name": "Account Lifecycle: Joiner, Mover, Leaver",
+  "lede": "How an identity at the organization is created, changed and removed so that access always matches a person\u2019s current relationship with the organization.",
+  "domain": "ACC",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "ACC-02",
+  "name": "Account Naming, UPN & Identifier Standard",
+  "lede": "What every class of account is called, and how departmental access for temporary workers is structured \u2014 presented as Option A and Option B pending decision.",
+  "domain": "ACC",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "ACC-03",
+  "name": "MFA Enrollment, Reset & Account Recovery",
+  "lede": "How multifactor authentication is registered, how a person who cannot sign in is verified and restored, and how repeat incidents escalate.",
+  "domain": "ACC",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "ACC-04",
+  "name": "Password Standard & Self-Service Password Reset",
+  "lede": "What a password must be, why one gets rejected, and how a person resets their own without contacting anybody.",
+  "domain": "ACC",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "ACC-05",
+  "name": "Account Lockout Triage & Repeat-Incident Escalation",
+  "lede": "How to tell apart the five different things people report as \u201clocked out\u201d, and what happens when the same account comes back.",
+  "domain": "ACC",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "ACC-06",
+  "name": "Identity Verification Before Any Account Action",
+  "lede": "How IT establishes that a person asking for access is who they say they are, before anyone touches the account.",
+  "domain": "ACC",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "ACC-07",
+  "name": "Privileged & Administrative Account Standard",
+  "lede": "How the accounts that can change everything are created, authenticated, used and reviewed.",
+  "domain": "ACC",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "ACC-08",
+  "name": "Service, Application & Non-Human Account Standard",
+  "lede": "The identities that are not people \u2014 which kind to use, who owns them, how their credentials are held and rotated, and how they end.",
+  "domain": "ACC",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "ACC-09",
+  "name": "Temporary Worker & Departmental Access Standard",
+  "lede": "How a temporary worker employed by a department gets the access their job needs, and how it ends at the end of the engagement.",
+  "domain": "ACC",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "ACC-10",
+  "name": "Guest & Sponsored External Account Standard",
+  "lede": "Which kind of identity an outsider should have, who sponsors it, and how it ends. The account side of external collaboration.",
+  "domain": "ACC",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "ACC-11",
+  "name": "Vendor, Contractor & Consultant Account Standard",
+  "lede": "The account class for people who work with the organization but not for it \u2014 the sponsor, the expiry that is not negotiable, and the day the relationship quietly changes.",
+  "domain": "ACC",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "ACC-12",
+  "name": "Separation, Retiree & Former-Member Disposition",
+  "lede": "What a person keeps after they stop working here, for how long, and who decides. The identity side of leaving.",
+  "domain": "ACC",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "ACC-13",
+  "name": "Account Suspension for Misuse or Policy Investigation",
+  "lede": "IT contains. The department head, HR or senior leadership sanctions. What the organization suspends, on what basis, what it hands over, and what the person is told.",
+  "domain": "ACC",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "ACC-14",
+  "name": "Mailbox & Calendar Delegation Standard",
+  "lede": "Delegation, shared mailboxes and send-as are three different things. Choosing the wrong one is the most common access request the desk receives.",
+  "domain": "ACC",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "ACC-15",
+  "name": "Acceptable Use & Credential-Sharing Standard",
+  "lede": "What this standard adds to the organization\u2019s existing acceptable use policy \u2014 and how IT applies it when something goes wrong.",
+  "domain": "ACC",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "ACC-16",
+  "name": "Application Onboarding, SSO & SAML Claims Standard",
+  "lede": "What IT needs before an application is federated, which protocol it gets, the claim set every application receives \u2014 and how an application moves from one identity provider to another without breaking on the day.",
+  "domain": "ACC",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "ACC-17",
+  "name": "Periodic Access Review & Entitlement Recertification",
+  "lede": "Without recertification, every grant becomes permanent by default. What is reviewed, on what cycle, by whom \u2014 and what actually happens when nobody answers.",
+  "domain": "ACC",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "DEV-01",
+  "name": "Device Enrollment & Lifecycle",
+  "lede": "How an organization-owned endpoint is enrolled, made compliant, assigned, reassigned and retired \u2014 through a move to Intune and after it.",
+  "domain": "DEV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "DEV-02",
+  "name": "Device Compliance & Configuration Baseline",
+  "lede": "What \u201ccompliant\u201d means as a testable list \u2014 settled before Conditional Access starts enforcing it.",
+  "domain": "DEV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "DEV-03",
+  "name": "Disk Encryption & BitLocker Recovery Key Handling",
+  "lede": "How organization devices are encrypted, how recovery keys are held, and how to find and fix a device whose key is not where it should be.",
+  "domain": "DEV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "DEV-04",
+  "name": "Standard Hardware Catalog, Request & Refresh Cycle",
+  "lede": "What the organization buys, how you ask for it, how often it is replaced, and what it honestly costs in weeks.",
+  "domain": "DEV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "DEV-05",
+  "name": "Loaner Device Issue, Support & Return",
+  "lede": "The two-minute check before a loaner goes out, and the ten minutes after it comes back.",
+  "domain": "DEV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "DEV-06",
+  "name": "Computer Lab, Meeting Room & Shared Device Standard",
+  "lede": "The target configuration for a machine that belongs to nobody and is used by everybody \u2014 and the readiness check that decides whether rooms work on day one.",
+  "domain": "DEV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "DEV-07",
+  "name": "Personally-Owned Device Access Standard",
+  "lede": "What your own phone or laptop may reach, what the organization can and cannot see on it, and what happens when you leave.",
+  "domain": "DEV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "DEV-08",
+  "name": "Mobile Device Access to Organization Data",
+  "lede": "Your phone became part of the organization\u2019s security perimeter the day you set up Authenticator. What that means, what we can and cannot see, and what to do when you change phones.",
+  "domain": "DEV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "DEV-09",
+  "name": "macOS Device Management Standard",
+  "lede": "The target state the macOS enrollment pilot can be judged against \u2014 mapped condition by condition onto the Windows baseline, so the two platforms are comparable rather than divergent.",
+  "domain": "DEV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "DEV-10",
+  "name": "Remote Access & VPN Standard",
+  "lede": "What the VPN is actually for, who gets it, and why most people no longer need it.",
+  "domain": "DEV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "DEV-11",
+  "name": "Software Request, Approval, Licensing & Deployment",
+  "lede": "How a request for software is answered \u2014 the \u201cdo we already have it?\u201d check, the approval path by cost and by risk, the licence register, and the deployment mechanism of record through a move to Intune.",
+  "domain": "DEV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "DEV-12",
+  "name": "Local Administrator Rights on Endpoints",
+  "lede": "Who has administrative rights on an organization computer, why the answer should be almost nobody, and how to say yes safely when it must be yes.",
+  "domain": "DEV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "DEV-13",
+  "name": "Patch, Update & Maintenance Window Standard",
+  "lede": "Eight classes of estate in one governing table, remediation timeframes the department can actually hold \u2014 and the rule that a vendor patch is an organization change.",
+  "domain": "DEV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "DEV-14",
+  "name": "Endpoint Security Agent & MDR Escalation Standard",
+  "lede": "How many devices actually have a healthy agent reporting \u2014 and then who acts on an MDR case, in what time, on whose authority, and what closes it.",
+  "domain": "DEV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "DEV-15",
+  "name": "Device Reassignment, Wipe, Retirement & Disposal",
+  "lede": "What happens to an organization device between one holder and the next, and at the end of its life.",
+  "domain": "DEV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "DEV-16",
+  "name": "Lost, Stolen or Compromised Device Response",
+  "lede": "One number to call, and what happens in the first hour.",
+  "domain": "DEV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "DEV-17",
+  "name": "Printer, Copier & Peripheral Standard",
+  "lede": "The most frequent request the front door receives and the least severe. Written down once so it stops being answered forty times \u2014 and because a copier is a computer with a hard drive in it.",
+  "domain": "DEV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "DEV-18",
+  "name": "Conference & Meeting Room AV Standard",
+  "lede": "Room technology fails in front of an audience. The cost is not the repair \u2014 it is forty people watching. Written for the ninety seconds that actually matter, and for the person standing at the lectern.",
+  "domain": "DEV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-01",
+  "name": "Microsoft 365 Service Description & Supported Baseline",
+  "lede": "What the organization provides, what it does not, and which configurations IT can actually help with. The document every other M365 procedure points back to.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-02",
+  "name": "Exchange Online Mailbox Standard",
+  "lede": "Mailbox sizing, retention, forwarding, rules and delegation \u2014 stated once, for everyone with a mailbox.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-03",
+  "name": "Shared Mailbox Request, Provisioning & Ownership",
+  "lede": "How a departmental mailbox is requested, who owns it, who may be added to it, and when that access goes away.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-04",
+  "name": "Distribution List & Dynamic Group Standard",
+  "lede": "How mail reaches a group of people at the organization, how dynamic membership is derived from the HR and user system of record, and what IT will not build.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-05",
+  "name": "Email Alias & Address Change Standard",
+  "lede": "When the organization adds an address, when it changes one, and why those are very different operations.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-06",
+  "name": "Mass Communication & Broadcast Email Approval",
+  "lede": "Who may email an entire population at the organization, how they ask, and what IT will not build to help them avoid asking.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-07",
+  "name": "Teams Provisioning, Naming & Lifecycle",
+  "lede": "When a Team is the right object and when it is not, what creating one actually creates, and how one stops being somebody\u2019s problem when its owner leaves.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-08",
+  "name": "Teams Meetings, Recording & Guest Participation",
+  "lede": "One stated rule for recording and consent, where recordings and transcripts actually end up, and who is allowed into your meeting.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-09",
+  "name": "Teams Phone, Desk Phone & Voicemail Standard",
+  "lede": "Who gets a number, how a desk phone is re-registered, and where an emergency call says you are. Written because a request with no procedure has no owner.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-10",
+  "name": "SharePoint Site Request, Provisioning & Ownership",
+  "lede": "How a site is created with an owner, a classification and a purpose \u2014 so it does not become the thing nobody maintains.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-11",
+  "name": "SharePoint & OneDrive Permission Management",
+  "lede": "How access to organization content is granted, inherited, reviewed and removed \u2014 and the four habits that break it.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-12",
+  "name": "OneDrive Appropriate Use & Institutional Data Boundary",
+  "lede": "Which files belong in a person\u2019s OneDrive, which belong to the organization, and where the line falls.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-13",
+  "name": "Legacy File Share Retirement & Migration Runbook",
+  "lede": "How legacy network drives are retired without losing content, scattering it into personal OneDrives, or breaking payroll access on the way.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-14",
+  "name": "External Sharing & Guest Access Governance",
+  "lede": "How somebody outside the organization gets access to something inside it \u2014 with a sponsor, a purpose and an end date.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-15",
+  "name": "Data Classification & Handling",
+  "lede": "Four levels, applied to places rather than files \u2014 and the handling rules that follow from each. Written as a proposal for leadership to decide.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-16",
+  "name": "Retention, Legal Hold & eDiscovery Request Handling",
+  "lede": "How the two-year retention floor is actually delivered, who may place a hold or export content, on what authority, and how it is evidenced.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-17",
+  "name": "Microsoft Forms & Bookings Standard",
+  "lede": "When a Form is the right instrument and when it is not, what may be collected in one, who owns it \u2014 and why Bookings appointments must never end up inside the ticket record.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-18",
+  "name": "Generative AI & Copilot Use in Microsoft 365",
+  "lede": "What organization data may be put into which assistant \u2014 and why deploying Copilot across a tenant whose sharing has never been reviewed is how an organization discovers what it had been over-sharing.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-19",
+  "name": "Power Platform Governance (Power Automate / Power Apps)",
+  "lede": "A flow built by one person, running on their personal connection, moving organization data, that stops silently when they change role. The register, the guardrails, and the point at which a departmental solution has become an application.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-20",
+  "name": "License Assignment, Reclamation & Cost Attribution",
+  "lede": "Who gets which licence, how it is assigned by rule rather than by hand, and how it comes back.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-21",
+  "name": "Tenant Configuration Change Control",
+  "lede": "How a change to the Microsoft 365 tenant is proposed, recorded and reversed \u2014 and why the directory attribute register matters more than it sounds.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "M365-22",
+  "name": "Phishing Reporting & Email Threat Response",
+  "lede": "What a person does when a message looks wrong, and what IT does after they report it.",
+  "domain": "M365",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "GOV-01",
+  "name": "SOP Catalog Governance & Document Control",
+  "lede": "How the catalogue is numbered, owned, approved, reviewed and retired \u2014 and how the material that already exists is consolidated into it.",
+  "domain": "GOV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "GOV-02",
+  "name": "Service Desk Intake, Ticket Quality & Categorisation",
+  "lede": "How work reaches IT, how a ticket is set up so it can be measured, and why a messy ticket record cannot answer basic questions about the team.",
+  "domain": "GOV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "GOV-03",
+  "name": "Security Incident Response & Escalation Matrix",
+  "lede": "Who declares an incident, who is told, what the clock is, and what must be preserved before anything is fixed.",
+  "domain": "GOV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "GOV-04",
+  "name": "IT Change Management & Maintenance Windows",
+  "lede": "Three change classes, one register, an agreed set of windows the organization\u2019s calendar governs \u2014 and the rule that a vendor change is an organization change.",
+  "domain": "GOV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "GOV-05",
+  "name": "Knowledge Base Article Standard & End-User Guide Format",
+  "lede": "An SOP is for the person who does the work. An article is for the person with the problem. This is how the second one gets written, published, and kept true \u2014 starting from whatever guide library you already have.",
+  "domain": "GOV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ },
+ {
+  "id": "GOV-06",
+  "name": "Service Commitments, Priority & Escalation",
+  "lede": "A capacity-aware replacement for the SLA matrix \u2014 built on the published four-tier model, and designed to be held by a department that is understaffed and whose people wear several hats.",
+  "domain": "GOV",
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+ }
+]

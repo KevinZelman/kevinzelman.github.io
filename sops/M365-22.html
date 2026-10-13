@@ -1,0 +1,432 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M365-22 · Phishing Reporting &amp; Email Threat Response | Known Good</title>
+<meta name="description" content="What a person does when a message looks wrong, and what IT does after they report it.">
+<meta property="og:title" content="M365-22 · Phishing Reporting &amp; Email Threat Response | Known Good">
+<meta property="og:description" content="What a person does when a message looks wrong, and what IT does after they report it.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="m365-22--phishing-reporting--email-threat-response">M365-22 ·
+Phishing Reporting &amp; Email Threat Response</h1>
+<p><em>What a person does when a message looks wrong, and what IT does
+after they report it.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/M365-22-Phishing-Reporting-and-Email-Threat-Response.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/M365-22.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/M365-22">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>M365-22</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>A. Microsoft 365</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 2 — Advanced Technical Services, which already owns malware
+containment. Escalates to Tier 3 and Tier 4.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Every six months. Attacker technique changes faster than most
+standards.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>Most tenants already have the technical controls: an external-mail
+warning banner and a report button. What usually does not exist in
+writing is what happens after somebody presses it: the triage, the
+tenant-wide purge, and the decision about whether to tell everybody.</p>
+<p>A typical case: a credential-harvesting message titled something like
+“Account Verification Action Required, Act Fast Now…” gets forwarded to
+the service desk. That it arrives by forward rather than through the
+report button is itself a finding, and §2 addresses it.</p>
+<blockquote>
+<p><strong>Why this is a short document with a fast clock</strong></p>
+<p>A phishing campaign is a race. The value of a response halves roughly
+every hour: mail already read cannot be unread, and credentials already
+entered are already in use. Everything below is arranged to be executed
+quickly rather than thoroughly.</p>
+<p>A partial containment in fifteen minutes beats a complete one in
+three hours.</p>
+</blockquote>
+<h2 id="2-what-the-community-is-asked-to-do">2. What the community is
+asked to do</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Ask</th>
+<th>Why it is worded that way</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Use the Report button in Outlook. Do not forward it to IT.</td>
+<td>The button sends the message with its full headers, which is what
+triage needs, and it feeds the tenant’s own filtering. A forward loses
+the headers and creates a second copy of a malicious message in a
+mailbox.</td>
+</tr>
+<tr class="even">
+<td>Report it even if you are not sure.</td>
+<td>A false positive costs IT two minutes. An unreported real one costs
+considerably more. Nobody will be made to feel foolish.</td>
+</tr>
+<tr class="odd">
+<td>Report it even if you already clicked.</td>
+<td>This is the most important line in the document. Somebody who is
+embarrassed and says nothing is the worst case, and the fear of being
+blamed is what causes it.</td>
+</tr>
+<tr class="even">
+<td>Do not warn colleagues by forwarding it to them.</td>
+<td>Well meant, and it spreads the message further. Tell IT and IT will
+tell everybody (§6).</td>
+</tr>
+<tr class="odd">
+<td>IT will never ask for your password or an MFA code.</td>
+<td>The one rule that defeats most of these attacks on its own (<a href="/sops/ACC-15">ACC-15</a>,
+<a href="/sops/ACC-06">ACC-06</a>).</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="3-triage--the-first-ten-minutes">3. Triage — the first ten
+minutes</h2>
+<ol type="1">
+<li>Establish what the message is trying to obtain: credentials, a
+payment, a file, or a reply that starts a conversation. This determines
+everything that follows.</li>
+<li>Establish the blast radius. How many mailboxes received it? Search
+the tenant by sender, subject and URL — not by one of the three.</li>
+<li>Establish whether anybody interacted. Clicks and credential
+submissions are what turn a nuisance into an incident.</li>
+<li>Classify: nuisance (spam, no credential objective), credential
+harvest, business email compromise, or malware delivery.</li>
+<li>For anything other than nuisance, tell Tier 3 immediately and do not
+wait until containment is finished. Two people working in parallel is
+the point of a tier model.</li>
+<li>Where credentials may have been submitted, this is a <a href="/sops/GOV-03">GOV-03</a> incident
+and Tier 4 is informed. Do not decide alone whether it is “serious
+enough”.</li>
+</ol>
+<h2 id="4-containment">4. Containment</h2>
+<ol type="1">
+<li>Purge the message from every mailbox that received it, tenant-wide.
+Not only the reporter’s.</li>
+<li>Block the sender, the sending infrastructure and the URLs.</li>
+<li>Check whether the same campaign arrived under other subjects or
+senders. Campaigns rarely send one variant.</li>
+<li>Where one of your own accounts is sending it, that account is
+compromised. Disable sign-in, revoke sessions and tokens, and go to §5 —
+an internal sender is a much more serious situation than an external one
+because it defeats the banner and the recipient’s instincts.</li>
+<li>Record what was purged and when. This is the evidence for §6 and for
+any later question about who could have seen it.</li>
+</ol>
+<h2 id="5-when-somebody-has-already-clicked">5. When somebody has
+already clicked</h2>
+<p>Treat the person as a witness rather than a culprit. The information
+they hold is time-critical and shame delays it.</p>
+<ol type="1">
+<li>Ask what they entered and where. A username alone is a different
+situation from a password, and a password plus an approved MFA prompt is
+different again.</li>
+<li>Reset the password and revoke every session and refresh token. A
+password reset alone does not end a session that is already
+established.</li>
+<li>Remove and re-register MFA methods. An attacker who got in may have
+added their own method, which survives a password reset — this is the
+step most often missed.</li>
+<li>Check for mailbox rules created by the attacker: auto-forwarding,
+auto-delete, or rules hiding replies. This is the standard persistence
+move and it is invisible to the user.</li>
+<li>Check for new delegations, send-as grants, and OAuth application
+consents.</li>
+<li>Check what the mailbox sent while compromised, and whether it
+phished anybody else internally.</li>
+<li>Preserve the audit data before remediating where the sequence allows
+— Tier 3 decides the order when both matter (<a href="/sops/ACC-03">ACC-03</a> §10).</li>
+<li>Tell the person plainly what was done and what to watch for. They
+will be anxious; a clear account helps, and it makes them likely to
+report faster next time.</li>
+</ol>
+<h2 id="6-telling-the-community">6. Telling the community</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>Communication</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nuisance, small radius</td>
+<td>None. Do not train people to ignore IT notices by sending one for
+everything.</td>
+</tr>
+<tr class="even">
+<td>Credential harvest, wide radius, purged before interaction</td>
+<td>A short notice: what it looked like, that it was removed, and what
+to do if they interacted. Reassurance plus one action.</td>
+</tr>
+<tr class="odd">
+<td>Credential harvest with confirmed interaction</td>
+<td>A notice, and a direct approach to anybody who interacted. Under
+<a href="/sops/GOV-03">GOV-03</a> and approved by Tier 4.</td>
+</tr>
+<tr class="even">
+<td>Compromised internal account sending to your own people</td>
+<td>Immediate notice naming the affected address, because recipients
+will otherwise trust it. Tier 4 approves; do not delay for polish.</td>
+</tr>
+<tr class="odd">
+<td>Anything involving personal data of others</td>
+<td>Tier 4 and <a href="/sops/GOV-03">GOV-03</a> only. Notification obligations may apply and are
+not IT’s call.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Notices come from the established IT notification address so that a
+warning about phishing is not itself indistinguishable from phishing.
+Include no links, ask for no action beyond “contact the service desk”,
+and say plainly that IT will never ask for a password.</p>
+<h2 id="7-targeted-attacks-on-it-itself">7. Targeted attacks on IT
+itself</h2>
+<p>IT is a target twice over: for its own privileged access, and as a
+route to everybody else’s. Two patterns are common enough to treat as
+expected rather than surprising.</p>
+<ul>
+<li>A request to the service desk from a personal address, naming a real
+account holder, asking for a reset or an MFA change. <a href="/sops/ACC-06">ACC-06</a> is the
+control and it applies without exception.</li>
+<li>A request that arrives with urgency and resists verification.
+Urgency plus resistance is the signature. Any suspected attempt against
+the desk is written up and circulated with the specifics of what the
+caller said. Specifics teach; policy reminders do not (<a href="/sops/ACC-06">ACC-06</a> §11).</li>
+</ul>
+<h2 id="8-service-levels">8. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Reported message, triaged and classified</td>
+<td>P2 — 4 coverage hours. Faster in practice; the clock matters.</td>
+</tr>
+<tr class="even">
+<td>Credential harvest with wide radius</td>
+<td>P1 — purge started within 1 hour of classification.</td>
+</tr>
+<tr class="odd">
+<td>Confirmed credential submission</td>
+<td>P1 — account contained within 30 minutes; <a href="/sops/GOV-03">GOV-03</a> incident.</td>
+</tr>
+<tr class="even">
+<td>Compromised internal sender</td>
+<td>P1 — sign-in disabled immediately; community notice within 1
+hour.</td>
+</tr>
+<tr class="odd">
+<td>Community notice, where warranted</td>
+<td>Within 4 hours of containment.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="9-measurement">9. Measurement</h2>
+<ul>
+<li>Reports per month, and the share arriving via the report button
+rather than by forward. The second number measures whether §2 has
+landed.</li>
+<li>Median time from report to purge.</li>
+<li>Confirmed interactions per campaign — the number that matters
+most.</li>
+<li>Reports from people who had already clicked. A rise here is good
+news: it means people believe they will not be blamed.</li>
+</ul>
+<h2 id="10-records">10. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Reported message with headers, classification, radius</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Purge action and scope</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Confirmed interactions and remediation performed</td>
+<td>Security record (<a href="/sops/GOV-03">GOV-03</a>)</td>
+<td>7 years</td>
+</tr>
+<tr class="even">
+<td>Community notices sent</td>
+<td>IT communications record</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Attempts against the service desk, with what was said</td>
+<td>Security + training record</td>
+<td>7 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-related-documents">11. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response &amp; Escalation Matrix</td>
+<td>Takes over at confirmed interaction. Governs §6 notification.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA Enrollment, Reset &amp; Account Recovery</td>
+<td>§5 remediation, and risky sign-in handling.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-06">ACC-06</a></td>
+<td>Identity Verification Before Any Account Action</td>
+<td>The control against §7.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-15">ACC-15</a></td>
+<td>Acceptable Use &amp; Credential-Sharing Standard</td>
+<td>The published “IT will never ask” rule.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-05">M365-05</a></td>
+<td>Email Alias &amp; Address Change Standard</td>
+<td>Look-alike addresses.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-16">M365-16</a></td>
+<td>Retention, Legal Hold &amp; eDiscovery</td>
+<td>Where preservation obligations sit.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-05">GOV-05</a></td>
+<td>Knowledge Base Article Standard</td>
+<td>Format for Appendix B.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments</td>
+<td>Supplies §8.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--triage-card">Appendix A — Triage card</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Establish</th>
+<th>Then</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>What is it after — credentials, money, a file, or a reply?</td>
+<td>Credentials or money → not a nuisance. Tell Tier 3 now.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>How many mailboxes got it? Search by sender AND subject AND
+URL.</td>
+<td>Wide radius → P1, start the purge.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Did anybody click or submit?</td>
+<td>Yes → §5 immediately, and <a href="/sops/GOV-03">GOV-03</a> incident.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Is the sender one of ours?</td>
+<td>Yes → that account is compromised. Disable sign-in now, notice
+within the hour.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Purge tenant-wide, block sender and URLs, check for variants.</td>
+<td>Record what was purged and when.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Does the community need telling?</td>
+<td>§6. Notice from the established IT address, no links, no requested
+action.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Fifteen minutes of partial containment beats three hours of complete
+containment. Move.</p>
+<h2 id="appendix-b--end-user-text">Appendix B — End-user text</h2>
+<div class="tbl"><table>
+<tbody>
+<tr class="odd">
+<td>If a message looks wrong</td>
+<td>Use the Report button in Outlook. That sends us everything we need.
+Please don’t forward it — a forward loses the technical detail and puts
+another copy of it in a mailbox.</td>
+</tr>
+<tr class="even">
+<td>Not sure?</td>
+<td>Report it anyway. It takes us two minutes to check and nobody has
+ever been made to feel silly for asking.</td>
+</tr>
+<tr class="odd">
+<td>Already clicked?</td>
+<td>Tell us straight away. This is the single most helpful thing you can
+do, and you will not be in trouble. What we can fix in ten minutes is
+much harder to fix the next day.</td>
+</tr>
+<tr class="even">
+<td>Please don’t warn colleagues by forwarding it</td>
+<td>It spreads the message. Tell us and we will tell everyone at
+once.</td>
+</tr>
+<tr class="odd">
+<td>We will never ask for your password or a code</td>
+<td>Not by email, not on the phone, not in a ticket. If someone does,
+they are not IT.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

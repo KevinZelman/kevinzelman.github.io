@@ -1,0 +1,453 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACC-10 · Guest &amp; Sponsored External Account Standard | Known Good</title>
+<meta name="description" content="Which kind of identity an outsider should have, who sponsors it, and how it ends. The account side of external collaboration.">
+<meta property="og:title" content="ACC-10 · Guest &amp; Sponsored External Account Standard | Known Good">
+<meta property="og:description" content="Which kind of identity an outsider should have, who sponsors it, and how it ends. The account side of external collaboration.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="acc-10--guest--sponsored-external-account-standard">ACC-10 ·
+Guest &amp; Sponsored External Account Standard</h1>
+<p><em>Which kind of identity an outsider should have, who sponsors it,
+and how it ends. The account side of external collaboration.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/ACC-10-Guest-and-Sponsored-External-Account-Standard.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/ACC-10.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/ACC-10">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>ACC-10</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>B. Account Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 2 — Advanced Technical Services creates and manages; Tier 3
+owns the tenant identity configuration.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually.</td>
+</tr>
+<tr class="even">
+<td>Relationship to <a href="/sops/M365-14">M365-14</a></td>
+<td>This document governs the identity — which kind, who sponsors it,
+how it ends. <a href="/sops/M365-14">M365-14</a> governs what it can reach. Read together; neither
+repeats the other.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>This document answers a question that arrives regularly and is
+usually answered by whoever is asked: somebody outside the organization
+needs to work with us — what kind of account should they have?</p>
+<p>Getting it wrong in one direction creates a guest for a person who is
+effectively staff and needs a real account. Getting it wrong in the
+other creates a full organization identity for a consultant who needed
+read access to one site for six weeks. Both happen, and both are
+avoidable with a short decision table.</p>
+<h2 id="2-choosing-the-right-kind-of-identity">2. Choosing the right
+kind of identity</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Kind</th>
+<th>Use when</th>
+<th>What they get</th>
+<th>Governed by</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Guest (B2B)</td>
+<td>Someone at another organisation collaborating on specific work. The
+default and the great majority of cases.</td>
+<td>They sign in with their own organisation’s credentials. No mailbox
+of ours, no licence, no presence in the address book beyond what is
+needed.</td>
+<td>This document + <a href="/sops/M365-14">M365-14</a></td>
+</tr>
+<tr class="even">
+<td>Vendor or contractor account</td>
+<td>A supplier with standing operational access — an implementation
+partner on the HR system, a managed security provider in the security
+tooling.</td>
+<td>A named identity of ours, because they need to act inside our
+systems rather than collaborate on documents.</td>
+<td><a href="/sops/ACC-11">ACC-11</a>, plus <a href="/sops/ACC-07">ACC-07</a> where the access is privileged</td>
+</tr>
+<tr class="odd">
+<td>Full staff account</td>
+<td>A person doing the work of an organization employee, whatever their
+contractual status — long-term consultants, seconded staff, interim
+appointments.</td>
+<td>A normal identity with an HR record behind it.</td>
+<td><a href="/sops/ACC-01">ACC-01</a>. Requires HR to create the record first.</td>
+</tr>
+<tr class="even">
+<td>Nothing</td>
+<td>They need a document, not access.</td>
+<td>Send them the document, or a link with an expiry.</td>
+<td><a href="/sops/M365-14">M365-14</a> §6</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>The case worth watching for</strong></p>
+<p>A consultant who becomes, in practice, a member of staff — attending
+meetings, holding institutional records, doing the work of a role —
+while still holding an external or personal identity.</p>
+<p>A familiar version: a departing senior figure explains that their
+organization files are in a personal OneDrive because they originally
+joined as a consultant. The identity arrangement made at the start was
+never revisited when the relationship changed, and the cost lands years
+later during a transition.</p>
+<p>So: when an external relationship becomes ongoing and substantive,
+that is a trigger to revisit the identity, not a detail to leave alone
+because it works.</p>
+</blockquote>
+<blockquote>
+<p><strong>Check your tenant first</strong></p>
+<p>Look at the allowInvitesFrom setting. If it is
+adminsGuestInvitersAndAllMembers (a common default), every member of the
+organization can invite a guest, with no sponsor recorded, no purpose
+captured and no expiry applied.</p>
+<p>Count the guests in the tenant, and check whether any of them has a
+sponsor or an expiry recorded anywhere. Usually none do, because there
+has been nowhere to record one.</p>
+<p>While you are there, check whether users can register applications or
+create security groups; both matter for <a href="/sops/M365-07">M365-07</a> and <a href="/sops/M365-14">M365-14</a>.</p>
+<p>Changing allowInvitesFrom is a one-setting change under <a href="/sops/M365-21">M365-21</a> and
+<a href="/sops/GOV-04">GOV-04</a>. It should not be made before §3 and §4 of this document are
+agreed, or the organization simply replaces an ungoverned invitation
+path with a queue nobody can staff.</p>
+</blockquote>
+<h2 id="3-the-sponsor">3. The sponsor</h2>
+<p>Every external identity has one named staff member accountable for
+it. Not a department — a person.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>The sponsor</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Asks for it</td>
+<td>Raises the request, states the purpose in one sentence, and names
+the end date.</td>
+</tr>
+<tr class="even">
+<td>Vouches for it</td>
+<td>Is saying, on the record, that this person should have access to
+organization systems. That is a real statement and it should feel like
+one.</td>
+</tr>
+<tr class="odd">
+<td>Confirms it at review</td>
+<td>Answers one question before expiry: does the purpose still
+hold?</td>
+</tr>
+<tr class="even">
+<td>Ends it</td>
+<td>Tells the service desk when the work is finished, without waiting
+for expiry. Sponsors should be thanked for this rather than made to feel
+they are creating work.</td>
+</tr>
+<tr class="odd">
+<td>Is replaced when they leave</td>
+<td>A guest whose sponsor has left is reassigned or expired as part of
+the leaver procedure (<a href="/sops/ACC-01">ACC-01</a> §7.2 step 9).</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="4-creating-a-guest">4. Creating a guest</h2>
+<blockquote>
+<p><strong>Only IT Account Services creates external identities.
+End-user invitation is disabled.</strong></p>
+<p>This is the control whose absence causes the problem. When any staff
+member can invite an external identity, nobody can answer how many
+exist, who vouched for them, or what they can reach.</p>
+<p>The cost is a request. The mitigation is that the request is a
+same-day action (§8) — if it is not, people will find another way and
+the control will erode.</p>
+</blockquote>
+<ol type="1">
+<li>The sponsor raises a ticket with the person’s name, organisation,
+email address, purpose, what they need to reach, and the end date.</li>
+<li>Tier 2 confirms a guest is the right kind of identity (§2). Where it
+is not, redirect rather than create the wrong thing quickly.</li>
+<li>Create the guest. Set the display name to include the organisation —
+“Alex Morgan (Contoso)” — so that any member of staff can see at a
+glance that they are external.</li>
+<li>Record the sponsor, purpose, scope and expiry in the guest register
+at the moment of creation. A register updated later is a register with
+gaps.</li>
+<li>The guest registers MFA before reaching anything. External
+identities meet the same authentication requirement as organization
+accounts (<a href="/sops/ACC-03">ACC-03</a> §5.1).</li>
+<li>Grant access per <a href="/sops/M365-14">M365-14</a> — to a group, scoped to the purpose, never
+broader “in case”.</li>
+<li>Tell the sponsor the expiry date at creation.</li>
+</ol>
+<h2 id="5-what-a-guest-is-not">5. What a guest is not</h2>
+<ul>
+<li>Not a mailbox holder. Guests do not receive an address at your
+domain and do not send as the organization.</li>
+<li>Not a licence holder, unless a specific licensing need is identified
+and approved (<a href="/sops/M365-20">M365-20</a>).</li>
+<li>Not an owner. A guest never owns a site, mailbox, Team or group —
+ownership is a staff responsibility (<a href="/sops/M365-10">M365-10</a>, <a href="/sops/M365-03">M365-03</a>).</li>
+<li>Not a holder of any administrative role (<a href="/sops/ACC-07">ACC-07</a>). Where a vendor
+genuinely needs administrative access, that is <a href="/sops/ACC-11">ACC-11</a> and a different
+kind of account.</li>
+<li>Not permanent. A relationship that needs to be permanent is not a
+guest relationship (§2).</li>
+<li>Not in the address book by default, so that internal mail does not
+autocomplete to an external party — a small setting that prevents a
+specific and embarrassing class of mistake.</li>
+</ul>
+<h2 id="6-expiry-renewal-and-removal">6. Expiry, renewal and
+removal</h2>
+<ul>
+<li>Default expiry 90 days, set at creation, renewable.</li>
+<li>Fourteen days before expiry, the sponsor is asked one question: does
+the purpose still hold?</li>
+<li>No response means expiry. Renewal is the action; expiry is the
+default. This single rule is what prevents guest accumulation.</li>
+<li>Renewal extends 90 days and records the confirmation.</li>
+<li>Quarterly, the full guest register goes to Tier 4: person,
+organisation, sponsor, purpose, scope, expiry, last sign-in. A guest
+with no identifiable sponsor is removed rather than researched.</li>
+<li>Removal takes away access; anything the guest contributed stays with
+the organization. Worth telling sponsors who hesitate.</li>
+<li>On a security concern, removal is immediate on Tier 4 instruction
+(<a href="/sops/GOV-03">GOV-03</a>).</li>
+</ul>
+<h2 id="7-identity-configuration">7. Identity configuration</h2>
+<p>Tier 3 owns these; changes go through <a href="/sops/M365-21">M365-21</a>. Recorded here so the
+intent sits with the standard.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Setting</th>
+<th>Intent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Who can invite guests</td>
+<td>IT Account Services only.</td>
+</tr>
+<tr class="even">
+<td>Guest MFA</td>
+<td>Required, like every other identity.</td>
+</tr>
+<tr class="odd">
+<td>Guest access to the directory</td>
+<td>Restricted — guests should not be able to enumerate the
+organization’s people.</td>
+</tr>
+<tr class="even">
+<td>Guest visibility in the address book</td>
+<td>Hidden by default (§5).</td>
+</tr>
+<tr class="odd">
+<td>Guest inactivity reporting</td>
+<td>Quarterly, feeding §6.</td>
+</tr>
+<tr class="even">
+<td>Allowed and blocked domains</td>
+<td>Reviewed annually. Maintain a blocked list only where there is a
+specific reason to.</td>
+</tr>
+<tr class="odd">
+<td>Automatic expiry enforcement</td>
+<td>Enabled where the platform supports it, so §6 is a configuration
+rather than a habit.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="8-service-levels">8. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Guest creation, complete request</td>
+<td>P3 — same coverage day where possible.</td>
+</tr>
+<tr class="even">
+<td>Wrong kind of identity requested</td>
+<td>Redirected same day with an explanation, not held silently.</td>
+</tr>
+<tr class="odd">
+<td>Renewal on sponsor confirmation</td>
+<td>Same day.</td>
+</tr>
+<tr class="even">
+<td>Removal on sponsor request</td>
+<td>Same day.</td>
+</tr>
+<tr class="odd">
+<td>Urgent removal on security grounds</td>
+<td>P1 — 30 minutes.</td>
+</tr>
+<tr class="even">
+<td>Quarterly register to Tier 4</td>
+<td>On schedule.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="9-records">9. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Guest register, complete at creation</td>
+<td>IT register</td>
+<td>Live, plus 3 years after removal</td>
+</tr>
+<tr class="even">
+<td>Sponsor’s request and vouching</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Renewals and confirmations</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Quarterly review outcomes</td>
+<td>Tier 4 record</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Identity-kind decisions where a guest was not the answer</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10-related-documents">10. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/M365-14">M365-14</a></td>
+<td>External Sharing &amp; Guest Access Governance</td>
+<td>What a guest can reach. The companion to this document.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-11">ACC-11</a></td>
+<td>Vendor, Contractor &amp; Consultant Account Standard</td>
+<td>The next kind of identity up (§2).</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>Full accounts, and §7.2 step 9 sponsor departure.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA Enrollment</td>
+<td>Guests register like everybody else.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-02">ACC-02</a></td>
+<td>Account Naming Standard</td>
+<td>§3 guest display-name rule.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-07">ACC-07</a></td>
+<td>Privileged &amp; Administrative Account Standard</td>
+<td>Guests hold no administrative role.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-20">M365-20</a></td>
+<td>License Assignment &amp; Reclamation</td>
+<td>Guest licensing exceptions.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-21">M365-21</a></td>
+<td>Tenant Configuration Change Control</td>
+<td>Changes to §7.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response</td>
+<td>Urgent removal.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--which-identity-does-this-person-need">Appendix A —
+Which identity does this person need?</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Are they…</th>
+<th>Then</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Doing the work of an organization employee, ongoing?</td>
+<td>A full staff account. HR creates the record first (<a href="/sops/ACC-01">ACC-01</a>).</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>A supplier needing standing operational access to our systems?</td>
+<td>A vendor account (<a href="/sops/ACC-11">ACC-11</a>), plus <a href="/sops/ACC-07">ACC-07</a> if it is privileged.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Collaborating on specific work for a bounded period?</td>
+<td>A guest. This document.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Just needing to receive a document?</td>
+<td>Send it, or a link with an expiry. No account at all.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>A consultant whose engagement has quietly become ongoing?</td>
+<td>Revisit it. This is the case that costs the most later.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

@@ -1,0 +1,387 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M365-05 · Email Alias &amp; Address Change Standard | Known Good</title>
+<meta name="description" content="When the organization adds an address, when it changes one, and why those are very different operations.">
+<meta property="og:title" content="M365-05 · Email Alias &amp; Address Change Standard | Known Good">
+<meta property="og:description" content="When the organization adds an address, when it changes one, and why those are very different operations.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="m365-05--email-alias--address-change-standard">M365-05 · Email
+Alias &amp; Address Change Standard</h1>
+<p><em>When the organization adds an address, when it changes one, and
+why those are very different operations.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/M365-05-Email-Alias-and-Address-Change-Standard.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/M365-05.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/M365-05">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>M365-05</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>A. Microsoft 365</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 2 — Advanced Technical Services.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually.</td>
+</tr>
+<tr class="even">
+<td>Related existing policy</td>
+<td>Your organization's email and account policy.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>This is a short standard about a small thing that causes a
+disproportionate amount of confusion. It says when the organization adds
+an email address to an existing recipient, when it changes the primary
+one, and why the second is a much bigger operation than it appears.</p>
+<h2 id="2-the-distinction-that-causes-the-trouble">2. The distinction
+that causes the trouble</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Alias (adding)</th>
+<th>Primary address (changing)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>What it does</td>
+<td>Adds another address that delivers to the same recipient.</td>
+<td>Changes the address the recipient sends from and is known by.</td>
+</tr>
+<tr class="even">
+<td>Effect on delivery</td>
+<td>Both old and new addresses work. Nothing stops working.</td>
+<td>The old address usually keeps receiving as an alias, but everything
+that displays the address now shows the new one.</td>
+</tr>
+<tr class="odd">
+<td>Effect on the recipient</td>
+<td>None that they notice unless they want it.</td>
+<td>Their outbound mail comes from a different address. Signatures,
+forms, external directories and anything hard-coded elsewhere are now
+wrong.</td>
+</tr>
+<tr class="even">
+<td>Reversible</td>
+<td>Yes, trivially.</td>
+<td>Technically yes; practically the confusion it causes is not
+reversible.</td>
+</tr>
+<tr class="odd">
+<td>Effort</td>
+<td>Minutes.</td>
+<td>Minutes to do, and then a long tail of things nobody predicted.</td>
+</tr>
+<tr class="even">
+<td>Default answer</td>
+<td>Yes, on a valid request.</td>
+<td>Only for the reasons in §4.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>The diagnostic question</strong></p>
+<p>When somebody asks for “a new email address”, ask: should mail to the
+current address keep working, and should your outbound mail keep coming
+from it?</p>
+<p>If yes to both — an alias. That is the overwhelming majority of
+requests, and it takes minutes.</p>
+<p>If they want their outbound mail to change — that is a primary
+address change, and §4 applies.</p>
+</blockquote>
+<h2 id="3-aliases--when-and-how">3. Aliases — when and how</h2>
+<h3 id="31-good-reasons-for-an-alias">3.1 Good reasons for an alias</h3>
+<ul>
+<li>A commonly misspelled name, so that mail is not silently lost.</li>
+<li>A name change where the person wants to be reachable at both — which
+is most name changes.</li>
+<li>A role address that should reach the current post-holder while a
+shared mailbox is not warranted.</li>
+<li>A shorter or more memorable form of a long address, for printing on
+materials.</li>
+<li>A departmental address consolidating onto an existing mailbox or
+group (<a href="/sops/M365-03">M365-03</a>, <a href="/sops/M365-04">M365-04</a>).</li>
+</ul>
+<h3 id="32-how">3.2 How</h3>
+<ol type="1">
+<li>Request through the service desk, naming the recipient and the
+desired alias.</li>
+<li>Tier 2 confirms the alias is not already in use anywhere in the
+tenant — including as a group, a shared mailbox, or a former staff
+member’s retained address.</li>
+<li>Add the alias. Do not change the primary address, and do not set the
+alias as the reply address unless §4 has been followed.</li>
+<li>Tell the requester explicitly that outbound mail will still come
+from their primary address. This single sentence prevents most of the
+follow-up confusion.</li>
+<li>Record it on the ticket.</li>
+</ol>
+<h2 id="4-changing-a-primary-address--when-and-how">4. Changing a
+primary address — when and how</h2>
+<p>A primary address is changed for two reasons and no others: a legal
+name change, or correction of an error made at creation.</p>
+<p>It is not changed for a preferred name, a nickname, a marriage where
+the person has not changed their legal name, a department move, a
+promotion, or a dislike of the existing form. All of those are served by
+an alias, which gives the person what they actually want without the
+consequences.</p>
+<h3 id="41-why-the-restraint">4.1 Why the restraint</h3>
+<ul>
+<li>External systems, vendor accounts, professional directories,
+published work and printed materials hold the old address and do not
+update.</li>
+<li>Shared mailbox and site permissions, delegations and send-as entries
+can be tied to it.</li>
+<li>Every document, ticket and email that cited the address becomes
+subtly wrong.</li>
+<li>People who remember the old form send to it, and if the alias is
+ever removed the mail bounces to a stranger.</li>
+</ul>
+<h3 id="42-how">4.2 How</h3>
+<ol type="1">
+<li>Requested by the person, with HR confirmation for a legal name
+change.</li>
+<li>Tier 2 retains the old address as an alias, permanently. Never
+remove it — this is the step that prevents the long tail from becoming a
+real problem.</li>
+<li>Set the new primary address and confirm the display name and
+directory record match.</li>
+<li>Tell the person what will now behave differently: outbound mail,
+signature, any external services registered under the old address, and
+any multifactor or password-reset contact using it.</li>
+<li>Check shared mailbox membership, delegations and send-as entries
+still resolve.</li>
+<li>Record it, including the retained alias.</li>
+</ol>
+<h2 id="5-aliases-on-groups-and-shared-mailboxes">5. Aliases on groups
+and shared mailboxes</h2>
+<p>The same mechanism and the same confusion. An alias on a group does
+not create a second group with different membership — it is the same set
+of people reachable by another address. An alias on a shared mailbox
+does not create a second mailbox.</p>
+<p>This is the commonest misunderstanding in this area, and it is worth
+answering with the diagnostic question from §2 rather than with an
+explanation of the mechanism: should this reach exactly the same people,
+or different people?</p>
+<h2 id="6-what-is-not-permitted">6. What is not permitted</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Not permitted</th>
+<th>Because</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Reusing an address that belonged to somebody else</td>
+<td>Old mail, old permissions and old external references follow the
+string. Somebody eventually receives correspondence intended for a
+predecessor.</td>
+</tr>
+<tr class="even">
+<td>Removing a retained alias after a primary address change</td>
+<td>Mail that was working starts bouncing, and nobody finds out until an
+external correspondent gives up.</td>
+</tr>
+<tr class="odd">
+<td>An alias that impersonates a role the person does not hold</td>
+<td>ceo@, finance@ and similar are organizational addresses, not
+personal ones.</td>
+</tr>
+<tr class="even">
+<td>An alias resembling an existing person’s address</td>
+<td>Guarantees misdirected mail, and is a ready-made pretext for a
+phishing attempt (<a href="/sops/M365-22">M365-22</a>).</td>
+</tr>
+<tr class="odd">
+<td>Using an alias to route around a mailbox owner’s approval</td>
+<td>That is an <a href="/sops/M365-03">M365-03</a> question, not an address question.</td>
+</tr>
+<tr class="even">
+<td>Encoding a department or title in a personal primary address</td>
+<td>People move; the address then lies. <a href="/sops/ACC-02">ACC-02</a> §8 says the same thing
+about identifiers.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="7-service-levels">7. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Request</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Add an alias</td>
+<td>P3 — usually same coverage day.</td>
+</tr>
+<tr class="even">
+<td>Primary address change, legal name change with HR confirmation</td>
+<td>P3 — within 3 coverage days, because §4.2 steps 4 and 5 take longer
+than the change itself.</td>
+</tr>
+<tr class="odd">
+<td>Primary address change for any other reason</td>
+<td>Declined, with an alias offered instead (§4).</td>
+</tr>
+<tr class="even">
+<td>Alias conflicting with an existing recipient</td>
+<td>Declined, with the conflict explained and an alternative
+suggested.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="8-records">8. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Alias additions</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Primary address changes, with HR confirmation and the retained
+alias</td>
+<td>Ticket</td>
+<td>Permanent — future readers need to know an address changed</td>
+</tr>
+<tr class="odd">
+<td>Declined requests and what was offered instead</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="9-related-documents">9. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Email &amp; Account Policy</td>
+<td>Your organization's email and account policy</td>
+<td>The existing policy this operates under.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-03">M365-03</a></td>
+<td>Shared Mailbox Request, Provisioning &amp; Ownership</td>
+<td>Aliases on shared mailboxes (§5).</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-04">M365-04</a></td>
+<td>Distribution List &amp; Dynamic Group Standard</td>
+<td>§9 of that document makes the same distinction from the group
+side.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-22">M365-22</a></td>
+<td>Phishing Reporting &amp; Email Threat Response</td>
+<td>Look-alike aliases (§6).</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>Address assignment at creation.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-02">ACC-02</a></td>
+<td>Account Naming Standard</td>
+<td>§3 — one person, one primary address, changed only for legal
+reasons.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments</td>
+<td>Supplies §7.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--desk-card">Appendix A — Desk card</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>They ask for</th>
+<th>You do</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>“A new email address”</td>
+<td>Ask: should mail to your current address keep working, and should
+your outbound mail keep coming from it? Yes to both → alias.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>An alias</td>
+<td>Check it is not in use anywhere. Add it. Then tell them outbound
+mail still comes from the primary address.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>To change their address because they prefer a different form</td>
+<td>Offer an alias. It gives them the address they want without the
+consequences of a change.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>To change their address after a legal name change</td>
+<td>HR confirmation, then §4.2. Keep the old address as an alias
+permanently.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>An alias that reaches different people from the current address</td>
+<td>That is not an alias. It is a group or a mailbox — <a href="/sops/M365-04">M365-04</a> or
+<a href="/sops/M365-03">M365-03</a>.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>An address that used to belong to somebody else</td>
+<td>Decline. Explain that old mail and permissions follow the
+address.</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>ceo@ or similar for personal use</td>
+<td>Decline. Organizational addresses are not personal.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

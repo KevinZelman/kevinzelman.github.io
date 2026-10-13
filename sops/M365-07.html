@@ -1,0 +1,1037 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M365-07 · Teams Provisioning, Naming &amp; Lifecycle | Known Good</title>
+<meta name="description" content="When a Team is the right object and when it is not, what creating one actually creates, and how one stops being somebody’s problem when its owner leaves.">
+<meta property="og:title" content="M365-07 · Teams Provisioning, Naming &amp; Lifecycle | Known Good">
+<meta property="og:description" content="When a Team is the right object and when it is not, what creating one actually creates, and how one stops being somebody’s problem when its owner leaves.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="m365-07--teams-provisioning-naming--lifecycle">M365-07 · Teams
+Provisioning, Naming &amp; Lifecycle</h1>
+<p><em>When a Team is the right object and when it is not, what creating
+one actually creates, and how one stops being somebody’s problem when
+its owner leaves.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/M365-07-Teams-Provisioning-Naming-and-Lifecycle.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/M365-07.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/M365-07">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>M365-07</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>A. Microsoft 365</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 2 — Advanced Technical Services renames, reassigns ownership
+and archives. Tier 1 answers the §2 “which object do I need?” question
+in the conversation. Tier 3 owns the creation, naming and expiration
+configuration in §10.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually.</td>
+</tr>
+<tr class="even">
+<td>Relationship to <a href="/sops/M365-10">M365-10</a></td>
+<td>Every Team creates a SharePoint site. That site is governed by
+<a href="/sops/M365-10">M365-10</a> — owner, classification, stated purpose, review, closure — and
+this document does not restate any of it. Where the two appear to
+disagree, §6 resolves it explicitly rather than leaving the reader to
+choose.</td>
+</tr>
+<tr class="odd">
+<td>Relationship to <a href="/sops/M365-04">M365-04</a></td>
+<td>A Team and a Microsoft 365 group are the same underlying object. A
+dynamic-membership Team is a dynamic group, and it consumes the same
+finite directory attributes <a href="/sops/M365-04">M365-04</a> §7 registers. These two documents
+must not contradict each other, and §4 and §7 are written against
+<a href="/sops/M365-04">M365-04</a> deliberately.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>Creating a Team takes about fifteen seconds and creates six things: a
+Microsoft 365 group, a group mailbox, a shared calendar, a SharePoint
+site, a set of channels with folders behind them, and a permanent
+obligation on somebody to look after all of it. The person creating it
+is aware of one of those six.</p>
+<p>That asymmetry is the whole of the problem. The organization does not
+have a Teams problem in the sense of too much chat; it has an
+object-choice problem and an ownership problem. People create a Team
+when they wanted a channel, a site when they wanted a Team, and a group
+chat when they needed something that would still exist in March. Then
+the person who created it changes role, and what is left is a Team with
+content in it, no owner, and no way to tell whether it matters.</p>
+<p>The architecture behind this has been explained repeatedly and well —
+by email, in long threads, to whoever asked. Explained by email it
+cannot be cited, cannot be found by the next person, and has to be
+written again. This document is that explanation, published once.</p>
+<h2
+id="2-team-channel-site-or-chat--the-decision-people-actually-get-wrong">2.
+Team, channel, site or chat — the decision people actually get
+wrong</h2>
+<p>This is the centre of the document. Almost every problem later in it
+is caused by getting this wrong at the start, and the choice is
+genuinely not obvious.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Use</th>
+<th>When</th>
+<th>What it actually creates</th>
+<th>Watch out for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A group chat</td>
+<td>A conversation between a handful of people about something that will
+be finished this month.</td>
+<td>Nothing durable. Files shared in it live in the SENDER’S OneDrive,
+not anywhere shared.</td>
+<td>It has no owner and no membership record. When somebody leaves,
+their files in the chat go with their OneDrive (<a href="/sops/M365-16">M365-16</a> §5). Never the
+home for anything institutional.</td>
+</tr>
+<tr class="even">
+<td>A channel in an EXISTING Team</td>
+<td>A new workstream belonging to a group of people who already work
+together.</td>
+<td>A folder in that Team’s existing site. No new group, no new site, no
+new owner.</td>
+<td>Nothing much. This is the answer far more often than people think,
+and it is the cheapest one by a wide margin.</td>
+</tr>
+<tr class="odd">
+<td>A new Team</td>
+<td>A standing group of people with an ongoing shared purpose — a
+department, a committee, a project with a defined membership.</td>
+<td>A Microsoft 365 group, a group mailbox and calendar, a SharePoint
+site, and an ownership obligation.</td>
+<td>Every Team is also a mail-addressable group (<a href="/sops/M365-04">M365-04</a> §3) and a site
+(<a href="/sops/M365-10">M365-10</a>). Creating one to hold three documents is expensive in
+governance terms and free in cash terms, which is exactly the wrong
+incentive.</td>
+</tr>
+<tr class="even">
+<td>A SharePoint site with no Team</td>
+<td>A document library or an intranet page that many people read and few
+people discuss — policies, forms, a departmental resource area.</td>
+<td>A site, under <a href="/sops/M365-10">M365-10</a>.</td>
+<td>If the group needs to talk about the content, they will end up in a
+chat about it anyway. Consider whether the honest answer is a Team.</td>
+</tr>
+<tr class="odd">
+<td>A shared mailbox</td>
+<td>People outside the organization need to reach a function, not a
+person.</td>
+<td>A mailbox with an address and members (<a href="/sops/M365-03">M365-03</a>).</td>
+<td>A Team does not give you a public address people can write to. These
+solve different problems and are frequently confused.</td>
+</tr>
+<tr class="even">
+<td>A distribution list or dynamic group</td>
+<td>You need to send mail to a set of people. Nothing more.</td>
+<td>A group object with no site and no chat (<a href="/sops/M365-04">M365-04</a>).</td>
+<td>Do not create a Team to reach people by email. That is the most
+common over-build there is.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>The two questions that resolve almost every case</strong></p>
+<p>FIRST: do these people already work together somewhere? If yes, the
+answer is a channel in that Team, not a new Team. A department with
+eleven Teams has one Team and ten channels, and it acquired the other
+ten one reasonable decision at a time.</p>
+<p>SECOND: will this still need to exist in a year, and can you name the
+person who will look after it? If you cannot name that person, you do
+not need a Team — you need a chat, or you need to ask the department
+that does own the work.</p>
+</blockquote>
+<h2 id="3-self-service-creation-kept-on-with-three-conditions">3.
+Self-service creation: kept on, with three conditions</h2>
+<p>The obvious response to team sprawl is to switch off self-service
+creation and put an approval queue in front of it. The organization
+should not do that, and it is worth being precise about why.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>The argument for an approval queue</th>
+<th>Why it usually fails</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>It stops Teams being created that should not exist.</td>
+<td>It does not. It defers them. Every request still arrives, and now it
+arrives in a queue that has to be staffed by a department that, in most
+small organizations, is understaffed and whose staff wear several hats.
+The sprawl becomes a backlog, which is the same problem with a worse
+response time and an SLA attached to it.</td>
+</tr>
+<tr class="even">
+<td>It puts a human check on naming and classification.</td>
+<td>A naming policy and a required classification do that at creation,
+automatically, with nobody in the loop. A human check does the same job
+more slowly and less consistently.</td>
+</tr>
+<tr class="odd">
+<td>It gives IT visibility.</td>
+<td>A monthly report gives IT better visibility than an approval queue
+does, because it also catches what was created before the queue existed
+and what has since gone wrong.</td>
+</tr>
+<tr class="even">
+<td>It signals that Teams are not free.</td>
+<td>This is the one real argument, and §2 makes the point better than a
+wait does. A queue teaches people to route around IT, not to think
+harder.</td>
+</tr>
+</tbody>
+</table></div>
+<p>So self-service creation stays on for staff. It is conditioned on
+three things, and the conditions are what make it defensible rather than
+merely convenient.</p>
+<ol type="1">
+<li>A NAMING STANDARD applied at creation (§4), so that a Team’s name
+says what it is without anyone having to open it.</li>
+<li>A MANDATORY SECOND OWNER (§7). One owner is not an owner; it is a
+single point of failure with a friendly face, and it is the condition
+that produces every orphan in §8.</li>
+<li>AN EXPIRY WITH AN ANNUAL ATTESTATION (§8, <a href="/sops/ACC-17">ACC-17</a>). Renewal is the
+action; expiry is the default. This is the only control that removes
+anything, and without it the other two just produce well-named
+sprawl.</li>
+</ol>
+<blockquote>
+<p><strong>One honest caveat before this is published as a
+control</strong></p>
+<p>The Microsoft 365 group naming policy and the group expiration policy
+are both licensed features, counted against the members of the groups
+they apply to. Tier 3 confirms the organization’s entitlement covers the
+population before §4 and §8 are described to anyone as enforced.</p>
+<p>If the entitlement is not there, §4 and §8 are enforced by procedure
+and by the monthly report instead — which is materially weaker, and the
+document should say so rather than imply a control that is not switched
+on.</p>
+<p>ACTION: Tier 3 to confirm and report to Tier 4 within 30 days of
+approval. Recorded against <a href="/sops/M365-21">M365-21</a>.</p>
+</blockquote>
+<h2 id="4-naming">4. Naming</h2>
+<p>A Team’s display name is the group’s name, the group mailbox’s
+display name, and the name people see in the address book. It is worth
+twenty seconds of thought at creation because it is seen thousands of
+times afterwards.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Kind of Team</th>
+<th>Pattern</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Departmental</td>
+<td>Dept – <Department></td>
+<td>One per department. Additional workstreams are channels (§2).</td>
+</tr>
+<tr class="even">
+<td>Committee or governance body</td>
+<td>Cmte – <Body></td>
+<td>Named for the body, never for its current chair.</td>
+</tr>
+<tr class="odd">
+<td>Project with an end date</td>
+<td>Proj – <Name> (<end year>)</td>
+<td>The year in the name is what makes §8 review possible without asking
+anyone.</td>
+</tr>
+<tr class="even">
+<td>Cross-departmental working group</td>
+<td>WG – <Subject></td>
+<td>Expires by default. Most do not survive their first attestation,
+which is correct.</td>
+</tr>
+<tr class="odd">
+<td>Cohort or population</td>
+<td>Cohort – <Population></td>
+<td>Dynamic membership. Requires a directory attribute, and attributes
+are finite — read §7 and <a href="/sops/M365-04">M365-04</a> §7 BEFORE promising one.</td>
+</tr>
+<tr class="even">
+<td>Synced from a system of record</td>
+<td>[ deferred ]</td>
+<td>Teams provisioned from a source of record, such as an HR or business
+system, are not created by hand. Out of scope until that integration
+exists; do not create them manually in the meantime.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>The mail nickname follows the <a href="/sops/M365-04">M365-04</a> §4 convention —
+dept-<department>, grp-<name> — so that the address is predictable even
+where the display name is not.</li>
+<li>A name describes who is in the Team or what it is for. Never who
+currently leads it, and never the current name of a project that will be
+renamed twice.</li>
+<li>Blocked in the naming policy: “test”, “temp”, “new”, a person’s name
+alone, and anything ending in a year that is not a project end date. One
+consequence worth knowing before you name a Team: renaming it later
+renames the group, the mailbox display name and the Team as everyone
+sees it — but it does NOT change the SharePoint site’s URL, which keeps
+the original name permanently. The organization therefore lives with the
+first name chosen in every link, every bookmark and every document path,
+long after the visible name has moved on. This is a Microsoft behaviour,
+not a configuration, and it is the strongest practical argument for §4
+existing at all.</li>
+</ul>
+<h2 id="5-channels--standard-private-and-shared">5. Channels — standard,
+private and shared</h2>
+<p>The three channel types look almost identical in the interface and do
+entirely different things to permissions and to storage. This is the
+second most common source of surprise in Teams after §2.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Channel type</th>
+<th>Who can see it</th>
+<th>Where its files live</th>
+<th>Use it for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Standard</td>
+<td>Everybody in the Team. Always.</td>
+<td>A folder in the Team’s own SharePoint site.</td>
+<td>The default, and the right answer nearly always. If a conversation
+needs to exclude Team members, ask why they are in the Team.</td>
+</tr>
+<tr class="even">
+<td>Private</td>
+<td>Only the channel’s members, who must also be members of the
+Team.</td>
+<td>A SEPARATE SharePoint site collection with its own membership and
+its own owners.</td>
+<td>Genuinely sensitive work inside a wider group — a hiring panel
+inside a departmental Team, a disciplinary matter, a budget under
+preparation.</td>
+</tr>
+<tr class="odd">
+<td>Shared</td>
+<td>Its members, who may include people from other Teams and, where
+permitted, other organisations without becoming members of this
+Team.</td>
+<td>A separate site collection again, shared to the participants.</td>
+<td>Working with a specific set of people across departmental
+boundaries, or with an external partner. Governed by <a href="/sops/M365-14">M365-14</a> and
+<a href="/sops/ACC-10">ACC-10</a>.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="51-what-to-watch">5.1 What to watch</h3>
+<ul>
+<li>A private channel cannot be converted to a standard channel, or the
+other way round. The choice is permanent in practice, and it is made by
+somebody who has not read this section.</li>
+<li>Each private and shared channel is its own site collection, which
+means it is its own thing to own, review, classify and search. A Team
+with nine private channels is ten sites with one visible owner.</li>
+<li>Private-channel sites are easy to miss in an access review and in an
+eDiscovery scope (<a href="/sops/M365-16">M365-16</a> §8). Whoever scopes a search names them
+explicitly; they will not be found by searching “the Team”.</li>
+<li>A private channel whose owner leaves is orphaned separately from the
+Team, and the Team’s owners cannot see into it to fix it. §8 covers this
+case specifically because it is the one people do not expect.</li>
+<li>Rule of thumb: if more than about a third of a Team’s channels are
+private, that is not one Team with sensitive corners. That is two Teams,
+and separating them will make everybody’s life simpler.</li>
+</ul>
+<h2 id="6-the-sharepoint-site-behind-every-team">6. The SharePoint site
+behind every Team</h2>
+<p>Every Team has a SharePoint site from the moment it is created, and
+that site is governed entirely by <a href="/sops/M365-10">M365-10</a> and <a href="/sops/M365-11">M365-11</a>. This document
+deliberately does not repeat those rules — a duplicated rule is a rule
+that will drift, and the drifted copy will be the one somebody
+quotes.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>For this, read</th>
+<th>Which is</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Owner, classification and stated purpose</td>
+<td><a href="/sops/M365-10">M365-10</a> §2 — the three things every site has from the moment it
+exists. They apply to a Team’s site from the moment the Team
+exists.</td>
+</tr>
+<tr class="even">
+<td>Who gets access and how it is granted</td>
+<td><a href="/sops/M365-11">M365-11</a> §2 — through the site’s groups, never as individual
+grants.</td>
+</tr>
+<tr class="odd">
+<td>External sharing on that site</td>
+<td><a href="/sops/M365-14">M365-14</a> §5, with the classification deciding it.</td>
+</tr>
+<tr class="even">
+<td>Retention applied to the site</td>
+<td><a href="/sops/M365-16">M365-16</a> §3.</td>
+</tr>
+<tr class="odd">
+<td>Review and closure of the site</td>
+<td><a href="/sops/M365-10">M365-10</a> §8, which is the same event as §9 of this document.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>This document and <a href="/sops/M365-10">M365-10</a> §4 appear to contradict each other.
+They do — and here is the resolution.</strong></p>
+<p><a href="/sops/M365-10">M365-10</a> §4 step 1 says self-service SITE creation is disabled, which
+is what allows the owner, classification and purpose to be enforced.
+Section 3 above says self-service TEAM creation stays on. Both cannot be
+read literally at the same time, because creating a Team creates a
+site.</p>
+<p>The resolution is that disabling self-service site creation does not
+disable Team creation, and never did. So the real choice was never
+“governed sites or ungoverned sites”. It was whether the sites that
+arrive anyway arrive with a Team’s naming, ownership and expiry
+attached, or arrive nameless with one owner and no review date.</p>
+<p>THEREFORE: standalone site creation stays disabled and is requested
+under <a href="/sops/M365-10">M365-10</a>. Team creation stays open under §3. A Team-created site
+enters the <a href="/sops/M365-10">M365-10</a> site register automatically, from the Tier 3 monthly
+report, rather than through a request form — the register is populated
+by discovery, not by hope.</p>
+<p>ACTION: <a href="/sops/M365-10">M365-10</a> §4 step 1 is amended at its next review to say this
+in its own words. Raised under <a href="/sops/GOV-01">GOV-01</a> §10 as a defect in <a href="/sops/M365-10">M365-10</a>, not as
+an exception in this document.</p>
+</blockquote>
+<h2 id="7-owners-members-and-guests">7. Owners, members and guests</h2>
+<h3 id="71-owners">7.1 Owners</h3>
+<ul>
+<li>EVERY TEAM HAS AT LEAST TWO OWNERS, and they are both members of
+organization staff. This is the condition in §3 and it is the one that
+prevents §8 from being a monthly event.</li>
+<li>The platform does not enforce a minimum owner count. It is enforced
+by the creation guidance, by the monthly report, and by the annual
+attestation — so it is a procedure, and procedures need the report
+behind them to be real.</li>
+<li>The owner’s job is small and deliberately so: approve who joins,
+confirm the membership once a year, say when it is finished, and name a
+successor before changing role. It is the same job as a site owner’s
+(<a href="/sops/M365-10">M365-10</a> §6), because it is the same object.</li>
+<li>An owner who does not know they are an owner is not one. Whoever
+creates a Team tells the second owner that they have become one.</li>
+</ul>
+<h3 id="72-members">7.2 Members</h3>
+<ul>
+<li>Members are added by the owners. Membership is not an IT decision
+and IT does not adjudicate who belongs in a department’s Team.</li>
+<li>Where membership should be derived rather than maintained — everyone
+in a department, every new starter — that is dynamic membership, which
+is a dynamic group, which needs a directory attribute. Attributes are a
+finite resource, and a request is often declined because the attribute
+it needs is already committed to another system. Check the attribute
+register before promising anything (<a href="/sops/M365-04">M365-04</a> §7).</li>
+<li>Temporary workers are members like anyone else, and their membership
+ends at the end of the engagement with the rest of their access
+(<a href="/sops/ACC-09">ACC-09</a>).</li>
+</ul>
+<h3 id="73-guests">7.3 Guests</h3>
+<p>Guest participation in a Team is governed by <a href="/sops/ACC-10">ACC-10</a> (which identity
+the person should have, who sponsors it, how it ends) and <a href="/sops/M365-14">M365-14</a> (what
+they can reach). Neither is restated here. Four things belong in this
+document because they are Teams-specific:</p>
+<ul>
+<li>A guest is never a Team owner. Ownership is a staff responsibility
+(<a href="/sops/ACC-10">ACC-10</a> §5).</li>
+<li>Adding an external person to a Team creates a tenant guest — a real
+identity, with a real sign-in and an MFA registration. That is a
+different act from inviting them to a meeting, and the difference
+matters. <a href="/sops/M365-08">M365-08</a> §6 covers it from the meeting side.</li>
+<li>Guests appear with their organisation in the display name, so that
+no member of the Team has to work out whether the person reading the
+channel is external (<a href="/sops/ACC-10">ACC-10</a> §4).</li>
+<li>A shared channel is usually the better instrument for external
+collaboration than guest membership of the whole Team, because it scopes
+what the external party sees to the thing you are actually working on
+together.</li>
+</ul>
+<h2 id="8-expiry-orphan-detection-and-ownership-reassignment">8. Expiry,
+orphan detection and ownership reassignment</h2>
+<h3 id="81-expiry">8.1 Expiry</h3>
+<ul>
+<li>Group lifetime is set to 365 days. Owners are notified before expiry
+and renew with one click.</li>
+<li>Auto-renewal on activity is enabled, and it should be understood for
+what it is: a safety net that stops an active Team disappearing because
+its owners were on leave. It is NOT a control. A Team that one person
+opens once a quarter renews itself for ever without anybody deciding it
+should exist.</li>
+<li>The control is the annual attestation (§8.2), not the expiry. The
+expiry catches abandonment; the attestation catches the Team that is
+still there but is no longer for anything.</li>
+<li>An expired group is recoverable for 30 days, then it is not. Nothing
+in this document relies on that window being noticed.</li>
+</ul>
+<h3 id="82-the-annual-owner-attestation">8.2 The annual owner
+attestation</h3>
+<p>Run once a year with the rest of the access recertification cycle
+(<a href="/sops/ACC-17">ACC-17</a>). Each owner receives their Teams and answers three questions
+about each: is this still needed, is this membership still right, and
+are you still the right owner? Five minutes, from a list IT sends. An
+owner who does not respond is escalated once and then the Team goes to
+§8.4 as an orphan — a Team nobody will confirm is needed is functionally
+the same as a Team with no owner.</p>
+<h3 id="83-detecting-orphans">8.3 Detecting orphans</h3>
+<p>Tier 3 produces a monthly report. Four conditions, in descending
+order of urgency:</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Condition</th>
+<th>What it means</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Zero owners</td>
+<td>The Team is orphaned now. Nobody can add a member, approve access or
+archive it.</td>
+<td>Reassign under §8.4 within 5 coverage days.</td>
+</tr>
+<tr class="even">
+<td>All owners disabled or departed</td>
+<td>Orphaned in substance even though the platform still lists
+owners.</td>
+<td>Reassign under §8.4. This is the failure the <a href="/sops/ACC-01">ACC-01</a> §7.2 leaver step
+is meant to prevent, and the report is how the ones that slipped are
+caught.</td>
+</tr>
+<tr class="odd">
+<td>Exactly one owner</td>
+<td>Not orphaned. One departure away from it.</td>
+<td>Ask the owner to name a second. This row is the pipeline for the two
+above it, and clearing it is cheaper than clearing them.</td>
+</tr>
+<tr class="even">
+<td>A private channel whose owners have left</td>
+<td>Orphaned separately from the Team, and invisible to the Team’s own
+owners.</td>
+<td>Tier 3 reassigns directly. Do not assume the Team’s owners can see
+or fix this — they cannot.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="84-ownership-reassignment-runbook">8.4 Ownership reassignment
+runbook</h3>
+<ol type="1">
+<li>Establish who the Team belongs to before deciding who owns it. Read
+the stated purpose in the site register (<a href="/sops/M365-10">M365-10</a> §5), the channel names,
+and the department of the most active members. Do not start from the org
+chart.</li>
+<li>Approach the department head, not the most active member. Ownership
+is a departmental responsibility being reassigned, and asking the
+busiest person directly usually gets a yes that is regretted later.</li>
+<li>Where the department head names an owner: add them and a second
+owner, tell them both in writing that they are now owners, and send them
+the <a href="/sops/M365-10">M365-10</a> Appendix B one-pager. Two owners, always. Reassigning to one
+owner recreates the problem on a delay.</li>
+<li>Where the department head declines, or nobody can say what the Team
+is for, that is a useful answer rather than a dead end. Take it to §9 as
+an archive candidate.</li>
+<li>Where nobody can be found at all, it goes to Tier 4 as a decision.
+IT does not become the owner by default — that is precisely how a Team
+becomes nobody’s, and IT cannot answer the questions an owner exists to
+answer (<a href="/sops/M365-10">M365-10</a> §7).</li>
+<li>Record the reassignment in the site register: previous owners, new
+owners, who decided, and the date.</li>
+<li>Where the orphan was caused by a departure that should have been
+caught at separation, note it — the count of those over a year is the
+argument for whatever fix is needed in <a href="/sops/ACC-01">ACC-01</a> §7.2, and nobody can make
+that argument without the count.</li>
+</ol>
+<h2 id="9-archive-and-why-deleting-is-almost-never-the-answer">9.
+Archive, and why deleting is almost never the answer</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Archive</th>
+<th>Delete</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>What happens</td>
+<td>The Team and its site become read-only. Everything is preserved and
+remains searchable. It disappears from the active Teams list.</td>
+<td>The group, the mailbox, the site and the channel conversations are
+soft-deleted for 30 days, then permanently removed.</td>
+</tr>
+<tr class="even">
+<td>Reversible?</td>
+<td>Yes, at any time, by an owner or Tier 2.</td>
+<td>For 30 days. After that, no.</td>
+</tr>
+<tr class="odd">
+<td>Cost of getting it wrong</td>
+<td>A read-only Team somebody has to un-archive. Two minutes.</td>
+<td>A department discovering in month four that four years of their work
+is gone. There is no recovering from that, and there is no explaining it
+either.</td>
+</tr>
+<tr class="even">
+<td>When it is right</td>
+<td>Almost always. A finished project, a dissolved committee, a Team
+nobody will attest to.</td>
+<td>The Team was created in error, contains nothing, and has never been
+used. Or Tier 4 has approved a disposition under <a href="/sops/M365-16">M365-16</a> §2.</td>
+</tr>
+</tbody>
+</table></div>
+<p>So: archive is the default and deletion is a Tier 4 decision with a
+record behind it. Nobody has ever been criticised for archiving
+something that could have been deleted.</p>
+<ul>
+<li>Archiving does not satisfy a retention obligation and does not
+replace one. Retention is applied to the site and follows <a href="/sops/M365-16">M365-16</a> §3
+whether the Team is active or archived.</li>
+<li>Deleting a Team that is under a retention policy preserves the
+content in a place nobody can browse. That is not the same as having it,
+and it should not be mistaken for a soft option.</li>
+<li>Before archiving, tell the members. A Team going read-only without
+warning generates a ticket within the hour and a certain amount of ill
+will that a two-line message would have prevented.</li>
+<li>Archived Teams are reviewed with the site register annually. An
+archive is a resting place, not a disposal, and after the retention
+floor a genuine disposition decision can be made properly (<a href="/sops/M365-16">M365-16</a>
+§2).</li>
+</ul>
+<h2 id="10-tenant-configuration">10. Tenant configuration</h2>
+<p>Tier 3 owns these. Changes go through <a href="/sops/M365-21">M365-21</a>. Recorded here so that
+the intent sits with the standard rather than in somebody’s memory of
+why a setting is the way it is.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Setting</th>
+<th>Intent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Who may create Teams and Microsoft 365 groups</td>
+<td>Staff. Not temporary or external accounts — a Team created by
+somebody on a short engagement is an ungoverned site with an owner who
+leaves. Their project Teams are requested through the sponsoring
+department.</td>
+</tr>
+<tr class="even">
+<td>Group naming policy</td>
+<td>Prefix and blocked-word list per §4, subject to the entitlement
+check in §3.</td>
+</tr>
+<tr class="odd">
+<td>Group expiration policy</td>
+<td>365 days, auto-renew on activity, owner notifications. Subject to
+the same entitlement check.</td>
+</tr>
+<tr class="even">
+<td>Minimum owners</td>
+<td>Two. Not platform-enforced — see §7.1 and the monthly report.</td>
+</tr>
+<tr class="odd">
+<td>Guest access in Teams</td>
+<td>On, governed by <a href="/sops/ACC-10">ACC-10</a> and <a href="/sops/M365-14">M365-14</a>. Owners add guests; guests are
+never owners.</td>
+</tr>
+<tr class="even">
+<td>Who may create private channels</td>
+<td>Team owners only. The default permits members, which produces §5.1
+faster than anyone expects.</td>
+</tr>
+<tr class="odd">
+<td>Shared channels and external participation</td>
+<td>Owners only, per <a href="/sops/M365-14">M365-14</a>.</td>
+</tr>
+<tr class="even">
+<td>Deleted group retention</td>
+<td>30 days. Not something §9 relies on.</td>
+</tr>
+<tr class="odd">
+<td>Team discoverability</td>
+<td>Public Teams are permitted and encouraged for anything that is not
+sensitive. Discoverability is how the organization avoids building the
+same Team twice, and the classification (<a href="/sops/M365-15">M365-15</a>) decides what may be
+public.</td>
+</tr>
+<tr class="even">
+<td>Third-party apps in Teams</td>
+<td>Reviewed before availability. An app added to a Team gets the Team’s
+content, and app consent is a tenant change (<a href="/sops/M365-21">M365-21</a>, <a href="/sops/M365-19">M365-19</a>).</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-service-levels">11. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“Team, channel, site or chat?”</td>
+<td>Answered at Tier 1 from §2, in the conversation. This is the
+highest-value thing Tier 1 does with this document.</td>
+</tr>
+<tr class="even">
+<td>Self-service Team creation</td>
+<td>Immediate, by the requester. No IT involvement — that is the point
+of §3.</td>
+</tr>
+<tr class="odd">
+<td>A Team for a population that cannot self-serve</td>
+<td>P3 — 2 coverage days.</td>
+</tr>
+<tr class="even">
+<td>A dynamic-membership Team</td>
+<td>Tier 3, against the attribute register. Not promised before <a href="/sops/M365-04">M365-04</a>
+§7 has been checked.</td>
+</tr>
+<tr class="odd">
+<td>Rename</td>
+<td>P3 — 2 coverage days. The requester is told the site URL does not
+change (§4).</td>
+</tr>
+<tr class="even">
+<td>Ownership reassignment from the orphan report</td>
+<td>P3 — 5 coverage days. On a departure, within the <a href="/sops/ACC-01">ACC-01</a> §7.2
+timeline instead.</td>
+</tr>
+<tr class="odd">
+<td>Archive on owner request</td>
+<td>P3 — 2 coverage days.</td>
+</tr>
+<tr class="even">
+<td>Deletion</td>
+<td>Tier 4 decision. Never same-day, and never on a verbal request.</td>
+</tr>
+<tr class="odd">
+<td>Monthly orphan report; annual attestation</td>
+<td>On schedule, with <a href="/sops/ACC-17">ACC-17</a>.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="12-records">12. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Team entry in the site register: owners, classification, purpose,
+dates</td>
+<td>Site register (<a href="/sops/M365-10">M365-10</a> §5), Team flagged</td>
+<td>Life of the Team + 3 years</td>
+</tr>
+<tr class="even">
+<td>Monthly orphan report</td>
+<td>IT governance record</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Ownership reassignments: previous, new, decided by, date</td>
+<td>Site register + ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Annual attestation returns</td>
+<td>IT register (<a href="/sops/ACC-17">ACC-17</a>)</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Archive and un-archive actions</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Deletion approvals</td>
+<td>Tier 4 record</td>
+<td>Permanent</td>
+</tr>
+<tr class="odd">
+<td>Naming and expiry exceptions</td>
+<td>IT register</td>
+<td>Life of the exception + 3 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13-related-documents">13. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/M365-10">M365-10</a></td>
+<td>SharePoint Site Request, Provisioning &amp; Ownership</td>
+<td>Governs the site every Team creates. §6 resolves the apparent
+conflict at <a href="/sops/M365-10">M365-10</a> §4 step 1.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-11">M365-11</a></td>
+<td>SharePoint &amp; OneDrive Permission Management</td>
+<td>How access to the Team’s site is actually granted.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-04">M365-04</a></td>
+<td>Distribution List &amp; Dynamic Group Standard</td>
+<td>A Team is a group. §4 and §7.2 are written against <a href="/sops/M365-04">M365-04</a> §4 and
+§7.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-03">M365-03</a></td>
+<td>Shared Mailbox Standard</td>
+<td>What a Team is not — a public address people write to.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-08">M365-08</a></td>
+<td>Teams Meetings, Recording &amp; Guest Participation</td>
+<td>Meetings held in these Teams, and where their recordings land.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-14">M365-14</a></td>
+<td>External Sharing &amp; Guest Access Governance</td>
+<td>What a guest or a shared channel participant can reach.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-10">ACC-10</a></td>
+<td>Guest &amp; Sponsored External Account Standard</td>
+<td>Which identity an external person should have, and who sponsors
+it.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-15">M365-15</a></td>
+<td>Data Classification &amp; Handling</td>
+<td>The classification a Team’s site carries.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-16">M365-16</a></td>
+<td>Retention, Legal Hold &amp; eDiscovery</td>
+<td>§9 disposition, and the private-channel scoping caution at
+§5.1.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-21">M365-21</a></td>
+<td>Tenant Configuration Change Control</td>
+<td>Changes to §10.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-17">ACC-17</a></td>
+<td>Periodic Access Review &amp; Entitlement Recertification</td>
+<td>The annual attestation at §8.2.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>§7.2 ownership transfer at departure — the step that prevents most
+orphans.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments, Priority &amp; Escalation</td>
+<td>Supplies §11.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--for-end-users-team-channel-site-or-chat">Appendix A
+— For end users: Team, channel, site or chat?</h2>
+<p>Source text for the knowledge base. Format per <a href="/sops/GOV-05">GOV-05</a>. Written to be
+published as it stands.</p>
+<h3 id="start-here">Start here</h3>
+<p>Before you create a Team, ask yourself one question: do the people
+involved already work together somewhere? If they do, what you want is a
+new channel in that Team, not a new Team. It takes ten seconds,
+everybody already has access, and you have not created something new for
+somebody to look after.</p>
+<h3 id="when-you-genuinely-do-want-a-new-team">When you genuinely do
+want a new Team</h3>
+<p>When there is a standing group of people with an ongoing shared
+purpose — a department, a committee, a project with a defined membership
+and a defined end. Creating one is quick, and there are just two things
+we ask of you, both of which take a moment now and save a great deal
+later.</p>
+<div class="tbl"><table>
+<tbody>
+<tr class="odd">
+<td>Name it so we can tell what it is</td>
+<td>Dept – Front Office. Cmte – Wellbeing. Proj – Portal Refresh (2027).
+Please do not name it after yourself or after whoever is currently
+running it, because those change and the name does not.</td>
+</tr>
+<tr class="even">
+<td>Add a second owner</td>
+<td>Always two. Not because we do not trust you, but because one owner
+means that when you are on holiday nobody can add a member, and when you
+change role the Team quietly belongs to nobody. Tell the person you have
+made them an owner — they will not otherwise know.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="what-a-team-is-not">What a Team is not</h3>
+<p>It is not a way to email a group of people. If all you want is to
+send mail to a set of people, ask us for a distribution list instead —
+it is simpler and it does not create a site somebody has to own.</p>
+<p>It is not an address the public can write to. If people outside the
+organization need to reach your department, that is a shared mailbox.
+Ask us; it costs nothing and takes about a day.</p>
+<p>It is not a good home for something that will be finished in three
+weeks. That is a group chat.</p>
+<h3 id="a-word-about-group-chats">A word about group chats</h3>
+<p>Group chats are perfect for quick conversations and genuinely bad for
+anything that matters. Files you share in a chat live in your own
+OneDrive, which means that when you leave the organization they go with
+it — and the people in the chat lose them without anybody realising. If
+the files matter, put them in a Team or a site.</p>
+<h3 id="private-channels">Private channels</h3>
+<p>A private channel inside a Team is for work that genuinely should not
+be visible to everyone in that Team — a hiring panel, a budget in
+preparation. Use them sparingly. If you find you need several, it is
+usually a sign that you actually want two Teams, and separating them
+will make things much simpler for everyone.</p>
+<h3 id="when-a-team-is-finished">When a Team is finished</h3>
+<p>Tell us and we will archive it. Archiving keeps everything, makes it
+read-only, and takes it off everyone’s list — and we can bring it back
+at any time if you turn out to need it. We would much rather archive
+something than delete it, and so would you in about two years.</p>
+<h3 id="once-a-year-we-will-ask-you-three-questions">Once a year we will
+ask you three questions</h3>
+<p>For each Team you own: is it still needed, is the membership still
+right, and are you still the right owner? It takes about five minutes
+from a list we send you, and it is what stops the organization
+accumulating hundreds of Teams that nobody can account for. If the
+honest answer is that you are no longer the right owner, please say so —
+it is genuinely helpful, and it is not a problem.</p>
+<h2 id="appendix-b--orphaned-team-reassignment-checklist">Appendix B —
+Orphaned Team reassignment checklist</h2>
+<p>One per orphaned Team, from the monthly report. Attached to the
+ticket. An unticked box is a step not done, not a step judged
+unnecessary.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>✓</th>
+<th>Step</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>☐</td>
+<td>Orphan condition recorded (zero owners / all owners departed /
+single owner / private channel)</td>
+<td>Monthly report reference</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Stated purpose read from the site register; last content change
+noted</td>
+<td>Register entry</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Content reviewed only far enough to identify the owning department —
+not read</td>
+<td>Note in ticket</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Classification checked; where CONFIDENTIAL or above, Tier 4 informed
+before proceeding</td>
+<td><a href="/sops/M365-15">M365-15</a> record</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Department head approached (not the most active member)</td>
+<td>Email in ticket</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>TWO owners named and added</td>
+<td>Team ownership list</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Both new owners told in writing that they are now owners</td>
+<td>Email in ticket</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td><a href="/sops/M365-10">M365-10</a> Appendix B owner one-pager sent</td>
+<td>Email in ticket</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Private channels checked separately for their own orphaned
+owners</td>
+<td>Tier 3 confirmation</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Site register updated: previous owners, new owners, decided by,
+date</td>
+<td>Register entry</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Where nobody could be found: escalated to Tier 4 as a decision, not
+defaulted to IT</td>
+<td>Tier 4 record</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Where the department declined: routed to §9 as an archive
+candidate</td>
+<td>Ticket</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Where a departure caused it: noted for the annual count against
+<a href="/sops/ACC-01">ACC-01</a> §7.2</td>
+<td>Governance record</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

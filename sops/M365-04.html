@@ -1,0 +1,622 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M365-04 · Distribution List &amp; Dynamic Group Standard | Known Good</title>
+<meta name="description" content="How mail reaches a group of people at the organization, how dynamic membership is derived from the HR and user system of record, and what IT will not build.">
+<meta property="og:title" content="M365-04 · Distribution List &amp; Dynamic Group Standard | Known Good">
+<meta property="og:description" content="How mail reaches a group of people at the organization, how dynamic membership is derived from the HR and user system of record, and what IT will not build.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="m365-04--distribution-list--dynamic-group-standard">M365-04 ·
+Distribution List &amp; Dynamic Group Standard</h1>
+<p><em>How mail reaches a group of people at the organization, how
+dynamic membership is derived from the HR and user system of record, and
+what IT will not build.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/M365-04-Distribution-List-and-Dynamic-Group-Standard.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/M365-04.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/M365-04">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>M365-04</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>A. Microsoft 365</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 3 — Expert Services. Membership rules and directory attributes
+are Tier 3 architecture.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually, and whenever a directory attribute is committed to a new
+purpose.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>This standard states how mail reaches a group of people, which kind
+of object serves which purpose, and how dynamic membership is derived.
+It exists because that explanation is so often delivered by email,
+repeatedly, to a different audience each time.</p>
+<p>The usual pattern is a long email thread that gets forwarded on
+because it “explains a lot” about how the dynamic groups were made, and
+the information in it is clear. That is precisely the problem. Clear
+information delivered by email is not published, cannot be cited, and
+has to be re-sent.</p>
+<blockquote>
+<p><strong>What a published standard changes</strong></p>
+<p>It gives IT something to point at instead of re-explaining, and it
+gives a department a way to find the answer without asking. Both matter
+more in an understaffed team than in a well-staffed one, because
+re-explaining is the cost nobody counts.</p>
+<p>It also makes declining a request defensible. A typical case: a
+department asks for a new dynamic group, and the directory attribute it
+needs has already been committed to the ticketing system. Declining is
+the right call, and it is very hard to explain when the constraint is
+not written down anywhere.</p>
+</blockquote>
+<h2 id="2-scope">2. Scope</h2>
+<ul>
+<li>Distribution lists, mail-enabled security groups, Microsoft 365
+groups and dynamic distribution groups.</li>
+<li>How dynamic membership rules are written and which source attributes
+they may use.</li>
+<li>The register of directory attributes and what each is committed to.
+Out of scope: shared mailboxes, which are <a href="/sops/M365-03">M365-03</a>; Teams, which are
+<a href="/sops/M365-07">M365-07</a>; security groups used purely for access rather than mail, which
+follow <a href="/sops/ACC-02">ACC-02</a> §3 naming and are governed by the document granting the
+access; broadcast mail to the whole organization, which is <a href="/sops/M365-06">M365-06</a>.</li>
+</ul>
+<h2 id="3-the-four-things-people-mean-by-a-group">3. The four things
+people mean by “a group”</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Object</th>
+<th>Use it to</th>
+<th>Membership</th>
+<th>Watch out for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Distribution list</td>
+<td>Send mail to a fixed set of people who do not change often.</td>
+<td>Manual, maintained by a named owner.</td>
+<td>Goes stale silently. Needs the §10 review or it slowly becomes
+wrong.</td>
+</tr>
+<tr class="even">
+<td>Dynamic distribution group</td>
+<td>Send mail to everyone matching a rule — all staff, everyone in one
+region.</td>
+<td>Calculated at send time from directory attributes.</td>
+<td>Only as good as the underlying data. A person with a wrong attribute
+is silently excluded.</td>
+</tr>
+<tr class="odd">
+<td>Mail-enabled security group</td>
+<td>Both grant access and send mail to the same set.</td>
+<td>Manual or dynamic.</td>
+<td>Convenient and risky: changing the mail list changes who has access.
+Prefer separate objects.</td>
+</tr>
+<tr class="even">
+<td>Microsoft 365 group</td>
+<td>Give a team a shared identity across Teams, SharePoint and a group
+mailbox.</td>
+<td>Manual or dynamic.</td>
+<td>Creates a Team and a site whether or not anyone wanted them
+(<a href="/sops/M365-07">M365-07</a>).</td>
+</tr>
+</tbody>
+</table></div>
+<p>Appendix A is this table as a decision path. Most requests that
+arrive as “can we have a group for X” are answered by a dynamic
+distribution group or by an alias, and neither is what the requester
+asked for by name.</p>
+<h2 id="4-naming">4. Naming</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Dynamic, population-wide</td>
+<td>A plain descriptive address, for example allstaff@yourdomain.</td>
+</tr>
+<tr class="even">
+<td>Distribution list, departmental</td>
+<td>dept-<department>@yourdomain</td>
+</tr>
+<tr class="odd">
+<td>Distribution list, committee or project</td>
+<td>grp-<name>@yourdomain</td>
+</tr>
+<tr class="even">
+<td>Security group for access</td>
+<td>ROLE-<SCOPE>-<Function>, per <a href="/sops/ACC-02">ACC-02</a> §4.2 — visually distinct from
+anything mail-enabled.</td>
+</tr>
+<tr class="odd">
+<td>Microsoft 365 group / Team</td>
+<td>Per <a href="/sops/M365-07">M365-07</a>.</td>
+</tr>
+</tbody>
+</table></div>
+<p>One rule: a group name describes who is in it, never who currently
+leads it or what the current project is called. Names outlive both, and
+a name that has become wrong is worse than an ugly one because people
+trust it.</p>
+<p>Note a genuine platform constraint worth recording: a Microsoft 365
+group naming policy does not apply to dynamic distribution groups, and
+Exchange distribution-group naming policy is configured separately. So
+naming here is enforced by procedure rather than by the platform, which
+means §11 review is the only thing keeping it true.</p>
+<h2 id="5-who-may-request-what">5. Who may request what</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Request</th>
+<th>Requested by</th>
+<th>Approved by</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A departmental distribution list</td>
+<td>Department head or delegate</td>
+<td>Tier 2</td>
+</tr>
+<tr class="even">
+<td>A committee or project list</td>
+<td>The chair or project lead</td>
+<td>Tier 2</td>
+</tr>
+<tr class="odd">
+<td>A dynamic group over an existing attribute</td>
+<td>Any department head</td>
+<td>Tier 3</td>
+</tr>
+<tr class="even">
+<td>A dynamic group needing a NEW attribute</td>
+<td>Department head</td>
+<td>Tier 4 — see §7. This is the expensive one.</td>
+</tr>
+<tr class="odd">
+<td>Any group addressing the whole organization or a whole
+population</td>
+<td>Department head</td>
+<td>Tier 4, under <a href="/sops/M365-06">M365-06</a></td>
+</tr>
+<tr class="even">
+<td>A cohort group defined by something the HR and user system of record
+does not record</td>
+<td>Anyone</td>
+<td>Declined, with §8 as the reason</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="6-dynamic-groups--how-membership-is-actually-derived">6. Dynamic
+groups — how membership is actually derived</h2>
+<p>This is the section that answers most of the questions in that kind
+of email thread.</p>
+<ol type="1">
+<li>The HR and user system of record holds the authoritative record for
+every person. Directory attributes are populated from it.</li>
+<li>A dynamic group holds a rule against those attributes, not a list of
+people. Nobody is “added to” a dynamic group, and asking IT to add
+somebody to one is asking for something that does not exist as an
+operation.</li>
+<li>Membership is evaluated when mail is sent. So a correction to
+somebody’s record in the HR and user system of record fixes their group
+membership — and, equally, a wrong record silently excludes them with no
+error anywhere.</li>
+<li>Which means: when a person is missing from a population group, the
+fault is almost never the group. It is the record. Fix the record
+(<a href="/sops/ACC-01">ACC-01</a> Rule 1).</li>
+</ol>
+<blockquote>
+<p><strong>The two misunderstandings worth pre-empting</strong></p>
+<p>First: “add this person to employees@”. Not possible, and not a
+limitation — it is what makes the group trustworthy. If they belong in
+it, their record says so.</p>
+<p>Second: an alias on a group is not a second group. Adding sales-team@
+as an alias of dept-sales@ does not create a different membership; it is
+the same list reachable by two addresses. This is the commonest alias
+confusion, and §9 addresses it directly.</p>
+</blockquote>
+<p>One technical caution for whoever writes the rules: RecipientType and
+RecipientTypeDetails are different, and a rule filtering on
+RecipientType will silently include shared mailboxes alongside user
+mailboxes. Filter on RecipientTypeDetails where only real people are
+wanted. This is a common and quiet error.</p>
+<h2 id="7-the-attribute-register">7. The attribute register</h2>
+<p>Directory extension attributes are a finite resource. Each one can
+serve exactly one purpose, and once committed it cannot serve another
+without breaking whatever depends on it.</p>
+<p>This is the usual reason a dynamic group request gets declined: the
+attribute it needs has already been committed elsewhere. Declining is
+correct, and it is hard to explain when no register exists. Section 8 is
+the polite version of the answer; this section is what makes it
+checkable.</p>
+<ol type="1">
+<li>IT maintains a register of every directory attribute, what it holds,
+what populates it, and what depends on it. Appendix B is the
+template.</li>
+<li>No attribute is committed to a new purpose without a Tier 4 decision
+recorded against <a href="/sops/M365-21">M365-21</a>.</li>
+<li>Before promising any dynamic group, Tier 3 checks the register. A
+promise made and then withdrawn costs more than a slow answer.</li>
+<li>Where the register shows no attribute available, the answer is §8 —
+and now it comes with a reason the requester can see.</li>
+</ol>
+<h2 id="8-what-it-will-not-build-and-why">8. What IT will not build, and
+why</h2>
+<p>Saying this in a published standard is kinder than saying it per
+request, and it lets departments plan.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>IT will not build</th>
+<th>Because</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A group defined by something the HR and user system of record does
+not record</td>
+<td>There is no source for the membership, so it would have to be
+maintained by hand forever and would be wrong within months.</td>
+</tr>
+<tr class="even">
+<td>A dynamic group requiring a new attribute, without a Tier 4
+decision</td>
+<td>Attributes are finite and committing one silently breaks the next
+request (§7).</td>
+</tr>
+<tr class="odd">
+<td>A manual list of more than about fifty people</td>
+<td>It will go stale and nobody will notice. Use a dynamic group over an
+attribute that already exists, or accept that it needs a named owner and
+a review.</td>
+</tr>
+<tr class="even">
+<td>A group duplicating one that already exists with slightly different
+membership</td>
+<td>Two nearly-identical lists guarantee that some announcements reach
+one and not the other, which is worse than one imperfect list.</td>
+</tr>
+<tr class="odd">
+<td>A list allowing anyone to mail an entire population unmoderated</td>
+<td>That is <a href="/sops/M365-06">M365-06</a> and needs approval, not a group.</td>
+</tr>
+<tr class="even">
+<td>A group whose purpose is to bypass another department’s
+approval</td>
+<td>Stated plainly because it happens, and it puts IT in the middle of
+something that is not a technical dispute.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Where IT declines, it offers the alternative that does work — an
+alias, an existing group, a moderated broadcast, or a conversation with
+whoever owns the data. Declining without an alternative is how
+departments learn to route around IT.</p>
+<h2 id="9-aliases-are-not-groups">9. Aliases are not groups</h2>
+<p>The clearest single point of confusion in the record, and worth
+stating in isolation.</p>
+<div class="tbl"><table>
+<tbody>
+<tr class="odd">
+<td>An alias</td>
+<td>A second address that delivers to the same place. Free, instant, and
+reversible. Does not change membership, permissions, or who receives
+anything.</td>
+</tr>
+<tr class="even">
+<td>A group</td>
+<td>An object with its own membership. Delivers to a set of people
+determined by that membership.</td>
+</tr>
+<tr class="odd">
+<td>So</td>
+<td>If a department wants mail to a new address to reach the same
+people, that is an alias and takes minutes (<a href="/sops/M365-05">M365-05</a>). If they want it to
+reach different people, that is a new group and needs §5.</td>
+</tr>
+</tbody>
+</table></div>
+<p>When a request arrives, the diagnostic question is simply: should
+this reach exactly the same people, or different people? Everything
+follows from the answer, and asking it first avoids most of the
+thread.</p>
+<h2 id="10-review">10. Review</h2>
+<ol type="1">
+<li>Manual distribution lists are reviewed annually by their named
+owner. An unreviewed list is deprecated after two missed reviews and its
+owner told.</li>
+<li>Dynamic groups do not need membership review, but their rules do —
+annually, and whenever the underlying attribute changes meaning.</li>
+<li>The attribute register is reviewed annually and whenever a system is
+retired. A tool retiring in favour of Intune, for instance, may free the
+attribute that blocked a department’s request — which is worth
+knowing.</li>
+</ol>
+<h2 id="11-service-levels">11. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Request</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>An alias on an existing group or mailbox</td>
+<td>P3 — usually same day. Frequently the real answer.</td>
+</tr>
+<tr class="even">
+<td>A new manual distribution list, owner named</td>
+<td>P3 — acknowledged within 1 coverage day.</td>
+</tr>
+<tr class="odd">
+<td>A dynamic group over an existing attribute</td>
+<td>P3 at Tier 3 — acknowledged within 1 coverage day, delivered against
+Tier 3 capacity.</td>
+</tr>
+<tr class="even">
+<td>A dynamic group needing a new attribute</td>
+<td>P4 — a Tier 4 decision first. Do not promise a date before that
+decision.</td>
+</tr>
+<tr class="odd">
+<td>“Somebody is missing from a population group”</td>
+<td>P3 — and treated as a record correction, not a group change
+(§6).</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="12-records">12. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Attribute register</td>
+<td>IT register</td>
+<td>Live document — the important one</td>
+</tr>
+<tr class="even">
+<td>Group register: name, type, purpose, owner, rule, review date</td>
+<td>IT register</td>
+<td>Live document</td>
+</tr>
+<tr class="odd">
+<td>Requests and approvals, including declines with reasons</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Tier 4 attribute commitment decisions</td>
+<td>Change record against <a href="/sops/M365-21">M365-21</a></td>
+<td>Permanent</td>
+</tr>
+<tr class="odd">
+<td>Annual review confirmations</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13-related-documents">13. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/M365-03">M365-03</a></td>
+<td>Shared Mailbox Request, Provisioning &amp; Ownership</td>
+<td>The other object people mean when they say “group”.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-05">M365-05</a></td>
+<td>Email Alias &amp; Address Change Standard</td>
+<td>Section 9. Frequently the actual answer.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-06">M365-06</a></td>
+<td>Mass Communication &amp; Broadcast Email Approval</td>
+<td>Where whole-population mail goes.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-07">M365-07</a></td>
+<td>Teams Provisioning, Naming &amp; Lifecycle</td>
+<td>Microsoft 365 groups create Teams and sites.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-21">M365-21</a></td>
+<td>Tenant Configuration Change Control</td>
+<td>Records attribute commitments (§7).</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>Rule 1 — the HR and user system of record as the system of record,
+which §6 depends on entirely.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-02">ACC-02</a></td>
+<td>Account Naming Standard</td>
+<td>ROLE- security group naming.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments</td>
+<td>Supplies §11.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--which-object-do-i-need">Appendix A — Which object do
+I need?</h2>
+<p>Work down. Stop at the first line that matches.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Do you want to…</th>
+<th>Then</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Reach exactly the same people as an existing address, via a new
+address</td>
+<td>An alias (<a href="/sops/M365-05">M365-05</a>). Minutes, not a project.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Have several people answer mail sent to one published address</td>
+<td>A shared mailbox (<a href="/sops/M365-03">M365-03</a>).</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Send mail to everyone matching a fact the HR and user system of
+record already records</td>
+<td>A dynamic distribution group. Tier 3.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Send mail to a fixed set of people you will maintain yourself</td>
+<td>A distribution list, with you as named owner.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Give a team files, chat and a shared identity</td>
+<td>A Team (<a href="/sops/M365-07">M365-07</a>).</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Both grant access and send mail to the same people</td>
+<td>Two objects, not one. Ask Tier 3.</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Reach a cohort defined by something the HR and user system of record
+does not record</td>
+<td>Not possible as a dynamic group — see §8. Ask what the HR and user
+system of record does record; there is often a workable proxy.</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Mail an entire population</td>
+<td><a href="/sops/M365-06">M365-06</a>. Needs approval, not a group.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--attribute-register">Appendix B — Attribute
+register</h2>
+<p>Fill this in from your own directory. The directory can tell you what
+is in each attribute and how many accounts hold a value; it cannot tell
+you who decided to put it there, so the last two columns are filled in
+by hand.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Attribute</th>
+<th>Accounts with a value</th>
+<th>Values observed</th>
+<th>Populated by</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>extensionAttribute1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>IN USE / THIN / FREE</td>
+</tr>
+<tr class="even">
+<td>extensionAttribute2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>extensionAttribute3</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>… one row per attribute, up to 15</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>extensionAttribute15</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>What to look for once it is filled in</strong></p>
+<p>HOW MANY ARE COMMITTED. If most of the fifteen are in use, every
+request for a “new attribute” becomes a conversation about which one to
+reclaim, and you can now say so with a number.</p>
+<p>THINLY USED ATTRIBUTES. An attribute holding values for only a
+handful of accounts is effectively free. Reclaim it deliberately, with a
+change record, rather than by overwriting it.</p>
+<p>MISSPELLED VALUES. A rule written against the correct spelling
+returns zero members if the source data is misspelled, and the author
+assumes the rule is wrong. Correct the source or document the
+misspelling.</p>
+<p>PARTIAL COVERAGE. An attribute populated for only part of the
+population silently excludes everyone else from any group built on it.
+Confirm coverage before promising a group.</p>
+<p>ENABLED ACCOUNTS WITH NO ATTRIBUTES. A large gap between enabled
+accounts and accounts with attribute values often means enabled accounts
+belonging to people who have left — the condition <a href="/sops/ACC-12">ACC-12</a> and <a href="/sops/ACC-17">ACC-17</a>
+exist to prevent.</p>
+</blockquote>
+<p>Keep this register current, and answer the next dynamic group request
+from it. It is the difference between “no, because this many attributes
+are committed and here is the register” and “no”.</p>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

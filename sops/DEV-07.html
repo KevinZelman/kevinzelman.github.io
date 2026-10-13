@@ -1,0 +1,442 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DEV-07 · Personally-Owned Device Access Standard | Known Good</title>
+<meta name="description" content="What your own phone or laptop may reach, what the organization can and cannot see on it, and what happens when you leave.">
+<meta property="og:title" content="DEV-07 · Personally-Owned Device Access Standard | Known Good">
+<meta property="og:description" content="What your own phone or laptop may reach, what the organization can and cannot see on it, and what happens when you leave.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="dev-07--personally-owned-device-access-standard">DEV-07 ·
+Personally-Owned Device Access Standard</h1>
+<p><em>What your own phone or laptop may reach, what the organization
+can and cannot see on it, and what happens when you leave.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/DEV-07-Personally-Owned-Device-Access-Standard.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/DEV-07.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/DEV-07">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>DEV-07</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>C. Device Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 4 — IT Management owns the position; Tier 2 supports it.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually.</td>
+</tr>
+<tr class="even">
+<td>Related existing policy</td>
+<td>Your organization's acceptable use policy, which applies to a
+personal device being used for organization work exactly as it does to
+an organization one. Check §2 against it before publishing.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>Most people in most organizations read work email on a personal
+phone, and most of them should be able to. This document says what that
+involves on both sides — what the device may reach, what the
+organization asks of it, and what the organization can and cannot
+see.</p>
+<p>It is written to be read by the person whose device it is, because
+the main risk with a personal-device policy is not technical. It is that
+people either assume the organization is watching everything, or assume
+it is watching nothing, and both assumptions cause problems.</p>
+<h2 id="2-the-bargain">2. The bargain</h2>
+<blockquote>
+<p><strong>The organization protects its data. It does not manage your
+device.</strong></p>
+<p>Using a personal device for organization work means the organization
+applies protections to organization data on it — requiring a passcode to
+open an organization app, preventing organization files being copied
+into a personal one, and being able to remove organization data if the
+device is lost or you leave.</p>
+<p>It does not mean the organization manages the device, sees your
+photos, reads your personal messages, tracks where you are, or can wipe
+the whole thing. Section 5 says exactly what is and is not visible.</p>
+<p>If that bargain is not acceptable to you, that is a legitimate
+position: use an organization device instead, or do not use a personal
+device for organization work. Neither carries any consequence.</p>
+</blockquote>
+<h2 id="3-two-ways-a-personal-device-can-be-used">3. Two ways a personal
+device can be used</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>App protection (the normal way)</th>
+<th>Full enrollment (rare)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>What it is</td>
+<td>Protection applied to organization apps only. The rest of the device
+is untouched and unmanaged.</td>
+<td>The device is enrolled in management like an organization
+device.</td>
+</tr>
+<tr class="even">
+<td>Who it is for</td>
+<td>Everybody. This is the default and covers reading mail, joining
+Teams, opening a document.</td>
+<td>Only where a role genuinely requires it, and only by agreement.
+Rare, and it should stay rare.</td>
+</tr>
+<tr class="odd">
+<td>What the organization applies</td>
+<td>Passcode or biometric to open organization apps. No copy-paste from
+organization apps into personal ones. No saving organization files to
+personal storage. Encryption of organization data at rest.</td>
+<td>The full <a href="/sops/DEV-02">DEV-02</a> baseline, as for an organization device.</td>
+</tr>
+<tr class="even">
+<td>What the organization can remove</td>
+<td>Organization data from organization apps. Nothing else.</td>
+<td>Potentially the whole device, which is why this is not the
+default.</td>
+</tr>
+<tr class="odd">
+<td>Recommended</td>
+<td>Yes.</td>
+<td>Only where there is no alternative — and consider issuing an
+organization device instead.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The strong preference for app protection over full enrollment is
+deliberate. It achieves the organization’s objective — protecting
+organization data — without acquiring the ability to do things to
+somebody’s personal property that the organization does not want and
+should not hold.</p>
+<h2 id="4-what-a-personal-device-may-reach">4. What a personal device
+may reach</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Classification</th>
+<th>On a personal device</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PUBLIC</td>
+<td>Freely.</td>
+</tr>
+<tr class="even">
+<td>INTERNAL</td>
+<td>Yes, through organization apps with app protection applied. Email,
+Teams, files — the ordinary case.</td>
+</tr>
+<tr class="odd">
+<td>CONFIDENTIAL</td>
+<td>Through managed organization apps only, with no local copies. Do not
+download client records, job applicant files or personnel records onto a
+personal device.</td>
+</tr>
+<tr class="even">
+<td>RESTRICTED</td>
+<td>No. Not on a personal device in any circumstance — this includes
+social security numbers, payment card data, health records and
+credentials (<a href="/sops/M365-15">M365-15</a> §5).</td>
+</tr>
+</tbody>
+</table></div>
+<p>The practical version, for a person: reading it on your phone is
+fine; downloading it to your phone is where the line falls, and for the
+most sensitive material even reading it should be done somewhere
+else.</p>
+<h2 id="5-what-the-organization-can-and-cannot-see">5. What the
+organization can and cannot see</h2>
+<p>Stated plainly, because guessing is worse than knowing. Under app
+protection, which is what almost everybody will have:</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>The organization can see</th>
+<th>The organization cannot see</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>That a device is being used with an organization account, and its
+make, model and operating system version.</td>
+<td>Your photos, personal files, or anything outside organization
+apps.</td>
+</tr>
+<tr class="even">
+<td>Whether organization apps are protected as required.</td>
+<td>Your personal email, messages or calls.</td>
+</tr>
+<tr class="odd">
+<td>Which organization apps are in use.</td>
+<td>Your other apps, or that you have them.</td>
+</tr>
+<tr class="even">
+<td>Sign-in activity for your organization account, as for any
+device.</td>
+<td>Your browsing history.</td>
+</tr>
+<tr class="odd">
+<td>That organization data has been removed, when it removes it.</td>
+<td>Your location.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>The organization does not read personal content, and has no
+mechanism to do so under app protection.</li>
+<li>Log access for a security investigation is a Tier 4 decision with a
+recorded reason, and where it concerns an employee, HR is involved from
+the start (<a href="/sops/ACC-15">ACC-15</a> §6).</li>
+<li>Under full enrollment the organization can see and do considerably
+more, which is precisely why §3 makes it rare and by agreement.</li>
+</ul>
+<h2 id="6-when-you-leave">6. When you leave</h2>
+<ul>
+<li>Organization data is removed from organization apps on your device.
+Your device, your photos, your personal accounts and your apps are
+untouched.</li>
+<li>This happens as part of the leaver procedure (<a href="/sops/ACC-01">ACC-01</a> §7.2) and is
+not a discretionary act.</li>
+<li>Under full enrollment, removal is scoped to organization data
+wherever the platform allows it. A full device wipe is never performed
+on personal property without the owner’s explicit, contemporaneous
+agreement.</li>
+<li>If anything of yours is genuinely mixed into organization storage,
+tell IT before your last day. It is much easier to separate then.</li>
+</ul>
+<h2 id="7-the-phone-carrying-your-authenticator">7. The phone carrying
+your Authenticator</h2>
+<blockquote>
+<p><strong>Your phone is part of the organization’s identity perimeter,
+whether or not it holds any organization data.</strong></p>
+<p>The device with your multifactor method on it can approve a sign-in.
+That makes it security-relevant even if you never read email on it.</p>
+<p>Three consequences follow, and they are the practical heart of this
+document:</p>
+<ol type="1">
+<li><p>Keep a passcode or biometric on it. This is the whole
+protection.</p></li>
+<li><p>Register a second MFA method on something else. One method on one
+phone means one lost phone is a service desk visit with photo ID (<a href="/sops/ACC-03">ACC-03</a>
+§5.3).</p></li>
+<li><p>Before you replace, sell or trade in that phone, register the
+method on the new one first. Two minutes then; a verified in-person
+recovery otherwise.</p></li>
+</ol>
+</blockquote>
+<h2 id="8-what-is-never-permitted">8. What is never permitted</h2>
+<ul>
+<li>RESTRICTED data on a personal device, in any form (§4).</li>
+<li>Letting anybody else use a device while signed in to your
+organization account, or sharing your credentials with anybody —
+including family (<a href="/sops/ACC-15">ACC-15</a> §3).</li>
+<li>Copying organization data out of organization apps into personal
+storage, personal cloud accounts, or personal email.</li>
+<li>Using a personal device to hold the only copy of anything the
+organization needs (<a href="/sops/M365-12">M365-12</a>).</li>
+<li>Connecting a personal device to the administrative network, or using
+one for privileged administrative work (<a href="/sops/ACC-07">ACC-07</a> §3).</li>
+<li>Jailbroken or rooted devices, which cannot be protected in the way
+§3 assumes.</li>
+</ul>
+<h2 id="9-service-levels">9. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Help setting up organization apps on a personal device</td>
+<td>P3 — Tier 1, usually in the conversation.</td>
+</tr>
+<tr class="even">
+<td>Personal device lost, holding organization data</td>
+<td>P2 — organization data removed within 4 coverage hours
+(<a href="/sops/DEV-16">DEV-16</a>).</td>
+</tr>
+<tr class="odd">
+<td>Full enrollment request</td>
+<td>P3 to Tier 4 — expect to be offered an organization device
+instead.</td>
+</tr>
+<tr class="even">
+<td>Organization data removal on separation</td>
+<td>With the <a href="/sops/ACC-01">ACC-01</a> leaver procedure.</td>
+</tr>
+<tr class="odd">
+<td>“What can you see on my phone?”</td>
+<td>Answered at Tier 1 from §5. It is a fair question and deserves a
+straight answer.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10-records">10. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Devices with organization app protection applied</td>
+<td>Management platform</td>
+<td>While in use</td>
+</tr>
+<tr class="even">
+<td>Full enrollment agreements, with the owner’s consent recorded</td>
+<td>Ticket + Tier 4 record</td>
+<td>Life of the arrangement + 3 years</td>
+</tr>
+<tr class="odd">
+<td>Organization data removals</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Log access decisions</td>
+<td>Tier 4 record</td>
+<td>7 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-related-documents">11. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AUP</td>
+<td>Your organization's acceptable use policy</td>
+<td>Applies to personal devices used for organization work. Check §2 and
+§8 against it.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-15">M365-15</a></td>
+<td>Data Classification &amp; Handling</td>
+<td>Supplies §4.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-01">DEV-01</a></td>
+<td>Device Enrollment &amp; Lifecycle</td>
+<td>Personal devices are explicitly out of its scope.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-02">DEV-02</a></td>
+<td>Device Compliance &amp; Configuration Baseline</td>
+<td>Applies only under full enrollment.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-08">DEV-08</a></td>
+<td>Mobile Device Access to organization Data</td>
+<td>The mobile-specific detail.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-16">DEV-16</a></td>
+<td>Lost, Stolen or Compromised Device Response</td>
+<td>§9, and the lost personal device case.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-10">DEV-10</a></td>
+<td>Remote Access &amp; VPN Standard</td>
+<td>Personal devices connecting remotely.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA Enrollment</td>
+<td>§7 — the phone carrying the method.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-15">ACC-15</a></td>
+<td>Acceptable Use &amp; Credential-Sharing Standard</td>
+<td>§8, and the monitoring position in §5.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>§6 — removal at separation.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-12">M365-12</a></td>
+<td>OneDrive Appropriate Use</td>
+<td>Never the only copy.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--end-user-text">Appendix A — End-user text</h2>
+<p>Source text for the knowledge base. Format per <a href="/sops/GOV-05">GOV-05</a>.</p>
+<div class="tbl"><table>
+<tbody>
+<tr class="odd">
+<td>Using your own phone for work email</td>
+<td>Perfectly fine, and most people do. We apply protection to the
+organization apps — a passcode to open them, and a rule that
+organization files cannot be copied into personal apps.</td>
+</tr>
+<tr class="even">
+<td>What we can see</td>
+<td>That the device exists, its model and OS version, and that
+organization apps are protected. That is all. Not your photos, messages,
+browsing, other apps or location.</td>
+</tr>
+<tr class="odd">
+<td>What we can remove</td>
+<td>Organization data from organization apps. We cannot wipe your
+device, and we would not.</td>
+</tr>
+<tr class="even">
+<td>What not to put on it</td>
+<td>Do not download client records, job applicant files or personnel
+records to a personal device. Read them in the app instead. Never
+anything with social security numbers, card details or health
+information.</td>
+</tr>
+<tr class="odd">
+<td>Your Authenticator phone</td>
+<td>Keep a passcode on it, register a second method on something else,
+and set up the new phone BEFORE you get rid of the old one. That last
+one saves you a trip to the service desk with photo ID.</td>
+</tr>
+<tr class="even">
+<td>When you leave</td>
+<td>We remove organization data from organization apps. Nothing else on
+your device is touched.</td>
+</tr>
+<tr class="odd">
+<td>If you would rather not</td>
+<td>Then do not — use an organization device, or just do organization
+work at work. There is no expectation and no consequence.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

@@ -1,0 +1,1198 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DEV-13 · Patch, Update &amp; Maintenance Window Standard | Known Good</title>
+<meta name="description" content="Eight classes of estate in one governing table, remediation timeframes the department can actually hold — and the rule that a vendor patch is an organization change.">
+<meta property="og:title" content="DEV-13 · Patch, Update &amp; Maintenance Window Standard | Known Good">
+<meta property="og:description" content="Eight classes of estate in one governing table, remediation timeframes the department can actually hold — and the rule that a vendor patch is an organization change.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="dev-13--patch-update--maintenance-window-standard">DEV-13 ·
+Patch, Update &amp; Maintenance Window Standard</h1>
+<p><em>Eight classes of estate in one governing table, remediation
+timeframes the department can actually hold — and the rule that a vendor
+patch is an organization change.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/DEV-13-Patch-Update-and-Maintenance-Window-Standard.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/DEV-13.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/DEV-13">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>DEV-13</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>C. Device Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 3 — Expert Services owns the update rings, the server and
+infrastructure regime, and the vulnerability triage. Tier 2 executes
+endpoint, lab and meeting room patching. Tier 4 approves exceptions and
+emergency changes and receives the monthly position.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Every six months while the Intune transition is live, then
+annually.</td>
+</tr>
+<tr class="even">
+<td>Relationship to <a href="/sops/GOV-04">GOV-04</a></td>
+<td><a href="/sops/GOV-04">GOV-04</a> owns change classes, the register, the windows and the freeze
+calendar. This document owns what is patched, on what cadence, and to
+what timeframe. Every window named here is a <a href="/sops/GOV-04">GOV-04</a> §7 window and every
+vendor patch is a <a href="/sops/GOV-04">GOV-04</a> §8 change. Neither document repeats the other,
+and where a reader wants the record they should be in <a href="/sops/GOV-04">GOV-04</a>.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>A familiar case: a vendor engineer applies vulnerability remediation
+to the test servers of a core business system and then to production,
+inside the maintenance window, coordinated in an email thread. The
+sequencing is right, the window is right, and nothing goes wrong. There
+is simply no organization record that it happened, no organization
+approver named, and no back-out written down anywhere the organization
+holds.</p>
+<p>Alongside it, Defender for Endpoint sends a vulnerability
+notification every day. Often nobody is named as the person who triages
+it, no cadence is defined, and nothing states what closes an item. A
+daily notification with no triage is not a control — it is a mailbox
+rule waiting to be written, and it ends the way repeated SLA
+re-notifications always end: noise, and no action at all.</p>
+<p>This document defines the regime: what is patched, by what mechanism,
+on what cadence, to what timeframe, and who decides when it cannot be.
+<a href="/sops/GOV-04">GOV-04</a> defines the record and the windows. Read together they replace
+the email thread.</p>
+<h2 id="2-what-this-document-commits-to-and-what-it-cannot">2. What this
+document commits to, and what it cannot</h2>
+<p>This section comes before the timeframes deliberately, because the
+timeframes in §8 will otherwise be read as either impressive or
+inadequate depending on which framework the reader last saw, and both
+readings miss the point.</p>
+<blockquote>
+<p><strong>A timeframe the department cannot hold is worse than a longer
+one it can.</strong></p>
+<p>This catalogue is written for small IT teams where most staff wear
+several hats. The published frameworks a reader might compare this
+against assume a security function with dedicated staff. A small team
+does not have one, and a standard written as though it did produces the
+failure <a href="/sops/GOV-06">GOV-06</a> was written to end: targets missed so routinely that
+everybody stops reading them, and no information about the shortfall
+reaching anybody who could resource it.</p>
+<p>So the timeframes in §8 are stated per <a href="/sops/GOV-06">GOV-06</a> capacity state. Under a
+declared Constrained or Degraded state they extend, by a stated amount,
+and the extension is declared, recorded and reported. A department that
+declares Degraded on Monday and reports internal critical remediation at
+14 days has told Tier 4 exactly what the staffing shortfall costs, in
+the department’s own operating data (<a href="/sops/GOV-06">GOV-06</a> §11). A department that
+silently misses 7 days has told nobody anything.</p>
+<p>One thing never extends, in any state: an actively exploited critical
+vulnerability on an internet-facing system. If the capacity state means
+that cannot be met, that is not a deferral — it is a Tier 4 escalation
+on the day and, where exposure is credible, a <a href="/sops/GOV-03">GOV-03</a> matter.</p>
+<p>And an extension that nobody declared is a breach, not an extension.
+The mechanism only works if the state is declared before the target is
+missed rather than cited afterwards.</p>
+</blockquote>
+<h2 id="3-the-estate-by-class--the-governing-table">3. The estate, by
+class — the governing table</h2>
+<p>Eight classes, each with a different regime, in one table. If a
+system is not in a class below, it is not being patched by anybody,
+which is itself the finding.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Class</th>
+<th>Mechanism</th>
+<th>Cadence</th>
+<th>Window</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Managed Windows endpoints — staff laptops and desktops</td>
+<td>Intune update rings (§4). Windows Update for Business,
+deadline-driven.</td>
+<td>Monthly quality updates; annual feature update, deferred.</td>
+<td>None. Installed in the background; restart within the grace period
+(§12).</td>
+<td>Tier 2</td>
+</tr>
+<tr class="even">
+<td>macOS endpoints</td>
+<td>Intune, provisional pending <a href="/sops/DEV-09">DEV-09</a> (§5).</td>
+<td>Monthly minor updates; major upgrades deferred and tested.</td>
+<td>None; deadline-driven.</td>
+<td>Tier 2</td>
+</tr>
+<tr class="odd">
+<td>Lab and meeting room machines</td>
+<td>Intune ring with a maintenance schedule from the booking calendar;
+image rebuild in a quiet period (§5).</td>
+<td>Monthly, outside booked hours. Image in a quiet period.</td>
+<td>Overnight. Image rebuild in a quiet-period window.</td>
+<td>Tier 2 with the room owner</td>
+</tr>
+<tr class="even">
+<td>Conference room, kiosk and presenter devices</td>
+<td>As lab and meeting room. No interactive user.</td>
+<td>Monthly, overnight.</td>
+<td>Overnight; room verified next morning (<a href="/sops/DEV-18">DEV-18</a>).</td>
+<td>Tier 2</td>
+</tr>
+<tr class="odd">
+<td>Organization-managed servers</td>
+<td>Manual or scripted, Test then Production, under a <a href="/sops/GOV-04">GOV-04</a> change
+record (§6).</td>
+<td>Monthly. Test one week ahead of Production.</td>
+<td>Weekly technical window for Test; secondary or primary window for
+Production.</td>
+<td>Tier 3</td>
+</tr>
+<tr class="even">
+<td>Network and infrastructure — switches, firewalls, wireless, UPS
+firmware</td>
+<td>Vendor firmware, under a <a href="/sops/GOV-04">GOV-04</a> change record with console access
+confirmed first (§6).</td>
+<td>Quarterly, plus out-of-band for anything critical.</td>
+<td>Primary window. Never in a freeze.</td>
+<td>Tier 3</td>
+</tr>
+<tr class="odd">
+<td>Vendor-managed systems — a core business system patched by its
+vendor, and any other system where a vendor holds maintenance</td>
+<td>The vendor applies; the organization approves, holds the back-out
+and verifies (§7).</td>
+<td>The vendor’s cadence, approved once as a standing change.</td>
+<td>An organization window, from the organization’s freeze
+calendar.</td>
+<td>Tier 3 with the system owner; Tier 4 approves</td>
+</tr>
+<tr class="even">
+<td>Microsoft 365 and other SaaS</td>
+<td>Microsoft patches. The organization tracks and communicates rather
+than approves.</td>
+<td>Continuous. Message centre triaged monthly.</td>
+<td>Not applicable.</td>
+<td>Tier 3 (<a href="/sops/M365-21">M365-21</a>, <a href="/sops/GOV-04">GOV-04</a> §8.1)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="31-what-this-document-does-not-patch-said-plainly">3.1 What this
+document does not patch, said plainly</h3>
+<ul>
+<li>PERSONALLY-OWNED DEVICES. The organization does not patch them.
+Patch currency is a condition of access, not something the organization
+applies (<a href="/sops/DEV-07">DEV-07</a>). Where it is enforced, it is enforced by <a href="/sops/DEV-02">DEV-02</a>
+conditions rather than by this document.</li>
+<li>DEVICES THAT ARE NOT ENROLLED. An unenrolled device is not a
+patching gap, it is an enrollment gap, and it belongs to <a href="/sops/DEV-01">DEV-01</a>.
+Reporting it here as a patch failure hides the actual problem.</li>
+<li>DEVICES THAT NEVER CHECK IN. The same distinction, and the usual
+source of escrow gaps: a silent device does not appear as non-compliant,
+it simply does not appear (<a href="/sops/DEV-02">DEV-02</a> §5 step 4). The monthly position in
+§13 therefore always reports three numbers, never a percentage
+alone.</li>
+<li>SPECIALIST INSTRUMENT AND LAB CONTROLLERS, where the vendor forbids
+patching. Those are §11 exceptions with compensating controls, not a
+ninth class.</li>
+</ul>
+<h2
+id="4-managed-windows-endpoints-rings-deadlines-and-the-grace-period">4.
+Managed Windows endpoints: rings, deadlines and the grace period</h2>
+<p>Four rings. The numbers are stated because a standard that says
+“promptly” is not a standard, and each is defended below rather than
+asserted.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Ring</th>
+<th>Population</th>
+<th>Quality deferral</th>
+<th>Feature deferral</th>
+<th>Deadline</th>
+<th>Grace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ring 0 — Pilot</td>
+<td>IT staff and named volunteers across departments. 15–25 devices,
+about 2% of the estate.</td>
+<td>0 days</td>
+<td>30 days</td>
+<td>2 days</td>
+<td>1 day</td>
+</tr>
+<tr class="even">
+<td>Ring 1 — Broad</td>
+<td>All other staff endpoints. The great majority of the estate.</td>
+<td>3 days</td>
+<td>60 days</td>
+<td>5 days</td>
+<td>2 days</td>
+</tr>
+<tr class="odd">
+<td>Ring 2 — Shared</td>
+<td>Lab, meeting room, conference room, kiosk and presenter
+devices.</td>
+<td>7 days</td>
+<td>90 days, or image-based</td>
+<td>7 days</td>
+<td>Not applicable — patched overnight, no interactive user</td>
+</tr>
+<tr class="even">
+<td>Ring 3 — Deferred</td>
+<td>A small named set of critical-function devices: an instrument
+controller, a device running the one application that breaks. Every
+member is a recorded §11 exception with an expiry.</td>
+<td>14 days</td>
+<td>180 days</td>
+<td>14 days</td>
+<td>3 days</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="41-why-these-numbers">4.1 Why these numbers</h3>
+<ul>
+<li>WHY A PILOT RING AT ALL. Microsoft’s monthly quality updates
+occasionally break something, and the organization would rather find out
+on twenty-five machines than on the whole estate. The pilot must include
+people who will report a problem rather than work around it silently —
+which usually means volunteers from outside IT as well as IT staff,
+because IT staff are unusually good at working around things.</li>
+<li>WHY 3 DAYS AND NOT 7 FOR RING 1. Do the arithmetic. Microsoft
+publishes on the second Tuesday. A 3-day deferral makes the update
+available on day 3, the 5-day deadline lands on day 8, and the 2-day
+grace puts the last unrestarted device at day 10 (§12). A 7-day deferral
+pushes that to day 14 — which is the outer edge of the HIGH timeframe in
+§8 for the very vulnerabilities the update fixes, and beyond it for
+anything critical. The arithmetic is the defence, and it is also why
+criticals are handled out-of-band under §10 rather than by waiting for a
+ring.</li>
+<li>WHY A GRACE PERIOD AT ALL. Because a forced restart in the middle of
+a training session, a board meeting or a payroll run costs the
+organization more than two days of additional exposure, and because the
+alternative — users postponing indefinitely — is what produces §12. Two
+days is long enough to find a convenient moment and short enough that
+the exposure window stays inside §8.</li>
+<li>WHY A DEADLINE RATHER THAN “AS SOON AS POSSIBLE”. A deadline with no
+date is a hope, and it is measurable as one. The deadline is the
+mechanism that makes the compliance figure in §13 mean something.</li>
+<li>WHY RING 2 HAS NO GRACE. There is no interactive user to
+inconvenience overnight. What Ring 2 has instead is a maintenance
+schedule taken from the booking calendar and a verification the
+following morning (§5).</li>
+<li>WHY RING 3 EXISTS AT ALL, AND WHY IT IS NAMED. Because a deferred
+set will exist whether or not the standard admits it, and an unnamed
+deferred set has no expiry, no compensating control and no owner. Ring 3
+makes the exception visible and countable (§11).</li>
+</ul>
+<blockquote>
+<p><strong>These numbers are enforced last, not first</strong></p>
+<p>Deadlines and forced restarts are turned on by following the <a href="/sops/DEV-02">DEV-02</a>
+§5 sequence — define, measure, report-only, remediate, then enforce —
+and by device class, smallest and best understood first. Not on a
+date.</p>
+<p>The classic version of this lesson: a rushed phishing-resistant MFA
+rollout leaves people stuck in an MFA setup loop, because a control was
+enforced against a population that could not yet satisfy it. A patch
+deadline enforced across an estate where a material share of devices
+have not checked in for months produces the same shape of failure, with
+a restart instead of a login loop.</p>
+<p>So before enforcement: confirm the check-in position (<a href="/sops/DEV-02">DEV-02</a> §10),
+confirm the pilot ring reported nothing for two consecutive months, and
+confirm the notification text in §12 is the specific version rather than
+the generic one.</p>
+</blockquote>
+<h2 id="5-macos-labs-and-meeting-rooms">5. macOS, labs and meeting
+rooms</h2>
+<h3 id="51-macos--provisional-and-recorded-as-a-gap">5.1 macOS —
+provisional, and recorded as a gap</h3>
+<ul>
+<li>macOS enrollment is under test and <a href="/sops/DEV-09">DEV-09</a> is not yet written. Until
+it is, macOS patch currency is not measurable, and that is stated here
+rather than left to be inferred from an absent row. It is a recorded gap
+under <a href="/sops/GOV-01">GOV-01</a> §7.</li>
+<li>What is already clear and should be built into <a href="/sops/DEV-09">DEV-09</a>: minor OS
+updates enforced with a deferral and a deadline equivalent to Ring 1;
+major macOS upgrades deferred at least 90 days and tested against the
+applications the organization actually depends on, because a major macOS
+release is an application-compatibility event rather than a patch; and
+the FileVault interaction confirmed before any upgrade is enforced
+(<a href="/sops/DEV-03">DEV-03</a>).</li>
+<li>A Mac is included in the §13 monthly position from the moment it is
+enrolled, even where the only honest entry is “state unknown”. Excluding
+a class from a report because the standard for it is not finished is how
+a class stays unmeasured for a year.</li>
+</ul>
+<h3 id="52-labs-and-meeting-rooms--patched-outside-booked-hours">5.2
+Labs and meeting rooms — patched outside booked hours</h3>
+<ul>
+<li>The reason is a priority definition, not a courtesy: a booked
+session that cannot proceed is a P1 (<a href="/sops/GOV-06">GOV-06</a> §4). A restart that
+interrupts a session converts a routine patch into the highest-priority
+ticket the department has.</li>
+<li>The maintenance schedule and active hours are configured FROM THE
+BOOKING CALENDAR, per room, not from a general assumption about when
+rooms are free. A room used for evening sessions has different quiet
+hours from a room that empties at four.</li>
+<li>A lab machine that is switched off overnight never patches. This is
+the practical failure and it is not a policy question — it is a
+decision, per room, between leaving machines powered, waking them on a
+schedule, or accepting a slower cadence with the reason recorded. Tier 2
+makes it per room and records it (<a href="/sops/DEV-06">DEV-06</a>).</li>
+<li>Presenter and meeting-room machines are verified before the first
+session of a busy period and after any image change, because a room that
+fails does so in front of an audience (<a href="/sops/DEV-18">DEV-18</a>).</li>
+<li>Anything that cannot be patched in place is carried by the
+quiet-period image rebuild. The rebuild is a <a href="/sops/GOV-04">GOV-04</a> quiet-period window
+change and is scheduled a quarter ahead, not negotiated in the week
+before a busy season.</li>
+<li>Conference rooms and kiosks follow the same rule with the same
+verification. Nobody notices an unpatched kiosk, which is precisely the
+argument for putting it in the table.</li>
+</ul>
+<h2 id="6-servers-network-and-infrastructure">6. Servers, network and
+infrastructure</h2>
+<h3 id="61-the-server-cycle">6.1 The server cycle</h3>
+<ol type="1">
+<li>Read the advisories on publication day and identify anything
+critical or actively exploited, which leaves this cycle and goes to
+§10.</li>
+<li>Raise the change record under <a href="/sops/GOV-04">GOV-04</a> §4, with the back-out, before
+any work begins. Standing monthly patching is approved once as a
+standard change; each cycle is then a register entry rather than a fresh
+approval (<a href="/sops/GOV-04">GOV-04</a> §3).</li>
+<li>Confirm a backup or snapshot exists and is verified. “There is a
+backup” and “the backup restores” are different statements, and the
+difference is discovered at the worst moment.</li>
+<li>Apply to TEST, and leave it for a stated interval — seven days for a
+routine month. Shorter only under §10, and the shortened interval is
+recorded as a decision rather than as an omission.</li>
+<li>Apply to PRODUCTION in the window, in a stated order, with the most
+consequential system last where sequencing permits.</li>
+<li>Verify against a stated check: services running, an application
+transaction completed, a report produced. “It booted” is not a
+verification and neither is “the vendor said it went fine” (<a href="/sops/GOV-04">GOV-04</a>
+§8).</li>
+<li>Record the ACTUAL start and finish times on the change record.
+Correlating a change with the tickets it produced is the main day-to-day
+use of the register and an approximate date defeats it (<a href="/sops/GOV-04">GOV-04</a> §4).</li>
+</ol>
+<h3 id="62-network-and-infrastructure-firmware">6.2 Network and
+infrastructure firmware</h3>
+<ul>
+<li>Quarterly review of firmware currency across switches, firewalls,
+wireless controllers and UPS units, with the position recorded even
+where nothing is applied.</li>
+<li>Console or out-of-band access confirmed and tested BEFORE starting,
+and a back-out image staged. A firewall that does not come back is an
+organization-wide outage with no remote route to fix it.</li>
+<li>Wireless controller and core switch work takes services down for
+minutes. Say so in the notice rather than describing it as a maintenance
+window with no expected impact (<a href="/sops/GOV-04">GOV-04</a> §9).</li>
+<li>This is the class most often left because it is working. That is
+exactly how a five-year-old firmware with a public exploit ends up on
+the perimeter, and it is why the quarterly review produces a recorded
+position rather than a look.</li>
+<li>Certificate expiries are not patches, and they belong to the same
+discipline: diarised, owned, and renewed ahead of the date. The expiry
+that takes a service down is always the one nobody had in a
+calendar.</li>
+</ul>
+<h2 id="7-vendor-managed-systems--the-evidence-base-and-the-rule">7.
+Vendor-managed systems — the evidence base, and the rule</h2>
+<blockquote>
+<p><strong>A vendor patch is an organization change. The rule is <a href="/sops/GOV-04">GOV-04</a>
+§8; what follows is its patching shape.</strong></p>
+<p>It enters the <a href="/sops/GOV-04">GOV-04</a> register, with a named organization approver, a
+back-out, a test-before-production sequence and a communication —
+whoever executes it, however routine, and however competent the
+vendor.</p>
+<p>Nothing in the remediation described in §1 is done badly. Test
+precedes Production, the work sits inside the window, and the engineer
+is careful. The gap is entirely the record: the organization cannot
+reconstruct what was applied, could not have told the vendor “not that
+week” if that week had been a peak week, and has nothing to point at
+three months later when something on that system behaves oddly.</p>
+<p>The vendor’s own change process is their internal control. It is not
+the organization’s record, and it is not visible to anybody at the
+organization.</p>
+</blockquote>
+<h3 id="71-what-the-organization-asks-for-per-cycle">7.1 What the
+organization asks for, per cycle</h3>
+<p>Six lines in an email, which then become the change record. This is
+the whole administrative cost of the rule and it is worth being explicit
+that it is small.</p>
+<ul>
+<li>What is being applied, and which advisories, CVEs or vendor
+bulletins it addresses.</li>
+<li>Which systems, in which order, with Test before Production
+explicitly stated.</li>
+<li>The expected duration, and the point after which the vendor would
+abandon and revert.</li>
+<li>The back-out. Where the vendor cannot supply one, that is escalated
+under <a href="/sops/GOV-04">GOV-04</a> §5.2 rather than accepted as normal practice.</li>
+<li>The verification the vendor will perform — and separately, the check
+the organization will perform itself.</li>
+<li>The requested window, chosen from the organization’s published
+window and freeze calendar.</li>
+</ul>
+<h3 id="72-what-the-organization-does">7.2 What the organization
+does</h3>
+<ol type="1">
+<li>Approve standing vendor maintenance ONCE, as a standing change with
+a defined scope, a named window and a stated back-out (<a href="/sops/GOV-04">GOV-04</a> §8 step
+6). Each execution is then a one-line register entry. This is what stops
+the process being abandoned for the routine work it was never meant to
+obstruct.</li>
+<li>Name an organization approver. The vendor is never the approver of a
+change to an organization system — not because their judgement is
+doubted, but because approval is an accountability the organization
+cannot outsource.</li>
+<li>Give the vendor the freeze calendar a quarter in advance (<a href="/sops/GOV-04">GOV-04</a>
+§7.1). Peak business weeks are not negotiable, and the usual reason an
+organization cannot say so is that nobody told the vendor what the
+freezes were.</li>
+<li>Have an organization engineer reachable during the window — not
+necessarily executing, but able to verify afterwards and to escalate if
+the window overruns.</li>
+<li>Verify against the organization’s own check and record it (§6.1 step
+6).</li>
+<li>Confirm the access the vendor used was a named vendor account,
+time-boxed rather than standing, and logged (<a href="/sops/ACC-11">ACC-11</a> §6, <a href="/sops/ACC-11">ACC-11</a> §7). A
+patch applied through a shared credential is unattributable
+afterwards.</li>
+<li>Put the requirement into the contract at renewal (<a href="/sops/ACC-11">ACC-11</a> §10). Until
+it is there, this section depends on goodwill — which is worth having,
+and is not a control.</li>
+</ol>
+<ul>
+<li>Where a vendor patch is emergency or out-of-band, §10 applies to the
+vendor exactly as it applies to the organization. Approval may be
+verbal; the record is deferred, not waived.</li>
+<li>Where a vendor declines to work inside the organization’s process,
+that is a Tier 4 and contract conversation, recorded as such. It is not
+resolved by the engineer on the day.</li>
+</ul>
+<h2 id="8-remediation-timeframes-by-severity">8. Remediation timeframes
+by severity</h2>
+<p>The organization’s commitment. The clock starts when the
+vulnerability is identified TO THE ORGANIZATION — the Defender
+notification, the vendor advisory, the managed security provider’s case
+— not when somebody gets to it. Recording that start is §9.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Severity</th>
+<th>Basis</th>
+<th>Normal</th>
+<th>Constrained</th>
+<th>Degraded</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CRITICAL</td>
+<td>CVSS 9.0–10.0. Also, at any score: actively exploited in the wild,
+on the CISA Known Exploited Vulnerabilities list, or exploited in the
+organization’s own estate.</td>
+<td>Internet-facing: 48 hours. Internal: 7 coverage days.</td>
+<td>Internet-facing: 48 hours. Internal: 10 coverage days.</td>
+<td>Internet-facing: 48 hours. Internal: 14 coverage days.</td>
+</tr>
+<tr class="even">
+<td>HIGH</td>
+<td>CVSS 7.0–8.9.</td>
+<td>14 coverage days.</td>
+<td>21 coverage days.</td>
+<td>30 coverage days.</td>
+</tr>
+<tr class="odd">
+<td>MEDIUM</td>
+<td>CVSS 4.0–6.9.</td>
+<td>60 coverage days — the next monthly cycle plus one.</td>
+<td>90 coverage days.</td>
+<td>The first cycle after the state clears.</td>
+</tr>
+<tr class="even">
+<td>LOW</td>
+<td>CVSS 0.1–3.9.</td>
+<td>With the next scheduled cycle. No separate commitment.</td>
+<td>As Normal.</td>
+<td>Deferred, and counted.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>THE INTERNET-FACING FIGURE NEVER EXTENDS. It is 48 hours in every
+capacity state. That is deliverable because the internet-facing
+population of a small organization is small and known; it would be a
+fiction across the whole estate.</li>
+<li>An asset holding the sensitive classes in <a href="/sops/M365-15">M365-15</a> takes the tighter
+of the two applicable figures.</li>
+<li>An ACTIVELY EXPLOITED vulnerability is Critical whatever its CVSS
+score. A 6.5 with a working exploit in circulation is a more urgent
+problem than a 9.8 that nobody has weaponised, and a standard that sorts
+purely by score gets this backwards.</li>
+<li>Where no patch exists, the timeframe applies to the MITIGATION, not
+to the fix. A mitigation is re-dated, not closed (§9).</li>
+<li>Where the asset is vendor-managed, the timeframe applies to the
+organization RAISING it with the vendor and to obtaining a date, and the
+date obtained is recorded against the item. The organization is
+accountable for pursuing it, not for applying it.</li>
+</ul>
+<blockquote>
+<p><strong>Why these figures, and not the ones in the
+frameworks</strong></p>
+<p>A published framework will suggest something like 15 days for
+critical remediation across an estate, and a reader who knows those
+numbers will find the internal figures here relaxed. They are relaxed,
+deliberately, and this is the honest reasoning.</p>
+<p>The 48-hour internet-facing figure is tight because the population is
+small enough to hold it. The internal figures are longer because they
+are held by the same people who run the service desk, the migrations,
+the network and the identity estate, and because a 48-hour internal
+figure would be missed in the first month, then the second, and by the
+third nobody would read this document.</p>
+<p>What makes this defensible is that the shortfall is visible rather
+than hidden. The monthly position (§13) reports remediation against
+these figures alongside the days spent in each capacity state, so the
+cost of the staffing position is quantified in the department’s own
+numbers rather than argued about. If Tier 4 wants the framework figures,
+this table is the price list.</p>
+</blockquote>
+<h2
+id="9-the-vulnerability-input-side--triage-or-it-is-not-a-control">9.
+The vulnerability input side — triage, or it is not a control</h2>
+<p>Most organizations are not short of detection. Defender for Endpoint
+reports daily, a managed security provider raises cases and holds a
+weekly review (<a href="/sops/DEV-14">DEV-14</a> §8), and vendors publish advisories on a schedule.
+What is missing is the person, the cadence and the definition of
+done.</p>
+<h3 id="91-inputs">9.1 Inputs</h3>
+<ul>
+<li>Defender for Endpoint and Defender Vulnerability Management — daily,
+and the largest volume by a wide margin.</li>
+<li>Vendor advisories: Microsoft on the second Tuesday, plus your
+business-system vendors and the network and infrastructure vendors on
+their own cycles.</li>
+<li>MDR provider cases and the weekly MDR review (<a href="/sops/DEV-14">DEV-14</a> §5, <a href="/sops/DEV-14">DEV-14</a>
+§8).</li>
+<li>CISA Known Exploited Vulnerabilities, and any sector or consortium
+advisory the organization subscribes to.</li>
+<li>A report from a member of staff, a user, or a researcher. Rare, and
+treated seriously when it happens.</li>
+</ul>
+<h3 id="92-who-triages-and-on-what-cadence">9.2 Who triages, and on what
+cadence</h3>
+<ul>
+<li>A NAMED Tier 3 role, with a named backup. Not “IT”, and not “whoever
+sees it” — an input assigned to everybody is triaged by nobody.</li>
+<li>DAILY: a ten-minute scan for anything Critical or actively
+exploited, and nothing else. Ten minutes is chosen because it is
+survivable by a person who also does four other jobs; an hour a day
+would be abandoned inside a month and the organization would be back to
+an untriaged inbox.</li>
+<li>WEEKLY: the full triage. New items classified, owners assigned,
+target dates set from §8, and closed items confirmed as actually closed.
+Appendix B is the decision table.</li>
+<li>MONTHLY: the position to Tier 4 (§13).</li>
+<li>The daily scan may be skipped under a declared Degraded state; the
+weekly triage may not. If both are being skipped, that is the capacity
+signal and it belongs in the monthly report rather than in somebody’s
+conscience.</li>
+</ul>
+<h3 id="93-what-closes-an-item--exactly-four-outcomes">9.3 What closes
+an item — exactly four outcomes</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Outcome</th>
+<th>What it requires</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Remediated</td>
+<td>The platform confirms the fix is applied — not the technician’s
+recollection of applying it. Recorded with the date and the
+evidence.</td>
+</tr>
+<tr class="even">
+<td>Mitigated</td>
+<td>A compensating control is in place: a configuration change, a
+disabled feature, network isolation. A mitigation is NOT a closure. It
+carries an expiry and is re-dated at the weekly triage until the fix
+lands.</td>
+</tr>
+<tr class="odd">
+<td>Accepted as an exception</td>
+<td>A §11 exception with an owner, a compensating control, an expiry and
+a Tier 4 approver. Not a quiet deferral.</td>
+</tr>
+<tr class="even">
+<td>Not applicable</td>
+<td>False positive, decommissioned asset, or software that has been
+REMOVED — which is frequently the fastest close available and is almost
+never considered (<a href="/sops/DEV-11">DEV-11</a> §11).</td>
+</tr>
+</tbody>
+</table></div>
+<p>An item that is none of those four is open, however old and however
+tedious. It cannot be closed by ageing out of the console view:
+recommendation lists shorten by themselves as software changes, and a
+shortening list is not evidence of remediation.</p>
+<ul>
+<li>The triage log holds: what, which assets, severity, date identified,
+owner, target date per §8, outcome, and date closed. It is small, it is
+the audit evidence, and it is the source of the numbers in §13.</li>
+<li>Volume is expected to be high and mostly routine. The point of the
+log is not to record heroism; it is that a critical item cannot get lost
+in a hundred medium ones.</li>
+</ul>
+<h2 id="10-emergency-and-out-of-band-patching">10. Emergency and
+out-of-band patching</h2>
+<ul>
+<li>TRIGGERS: an actively exploited critical vulnerability; a vendor
+emergency release; or an MDR or Defender case indicating exploitation
+inside the organization’s estate (<a href="/sops/DEV-14">DEV-14</a> §5).</li>
+<li>ROUTE: a <a href="/sops/GOV-04">GOV-04</a> §10 emergency change. Approved verbally by Tier 4 or
+the Head of IT, executed, and recorded within one coverage day. The
+record is deferred, never waived.</li>
+<li>Test-before-production compresses but does not vanish. Even under
+emergency, apply to one non-production or low-consequence system first
+and watch it for a stated period where the platform allows. Where it
+genuinely cannot be done, record that decision and who took it.</li>
+<li>A FREEZE DOES NOT BLOCK AN EMERGENCY PATCH. Freezes cover normal
+changes; <a href="/sops/GOV-04">GOV-04</a> §7.1 already states what proceeds during one, and an
+actively exploited critical is in that set. Nobody should be arguing
+about this at 22:00 on a Sunday in peak week.</li>
+<li>The service desk is told before the site, always (<a href="/sops/GOV-04">GOV-04</a> §9). An
+unannounced overnight forced restart across the estate produces a
+morning of tickets and a loss of trust that costs more than the
+announcement would have.</li>
+<li>COUNT THEM. A rising number of emergency patches is a finding about
+the routine cycle — the deferrals are too long, the rings are wrong, or
+a class of asset is being missed — rather than a run of bad luck (<a href="/sops/GOV-04">GOV-04</a>
+§10).</li>
+</ul>
+<h2 id="11-exceptions-and-their-expiry">11. Exceptions, and their
+expiry</h2>
+<p>An exception is a device or system that cannot take a patch or an
+update for a stated technical reason. It uses the same shape as <a href="/sops/DEV-02">DEV-02</a>
+§7 and <a href="/sops/DEV-12">DEV-12</a> §5, deliberately, so that nobody has to learn three
+formats.</p>
+<ul>
+<li>It carries: the asset, the specific patch or version being deferred,
+the reason, the compensating control, the expiry, the Tier 4 approver,
+and a review date.</li>
+<li>EXPIRY IS MANDATORY. An exception with no end date is an unpatched
+system with paperwork.</li>
+<li>The compensating control has to be real: a restricted VLAN or
+network isolation, no interactive browsing or mail on the device,
+additional monitoring, or a reduced data scope. “We are careful with it”
+is not a control.</li>
+<li>There is no exception for convenience, for seniority, or because a
+restart is inconvenient this week. Those are grace-period conversations
+(§12).</li>
+<li>END-OF-SUPPORT SYSTEMS ARE NOT EXCEPTIONS. A system past vendor
+support cannot be patched at all, so there is nothing to defer. It is a
+risk accepted by Tier 4 with a stated end date and a replacement plan,
+reported annually to executive leadership, and named as such. This is
+the class that quietly becomes permanent, and naming it honestly is the
+only thing that stops it.</li>
+<li>Count exceptions and report the count with its age profile (§13). A
+rising count means the regime is wrong or the estate is ageing. Both are
+findings; neither is a reason to stop counting.</li>
+</ul>
+<h2 id="12-reboots-and-the-people-who-never-restart">12. Reboots, and
+the people who never restart</h2>
+<blockquote>
+<p><strong>A patch installed and not restarted is not
+applied.</strong></p>
+<p>The estate contains machines with uptime measured in months. This is
+not carelessness. It is unsaved work, twenty open browser tabs, a laptop
+that takes eight minutes to come back, a deadline on Friday, and a
+reasonable fear of losing something.</p>
+<p>Which is why the mechanism is a deadline with a grace period and then
+a forced restart — and why the forced restart has to actually fire. A
+deadline that never enforces is decoration, and everybody works out
+within two months that it is decoration.</p>
+</blockquote>
+<ul>
+<li>The notification is SPECIFIC AND DATED, per <a href="/sops/DEV-02">DEV-02</a> §6. “Your laptop
+must restart to finish installing security updates. Please restart by
+Thursday at 5pm; after that it will restart automatically” is
+actionable. “Updates are available” is not, and it produces a ticket
+rather than a restart.</li>
+<li>Within grace, the person may defer. Beyond grace, they may not. Both
+halves matter: without the first the mechanism is resented, without the
+second it does not work.</li>
+<li>Active hours are configured so a forced restart does not land during
+booked sessions on shared devices, and so a laptop does not restart at
+10am on a Tuesday because that is when the policy fired.</li>
+<li>RESTART PENDING IS A REPORTABLE STATE. Devices past grace with a
+restart still pending are listed and contacted individually by Tier 2,
+and the count appears in §13. Chasing individuals is unglamorous and it
+is the step that actually closes the gap.</li>
+<li>Presenter machines are restarted and checked before the first
+session, not during it (<a href="/sops/DEV-18">DEV-18</a>).</li>
+<li>The honest concession: across any sizeable estate the organization
+should expect to lose a small amount of somebody’s unsaved work to a
+forced restart each year. It should say so, point at AutoSave, and not
+pretend otherwise — because the first time it happens to somebody who
+was told it could not, the mechanism loses its credibility and the
+department spends a year arguing about it instead of patching.</li>
+</ul>
+<h2 id="13-reporting-compliance-to-tier-4">13. Reporting compliance to
+Tier 4</h2>
+<p>Monthly, with the <a href="/sops/GOV-06">GOV-06</a> pack. Nine lines, and the last one is the
+one executive leadership should read.</p>
+<ul>
+<li>ENDPOINT PATCH COMPLIANCE, as three numbers per ring: within
+deadline, past deadline, and never checked in. Never a single percentage
+— the third number is the one that would otherwise hide (<a href="/sops/DEV-02">DEV-02</a>
+§10).</li>
+<li>OPEN VULNERABILITIES BY SEVERITY, with age against the §8 timeframe
+and the count currently breaching it.</li>
+<li>DAYS SPENT IN EACH CAPACITY STATE, and the extensions declared as a
+result — so the §8 caveat is quantified rather than asserted (<a href="/sops/GOV-06">GOV-06</a>
+§7).</li>
+<li>SERVER AND INFRASTRUCTURE CYCLES: completed, deferred, and why. A
+deferral with a reason is management information; a deferral with none
+is a gap.</li>
+<li>VENDOR CYCLES applied, with the <a href="/sops/GOV-04">GOV-04</a> register reference for each.
+This line is the direct answer to the vendor case in §1.</li>
+<li>EMERGENCY PATCHES: count and trend (§10).</li>
+<li>ACTIVE EXCEPTIONS with age, and END-OF-SUPPORT SYSTEMS with their
+replacement dates (§11).</li>
+<li>DEVICES WITH A RESTART PENDING BEYOND GRACE (§12).</li>
+<li>THE ONE NUMBER: the percentage of CRITICAL vulnerabilities
+remediated inside the §8 timeframe, broken out by capacity state. It
+says how the department is performing and what the staffing position
+costs, in the same figure.</li>
+</ul>
+<h2 id="14-service-levels">14. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Monthly endpoint cycle</td>
+<td>On the Appendix A calendar. Shifted only by a freeze (<a href="/sops/GOV-04">GOV-04</a>
+§7.1).</td>
+</tr>
+<tr class="even">
+<td>Critical, internet-facing</td>
+<td>48 hours. Does not extend in any capacity state (§8).</td>
+</tr>
+<tr class="odd">
+<td>Critical, internal / High / Medium / Low</td>
+<td>Per the §8 table for the declared capacity state.</td>
+</tr>
+<tr class="even">
+<td>Daily critical scan</td>
+<td>Ten minutes, within coverage. May be skipped under a declared
+Degraded state.</td>
+</tr>
+<tr class="odd">
+<td>Weekly vulnerability triage</td>
+<td>On schedule. Not skipped under any capacity state.</td>
+</tr>
+<tr class="even">
+<td>Emergency patch — Tier 4 approval</td>
+<td>Within 1 coverage hour of the recommendation; verbal is sufficient
+(<a href="/sops/GOV-04">GOV-04</a> §10).</td>
+</tr>
+<tr class="odd">
+<td>A patch that breaks something</td>
+<td>P1 at Tier 3. That is one policy fault, not many device faults.</td>
+</tr>
+<tr class="even">
+<td>Exception request</td>
+<td>P4 to Tier 4 — 5 coverage days.</td>
+</tr>
+<tr class="odd">
+<td>Vendor window request</td>
+<td>Acknowledged within 2 coverage days and scheduled against the
+published freeze calendar.</td>
+</tr>
+<tr class="even">
+<td>Restart chasing beyond grace</td>
+<td>Tier 2, within the same monthly cycle.</td>
+</tr>
+<tr class="odd">
+<td>Monthly position to Tier 4</td>
+<td>With the <a href="/sops/GOV-06">GOV-06</a> monthly pack.</td>
+</tr>
+<tr class="even">
+<td>Quarterly infrastructure firmware review</td>
+<td>On schedule, with a recorded position even where nothing is
+applied.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="15-records">15. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Update ring configuration, as approved</td>
+<td>Intune, and §4 of this document</td>
+<td>Life of the standard</td>
+</tr>
+<tr class="even">
+<td>Triage log: item, assets, severity, identified, owner, target,
+outcome, closed</td>
+<td>IT register</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Monthly compliance position</td>
+<td><a href="/sops/GOV-06">GOV-06</a> monthly pack</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Change records for server, infrastructure and vendor patching</td>
+<td><a href="/sops/GOV-04">GOV-04</a> register</td>
+<td>Per <a href="/sops/GOV-04">GOV-04</a></td>
+</tr>
+<tr class="odd">
+<td>Emergency patch records, with the deferred write-up</td>
+<td><a href="/sops/GOV-04">GOV-04</a> register</td>
+<td>Per <a href="/sops/GOV-04">GOV-04</a></td>
+</tr>
+<tr class="even">
+<td>Organization verification evidence for each vendor cycle</td>
+<td>Change record</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Exceptions: asset, patch, reason, control, expiry, approver</td>
+<td>Tier 4 register</td>
+<td>Life of the exception + 3 years</td>
+</tr>
+<tr class="even">
+<td>End-of-support systems: accepted risk, end date, replacement
+plan</td>
+<td>IT governance record</td>
+<td>7 years</td>
+</tr>
+<tr class="odd">
+<td>Per-room power and maintenance-schedule decisions for labs</td>
+<td>Tier 2 record</td>
+<td>Life of the room configuration</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="16-related-documents">16. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/GOV-04">GOV-04</a></td>
+<td>IT Change Management &amp; Maintenance Windows</td>
+<td>The register, the windows and the freeze calendar. §8 there is the
+rule §7 here applies.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments, Priority &amp; Escalation</td>
+<td>§7 capacity states — the mechanism that makes the §8 timeframes
+honest.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response &amp; Escalation Matrix</td>
+<td>Where an actively exploited vulnerability with credible exposure
+goes.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-02">DEV-02</a></td>
+<td>Device Compliance &amp; Configuration Baseline</td>
+<td>Conditions 4 and 5 are this document. §5 there is the enforcement
+sequence §4 follows.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-14">DEV-14</a></td>
+<td>Endpoint Security Agent &amp; MDR Escalation Standard</td>
+<td>Defender is both the vulnerability input here and the protection
+agent there. Coverage there determines whether the §9 input is
+complete.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-01">DEV-01</a></td>
+<td>Device Enrollment &amp; Lifecycle</td>
+<td>A device that never checks in is an enrollment problem, not a patch
+problem (§3.1).</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-11">DEV-11</a></td>
+<td>Software Request, Approval, Licensing &amp; Deployment</td>
+<td>Who updates a deployed package, and the fastest close in Appendix B
+— remove it.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-06">DEV-06</a> / <a href="/sops/DEV-18">DEV-18</a></td>
+<td>Labs &amp; shared devices / Meeting room AV</td>
+<td>§5.2, and the quiet-period image rebuild.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-09">DEV-09</a></td>
+<td>macOS Device Management Standard</td>
+<td>§5.1 — the gap this document records rather than fills.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-03">DEV-03</a></td>
+<td>Disk Encryption &amp; BitLocker Recovery Keys</td>
+<td>Confirmed before any major OS upgrade is enforced.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-16">DEV-16</a></td>
+<td>Lost, Stolen or Compromised Device Response</td>
+<td>A device that has not reported for months may not be unpatched — it
+may be gone.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-11">ACC-11</a></td>
+<td>Vendor, Contractor &amp; Consultant Account Standard</td>
+<td>§6 and §7 — the access a vendor uses inside the window, and the
+contract clause in §7.2 step 7.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-08">ACC-08</a></td>
+<td>Service, Application &amp; Non-Human Account Standard</td>
+<td>Credentials used by patching automation.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-21">M365-21</a></td>
+<td>Tenant Configuration Change Control</td>
+<td>The Microsoft 365 row of §3.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-15">M365-15</a></td>
+<td>Data Classification &amp; Handling</td>
+<td>The sensitive classes that tighten a §8 timeframe.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-01">GOV-01</a></td>
+<td>SOP Catalog Governance &amp; Document Control</td>
+<td>§7 — the macOS gap in §5.1 is recorded there.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--the-monthly-patch-cycle-calendar">Appendix A — The
+monthly patch cycle calendar</h2>
+<p>Anchored to Microsoft’s second-Tuesday publication, which is day 0.
+The calendar shifts for freeze weeks and the freeze calendar governs
+(<a href="/sops/GOV-04">GOV-04</a> §7.1).</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>When</th>
+<th>What happens</th>
+<th>Who</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Day 0 — second Tuesday</td>
+<td>Advisories read. Anything critical or actively exploited is pulled
+out of the cycle and goes to §10 the same day. Nothing else is decided
+today.</td>
+<td>Tier 3</td>
+</tr>
+<tr class="even">
+<td>Day 0 – Day 3</td>
+<td>Ring 0 pilot installs. Deadline day 2, grace to day 3.</td>
+<td>Tier 2</td>
+</tr>
+<tr class="odd">
+<td>Day 3</td>
+<td>Confirm nothing was reported from the pilot, then release Ring 1. A
+silent pilot is confirmed as silent rather than assumed.</td>
+<td>Tier 3</td>
+</tr>
+<tr class="even">
+<td>Day 3 – Day 10</td>
+<td>Ring 1 broad installs. Deadline day 8, grace to day 10.</td>
+<td>Tier 2</td>
+</tr>
+<tr class="odd">
+<td>Day 7</td>
+<td>Ring 2 released to labs, meeting rooms, kiosks and presenter
+devices; installs in the overnight schedule. Deadline day 14. Rooms
+verified the following morning.</td>
+<td>Tier 2</td>
+</tr>
+<tr class="even">
+<td>Day 7 — weekly technical window, Tuesday 06:00–08:00</td>
+<td>Server patches applied to TEST. Backup verified first.</td>
+<td>Tier 3</td>
+</tr>
+<tr class="odd">
+<td>Day 14</td>
+<td>Ring 3 deferred set released. Deadline day 21. Every member is a
+live §11 exception and is re-checked here.</td>
+<td>Tier 2</td>
+</tr>
+<tr class="even">
+<td>Every Wednesday</td>
+<td>Weekly vulnerability triage (§9.2). Every open item gets an owner
+and a date or one of the four outcomes.</td>
+<td>Tier 3</td>
+</tr>
+<tr class="odd">
+<td>Every coverage day</td>
+<td>Ten-minute scan for critical and actively exploited items only.</td>
+<td>Tier 3</td>
+</tr>
+<tr class="even">
+<td>Secondary window — last Sunday, 06:00–10:00</td>
+<td>Server patches applied to PRODUCTION, after a full week on Test.
+Larger work goes to the next primary window instead.</td>
+<td>Tier 3</td>
+</tr>
+<tr class="odd">
+<td>Month end</td>
+<td>Monthly position produced for Tier 4 (§13), with the <a href="/sops/GOV-06">GOV-06</a>
+pack.</td>
+<td>Tier 3 to Tier 4</td>
+</tr>
+<tr class="even">
+<td>Quarterly</td>
+<td>Network and infrastructure firmware review, with a recorded
+position. Applied in the primary window where due.</td>
+<td>Tier 3</td>
+</tr>
+<tr class="odd">
+<td>Quiet period</td>
+<td>Lab and meeting room image rebuild, scheduled a quarter ahead
+(<a href="/sops/DEV-06">DEV-06</a>, <a href="/sops/GOV-04">GOV-04</a> §7).</td>
+<td>Tier 2</td>
+</tr>
+<tr class="even">
+<td>Vendor cadence</td>
+<td>Core business system and other vendor-managed cycles, per the
+standing change and the organization window (§7).</td>
+<td>Tier 3 with the system owner</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--the-vulnerability-triage-decision-table">Appendix B
+— The vulnerability triage decision table</h2>
+<p>Worked top to bottom at the weekly triage. The first row that applies
+decides the item.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Ask</th>
+<th>Then</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Is it actively exploited, on the CISA KEV list, or exploited in our
+own estate?</td>
+<td>Treat as CRITICAL whatever the CVSS score. Out-of-band under §10,
+today. Tier 3 now, and Tier 4 informed.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Is the affected asset internet-facing or externally reachable?</td>
+<td>48 hours for critical, and it does not extend in any capacity state
+(§8). High takes the tighter figure.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Does the asset hold the sensitive classes in <a href="/sops/M365-15">M365-15</a>?</td>
+<td>Take the tighter figure. Where exposure is credible rather than
+theoretical, <a href="/sops/GOV-03">GOV-03</a> before patching — preserve before you fix (<a href="/sops/GOV-03">GOV-03</a>
+§6).</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Is the fix something the organization controls?</td>
+<td>Yes: assign a named owner and a target date from §8. No: §7 — raise
+it with the vendor, record the date raised and the date they give, and
+track it as open.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Is there a patch at all?</td>
+<td>No patch: mitigate — a configuration change, a disabled feature,
+isolation — and re-date. A mitigation is not a closure and it carries an
+expiry (§9.3).</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Is the affected software still needed?</td>
+<td>Removing it closes the item permanently and is frequently faster
+than patching it. Ask before assuming (<a href="/sops/DEV-11">DEV-11</a> §11).</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Will the patch break something known?</td>
+<td>A §11 exception: compensating control, expiry, Tier 4 approver. Ring
+3 (§4) is where the device goes. Not a silent deferral.</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Is the system past vendor support?</td>
+<td>Not an exception — there is nothing to defer. A Tier 4 accepted risk
+with an end date and a replacement plan (§11).</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Does it affect a vendor-managed system?</td>
+<td>§7. It enters the <a href="/sops/GOV-04">GOV-04</a> register as a vendor change with an
+organization approver, whoever applies it.</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>Has it actually been remediated?</td>
+<td>Verify in the platform, not from memory. Close with the evidence and
+the date.</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>None of the above?</td>
+<td>It stays open. Ageing out of the console view is not closure
+(§9.3).</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

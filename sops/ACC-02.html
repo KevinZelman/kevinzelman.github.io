@@ -1,0 +1,765 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACC-02 · Account Naming, UPN &amp; Identifier Standard | Known Good</title>
+<meta name="description" content="What every class of account is called, and how departmental access for temporary workers is structured — presented as Option A and Option B pending decision.">
+<meta property="og:title" content="ACC-02 · Account Naming, UPN &amp; Identifier Standard | Known Good">
+<meta property="og:description" content="What every class of account is called, and how departmental access for temporary workers is structured — presented as Option A and Option B pending decision.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="acc-02--account-naming-upn--identifier-standard">ACC-02 ·
+Account Naming, UPN &amp; Identifier Standard</h1>
+<p><em>What every class of account is called, and how departmental
+access for temporary workers is structured — presented as Option A and
+Option B pending decision.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/ACC-02-Account-Naming-UPN-and-Identifier-Standard.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/ACC-02.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/ACC-02">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>ACC-02</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>B. Account Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 3 — Expert Services (“the attic”, the Tier 3 escalation
+address). Identity architecture is Tier 3 work. Tier 4 owns this
+document.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually, and whenever a new department requests temporary-worker
+access.</td>
+</tr>
+<tr class="even">
+<td>Decision status</td>
+<td>Section 4 presents two options. Section 5 recommends Option B and
+gives the reasons in full.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>This standard states what each class of account is called, so that a
+name carries reliable information about what the account is and IT stops
+making the decision one request at a time.</p>
+<p>Most of that is uncontroversial and is settled in section 3. One part
+usually is not. The common trigger is a request to extend an existing
+departmental temporary-worker convention, a second account with a
+departmental suffix, to yet another department, while people inside IT
+still disagree with the convention itself.</p>
+<blockquote>
+<p><strong>Why this document does not simply pick one</strong></p>
+<p>A convention that keeps being extended while it is still contested
+inside IT is the situation a standard exists to end, and it cannot be
+ended by IT quietly choosing: the departments already on the current
+pattern would see a change in how their temporary workers sign in.</p>
+<p>So section 4 sets out both conventions in full and section 5 makes a
+recommendation with reasons. This document remains usable whichever way
+the decision goes.</p>
+</blockquote>
+<h2 id="2-scope">2. Scope</h2>
+<ul>
+<li>Naming and identifiers for every account class in <a href="/sops/ACC-01">ACC-01</a> §3: staff,
+end user, departmental temporary-worker access, vendor, guest, service
+and administrative.</li>
+<li>User principal name, primary SMTP address, display name, mail alias
+and sAMAccountName where it still applies.</li>
+<li>The structure — not merely the string — of departmental access for
+temporary workers, because the two options in section 4 differ
+architecturally and not only in what they are called. Out of scope:
+group and distribution list naming, which is <a href="/sops/M365-04">M365-04</a>; SharePoint site
+and Teams naming, which are <a href="/sops/M365-10">M365-10</a> and <a href="/sops/M365-07">M365-07</a>; device naming, which is
+<a href="/sops/DEV-01">DEV-01</a> §10.</li>
+</ul>
+<h2 id="3-naming-rules-that-are-not-in-question">3. Naming rules that
+are not in question</h2>
+<p>These are the settled conventions most tenants already follow. Record
+yours here so they stop being re-derived.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Account class</th>
+<th>UPN / primary address</th>
+<th>Display name</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Staff, including part-time and contract staff</td>
+<td>firstnamelastname@yourdomain, or an established shortened form where
+the full form is unavailable</td>
+<td>Firstname Lastname</td>
+<td>Both forms are in live use across the tenant. Neither is wrong; the
+rule is that one person has one primary address and it does not change
+on a whim.</td>
+</tr>
+<tr class="even">
+<td>End user (client, member, volunteer or learner)</td>
+<td>Generated from the system of record</td>
+<td>Firstname Lastname</td>
+<td>Automated. IT does not hand-craft end-user identifiers. Employment
+status lives in directory attributes, not in the name (<a href="/sops/M365-04">M365-04</a>).</td>
+</tr>
+<tr class="odd">
+<td>Guest, external</td>
+<td>Retains the home-tenant address, appearing as
+name_domain#EXT#@yourtenant.onmicrosoft.com</td>
+<td>Firstname Lastname (Organisation)</td>
+<td>The #EXT# form is generated by Entra and is not ours to choose. The
+display name must name the organisation so staff can see at a glance who
+is external (<a href="/sops/ACC-10">ACC-10</a>).</td>
+</tr>
+<tr class="even">
+<td>Service, non-human</td>
+<td>svc-<function>@your domain</td>
+<td>SVC — <function> — <owning tier></td>
+<td>The owning tier belongs in the display name because a service
+account with no visible owner is how orphaned automation begins
+(<a href="/sops/ACC-08">ACC-08</a>).</td>
+</tr>
+<tr class="odd">
+<td>Administrative, privileged</td>
+<td>Initials + admin, e.g. <a
+href="mailto:jdadmin@yourtenant.onmicrosoft.com">jdadmin@yourtenant.onmicrosoft.com</a></td>
+<td>Firstname Lastname (Admin)</td>
+<td>Privileged identities stay on the onmicrosoft.com domain so they are
+visually distinct from mail-enabled staff accounts and are not
+mailbox-bearing (<a href="/sops/ACC-07">ACC-07</a>).</td>
+</tr>
+</tbody>
+</table></div>
+<p>One rule governs all of the above: a primary address is not changed
+to reflect a preference, a marriage, a nickname or a department move.
+Changes are made for legal-name changes and correction of error.
+Everything else is an alias (<a href="/sops/M365-05">M365-05</a>). The reason is that a changed
+primary address silently breaks external references, shared mailbox
+permissions, and every document that cited it.</p>
+<h2
+id="4-departmental-access-for-temporary-workers--option-a-and-option-b">4.
+Departmental access for temporary workers — Option A and Option B</h2>
+<h3 id="40-what-is-actually-being-decided">4.0 What is actually being
+decided</h3>
+<p>Someone who already holds an end-user account, and is then employed
+by a department, needs access to that department’s mail, files and
+systems. The question is whether that access attaches to a second
+account or to their existing identity. It is an architectural choice,
+not a naming one, and the name is merely its most visible symptom.</p>
+<p>The second-account pattern usually starts in one or two departments,
+IT often among them, and spreads one request at a time.</p>
+<h3
+id="41-option-a--a-suffixed-second-account-the-common-existing-pattern">4.1
+Option A — a suffixed second account (the common existing pattern)</h3>
+<p>The person keeps their end-user identity and receives an additional
+account for departmental work.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>UPN and primary address</td>
+<td><dept>tmp_<identifier>@yourdomain</td>
+</tr>
+<tr class="even">
+<td>Display name</td>
+<td><Firstname Lastname>_<DEPT>TMP</td>
+</tr>
+<tr class="odd">
+<td>Departmental prefixes</td>
+<td>One per department that uses the pattern, for example fotmp (front
+office) and ittmp (IT)</td>
+</tr>
+<tr class="even">
+<td>Typical next step</td>
+<td>Another department asks for its own prefix</td>
+</tr>
+<tr class="odd">
+<td>Access model</td>
+<td>Departmental access is granted directly to the second account.
+Shared mailbox membership, file permissions and application roles all
+attach to it.</td>
+</tr>
+<tr class="even">
+<td>Lifecycle</td>
+<td>Created on hire by request, disabled manually when employment
+ends.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="what-option-a-genuinely-does-well">What Option A genuinely does
+well</h3>
+<p>These are real advantages and the case for Option B has to answer
+them rather than ignore them.</p>
+<ul>
+<li>Separation is structural, not configured. The departmental account
+holds only departmental access and the end-user account holds only
+end-user access. No misconfigured group can grant a departmental
+permission to an end-user identity, because that identity is not a
+candidate for it.</li>
+<li>Actions taken in an employment capacity are attributable to a
+distinct principal in every log, without having to reason about what
+capacity someone was acting in.</li>
+<li>It answers a real concern cleanly: a temporary worker reading other
+people’s records should be doing so as an employee of the organization,
+not as an end user.</li>
+<li>Ending employment does not touch the person’s end-user access.
+Disable one account and they carry on as a client, member, volunteer or
+learner, with no possibility of collateral damage.</li>
+<li>Where it is already in place, it costs nothing to keep.</li>
+</ul>
+<h3
+id="42-option-b--a-role-group-on-the-persons-single-identity-recommended">4.2
+Option B — a role group on the person’s single identity
+(recommended)</h3>
+<p>The person has one identity. Departmental access is granted by
+membership of a scoped, time-bounded security group.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Identity</td>
+<td>The person’s existing account. No second account is created.</td>
+</tr>
+<tr class="even">
+<td>Access group</td>
+<td>ROLE-<DEPT>-TempWorker — for example ROLE-FO-TempWorker,
+ROLE-HR-TempWorker</td>
+</tr>
+<tr class="odd">
+<td>Display name</td>
+<td>Unchanged. The person is who they are.</td>
+</tr>
+<tr class="even">
+<td>Attribution of departmental mail</td>
+<td>Outbound departmental mail is sent as the departmental shared
+mailbox, not as the individual, so recipients see the department.
+Send-as is recorded in the mailbox audit log against the individual
+member (<a href="/sops/M365-03">M365-03</a>, <a href="/sops/ACC-14">ACC-14</a>).</td>
+</tr>
+<tr class="odd">
+<td>Access model</td>
+<td>Every departmental entitlement attaches to the group. Granting is
+one membership add; revoking is one membership remove.</td>
+</tr>
+<tr class="even">
+<td>Lifecycle</td>
+<td>Membership carries an end-date expiry and is re-approved each
+engagement period. Expiry can be automated; a second account cannot
+expire itself.</td>
+</tr>
+</tbody>
+</table></div>
+<h3
+id="what-option-b-does-better-and-why-it-matters-here-specifically">What
+Option B does better, and why it matters here specifically</h3>
+<ul>
+<li>One credential, one MFA registration. Under Option A the person
+registers MFA twice and can lose either. Lockouts are the largest single
+ticket category on most desks, and end users are usually the largest
+group in it. Option A adds identities to precisely the population that
+struggles most to keep one working.</li>
+<li>Revocation is one action and is hard to forget. Under Option A it
+depends on somebody remembering a second account exists. The usual
+result: temporary-worker accounts added to a departmental mailbox by
+reply-all email, with no named owner and no expiry trigger.</li>
+<li>A new department needs no naming decision — only a new group. Option
+A requires a fresh convention conversation every time. A convention that
+must be re-litigated per department is not functioning as a
+convention.</li>
+<li>End-of-engagement expiry becomes automatable, because group
+membership can carry an expiry date and an access review. This is the
+single largest reduction in standing access the organization can make
+cheaply.</li>
+<li>Investigations get easier, not harder. A person’s activity sits
+under one identity. Under Option A, an account-sharing investigation has
+to reason across identities to establish a pattern.</li>
+</ul>
+<h3 id="43-the-structural-objection-to-option-a">4.3 The structural
+objection to Option A</h3>
+<blockquote>
+<p><strong>Option A accounts are orphans by construction</strong></p>
+<p><a href="/sops/ACC-01">ACC-01</a> Rule 1 makes the system-of-record entry the system of record
+for every identity, because that is what makes dynamic group membership,
+licensing, reporting and automated expiry possible.</p>
+<p>A suffixed account has no system-of-record entry of its own. It
+cannot be dynamically grouped from system-of-record attributes, cannot
+be licensed or de-licensed by rule, and cannot be expired automatically
+at the end of the engagement. Every one of those things must be done by
+hand, by someone who remembers.</p>
+<p>That is not a naming problem and it is not fixed by choosing a better
+suffix. It is the reason the convention keeps producing the same
+failures — and it applies equally to every department that adopts
+it.</p>
+</blockquote>
+<h3 id="44-side-by-side">4.4 Side by side</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Dimension</th>
+<th>Option A — suffixed account</th>
+<th>Option B — role group</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Identities per temporary worker</td>
+<td>Two, or three if they work for two departments</td>
+<td>One</td>
+</tr>
+<tr class="even">
+<td>MFA registrations to maintain</td>
+<td>Two</td>
+<td>One</td>
+</tr>
+<tr class="odd">
+<td>Added lockout exposure</td>
+<td>Yes — a second credential on the population with the highest lockout
+rate</td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td>Granting access</td>
+<td>Create account, licence, permission it, hand over credentials</td>
+<td>Add to one group</td>
+</tr>
+<tr class="odd">
+<td>Revoking access</td>
+<td>Manual, and dependent on knowing the account exists</td>
+<td>Remove from one group</td>
+</tr>
+<tr class="even">
+<td>End-of-engagement expiry</td>
+<td>Manual</td>
+<td>Automatable, with access review</td>
+</tr>
+<tr class="odd">
+<td>Driven from the system of record</td>
+<td>No — the account has no system-of-record entry</td>
+<td>Yes — the person’s record already exists</td>
+</tr>
+<tr class="even">
+<td>Licence cost</td>
+<td>Potentially one additional per temporary worker</td>
+<td>None</td>
+</tr>
+<tr class="odd">
+<td>New department onboarding</td>
+<td>Requires a naming decision each time</td>
+<td>Requires a group</td>
+</tr>
+<tr class="even">
+<td>Structural separation of duties</td>
+<td>Strong, by construction</td>
+<td>Configured, by group scoping and Conditional Access</td>
+</tr>
+<tr class="odd">
+<td>Log attribution of departmental acts</td>
+<td>Distinct principal</td>
+<td>Same principal; capacity evidenced by shared-mailbox and site audit
+logs</td>
+</tr>
+<tr class="even">
+<td>Effect of ending employment</td>
+<td>Disable one account</td>
+<td>Remove one membership</td>
+</tr>
+<tr class="odd">
+<td>Migration cost to adopt</td>
+<td>None where already in place</td>
+<td>The departments using Option A, and a countable number of
+people</td>
+</tr>
+<tr class="even">
+<td>Entitlement review (<a href="/sops/ACC-17">ACC-17</a>)</td>
+<td>Reconcile two identities per person</td>
+<td>Review one group</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="45-where-option-a-remains-the-right-answer">4.5 Where Option A
+remains the right answer</h3>
+<p>Not as the default, but as a named exception. A separate account is
+correct where a department’s work carries a regulatory obligation that
+requires the acting principal to be distinct, such as payment card
+handling or health records under privacy law. Such an account should be
+a proper staff-class account under §3 rather than a suffixed end-user
+account, and the exception list should be short, explicit and reviewed
+annually.</p>
+<h2 id="5-recommendation">5. Recommendation</h2>
+<blockquote>
+<p><strong>Adopt Option B, with Option A retained as a narrow, named
+exception.</strong></p>
+<p>The recommendation rests on one argument above all: Option A accounts
+cannot be driven from the system of record, so every control the
+organization is trying to build — automated expiry, entitlement review,
+dynamic licensing, coherent audit — has to be done by hand for them,
+forever, by someone who remembers they exist. Most desks already have
+the evidence that this does not happen reliably.</p>
+<p>The secondary argument is that Option A adds a second credential to
+the population that generates the most lockouts, where lockouts are
+already the largest single workload.</p>
+<p>Option A’s strongest merit — structural separation of duties — is
+real, and Option B must answer it with disciplined group scoping,
+Conditional Access, and departmental send-as rather than with good
+intentions. Section 7 sets those requirements.</p>
+</blockquote>
+<p>The decision belongs with executive leadership because it changes how
+existing temporary workers sign in. Appendix B puts the choice on one
+page for them.</p>
+<h2 id="6-migration-path-if-option-b-is-adopted">6. Migration path, if
+Option B is adopted</h2>
+<p>Written so that the decision does not have to be taken on faith about
+feasibility.</p>
+<h3 id="61-before-anything-moves">6.1 Before anything moves</h3>
+<ol type="1">
+<li>Confirm that every system a temporary worker touches honours
+group-based access. Verify the system of record and any self-service
+portal specifically; if an application can only grant access to a named
+principal, that application is an exception and is recorded as one
+(<a href="/sops/ACC-16">ACC-16</a>).</li>
+<li>Inventory the existing suffixed accounts: how many, in which
+departments, holding what.</li>
+<li>Create the ROLE-<DEPT>-TempWorker groups and permission them to
+exactly what the suffixed accounts hold today. No more, as a matter of
+discipline — a migration is the easiest moment to quietly widen
+access.</li>
+<li>Confirm departmental send-as is configured on each shared mailbox,
+so outbound mail still reads as the department (<a href="/sops/M365-03">M365-03</a>).</li>
+</ol>
+<h3 id="62-moving-one-department">6.2 Moving one department</h3>
+<ol type="1">
+<li>Start with IT’s own Front Door technicians. The department proposing
+the change should carry the first disruption.</li>
+<li>Add the people to the role group. Confirm access works under their
+own identity before removing anything.</li>
+<li>Run both in parallel for one full pay period, so a failure is an
+inconvenience rather than an incident.</li>
+<li>Disable the suffixed accounts. Do not delete — retain per <a href="/sops/ACC-01">ACC-01</a>
+§7.3 in case anything addressed them directly.</li>
+<li>Record what broke. That list is the brief for the second
+department.</li>
+</ol>
+<h3 id="63-completing">6.3 Completing</h3>
+<ol type="1">
+<li>Move the next department, using the IT lessons.</li>
+<li>Onboard any new department directly onto Option B, so it never
+acquires a suffix to unwind. That is the cheapest possible moment.</li>
+<li>Add the role groups to the quarterly access review (<a href="/sops/ACC-17">ACC-17</a>), with
+end-date expiry set.</li>
+<li>Retire the suffix prefixes from this standard, leaving a note that
+they existed — because addresses appear in old tickets and documents and
+a future reader needs to know what they were.</li>
+</ol>
+<h2 id="7-rules-that-apply-under-either-option">7. Rules that apply
+under either option</h2>
+<p>These are the requirements that make Option B safe, and that Option A
+should adopt regardless.</p>
+<ul>
+<li>Departmental access is scoped to what the role needs and nothing
+else. “The same as the last temporary worker had” is not a scope.</li>
+<li>Access expires at the end of each engagement period and is
+re-approved, whether or not the person still holds an end-user account
+and whether or not they remain employed. Those are different
+relationships and must expire independently (<a href="/sops/ACC-01">ACC-01</a> §6.3).</li>
+<li>Every departmental mailbox, site and system a temporary worker can
+reach has a named owner who approves the access (<a href="/sops/M365-03">M365-03</a>, <a href="/sops/M365-10">M365-10</a>).</li>
+<li>Outbound departmental mail is sent as the department, not the
+individual.</li>
+<li>A temporary worker never receives standing administrative rights in
+any system. Where elevated action is needed, it is performed by staff
+(<a href="/sops/ACC-07">ACC-07</a>, <a href="/sops/DEV-12">DEV-12</a>).</li>
+<li>MFA is registered before departmental access is granted, not after
+(<a href="/sops/ACC-03">ACC-03</a> §5.1).</li>
+</ul>
+<h2 id="8-prohibited-patterns">8. Prohibited patterns</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Do not</th>
+<th>Because</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Create an account with no record in the system of record</td>
+<td>It cannot be grouped, licensed, expired or reviewed by rule, and
+becomes permanent by default (§4.3).</td>
+</tr>
+<tr class="even">
+<td>Change a primary address to reflect a preference or a department
+move</td>
+<td>It silently breaks external references and shared permissions. Add
+an alias instead (<a href="/sops/M365-05">M365-05</a>).</td>
+</tr>
+<tr class="odd">
+<td>Encode a department, job title or cohort into a person’s primary
+address</td>
+<td>People move. The name then lies, and correcting it breaks
+things.</td>
+</tr>
+<tr class="even">
+<td>Reuse an identifier that previously belonged to someone else</td>
+<td>Old permissions, old mail and old references follow the string, not
+the person.</td>
+</tr>
+<tr class="odd">
+<td>Create a shared human account for a team</td>
+<td>It defeats every audit and makes credential sharing policy
+unenforceable (<a href="/sops/ACC-15">ACC-15</a>). Use a shared mailbox with named members
+(<a href="/sops/M365-03">M365-03</a>).</td>
+</tr>
+<tr class="even">
+<td>Invent a new suffix or prefix without changing this standard</td>
+<td>That is precisely how the current situation arose.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="9-change-control-for-this-standard">9. Change control for this
+standard</h2>
+<p>A naming standard is only worth having if deviating from it is harder
+than following it.</p>
+<ol type="1">
+<li>A new pattern, prefix or suffix requires a change to this document,
+approved by the Tier 4 approver named in the control block.</li>
+<li>A request that cannot be met within the standard is raised as a
+change against ACC-02, not solved locally. Tier 2 and Tier 3 do not
+create a one-off pattern to close a ticket.</li>
+<li>Where a department has an operational need the standard does not
+serve, that is useful information about the standard. Record it and
+review — the objective is a standard people can follow, not compliance
+for its own sake.</li>
+</ol>
+<h2 id="10-records">10. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>The adopted option, with date and approver</td>
+<td>This document’s revision history</td>
+<td>Life of the standard</td>
+</tr>
+<tr class="even">
+<td>Named Option A exceptions and their annual review</td>
+<td>IT governance record</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Inventory of suffixed accounts at migration</td>
+<td>Project record</td>
+<td>Life of the migration + 2 years</td>
+</tr>
+<tr class="even">
+<td>Role group membership and end-of-engagement approvals</td>
+<td>Entra + access review record</td>
+<td>Per <a href="/sops/ACC-17">ACC-17</a></td>
+</tr>
+<tr class="odd">
+<td>Approved deviations from this standard</td>
+<td>Change record against ACC-02</td>
+<td>3 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-related-documents">11. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle: Joiner, Mover, Leaver</td>
+<td>Applies this standard at creation, and §6.3 at role change. Rule 1
+is the basis of §4.3.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA Enrollment, Reset &amp; Account Recovery</td>
+<td>The doubled MFA burden under Option A, and the enrollment
+prerequisite in §7.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-09">ACC-09</a></td>
+<td>Temporary Worker &amp; Departmental Access Standard</td>
+<td>The operational detail of whichever option is adopted.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-10">ACC-10</a></td>
+<td>Guest &amp; Sponsored External Account Standard</td>
+<td>Guest display-name rule in §3.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-16">ACC-16</a></td>
+<td>Application Onboarding, SSO &amp; SAML Claims Standard</td>
+<td>Records applications that cannot honour group-based access
+(§6.1).</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-17">ACC-17</a></td>
+<td>Periodic Access Review &amp; Entitlement Recertification</td>
+<td>Reviews the role groups and the Option A exception list.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-03">M365-03</a></td>
+<td>Shared Mailbox Request, Provisioning &amp; Ownership</td>
+<td>Departmental send-as, and the named mailbox owner §7 requires.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-04">M365-04</a></td>
+<td>Distribution List &amp; Dynamic Group Standard</td>
+<td>Group naming, and the system-of-record-driven membership §4.3 relies
+on.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-05">M365-05</a></td>
+<td>Email Alias &amp; Address Change Standard</td>
+<td>The alias mechanism §3 and §8 point to.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--naming-quick-reference">Appendix A — Naming quick
+reference</h2>
+<p>For Tier 2 and Tier 3 at the point of creating an account.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Creating…</th>
+<th>Name it</th>
+<th>First check</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A staff account</td>
+<td>firstnamelastname@yourdomain</td>
+<td>The system-of-record entry exists (<a href="/sops/ACC-01">ACC-01</a> Rule 1)</td>
+</tr>
+<tr class="even">
+<td>An end-user account</td>
+<td>Do not — it is automated from the system of record</td>
+<td>If it is missing, the system-of-record entry is the problem</td>
+</tr>
+<tr class="odd">
+<td>Departmental access for a temporary worker</td>
+<td>Per the adopted option in §4 — check which is in force before
+creating anything</td>
+<td>Named mailbox/site owner has approved (§7)</td>
+</tr>
+<tr class="even">
+<td>A guest</td>
+<td>Do not create — request it (<a href="/sops/ACC-10">ACC-10</a>)</td>
+<td>Named sponsor, purpose and expiry</td>
+</tr>
+<tr class="odd">
+<td>A service account</td>
+<td>svc-<function>@your domain, owning tier in the display name</td>
+<td>A named human owner exists (<a href="/sops/ACC-08">ACC-08</a>)</td>
+</tr>
+<tr class="even">
+<td>An admin account</td>
+<td><initials><a
+href="mailto:admin@yourtenant.onmicrosoft.com">admin@yourtenant.onmicrosoft.com</a></td>
+<td>Phishing-resistant MFA registered first (<a href="/sops/ACC-07">ACC-07</a>)</td>
+</tr>
+<tr class="odd">
+<td>Anything that does not fit the above</td>
+<td>Stop. Raise a change against ACC-02 (§9)</td>
+<td>Do not invent a pattern to close a ticket</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--decision-matrix-for-executive-leadership">Appendix B
+— Decision matrix for executive leadership</h2>
+<p>One page. The full argument is in §4 and §5.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Question</th>
+<th>Option A</th>
+<th>Option B</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>How many accounts must a temporary worker keep working?</td>
+<td>Two</td>
+<td>One</td>
+</tr>
+<tr class="even">
+<td>Can access expire automatically at the end of the engagement?</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>Is it driven from our system of record?</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td>Does adding a department need a new decision?</td>
+<td>Yes, every time</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>Does it add to our largest support workload?</td>
+<td>Yes — a second credential to lose</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>Additional licence cost per temporary worker</td>
+<td>Possible</td>
+<td>None</td>
+</tr>
+<tr class="odd">
+<td>Separation of duties</td>
+<td>Structural</td>
+<td>Configured, and must be enforced</td>
+</tr>
+<tr class="even">
+<td>Cost to adopt</td>
+<td>None</td>
+<td>The departments using Option A, about one quarter</td>
+</tr>
+<tr class="odd">
+<td>Cost of not deciding</td>
+<td>A third department joins the pattern and the migration gets
+larger</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

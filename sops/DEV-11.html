@@ -1,0 +1,1331 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DEV-11 · Software Request, Approval, Licensing &amp; Deployment | Known Good</title>
+<meta name="description" content="How a request for software is answered — the “do we already have it?” check, the approval path by cost and by risk, the licence register, and the deployment mechanism of record through a move to Intune.">
+<meta property="og:title" content="DEV-11 · Software Request, Approval, Licensing &amp; Deployment | Known Good">
+<meta property="og:description" content="How a request for software is answered — the “do we already have it?” check, the approval path by cost and by risk, the licence register, and the deployment mechanism of record through a move to Intune.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="dev-11--software-request-approval-licensing--deployment">DEV-11
+· Software Request, Approval, Licensing &amp; Deployment</h1>
+<p><em>How a request for software is answered — the “do we already have
+it?” check, the approval path by cost and by risk, the licence register,
+and the deployment mechanism of record through a move to
+Intune.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/DEV-11-Software-Request-Approval-Licensing-and-Deployment.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/DEV-11.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/DEV-11">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>DEV-11</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>C. Device Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 2 — Advanced Technical Services runs intake, packaging and
+deployment. Tier 3 owns the security and compatibility assessment and
+the deployment mechanism. Tier 4 approves cost and anything material.
+Tier 1 answers “where do I get X?” from the published catalogue rather
+than raising a request.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually, and at each renewal cycle.</td>
+</tr>
+<tr class="even">
+<td>Governing policy</td>
+<td>Your organization’s software use and acquisition policy, if you have
+one. That policy governs acquisition. This document operationalises it:
+the request path, the approval gates, the licence register and the
+deployment mechanism. It does not restate it and must not contradict it.
+Where it does, the policy is right and this document is a defect to be
+reported under <a href="/sops/GOV-01">GOV-01</a> §10.</td>
+</tr>
+<tr class="odd">
+<td>Relationship to <a href="/sops/M365-20">M365-20</a></td>
+<td><a href="/sops/M365-20">M365-20</a> governs Microsoft licensing, which is assigned by rule from
+the system of record. This document governs everything else — the
+software the organization buys, downloads or is given, one product at a
+time. The two meet at §2 and at §11.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose--and-the-policy-this-sits-under">1. Purpose — and the
+policy this sits under</h2>
+<p>A member of staff wants a piece of software. Today the answer depends
+entirely on who they ask: a technician who installs it, a manager who
+buys it on a departmental card, a colleague who sends them a download
+link, or a ticket that sits because nobody knows who decides. Two things
+are missing — an approval path and a deployment mechanism of record —
+and this document is both.</p>
+<p>The volume argument for this document is honestly a weak one. On most
+desks, software and licensing is a small share of tickets, often around
+one in twenty. That is not a queue crisis. The argument is that each of
+those requests is answered from scratch, that the organization cannot
+say what is installed across its estate or what it is entitled to
+install, and that the most common wrong answer — granting local
+administrator rights so somebody can install something themselves —
+quietly undoes most of the endpoint controls in this domain (<a href="/sops/DEV-12">DEV-12</a>
+§2).</p>
+<blockquote>
+<p><strong>This is not a new software policy.</strong></p>
+<p>Most organizations already have one, often sitting in a shared folder
+nobody links to. It governs acquisition and it is not restated here.</p>
+<p>What this document adds is the machinery the policy assumes and the
+organization does not yet have: an intake with mandatory fields, an
+approval path that separates the cost question from the risk question, a
+licence register, and a deployment mechanism that produces a record of
+what is actually installed.</p>
+<p>The first action arising from this document is therefore not
+procedural. It is to make sure the policy can be found from your staff
+portal or internal knowledge base (<a href="/sops/GOV-01">GOV-01</a> §9), because a governing
+policy nobody can find is not governing anything.</p>
+</blockquote>
+<h2 id="2-do-we-already-have-it-the-first-substantive-step">2. Do we
+already have it? The first substantive step</h2>
+<p>Before cost, before risk, before anything: does the organization
+already license something that does this? This is deliberately the first
+substantive step because a surprising share of requests are for a
+capability already paid for, and because it is the only step that can
+close a request in ten minutes at no cost to anybody (<a href="/sops/M365-20">M365-20</a> §4 step
+3).</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>What is asked for</th>
+<th>What the organization already provides</th>
+<th>Where it is written</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A survey or questionnaire tool</td>
+<td>Microsoft Forms, for internal audiences. Note the constraint
+below.</td>
+<td><a href="/sops/M365-17">M365-17</a></td>
+</tr>
+<tr class="even">
+<td>An appointment or scheduling page</td>
+<td>Microsoft Bookings. Already in use widely enough that its
+appointments polluted a ticket export.</td>
+<td><a href="/sops/M365-17">M365-17</a></td>
+</tr>
+<tr class="odd">
+<td>A project tracker, task board or simple Gantt</td>
+<td>Planner and Lists. Project for the small number of people who
+genuinely need dependency scheduling.</td>
+<td><a href="/sops/M365-01">M365-01</a> §2, <a href="/sops/M365-19">M365-19</a></td>
+</tr>
+<tr class="even">
+<td>A diagramming tool</td>
+<td>Visio for the web, and Whiteboard for the rough case.</td>
+<td><a href="/sops/M365-01">M365-01</a> §2</td>
+</tr>
+<tr class="odd">
+<td>A way to send somebody a large file</td>
+<td>A SharePoint or OneDrive link with an expiry. Not a third-party
+transfer service, which takes organization content outside the
+tenant.</td>
+<td><a href="/sops/M365-11">M365-11</a>, <a href="/sops/M365-14">M365-14</a></td>
+</tr>
+<tr class="even">
+<td>A webinar or recorded session tool</td>
+<td>Teams, including recording and transcription.</td>
+<td><a href="/sops/M365-08">M365-08</a></td>
+</tr>
+<tr class="odd">
+<td>An AI assistant or chatbot</td>
+<td>Copilot where licensed. Anything else is a data-handling decision,
+not a software decision.</td>
+<td><a href="/sops/M365-18">M365-18</a></td>
+</tr>
+<tr class="even">
+<td>A departmental site, intranet page or document library</td>
+<td>SharePoint. This is a request for a site, not for software.</td>
+<td><a href="/sops/M365-10">M365-10</a></td>
+</tr>
+<tr class="odd">
+<td>A small departmental application or automation</td>
+<td>Power Platform, within the governance already written for it.
+Build-versus-buy is a real question and this is where it is asked.</td>
+<td><a href="/sops/M365-19">M365-19</a></td>
+</tr>
+<tr class="even">
+<td>A PDF editor</td>
+<td>Reading, annotating, signing and combining are covered by the tools
+already deployed. Full editing is a genuine licence for a small number
+of people — not a site licence.</td>
+<td><a href="/sops/M365-01">M365-01</a> §3</td>
+</tr>
+<tr class="odd">
+<td>A form external users can upload files to</td>
+<td>Nothing. Microsoft Forms will not accept uploads from external users
+because uploads land in tenant OneDrive or SharePoint. This request is
+genuine and needs §3 onward.</td>
+<td><a href="/sops/M365-17">M365-17</a></td>
+</tr>
+</tbody>
+</table></div>
+<p>The last row matters as much as the other ten. A “do we already have
+it?” check that always answers yes becomes a way of refusing requests,
+which teaches people to stop asking and to install things themselves.
+The check exists to close the easy cases honestly, not to close all of
+them.</p>
+<ul>
+<li>Tier 1 should be able to answer the first ten rows without raising a
+request at all. That is a <a href="/sops/GOV-05">GOV-05</a> article and it is the cheapest thing in
+this document.</li>
+<li>Where the answer is “we have something, but it is worse for your
+purpose”, say that plainly and proceed. A requester told to use an
+inadequate tool will find another one, and IT will not know about
+it.</li>
+<li>Record the outcome either way. A request closed at §2 is evidence
+for the <a href="/sops/M365-01">M365-01</a> service description and for the <a href="/sops/GOV-05">GOV-05</a> article; a
+request closed at §2 with no record is a conversation.</li>
+</ul>
+<h2 id="3-the-request--mandatory-fields">3. The request — mandatory
+fields</h2>
+<p>One intake, through the service desk (<a href="/sops/GOV-02">GOV-02</a> §3). Appendix A is the
+form. A request missing a mandatory field is returned within one
+coverage day with what is missing, not queued silently — an incomplete
+request that sits for a fortnight and is then returned has cost the
+requester three weeks.</p>
+<ol type="1">
+<li>WHAT: the exact product, edition and version. “Adobe” is not a
+product; “Acrobat Pro, current subscription release” is.</li>
+<li>WHY: what it is for, in one sentence a non-specialist can read. This
+is the field the approvers actually read.</li>
+<li>WHO: how many people, named or by role, and whether the number is
+expected to grow.</li>
+<li>DATA: does it hold, process or transmit client records, payroll or
+HR data, or anything in the sensitive classes in <a href="/sops/M365-15">M365-15</a>? A yes routes
+to §5 whatever the cost.</li>
+<li>WHERE: does the data stay on the device, sit in the organization
+tenant, or go to a vendor’s cloud? If the last, in which country, and
+does the vendor use organization data to train anything?</li>
+<li>COST: one-off and recurring, per seat or per device, and the funding
+source with the budget holder named.</li>
+<li>WHEN: the date it is needed, and what depends on it. “As soon as
+possible” sets no priority (<a href="/sops/GOV-06">GOV-06</a> §4).</li>
+<li>RIGHTS: does it need administrative rights to install, or to run?
+Those are two different answers and the second is the expensive one
+(§10, <a href="/sops/DEV-12">DEV-12</a>).</li>
+<li>SIGN-IN: does it authenticate against organization identity? If so
+it is also an <a href="/sops/ACC-16">ACC-16</a> intake and the two run together, not one after the
+other.</li>
+<li>PLACE: individual devices, a departmental set, or a lab or
+meeting-room image? A lab image change lands in a quiet-period window
+(<a href="/sops/DEV-06">DEV-06</a>, <a href="/sops/GOV-04">GOV-04</a> §7).</li>
+<li>ALREADY THERE: has a trial already been installed, and on how many
+machines? Asked without reproach, because the honest answer is
+frequently yes and IT needs to know what is on the estate more than it
+needs to be right about how it got there.</li>
+<li>ALTERNATIVE: what was checked at §2, and why it does not fit.</li>
+</ol>
+<h2 id="4-the-approval-path-cost-and-risk">4. The approval path: cost,
+and risk</h2>
+<p>Two questions, two approvers, and they are not interchangeable. The
+budget holder approves spending organization money. IT approves fitness,
+safety and supportability. Neither can answer the other’s question, and
+neither may override it: IT does not decline a request on cost grounds,
+and a budget holder does not authorise a security exposure by paying for
+it.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Trigger</th>
+<th>Who approves</th>
+<th>What they are approving, and what it is not</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Already in the self-service catalogue, no cost</td>
+<td>Nobody</td>
+<td>Nothing to approve. The person installs it (§10). If a catalogue
+item needs an approval every time, it does not belong in the
+catalogue.</td>
+</tr>
+<tr class="even">
+<td>No cost, no institutional data, one or a few users, not in the
+catalogue</td>
+<td>Tier 2, with the short assessment in §5</td>
+<td>That it is safe to run and supportable. Recorded so that the tenth
+identical request becomes a catalogue item instead of a tenth
+assessment.</td>
+</tr>
+<tr class="odd">
+<td>Any recurring cost, at any size</td>
+<td>The department’s budget holder</td>
+<td>The cost, and that the department will still be paying it next year.
+Not the security question.</td>
+</tr>
+<tr class="even">
+<td>Cost above the organization purchasing threshold, or a multi-year
+commitment</td>
+<td>Tier 4, then organization purchasing</td>
+<td>A material institutional commitment. Contract, data-processing terms
+and renewal date come with it (§6).</td>
+</tr>
+<tr class="odd">
+<td>Holds or transmits client records, payroll or HR data, or anything
+in the sensitive classes in <a href="/sops/M365-15">M365-15</a></td>
+<td>Tier 3 assessment, Tier 4 decision — regardless of cost, including
+free</td>
+<td>The data risk. This is the row that catches the free tool with an
+organization spreadsheet in it. See <a href="/sops/M365-15">M365-15</a>.</td>
+</tr>
+<tr class="even">
+<td>Authenticates against organization identity, or requests tenant
+consent</td>
+<td>Tier 3, via <a href="/sops/ACC-16">ACC-16</a> and <a href="/sops/ACC-08">ACC-08</a> §8</td>
+<td>An identity integration and, for an OAuth application, a standing
+permission grant. A tenant consent is not a software install; it is an
+account with permissions and no leaver process.</td>
+</tr>
+<tr class="odd">
+<td>Requires administrative rights to RUN, not merely to install</td>
+<td>Tier 4, as a <a href="/sops/DEV-12">DEV-12</a> exception</td>
+<td>A standing weakening of the endpoint. Almost always worth one more
+conversation with the vendor first.</td>
+</tr>
+<tr class="even">
+<td>Goes onto a lab or meeting-room image</td>
+<td>Tier 2 with the room or lab owner; scheduled by Tier 3</td>
+<td>A change to a shared environment, delivered in a quiet-period window
+(<a href="/sops/DEV-06">DEV-06</a>, <a href="/sops/DEV-18">DEV-18</a>, <a href="/sops/GOV-04">GOV-04</a> §7).</td>
+</tr>
+<tr class="odd">
+<td>A browser extension</td>
+<td>Tier 3</td>
+<td>See §8. Low friction to install, high reach once installed.</td>
+</tr>
+<tr class="even">
+<td>Free, open-source, or given to the organization</td>
+<td>The same path as anything else</td>
+<td>Acquisition is free. Operation is not (§7).</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>One number this document deliberately does not state, with a
+named owner</strong></p>
+<p>The purchasing threshold above which Tier 4 and organization
+purchasing are involved is a Finance figure, set by the organization’s
+procurement arrangements and by the Software Use &amp; Acquisition
+Policy. It is not IT’s to invent, and a guessed figure here would be
+quoted back as policy within months.</p>
+<p>ACTION: Head of IT to obtain the threshold and the current purchasing
+route from Finance, and to insert it into §4 before this document is
+published. Owner: Head of IT. It is one conversation.</p>
+<p>Until it is filled in, Tier 2 escalates any recurring cost to Tier 4
+rather than guessing — which is slower and is the right way round to be
+wrong.</p>
+</blockquote>
+<h2 id="5-the-security-and-privacy-review">5. The security and privacy
+review</h2>
+<p>The review is proportionate, and that is the whole design. A
+sixty-item questionnaire produces one of two outcomes: nobody completes
+it, or somebody completes it dishonestly to get their software. Appendix
+B is twelve questions, and IT should be able to work through the short
+form in about fifteen minutes.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Depth</th>
+<th>When, and what it consists of</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Short form — three questions</td>
+<td>A free or low-cost single-user utility with no institutional data:
+where does it come from, what does it reach, and who patches it. Tier 2,
+recorded in the ticket.</td>
+</tr>
+<tr class="even">
+<td>Standard form — Appendix B in full</td>
+<td>Anything with a recurring cost, anything used by a department,
+anything installed by policy across devices. Tier 3, recorded as a
+governance record.</td>
+</tr>
+<tr class="odd">
+<td>Standard form plus contract and identity review</td>
+<td>Anything holding client records, payroll or HR data, or in the
+sensitive classes in <a href="/sops/M365-15">M365-15</a>. Adds <a href="/sops/ACC-16">ACC-16</a> for sign-in, <a href="/sops/ACC-08">ACC-08</a> §8 for
+consent and permissions, a data-processing agreement, and a Tier 4
+decision recorded with a named person accepting the residual risk.</td>
+</tr>
+</tbody>
+</table></div>
+<h3
+id="51-four-answers-that-change-the-outcome-rather-than-the-paperwork">5.1
+Four answers that change the outcome rather than the paperwork</h3>
+<ul>
+<li>“It needs a kernel driver or its own real-time protection
+component.” Two endpoint protection products on one device is a fault,
+not defence in depth (<a href="/sops/DEV-14">DEV-14</a> §4). This is a Tier 3 decision before
+purchase, not a support ticket afterwards.</li>
+<li>“It needs an inbound firewall rule, or a VPN connection to a
+vendor.” That is a network change under <a href="/sops/GOV-04">GOV-04</a> and a remote-access
+decision under <a href="/sops/DEV-10">DEV-10</a>, and it frequently costs more than the
+software.</li>
+<li>“There is no way to deprovision a user.” An application with no SCIM
+and no admin removal path is not reached by the leaver process at all
+(<a href="/sops/ACC-16">ACC-16</a> §7). It enters the <a href="/sops/ACC-17">ACC-17</a> §2 annual application review at
+onboarding, not later.</li>
+<li>“The vendor updates it automatically, from the internet, whenever it
+likes.” Convenient for the vendor and a live question for <a href="/sops/DEV-13">DEV-13</a>: an
+unmanaged auto-updater is a code-execution channel into the estate that
+the organization does not control. Sometimes acceptable, never
+unnoticed. A residual risk may be accepted. It is accepted by a named
+person at Tier 4, in writing, with the reason — never by IT declining to
+raise it and never by the requester agreeing to be careful.</li>
+</ul>
+<h2 id="6-the-licence-register-and-the-true-up-problem">6. The licence
+register, and the true-up problem</h2>
+<p>One register, owned by Tier 4, holding every non-Microsoft software
+entitlement the organization has. It is the document that answers a
+vendor audit, and it is usually the document that does not exist.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Why it is in the register</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Product, edition, version</td>
+<td>A licence for a previous major version is not a licence for this
+one, and the difference is discovered at audit.</td>
+</tr>
+<tr class="even">
+<td>Vendor, and the contract or order reference</td>
+<td>The entitlement document is the evidence. A register pointing at
+nothing proves nothing.</td>
+</tr>
+<tr class="odd">
+<td>Licence model</td>
+<td>Per named user, per device, concurrent, or site. The counting unit
+differs per model and counting seats for a per-device licence gives the
+wrong answer in both directions.</td>
+</tr>
+<tr class="even">
+<td>Entitled count</td>
+<td>What the organization has bought.</td>
+</tr>
+<tr class="odd">
+<td>Deployed count, and its source</td>
+<td>What is actually installed, and where that figure came from. See the
+caveat below — today, for most products, the honest entry is “not
+reliably known”.</td>
+</tr>
+<tr class="even">
+<td>Business owner</td>
+<td>A named person outside IT who needs this software and answers the
+renewal question (§11). Not the technician who installed it.</td>
+</tr>
+<tr class="odd">
+<td>Renewal or expiry date</td>
+<td>The field that makes §11 possible. A renewal discovered in the week
+it expires is not a decision.</td>
+</tr>
+<tr class="even">
+<td>Annual cost and funding source</td>
+<td>For the Tier 4 annual position, alongside the Microsoft position in
+<a href="/sops/M365-20">M365-20</a> §7.</td>
+</tr>
+<tr class="odd">
+<td>Where the key, entitlement or download lives</td>
+<td>So that a reinstall does not require finding the person who bought
+it years ago.</td>
+</tr>
+<tr class="even">
+<td>Data classification and review outcome</td>
+<td>The §5 result, carried forward, so the next request for the same
+product does not repeat the assessment.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="61-the-true-up-problem">6.1 The true-up problem</h3>
+<p>Deployed counts drift upward, silently, and always in the same
+direction. A vendor audit then arrives, produces a number the
+organization cannot contest, and the organization pays the difference —
+a true-up — at list price rather than at the price it would have
+negotiated.</p>
+<ul>
+<li>Self-installs, by anybody holding local administrator rights, add
+seats nobody recorded (<a href="/sops/DEV-12">DEV-12</a>).</li>
+<li>An image with software baked into it multiplies an entitlement every
+time a machine is built from it. This is the largest single source and
+it is invisible because each install looks legitimate.</li>
+<li>A departure reclaims the Microsoft licence by rule (<a href="/sops/M365-20">M365-20</a> §2) and
+leaves the non-Microsoft seat assigned, because nothing automatic
+touches it (§11).</li>
+<li>A department that could not get an answer buys its own instance of
+something the organization already licenses, and now the organization
+holds two contracts for one product.</li>
+<li>A trial that was never uninstalled becomes a production dependency,
+then a renewal invoice.</li>
+</ul>
+<blockquote>
+<p><strong>Say what the register can support, and no more</strong></p>
+<p>While deployment is split between a legacy endpoint tool, technician
+installs and self-installed software (§9), the organization cannot
+produce a trustworthy deployed count for most products. The register
+must record that, per product, rather than carrying a number it cannot
+defend.</p>
+<p>“Deployed count: not reliably known; source: none” is a useful entry.
+It is an accurate statement of exposure, it is the argument for §9, and
+it is far better than a figure somebody assembled from memory in an
+afternoon — which will be quoted in a renewal negotiation as though it
+were measured.</p>
+<p>The deployed count becomes reliable when the target state in §9 is
+reached, because the management platform then reports it. That is one of
+the more concrete benefits of the Intune transition and it is worth
+stating to whoever is funding it.</p>
+</blockquote>
+<ul>
+<li>Reconcile entitled against deployed annually per product as a
+minimum, and monthly for anything where the platform reports it
+automatically. The reconciliation record is the audit defence and is
+retained for seven years (§13).</li>
+<li>Where deployed exceeds entitled, the organization buys the
+difference or removes the installs. It does not leave it and hope.
+Removing installs is often the right answer and is almost never
+considered.</li>
+<li>Named-user licences are not freely transferable between people
+because one has left. Several vendors permit reassignment only after a
+stated period, or not at all. Check the terms before promising a
+colleague a seat.</li>
+</ul>
+<h2 id="7-free-and-open-source-software-treated-honestly">7. Free and
+open-source software, treated honestly</h2>
+<p>The organization uses open-source software, should continue to, and
+should be clear-eyed about it. Free to acquire is not free to run, and
+the gap is where the surprises live.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>The claim</th>
+<th>The reality in a small IT shop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“It costs nothing.”</td>
+<td>Acquisition costs nothing. Packaging, testing, deploying, patching,
+supporting and eventually removing it are the same work as for a
+commercial product, done by the same very small number of people.</td>
+</tr>
+<tr class="even">
+<td>“It is safer because the code is open.”</td>
+<td>Sometimes materially truer, sometimes not. What matters
+operationally is whether anybody is maintaining it, how quickly it ships
+fixes, and whether the organization will notice when it stops.</td>
+</tr>
+<tr class="odd">
+<td>“It updates itself.”</td>
+<td>Frequently there is no MSI, no managed update channel, and no way to
+deploy a version centrally. Which means either a per-device manual
+update — which will not happen — or a packaging job every release
+(<a href="/sops/DEV-13">DEV-13</a> §3).</td>
+</tr>
+<tr class="even">
+<td>“Vulnerabilities are not our problem.”</td>
+<td>They arrive in the daily Defender for Endpoint vulnerability
+notifications like everything else, with the same remediation timeframe
+in <a href="/sops/DEV-13">DEV-13</a> §8 and no vendor to escalate to.</td>
+</tr>
+<tr class="odd">
+<td>“The licence does not matter, it is free.”</td>
+<td>For ordinary internal use, usually true. It stops being true where
+the organization modifies the software, embeds a library in something it
+distributes, or builds a service on it — at which point copyleft
+obligations are real and a Tier 4 question.</td>
+</tr>
+<tr class="even">
+<td>“I will just download it.”</td>
+<td>The provenance is the risk. A search result for a well-known free
+utility is frequently a repackaged installer carrying adware or worse.
+The rule is the project’s own site or a recognised repository, verified
+where a checksum or signature is published — and this is precisely why
+the organization packages FOSS centrally rather than sending people to
+download it.</td>
+</tr>
+<tr class="odd">
+<td>“It has been abandoned but it still works.”</td>
+<td>An unmaintained package is an end-of-support system on a desktop. It
+is a Tier 4 accepted risk with an end date and a replacement plan, not a
+permanent arrangement (<a href="/sops/DEV-13">DEV-13</a> §11).</td>
+</tr>
+</tbody>
+</table></div>
+<p>So: open-source software follows exactly the same route as commercial
+software through §3, §4 and §5. The cost approval is trivially easy. The
+operational assessment is not, and skipping it because there is no
+invoice is how a free utility becomes an unpatched dependency on forty
+machines.</p>
+<h2 id="8-browser-extensions--the-under-governed-channel">8. Browser
+extensions — the under-governed channel</h2>
+<blockquote>
+<p><strong>An extension is software with the fewest controls and the
+widest reach.</strong></p>
+<p>Installing one takes a click. It needs no administrative rights,
+generates no ticket, appears in no inventory today, and asks its
+permission question at the moment the person is trying to get something
+done — so the answer is always yes.</p>
+<p>What it can then do is read and modify every page the person visits.
+That includes the HR system, the payroll screens, the mailbox, the
+client records system and anything else that lives in a browser, which
+in most organizations is now most things. An extension is closer to a
+credential than to an application.</p>
+<p>Extensions also change hands. A benign extension with a large install
+base is a saleable asset, and the new owner inherits the permissions the
+original earned. The user is not asked again.</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Current state</th>
+<th>Target state</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Who may install</td>
+<td>Anybody, in Edge or Chrome, without a record.</td>
+<td>Extensions blocked by default; a short allow list deployed by
+policy.</td>
+</tr>
+<tr class="even">
+<td>The request route</td>
+<td>None. Nobody asks.</td>
+<td>§3, with a Tier 3 assessment (§4).</td>
+</tr>
+<tr class="odd">
+<td>What is installed across the estate</td>
+<td>Unknown.</td>
+<td>Reported from the management platform, monthly, with the coverage
+figure (<a href="/sops/DEV-14">DEV-14</a> §12).</td>
+</tr>
+<tr class="even">
+<td>The allow list</td>
+<td>Does not exist.</td>
+<td>A published list of business extensions with a named requester and a
+review date, held in the licence register (§6).</td>
+</tr>
+</tbody>
+</table></div>
+<p>Getting there follows the <a href="/sops/DEV-02">DEV-02</a> §5 sequence rather than a switch,
+because blocking extensions on a Monday produces a specific and
+immediate ticket class and a loss of goodwill that is hard to
+recover:</p>
+<ol type="1">
+<li>MEASURE. Report what extensions are installed across the estate.
+This is the number that will surprise people and it does not exist
+today.</li>
+<li>Publish the allow list, derived from what is actually in use and
+defensible — a password manager, an accessibility tool, a citation
+manager, a screen-reader helper, whatever the measurement shows people
+genuinely rely on.</li>
+<li>Tell people, name a date, and give them the route in §3 for anything
+missing. A fortnight’s notice removes most of the friction.</li>
+<li>Then enforce, blocking by default. Not before — enforcing against a
+population that cannot comply is the <a href="/sops/DEV-02">DEV-02</a> §2 failure and the
+organization has already paid for that lesson once.</li>
+</ol>
+<ul>
+<li>Where an extension is also an OAuth application consented in the
+tenant, it is an <a href="/sops/ACC-08">ACC-08</a> §8 matter as well. Two controls, one artefact,
+and it is easy to close one and think the job is done.</li>
+<li>An extension request is a software request. It goes through §3 with
+a shorter §5, and it is recorded — because the useful output of this
+section is a list, not a policy.</li>
+</ul>
+<h2
+id="9-deployment-current-state-target-state-and-what-to-expect-during-the-transition">9.
+Deployment: current state, target state, and what to expect during the
+transition</h2>
+<p>This is the cutover section. The mechanism of record is changing, and
+the change is what turns most of the rest of this document from a
+procedure into a capability.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Current state — governs today</th>
+<th>Target state — governs after cutover</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Deployment mechanism</td>
+<td>A mix: a legacy endpoint tool for some packages, technician installs
+for many, and self-installed software wherever a user holds local
+administrator rights (<a href="/sops/DEV-12">DEV-12</a>).</td>
+<td>Intune application deployment, as the single mechanism of record.
+Required applications assigned by group; everything else offered through
+the catalogue.</td>
+</tr>
+<tr class="even">
+<td>Self-service</td>
+<td>None. Every install is a ticket, a technician visit, or an
+administrative-rights grant.</td>
+<td>A Company Portal catalogue. The person installs approved software
+themselves, with no elevation and no ticket.</td>
+</tr>
+<tr class="odd">
+<td>The record of what is installed</td>
+<td>Partial. The legacy tool’s inventory covers the devices it manages;
+nothing covers self-installs. The deployed counts in §6 cannot be
+supported.</td>
+<td>Intune and Defender software inventory, as the source of the
+deployed count in §6 and of the extension report in §8.</td>
+</tr>
+<tr class="even">
+<td>Packaging</td>
+<td>Per request, by whoever picked up the ticket, usually undocumented
+and not repeatable.</td>
+<td>Packaged once, versioned, with a named owner and a stated update
+path recorded at packaging time (<a href="/sops/DEV-13">DEV-13</a> §3).</td>
+</tr>
+<tr class="odd">
+<td>Removal</td>
+<td>Manual, per device, and therefore not done.</td>
+<td>Assignment removal. Which is also how a licence is genuinely
+reclaimed (§11).</td>
+</tr>
+<tr class="even">
+<td>macOS</td>
+<td>Manual installs. Enrollment under test.</td>
+<td>Per <a href="/sops/DEV-09">DEV-09</a> once written. Provisional until then, and recorded as a
+gap rather than assumed.</td>
+</tr>
+<tr class="odd">
+<td>Labs and meeting rooms</td>
+<td>Software baked into the image, changed at rebuild.</td>
+<td>Per <a href="/sops/DEV-06">DEV-06</a>. Image changes land in a quiet-period window (<a href="/sops/GOV-04">GOV-04</a> §7);
+in-term additions are deployed, not re-imaged.</td>
+</tr>
+<tr class="even">
+<td>The service desk record</td>
+<td>The ticketing system holds the asset and service desk record.</td>
+<td>Unchanged by this cutover. Deployment moving to Intune does not move
+ticketing (<a href="/sops/DEV-01">DEV-01</a> §3). Where one product did both, these are two
+different transitions, frequently confused in conversation.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="91-what-a-department-should-expect-during-the-transition">9.1
+What a department should expect during the transition</h3>
+<ul>
+<li>Requests do not stop and the route does not change. Intake is §3
+whichever mechanism ends up fulfilling it.</li>
+<li>A request may be fulfilled by either mechanism for a while. The
+ticket records which one — because in eighteen months somebody will need
+to know how a package reached a device, and “it was always there” is the
+answer that costs a day.</li>
+<li>New packaging work goes to Intune. Adding a new package to the
+legacy tool during the transition is work that will be thrown away, and
+it should be declined rather than done politely.</li>
+<li>A package that exists in the legacy tool and is still needed is
+repackaged as part of the wave that moves its devices, not left to be
+discovered when the legacy tool is switched off (<a href="/sops/DEV-01">DEV-01</a> §8).</li>
+<li>The catalogue will be short at first. It should launch with the ten
+or twelve applications that generate the most requests, not with
+everything — a catalogue nobody can navigate produces tickets, which is
+the thing it exists to prevent.</li>
+<li>For a period the same application will be available two ways. That
+is normal and temporary. Two different VERSIONS of the same application
+available two ways is not acceptable, and is the specific thing to watch
+for.</li>
+<li>Nothing is removed from anybody’s device by the transition itself.
+Where something will be removed — an unlicensed install, a superseded
+version, a blocked extension — the affected people are told before, with
+a date, not after.</li>
+<li>Lab and shared-room images move last, and they move in a quiet
+period. A rebuild during a busy period interrupts the people using them,
+and it is not worth the tidiness (<a href="/sops/DEV-06">DEV-06</a>, <a href="/sops/DEV-18">DEV-18</a>).</li>
+<li>Expect the deployed counts in §6 to get worse before they get
+better. As inventory improves, installs nobody knew about will surface.
+That is the control working, not a new problem appearing.</li>
+</ul>
+<blockquote>
+<p><strong>An open question that determines whether §10 works at
+all</strong></p>
+<p>The self-service catalogue does not exist yet, and its first contents
+and its approval route are undecided. Everything in §10 depends on it:
+until the catalogue is live, <a href="/sops/DEV-12">DEV-12</a>’s answer to “I need to install
+software” — publish it through the management platform — has nowhere to
+send the person, and the honest consequence is that administrative
+rights keep getting granted.</p>
+<p>The first list should be derived from data rather than opinion. The
+ticket history for software requests already contains it, and reading it
+is an afternoon’s work.</p>
+<p>ACTION: Tier 3 with Tier 2 to produce the first catalogue list from
+the ticket history, and to state who approves an addition to it, within
+30 days of this document being approved. Owner: a named Tier 3 lead.
+This is the highest-value open item in this document.</p>
+</blockquote>
+<h2
+id="10-self-service-or-assisted--and-the-admin-rights-question-underneath">10.
+Self-service or assisted — and the admin-rights question underneath</h2>
+<p>Most software requests are really administrative-rights requests in
+disguise, and most administrative-rights requests are really software
+requests. Both halves are true, they point at each other, and saying so
+out loud is more useful than either document saying it alone.</p>
+<p><a href="/sops/DEV-12">DEV-12</a> §5 answers “I need to install software” with “not local admin
+— publish it through the management platform (DEV-11)”. That answer is
+correct and, until the catalogue in §9 exists, it has nowhere to land.
+Somebody who genuinely needs a piece of software today and is told to
+wait for a platform capability will get administrative rights instead,
+from somebody trying to be helpful. Naming that gap is the only way it
+gets closed rather than worked around.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Route</th>
+<th>When</th>
+<th>What the person does</th>
+<th>What it costs IT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Self-service catalogue</td>
+<td>An approved application, no cost, no elevation needed.</td>
+<td>Opens Company Portal and installs it.</td>
+<td>Packaging, once. Then nothing per install.</td>
+</tr>
+<tr class="even">
+<td>Required assignment</td>
+<td>Everybody in a group needs it — a department, a role, a lab.</td>
+<td>Nothing. It appears.</td>
+<td>A policy and a version to keep current.</td>
+</tr>
+<tr class="odd">
+<td>Assisted install</td>
+<td>Not in the catalogue, needed once, or needs configuration the user
+should not do.</td>
+<td>Raises a ticket; a technician installs it.</td>
+<td>A visit or a remote session, every time. This is what the catalogue
+is designed to remove.</td>
+</tr>
+<tr class="even">
+<td>Time-boxed elevation</td>
+<td>Somebody whose actual job is installing and testing tools — a
+developer, a researcher.</td>
+<td>Elevates for the task, on their own account, with a recorded
+reason.</td>
+<td>A recorded <a href="/sops/DEV-12">DEV-12</a> exception with an expiry, reviewed quarterly.</td>
+</tr>
+<tr class="odd">
+<td>Standing local administrator rights</td>
+<td>Never, as an answer to a software request.</td>
+<td>—</td>
+<td>Every endpoint control underneath it (<a href="/sops/DEV-12">DEV-12</a> §2). This row exists to
+be pointed at.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>A request that recurs is a packaging decision, not five assisted
+installs. The third identical ticket is the trigger, and Tier 2 should
+raise it rather than fulfil it a third time.</li>
+<li>A technician install is still a licence consumed. It goes into the
+register (§6) at the moment it happens, not at the next
+reconciliation.</li>
+<li>Software that only works with the user as local administrator at RUN
+time is a vendor defect. Ask the vendor first; it is frequently a
+permissions setting on a directory, and the answer arrives faster than
+the exception would.</li>
+</ul>
+<h2
+id="11-renewals-the-annual-review-and-what-happens-at-separation">11.
+Renewals, the annual review, and what happens at separation</h2>
+<h3 id="111-renewals">11.1 Renewals</h3>
+<ul>
+<li>The renewal date lives in the register (§6). The business owner is
+notified 90 days out — a renewal decision taken in the week it expires
+is not a decision, it is an invoice.</li>
+<li>The question at renewal is not “shall we renew?” but “is this still
+used, by how many people, and would the organization buy it today at
+this price?” Usage comes from the platform, not from the owner’s
+impression of it.</li>
+<li>A product with no identifiable business owner is not renewed. It is
+either adopted by somebody who needs it or retired — and this is the
+single most productive question in the register.</li>
+<li>Where the answer is retire, the removal is planned: assignment
+removed, installs uninstalled, data extracted first, and the register
+entry closed with a date. A cancelled subscription with the software
+still on forty machines is the worst of both.</li>
+</ul>
+<h3 id="112-the-annual-review--deliberately-one-packet-with-acc-17">11.2
+The annual review — deliberately one packet with <a href="/sops/ACC-17">ACC-17</a></h3>
+<p>The software review and the application access review ask the same
+business owner about the same product in the same breath. Sending them
+separately guarantees that one of the two is ignored, so they are one
+packet in one month.</p>
+<ul>
+<li><a href="/sops/ACC-17">ACC-17</a> §2 asks: who still needs access to this? This document adds:
+is the entitlement count right, is it still worth the money, and who
+owns it now?</li>
+<li>They run in the <a href="/sops/ACC-17">ACC-17</a> annual round — March in the <a href="/sops/ACC-17">ACC-17</a> §2.1
+calendar, placed in the quietest month, and never in a registration or
+finals freeze.</li>
+<li>IT produces the packet; the business owner answers it. IT can see
+who has it and cannot see who still needs it (<a href="/sops/ACC-17">ACC-17</a> §3).</li>
+<li>The annual position — products, entitlements, deployed counts,
+costs, renewals due — goes to Tier 4 alongside the Microsoft position in
+<a href="/sops/M365-20">M365-20</a> §7, as one software cost picture rather than two.</li>
+</ul>
+<h3 id="113-separation">11.3 Separation</h3>
+<p>Microsoft licences come back by rule when somebody leaves (<a href="/sops/M365-20">M365-20</a>
+§2). Non-Microsoft licences do not, because nothing automatic is
+watching them. That makes this the reclamation that is routinely missed,
+and the money is real.</p>
+<ol type="1">
+<li>The <a href="/sops/ACC-01">ACC-01</a> leaver checklist includes non-Microsoft named-user
+licences held by the leaver, taken from the register (§6) rather than
+from anybody’s memory.</li>
+<li>Each is either reassigned — where the terms permit it (§6) — or
+released, and the register updated with the date. Not “to be tidied up
+later”.</li>
+<li>Wiping and re-provisioning the device removes the installation
+(<a href="/sops/DEV-15">DEV-15</a> §4). It does not release the vendor-side seat. Those are two
+separate actions and both are needed; doing only the first is how
+entitled and deployed counts drift apart.</li>
+<li>Where the leaver was the BUSINESS OWNER of a product in the
+register, that is a trigger in its own right: the product needs a new
+owner before the next renewal, or it is a candidate for retirement (the
+same pattern as a departing sponsor in <a href="/sops/ACC-10">ACC-10</a> §3).</li>
+<li>Where the leaver held the only account with a vendor’s
+administrative portal, that is an <a href="/sops/ACC-08">ACC-08</a> problem as well and it is
+urgent — an application nobody can administer is discovered at the worst
+possible moment.</li>
+</ol>
+<h2 id="12-service-levels">12. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A catalogue application</td>
+<td>Self-service. No ticket, no target, no IT involvement.</td>
+</tr>
+<tr class="even">
+<td>Incomplete request</td>
+<td>Returned within 1 coverage day, naming what is missing (<a href="/sops/GOV-02">GOV-02</a> §5).
+Never queued silently.</td>
+</tr>
+<tr class="odd">
+<td>“Do we already have it?” check (§2)</td>
+<td>Answered within 1 coverage day. Most requests that close, close
+here.</td>
+</tr>
+<tr class="even">
+<td>Complete request, no cost, no institutional data</td>
+<td>P3 — assessed and answered within 3 coverage days.</td>
+</tr>
+<tr class="odd">
+<td>Request needing the standard security and privacy review (§5)</td>
+<td>P4 — recommendation within 10 coverage days. The review is the work,
+not the delay.</td>
+</tr>
+<tr class="even">
+<td>Request needing Tier 4 cost approval</td>
+<td>P4 — to the next Tier 4 decision slot, with the date told to the
+requester at acknowledgement.</td>
+</tr>
+<tr class="odd">
+<td>“I cannot work because X is missing”</td>
+<td>P2 at Tier 2 — the person is blocked. The assessment runs in
+parallel; a workaround is not deferred behind it.</td>
+</tr>
+<tr class="even">
+<td>Packaging a new catalogue application</td>
+<td>P4, scheduled against protected capacity (<a href="/sops/GOV-06">GOV-06</a> §8). Packaging is
+the work that removes future tickets.</td>
+</tr>
+<tr class="odd">
+<td>Lab or meeting room image change</td>
+<td>Scheduled to the next quiet-period window (<a href="/sops/GOV-04">GOV-04</a> §7). Not
+accelerated mid-term.</td>
+</tr>
+<tr class="even">
+<td>Renewal notification to the business owner</td>
+<td>90 days before the renewal date.</td>
+</tr>
+<tr class="odd">
+<td>Under a declared Constrained state</td>
+<td>New packaging holds. Requests are still assessed and answered.</td>
+</tr>
+<tr class="even">
+<td>Under a declared Degraded state</td>
+<td>P4 not accepted (<a href="/sops/GOV-06">GOV-06</a> §7). The requester is told to resubmit, with
+the date the state is expected to clear.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13-records">13. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Software request, with the §2 outcome and every approval</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Security and privacy review, with accepted risks and the named
+accepter</td>
+<td>IT governance record</td>
+<td>Life of the software + 3 years</td>
+</tr>
+<tr class="odd">
+<td>Licence register (§6)</td>
+<td>IT register</td>
+<td>Live, plus 7 years after retirement</td>
+</tr>
+<tr class="even">
+<td>Entitled-against-deployed reconciliation</td>
+<td>IT register</td>
+<td>7 years — this is the audit defence</td>
+</tr>
+<tr class="odd">
+<td>Packaging record: version, source, owner, update path</td>
+<td>Tier 2 / Tier 3 record</td>
+<td>Life of the package</td>
+</tr>
+<tr class="even">
+<td>Extension allow list, with requesters and review dates</td>
+<td>IT register</td>
+<td>Live</td>
+</tr>
+<tr class="odd">
+<td>Annual review outcomes</td>
+<td>With the <a href="/sops/ACC-17">ACC-17</a> packet</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Vendor contracts, licence terms, data-processing agreements</td>
+<td>Finance / contract record</td>
+<td>Per organization contract retention</td>
+</tr>
+<tr class="odd">
+<td>Retirement and removal records</td>
+<td>IT register</td>
+<td>3 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="14-related-documents">14. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Software Policy</td>
+<td>the organization's software policy (existing)</td>
+<td>The governing policy. This document operationalises it and is
+subordinate to it.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-20">M365-20</a></td>
+<td>License Assignment, Reclamation &amp; Cost Attribution</td>
+<td>The Microsoft half. §4 and §7 there; §2 and §11 here.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-01">M365-01</a></td>
+<td>Microsoft 365 Service Description &amp; Supported Baseline</td>
+<td>What the organization already provides — the §2 table.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-17">M365-17</a> / <a href="/sops/M365-18">M365-18</a> / <a href="/sops/M365-19">M365-19</a></td>
+<td>Forms &amp; Bookings / Copilot / Power Platform</td>
+<td>The three most common §2 answers, and the build-versus-buy
+question.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-12">DEV-12</a></td>
+<td>Local Administrator Rights on Endpoints</td>
+<td>§10. The two documents answer each other and neither works
+alone.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-01">DEV-01</a></td>
+<td>Device Enrollment &amp; Lifecycle</td>
+<td>§3 and §8 — the waves that carry the §9 cutover.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-02">DEV-02</a></td>
+<td>Device Compliance &amp; Configuration Baseline</td>
+<td>A package that breaks a baseline condition is not deployable. §5
+there is the sequence §8 here follows.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-13">DEV-13</a></td>
+<td>Patch, Update &amp; Maintenance Window Standard</td>
+<td>Who updates the package after it is deployed, and what happens when
+it appears in a vulnerability notification.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-14">DEV-14</a></td>
+<td>Endpoint Security Agent &amp; MDR Escalation Standard</td>
+<td>§5.1 — two protection products on one device is a fault.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-15">DEV-15</a></td>
+<td>Device Reassignment, Wipe, Retirement &amp; Disposal</td>
+<td>§11.3 — removing the install is not releasing the seat.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-06">DEV-06</a> / <a href="/sops/DEV-18">DEV-18</a></td>
+<td>Labs &amp; shared devices / Meeting room AV</td>
+<td>Image changes, and the quiet-period window.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-16">ACC-16</a></td>
+<td>Application Onboarding, SSO &amp; SAML Claims</td>
+<td>Anything that authenticates. Runs alongside this, not after it.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-08">ACC-08</a></td>
+<td>Service, Application &amp; Non-Human Account Standard</td>
+<td>§8 there — OAuth consent and standing permissions.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-17">ACC-17</a></td>
+<td>Periodic Access Review &amp; Entitlement Recertification</td>
+<td>§11.2 — one packet, two questions.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-02">GOV-02</a></td>
+<td>Service Desk Intake &amp; Ticket Quality</td>
+<td>One front door; incomplete requests returned rather than
+queued.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-04">GOV-04</a></td>
+<td>IT Change Management &amp; Maintenance Windows</td>
+<td>An estate-wide deployment is a change; image changes take a
+window.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-01">GOV-01</a></td>
+<td>SOP Catalog Governance &amp; Document Control</td>
+<td>§9 — linking the governing policy from the page that holds it.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--the-software-request-form">Appendix A — The software
+request form</h2>
+<p>Twelve fields. Every one is mandatory and every one is used by
+somebody. Fields nobody reads get dropped at the next review.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Requester and department</td>
+<td>Named person. A department is not a requester.</td>
+</tr>
+<tr class="even">
+<td>Product, edition, version</td>
+<td>Exact. “Adobe” is not a product.</td>
+</tr>
+<tr class="odd">
+<td>What it is for</td>
+<td>One sentence, readable by a non-specialist. This is the field the
+approvers read.</td>
+</tr>
+<tr class="even">
+<td>Who will use it</td>
+<td>How many, named or by role, and whether the number will grow.</td>
+</tr>
+<tr class="odd">
+<td>Does it touch client, payroll or HR data?</td>
+<td>Yes / No / Not sure. “Not sure” routes to §5 and is a perfectly good
+answer.</td>
+</tr>
+<tr class="even">
+<td>Where does the data go?</td>
+<td>On the device, in the organization tenant, or to a vendor. If a
+vendor: which country, and do they use organization data to train
+anything?</td>
+</tr>
+<tr class="odd">
+<td>Cost</td>
+<td>One-off and recurring, per seat or per device, with the funding
+source and the budget holder named.</td>
+</tr>
+<tr class="even">
+<td>When is it needed, and what depends on it</td>
+<td>A date and a reason. “As soon as possible” sets no priority.</td>
+</tr>
+<tr class="odd">
+<td>Administrative rights</td>
+<td>Needed to install? Needed to run? Two separate answers.</td>
+</tr>
+<tr class="even">
+<td>Does it sign in with an organization account?</td>
+<td>If yes, this is also an <a href="/sops/ACC-16">ACC-16</a> intake and they run together.</td>
+</tr>
+<tr class="odd">
+<td>Where does it go?</td>
+<td>Individual devices, a departmental set, or a lab or meeting-room
+image.</td>
+</tr>
+<tr class="even">
+<td>Already installed anywhere?</td>
+<td>Including trials. Asked without reproach — IT needs to know what is
+on the estate.</td>
+</tr>
+<tr class="odd">
+<td>What was checked at §2, and why it does not fit</td>
+<td>The one question that closes the most requests, honestly, in ten
+minutes.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--the-security-review-questions-it-asks">Appendix B —
+The security review questions IT asks</h2>
+<p>Twelve questions, not sixty. A questionnaire nobody completes is not
+a control, and one completed dishonestly to get a piece of software is
+worse than none. The short form is questions 1, 2 and 9; the standard
+form is all twelve; the third depth adds <a href="/sops/ACC-16">ACC-16</a>, <a href="/sops/ACC-08">ACC-08</a> and a contract
+review.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>The question</th>
+<th>Why it is asked</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Where does the software come from, and how will it be obtained?</td>
+<td>Provenance is the largest single risk in free software (§7). The
+vendor’s own site or a recognised repository, verified where a signature
+or checksum exists.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>What does it reach — the device only, the network, or the
+internet?</td>
+<td>Determines whether this is a desktop decision or a network and data
+decision.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Does it hold, process or transmit client records, payroll or HR
+data?</td>
+<td>Routes the request to Tier 4 whatever it costs, including free. The
+sensitive classes in <a href="/sops/M365-15">M365-15</a> apply.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Where does the data physically live, and who else can see it?</td>
+<td>A vendor cloud is a data transfer. Sub-processors and training use
+are both fair questions and are frequently answered in the terms.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>How does a person sign in?</td>
+<td>organization identity via <a href="/sops/ACC-16">ACC-16</a>, or its own password store — which
+means another credential, no MFA, and no leaver process.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>How is a leaver removed?</td>
+<td>SCIM, an admin console, or nothing. Nothing means the <a href="/sops/ACC-17">ACC-17</a> §2
+annual review is the only control that will ever reach it (<a href="/sops/ACC-16">ACC-16</a>
+§7).</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Does it request tenant consent or OAuth permissions?</td>
+<td>That is an application identity with standing permissions, not an
+install. <a href="/sops/ACC-08">ACC-08</a> §8.</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Does it need administrative rights to install, or to run?</td>
+<td>To run is a <a href="/sops/DEV-12">DEV-12</a> exception and a standing weakening of the
+endpoint (§10).</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Who patches it, and how does an update reach the estate?</td>
+<td>Vendor channel, a managed package, or an unmanaged auto-updater.
+<a href="/sops/DEV-13">DEV-13</a> §3 has to be able to answer this before deployment, not
+after.</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>Does it install a driver, a service, or its own real-time
+protection?</td>
+<td>A second protection product on one device is a fault (<a href="/sops/DEV-14">DEV-14</a> §4). A
+kernel driver is a stability and support question as well as a security
+one.</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>Does it need an inbound firewall rule, an open port, or a vendor
+VPN?</td>
+<td>A network change under <a href="/sops/GOV-04">GOV-04</a> and a remote-access decision under
+<a href="/sops/DEV-10">DEV-10</a>, both of which can cost more than the software.</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>What happens if the organization stops using it?</td>
+<td>Can the data be extracted, in what format, and by whom? Asked at the
+start, because it cannot be asked usefully at the end.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Outcome: recommend, recommend with conditions, or decline with a
+reason. A residual risk that is accepted is accepted by a named person
+at Tier 4 in writing (§5). An assessment with no recorded outcome has
+not happened.</p>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

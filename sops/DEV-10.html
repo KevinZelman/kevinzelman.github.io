@@ -1,0 +1,417 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DEV-10 · Remote Access &amp; VPN Standard | Known Good</title>
+<meta name="description" content="What the VPN is actually for, who gets it, and why most people no longer need it.">
+<meta property="og:title" content="DEV-10 · Remote Access &amp; VPN Standard | Known Good">
+<meta property="og:description" content="What the VPN is actually for, who gets it, and why most people no longer need it.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="dev-10--remote-access--vpn-standard">DEV-10 · Remote Access
+&amp; VPN Standard</h1>
+<p><em>What the VPN is actually for, who gets it, and why most people no
+longer need it.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/DEV-10-Remote-Access-and-VPN-Standard.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/DEV-10.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/DEV-10">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>DEV-10</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>C. Device Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 2 — Advanced Technical Services, which already owns VPN.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually, and whenever a service moves from on-premises to Microsoft
+365.</td>
+</tr>
+<tr class="even">
+<td>Related existing policy</td>
+<td>Your organization's internet and network usage policy, if it has
+one. This standard puts it into practice.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>This document says what the organization’s VPN is for, who is
+entitled to it, and under what conditions — so that it is granted
+deliberately rather than by default, and so that a VPN ticket has an
+owner and a runbook.</p>
+<p>VPN failure tickets are a classic example of tickets that sit past
+their service target. Part of the reason they age is that nothing states
+who VPN is for or what a working state looks like, so there is no
+obvious owner and no definition of done.</p>
+<h2 id="2-two-populations-one-technology">2. Two populations, one
+technology</h2>
+<blockquote>
+<p><strong>The same tool is serving two very different situations, and
+only one of them is intended.</strong></p>
+<p>Staff who need to reach on-premises resources from off site. This is
+the purpose, and it is legitimate and shrinking.</p>
+<p>People using a VPN to hide where they are signing in from. This tends
+to surface alongside repeated account blocks and a suspicion of
+credential sharing, and the usual response is a verbal instruction not
+to use a VPN or share access. That instruction is correct, but it is
+only spoken.</p>
+<p>Writing the rule down serves both. Staff get a supported service with
+a clear entitlement. The second case becomes a published rule the
+organization can point to, rather than an instruction one staff member
+gave once.</p>
+</blockquote>
+<h2 id="3-what-the-vpn-is-for--and-what-it-is-not">3. What the VPN is
+for — and what it is not</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>The VPN is for</th>
+<th>The VPN is not for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Reaching on-premises systems that are not published for external
+access — file shares while they still exist, internal administrative
+interfaces, network equipment management.</td>
+<td>Reaching Microsoft 365. Outlook, Teams, SharePoint and OneDrive work
+from anywhere and do not need it. This misunderstanding drives a large
+share of VPN tickets.</td>
+</tr>
+<tr class="even">
+<td>Administrative access to infrastructure, by IT staff, from a
+compliant device.</td>
+<td>Making a personal device “safe”. The VPN protects the connection,
+not the endpoint (<a href="/sops/DEV-07">DEV-07</a>).</td>
+</tr>
+<tr class="odd">
+<td>A specific application that genuinely requires an on-site source
+address.</td>
+<td>Bypassing a geographic or network restriction, whether the
+organization’s or somebody else’s.</td>
+</tr>
+<tr class="even">
+<td>Vendor access to a named system, time-boxed (<a href="/sops/ACC-11">ACC-11</a>).</td>
+<td>Concealing where you are signing in from, or letting somebody else
+appear to be you (<a href="/sops/ACC-15">ACC-15</a> §3).</td>
+</tr>
+</tbody>
+</table></div>
+<p>The first row of the right-hand column is worth saying to every
+requester: if what you need is email, Teams or your files, you do not
+need the VPN and it will not make them work better. Answering that once,
+in writing, removes a recurring ticket category.</p>
+<h2 id="4-who-gets-it">4. Who gets it</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Population</th>
+<th>Entitlement</th>
+<th>Basis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>IT staff, Tiers 2–4</td>
+<td>Yes, standing.</td>
+<td>Infrastructure access is the job.</td>
+</tr>
+<tr class="even">
+<td>Staff with a stated on-premises need</td>
+<td>On request, with the need named.</td>
+<td>Reviewed annually; removed when the need ends.</td>
+</tr>
+<tr class="odd">
+<td>Staff generally</td>
+<td>Not by default.</td>
+<td>Microsoft 365 does not require it (§3).</td>
+</tr>
+<tr class="even">
+<td>Temporary workers</td>
+<td>Only where the specific role requires an on-premises system,
+approved by the supervisor and time-boxed to the engagement.</td>
+<td><a href="/sops/ACC-09">ACC-09</a>.</td>
+</tr>
+<tr class="odd">
+<td>Non-staff accounts (members, volunteers, customers)</td>
+<td>No.</td>
+<td>§7.</td>
+</tr>
+<tr class="even">
+<td>Vendors and contractors</td>
+<td>Time-boxed, to a named system, with a sponsor.</td>
+<td><a href="/sops/ACC-11">ACC-11</a>.</td>
+</tr>
+<tr class="odd">
+<td>Guests</td>
+<td>No.</td>
+<td><a href="/sops/ACC-10">ACC-10</a> §5.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="5-conditions-of-use">5. Conditions of use</h2>
+<ul>
+<li>Multifactor authentication is required. No exceptions, including for
+IT staff.</li>
+<li>The connecting device must be organization-owned and compliant
+(<a href="/sops/DEV-02">DEV-02</a>), or a personal device meeting <a href="/sops/DEV-07">DEV-07</a> where that is permitted
+for the role.</li>
+<li>Split tunnelling is configured so that Microsoft 365 traffic does
+not traverse the VPN. This improves performance for the user and reduces
+load on the concentrator — and it reinforces §3 by making the
+distinction visible.</li>
+<li>Sessions have a maximum duration and re-authenticate. A VPN session
+that persists for weeks is an unmonitored standing connection.</li>
+<li>Use is logged. Logs are used for troubleshooting and security
+investigation, per <a href="/sops/ACC-15">ACC-15</a> §6.</li>
+<li>The Internet &amp; Network Usage Policy applies to VPN traffic
+exactly as it does on site.</li>
+</ul>
+<h2 id="6-requesting-and-removing-it">6. Requesting and removing it</h2>
+<ol type="1">
+<li>The request states the specific on-premises system needed and why
+Microsoft 365 does not serve it. Tier 2 checks that answer honestly —
+most requests resolve here without a grant.</li>
+<li>The manager approves for staff; the supervisor for temporary
+workers; the sponsor for vendors.</li>
+<li>Confirm MFA is registered and the device is compliant before
+granting.</li>
+<li>Grant through a group, never individually (<a href="/sops/M365-11">M365-11</a> §2), so review
+and removal work.</li>
+<li>Set a review date. Annual for staff, end-of-engagement for temporary
+workers, contract-end for vendors.</li>
+<li>Remove on separation and on role change (<a href="/sops/ACC-01">ACC-01</a> §6.2, §7.2) — this
+is one of the entitlements most often left behind at a mover.</li>
+<li>Remove at review where the stated need no longer exists. The need
+was named at grant precisely so this question is answerable.</li>
+</ol>
+<h2 id="7-the-non-staff-question">7. The non-staff question</h2>
+<p>Non-staff accounts do not receive organization VPN access. Everything
+they need, such as Microsoft 365 and the portals, is published for
+access from anywhere.</p>
+<p>Separately, and more importantly: using a personal VPN or proxy to
+obscure the location an organization account signs in from, or to enable
+somebody else to sign in as you, is prohibited under <a href="/sops/ACC-15">ACC-15</a> §3. That is
+now a written rule rather than an instruction given in a difficult
+conversation.</p>
+<blockquote>
+<p><strong>A caution worth holding</strong></p>
+<p>VPN use is not evidence of wrongdoing. People use VPNs for privacy,
+on public Wi-Fi, and because a device came with one enabled. People who
+travel or work abroad may use one routinely and entirely
+legitimately.</p>
+<p>It becomes relevant only alongside other indicators — the <a href="/sops/ACC-05">ACC-05</a> §5
+repeat ladder, unfamiliar sign-in patterns, or an account blocked
+repeatedly. Treating VPN use alone as suspicious would be both wrong and
+corrosive.</p>
+</blockquote>
+<h2 id="8-where-this-is-going">8. Where this is going</h2>
+<p>The VPN’s scope shrinks with every service that moves. Retiring the
+old network drives removes one of the largest remaining reasons staff
+need it (<a href="/sops/M365-13">M365-13</a>), and application publishing through Entra can remove
+most of the rest.</p>
+<ul>
+<li>Each time a service moves to Microsoft 365 or is published through
+Entra, review whether the VPN entitlements that existed for it can be
+withdrawn.</li>
+<li>The target is a small VPN population — IT staff and a named list —
+rather than a general staff entitlement.</li>
+<li>This is worth stating as a direction because it changes how requests
+should be handled today: the question is “what do you need to reach, and
+can we publish it instead?”, not “should you have VPN?”.</li>
+</ul>
+<h2 id="9-service-levels">9. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VPN not connecting, entitled user blocked from work</td>
+<td>P2 — 4 coverage hours.</td>
+</tr>
+<tr class="even">
+<td>VPN down for multiple users</td>
+<td>P1 at Tier 3.</td>
+</tr>
+<tr class="odd">
+<td>New VPN request, need stated and approved</td>
+<td>P3 — 3 coverage days.</td>
+</tr>
+<tr class="even">
+<td>Request where Microsoft 365 already serves the need</td>
+<td>Answered at Tier 1 in the conversation. Not a ticket that ages.</td>
+</tr>
+<tr class="odd">
+<td>Removal on separation or role change</td>
+<td>With the <a href="/sops/ACC-01">ACC-01</a> procedure.</td>
+</tr>
+<tr class="even">
+<td>Annual entitlement review</td>
+<td>Tier 2, on schedule.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10-records">10. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Entitlement register: person, stated need, approver, review
+date</td>
+<td>IT register</td>
+<td>Live + 3 years</td>
+</tr>
+<tr class="even">
+<td>Requests declined because M365 serves the need</td>
+<td>Ticket</td>
+<td>1 year — useful evidence for §8</td>
+</tr>
+<tr class="odd">
+<td>Connection logs</td>
+<td>VPN platform</td>
+<td>Per <a href="/sops/M365-16">M365-16</a></td>
+</tr>
+<tr class="even">
+<td>Annual review outcomes</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-related-documents">11. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Internet Policy</td>
+<td>Your organization's internet and network usage policy</td>
+<td>The governing policy. This standard operationalises it.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-15">ACC-15</a></td>
+<td>Acceptable Use &amp; Credential-Sharing Standard</td>
+<td>§3 — VPN misuse, and §7 here.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-05">ACC-05</a></td>
+<td>Account Lockout Triage &amp; Escalation</td>
+<td>Where VPN use becomes relevant as one indicator among several.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-02">DEV-02</a></td>
+<td>Device Compliance &amp; Configuration Baseline</td>
+<td>Condition of use.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-07">DEV-07</a></td>
+<td>Personally-Owned Device Access Standard</td>
+<td>Personal devices connecting.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-13">M365-13</a></td>
+<td>File Share Retirement</td>
+<td>Removes one of the largest remaining reasons for VPN.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>Removal at mover and leaver.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-09">ACC-09</a> / <a href="/sops/ACC-11">ACC-11</a></td>
+<td>Temporary worker / Vendor standards</td>
+<td>Time-boxed entitlements.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments</td>
+<td>Supplies §9.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--do-i-need-the-vpn">Appendix A — “Do I need the
+VPN?”</h2>
+<p>Tier 1 desk card, and the source for an end-user article. Most
+answers are no, and that is good news for the person asking.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>What do you need to reach?</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Email, Teams, SharePoint, OneDrive</td>
+<td>No VPN needed. These work from anywhere, and the VPN will not make
+them faster.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>A portal — the staff portal, the knowledge base, a web app</td>
+<td>No VPN needed.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>A file on an old network drive</td>
+<td>Yes for now — and it is moving to SharePoint, at which point you
+will not need it (<a href="/sops/M365-13">M365-13</a>).</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>An internal administrative system with no external address</td>
+<td>Yes. State which system on the request.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Network equipment or a server</td>
+<td>Yes, if you are IT.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>“I just thought I should have it”</td>
+<td>No. Ask what you are trying to do — there is usually a better
+answer.</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>A non-staff account asking for VPN</td>
+<td>No. Everything they need is published (§7).</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

@@ -1,0 +1,443 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M365-14 · External Sharing &amp; Guest Access Governance | Known Good</title>
+<meta name="description" content="How somebody outside the organization gets access to something inside it — with a sponsor, a purpose and an end date.">
+<meta property="og:title" content="M365-14 · External Sharing &amp; Guest Access Governance | Known Good">
+<meta property="og:description" content="How somebody outside the organization gets access to something inside it — with a sponsor, a purpose and an end date.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="m365-14--external-sharing--guest-access-governance">M365-14 ·
+External Sharing &amp; Guest Access Governance</h1>
+<p><em>How somebody outside the organization gets access to something
+inside it — with a sponsor, a purpose and an end date.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/M365-14-External-Sharing-and-Guest-Access-Governance.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/M365-14.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/M365-14">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>M365-14</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>A. Microsoft 365</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 3 — Expert Services owns the tenant configuration; Tier 2
+executes individual requests.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually, and whenever tenant sharing settings change.</td>
+</tr>
+<tr class="even">
+<td>Depends on</td>
+<td><a href="/sops/M365-15">M365-15</a> for the sharing rules by classification.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>Most organizations collaborate outside their walls, and external
+access is legitimate and frequent: consultants, partner organizations,
+auditors, vendors, visiting specialists. This document does not make it
+harder. It makes it accountable, which is a different thing.</p>
+<p>A familiar case: a staff member invites an external person into the
+tenant. That person completes multifactor registration and becomes, in
+every technical sense, a participant in the organization’s Microsoft 365
+environment. There is no record of who sponsored them, what for, or when
+it should end. The invitation is probably appropriate; nothing about the
+process would tell you if it were not.</p>
+<blockquote>
+<p><strong>The problem with guests is not the invitation. It is the
+absence of an ending.</strong></p>
+<p>A guest account with no expiry persists indefinitely, retaining
+whatever access it was given, long after the project that justified it.
+Nobody notices, because nobody is looking for something that was never
+recorded.</p>
+<p>Every control in this document is aimed at that: making external
+access end by default, rather than persist by default.</p>
+</blockquote>
+<h2 id="2-the-three-things-every-external-access-must-have">2. The three
+things every external access must have</h2>
+<div class="tbl"><table>
+<tbody>
+<tr class="odd">
+<td>A sponsor</td>
+<td>A named staff member who is accountable for this person having
+access. Not a department — a person. The sponsor confirms at review and
+is told when the access expires.</td>
+</tr>
+<tr class="even">
+<td>A purpose</td>
+<td>One sentence saying why. It is what makes review possible: at expiry
+the question is “is this still true?”, which is answerable, rather than
+“does this person still need access?”, which is not.</td>
+</tr>
+<tr class="odd">
+<td>An end date</td>
+<td>Default 90 days. Renewable on the sponsor’s request. There is no
+such thing as a permanent guest — a genuinely permanent external
+relationship is a vendor or contractor account under <a href="/sops/ACC-11">ACC-11</a>, which has
+its own governance.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="3-who-may-create-a-guest">3. Who may create a guest</h2>
+<blockquote>
+<p><strong>Only IT Account Services. End-user guest invitation is
+disabled.</strong></p>
+<p>In many tenants this is a change from the default behaviour, and it
+is the central control in this document. It is also the one that will
+generate complaints, so the reasoning should be stated plainly rather
+than defended case by case.</p>
+<p>When any staff member can invite an external identity, the
+organization has no way to know how many exist, who vouched for them, or
+what they can reach. Disabling it costs a request; leaving it enabled
+costs the ability to answer a basic question about who is in the
+tenant.</p>
+<p>The trade is deliberately mitigated by §10: a guest request is a
+same-day action, not a project.</p>
+</blockquote>
+<p>Where a department needs external collaboration regularly — a sales
+team with partner companies, a fundraising team with donors — the answer
+is a standing arrangement agreed once with Tier 3, not per-request
+friction or an exception to §3.</p>
+<h2 id="4-requesting-external-access">4. Requesting external access</h2>
+<ol type="1">
+<li>The sponsor raises a ticket with: the person’s name and
+organisation, their email address, the purpose in one sentence, what
+they need to reach, and the end date.</li>
+<li>Tier 2 checks the classification of what they will reach (<a href="/sops/M365-15">M365-15</a>
+§5). CONFIDENTIAL requires the site owner and Tier 3; RESTRICTED is not
+shared by this mechanism at all.</li>
+<li>Tier 2 creates the guest, sets the display name to include the
+organisation so staff can see at a glance who is external (<a href="/sops/ACC-02">ACC-02</a> §3),
+and records the sponsor, purpose and expiry.</li>
+<li>Access is granted to a group, not to the individual (<a href="/sops/M365-11">M365-11</a> §2),
+and scoped to exactly what the purpose requires.</li>
+<li>The guest completes MFA registration before reaching anything.
+External identities are subject to the same authentication requirements
+as organization accounts (<a href="/sops/ACC-03">ACC-03</a> §5.1).</li>
+<li>The sponsor is told the expiry date at the point of creation, so it
+is never a surprise.</li>
+</ol>
+<h2 id="5-what-may-be-shared-externally-by-classification">5. What may
+be shared externally, by classification</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Level</th>
+<th>External sharing</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PUBLIC</td>
+<td>Freely.</td>
+<td>It is public.</td>
+</tr>
+<tr class="even">
+<td>INTERNAL</td>
+<td>To a sponsored guest with an expiry.</td>
+<td>The ordinary case. Most external collaboration is here.</td>
+</tr>
+<tr class="odd">
+<td>CONFIDENTIAL</td>
+<td>To a sponsored guest, expiry 90 days maximum, approved by the site
+owner and Tier 3.</td>
+<td>Named individuals only. Never a whole site where a single library
+would do.</td>
+</tr>
+<tr class="even">
+<td>RESTRICTED</td>
+<td>Not by this mechanism.</td>
+<td>Use an agreed secure channel, recorded, with Tier 4 aware. If the
+answer seems to be “but we need to send it”, that is a Tier 4
+conversation about the right mechanism.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="6-anonymous-links">6. Anonymous links</h2>
+<p>“Anyone with the link” sharing creates access that belongs to no one,
+cannot be attributed, does not expire unless configured to, and travels
+wherever the link is forwarded.</p>
+<ul>
+<li>Prohibited for CONFIDENTIAL and RESTRICTED, without exception.</li>
+<li>Discouraged for INTERNAL. Named sharing is barely more effort and is
+auditable.</li>
+<li>Where enabled, links carry a default expiry set at tenant level — 30
+days is a reasonable value — so that a link forgotten is a link that
+stops working.</li>
+<li>Acceptable for genuinely public material, where it is simply a
+convenient distribution method.</li>
+</ul>
+<h2 id="7-expiry-and-review">7. Expiry and review</h2>
+<ol type="1">
+<li>At 14 days before expiry, the sponsor is asked whether the purpose
+still holds. One question, answerable in a word.</li>
+<li>No response means the access expires. This is the important part —
+expiry is the default and renewal is the action, not the reverse.</li>
+<li>Renewal extends by 90 days and records the sponsor’s
+confirmation.</li>
+<li>Quarterly, Tier 2 produces the full guest list with sponsors,
+purposes and expiry dates, and it goes to Tier 4. A guest with no
+identifiable sponsor is removed rather than investigated.</li>
+<li>Where a sponsor leaves the organization, their guests are reassigned
+or expired as part of the leaver procedure (<a href="/sops/ACC-01">ACC-01</a> §7.2 step 9).</li>
+</ol>
+<h2 id="8-removing-a-guest">8. Removing a guest</h2>
+<ul>
+<li>At expiry, automatically.</li>
+<li>When the sponsor says the work is done — sponsors should be
+encouraged to do this and never made to feel it is a bother.</li>
+<li>When the sponsor leaves and nobody takes over.</li>
+<li>At quarterly review where the purpose no longer holds.</li>
+<li>Immediately, on Tier 4 instruction, where there is a security
+concern. Removal takes away access. Content the guest contributed stays
+with the organization, which is worth saying to sponsors who hesitate to
+end access on a collaborative project.</li>
+</ul>
+<h2 id="9-tenant-configuration">9. Tenant configuration</h2>
+<p>Tier 3 owns these settings and changes to them go through <a href="/sops/M365-21">M365-21</a>.
+Recorded here so the intent is documented alongside the
+configuration.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Setting</th>
+<th>Intent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Guest invitation</td>
+<td>Restricted to IT Account Services (§3).</td>
+</tr>
+<tr class="even">
+<td>Default sharing link type</td>
+<td>Specific people, not anyone.</td>
+</tr>
+<tr class="odd">
+<td>Anonymous link expiry</td>
+<td>Enabled, 30 days.</td>
+</tr>
+<tr class="even">
+<td>Guest MFA</td>
+<td>Required (<a href="/sops/ACC-03">ACC-03</a>).</td>
+</tr>
+<tr class="odd">
+<td>Sharing on CONFIDENTIAL and RESTRICTED sites</td>
+<td>External sharing off at site level; exceptions per §5 rather than by
+site setting.</td>
+</tr>
+<tr class="even">
+<td>Guest inactivity</td>
+<td>Reported quarterly; feeds §7.</td>
+</tr>
+<tr class="odd">
+<td>Allowed and blocked domains</td>
+<td>Reviewed annually. A blocked-domain list is worth maintaining where
+there is a specific reason and worth not maintaining otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10-service-levels">10. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Request</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Guest access to INTERNAL content, complete request</td>
+<td>P3 — same coverage day where possible. Speed here is what makes §3
+acceptable.</td>
+</tr>
+<tr class="even">
+<td>Guest access to CONFIDENTIAL content</td>
+<td>P3 — 3 coverage days, allowing for owner and Tier 3 approval.</td>
+</tr>
+<tr class="odd">
+<td>Renewal on sponsor confirmation</td>
+<td>Same day.</td>
+</tr>
+<tr class="even">
+<td>Removal on sponsor request</td>
+<td>Same day.</td>
+</tr>
+<tr class="odd">
+<td>Urgent removal on security grounds</td>
+<td>P1 — 30 minutes (<a href="/sops/GOV-03">GOV-03</a>).</td>
+</tr>
+<tr class="even">
+<td>Quarterly guest report</td>
+<td>Produced by Tier 2 on schedule.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-records">11. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Guest register: person, organisation, sponsor, purpose, scope,
+expiry</td>
+<td>IT register</td>
+<td>Live, plus 3 years after removal</td>
+</tr>
+<tr class="even">
+<td>Requests and approvals</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Renewals with sponsor confirmation</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Quarterly review outcomes</td>
+<td>Tier 4 record</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Removals, with reason</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="12-related-documents">12. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/M365-15">M365-15</a></td>
+<td>Data Classification &amp; Handling</td>
+<td>Supplies §5.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-11">M365-11</a></td>
+<td>SharePoint &amp; OneDrive Permission Management</td>
+<td>Guests are permissioned through groups like everyone else.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-10">M365-10</a></td>
+<td>SharePoint Site Request, Provisioning &amp; Ownership</td>
+<td>Site-level external sharing settings.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-21">M365-21</a></td>
+<td>Tenant Configuration Change Control</td>
+<td>Changes to §9.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-10">ACC-10</a></td>
+<td>Guest &amp; Sponsored External Account Standard</td>
+<td>The account-side standard. This document is the sharing side; the
+two are read together.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-11">ACC-11</a></td>
+<td>Vendor, Contractor &amp; Consultant Account Standard</td>
+<td>Where a genuinely long-term external relationship belongs.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>§7.2 step 9 — sponsor departure.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA Enrollment</td>
+<td>Guests register MFA like everyone else.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response</td>
+<td>Urgent removal.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--request-card">Appendix A — Request card</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Have you got</th>
+<th>If not</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>A named internal sponsor — a person, not a department</td>
+<td>No sponsor, no guest. Ask who is accountable for this person being
+here.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>A purpose, in one sentence</td>
+<td>Ask for it. It is what makes review possible later.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>An end date</td>
+<td>Default to 90 days. There is no permanent guest.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>The classification of what they will reach</td>
+<td>Check <a href="/sops/M365-15">M365-15</a>. RESTRICTED is not shared this way at all.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Site owner approval, if CONFIDENTIAL</td>
+<td>Get it before creating anything.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>A group to put them in</td>
+<td>Never grant to the individual (<a href="/sops/M365-11">M365-11</a> §2).</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Display name including their organisation</td>
+<td>Set it. Staff need to see at a glance who is external.</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>The sponsor told of the expiry date</td>
+<td>Tell them now, so it is never a surprise.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

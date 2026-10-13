@@ -1,0 +1,445 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACC-07 · Privileged &amp; Administrative Account Standard | Known Good</title>
+<meta name="description" content="How the accounts that can change everything are created, authenticated, used and reviewed.">
+<meta property="og:title" content="ACC-07 · Privileged &amp; Administrative Account Standard | Known Good">
+<meta property="og:description" content="How the accounts that can change everything are created, authenticated, used and reviewed.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="acc-07--privileged--administrative-account-standard">ACC-07 ·
+Privileged &amp; Administrative Account Standard</h1>
+<p><em>How the accounts that can change everything are created,
+authenticated, used and reviewed.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/ACC-07-Privileged-and-Administrative-Account-Standard.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/ACC-07.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/ACC-07">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>ACC-07</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>B. Account Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 3 — Expert Services. Tier 4 approves every assignment.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Every six months.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>A privileged account can change the configuration everything else
+depends on. It is the account an attacker actually wants, and the
+population is small enough that stronger controls cost almost nothing to
+operate.</p>
+<p>The most important practice is simple: administrative work is done
+from separate identities, usually on the onmicrosoft.com domain, rather
+than from ordinary staff accounts. This document writes down that
+practice and the rules that should go with it.</p>
+<h2 id="2-what-counts-as-privileged">2. What counts as privileged</h2>
+<ul>
+<li>Any Entra ID directory role — Global Administrator, User
+Administrator, Intune Administrator, Exchange Administrator, Helpdesk
+Administrator and the rest.</li>
+<li>Any role that can read a credential or a recovery key, including
+BitLocker recovery keys (<a href="/sops/DEV-03">DEV-03</a> §7).</li>
+<li>Domain and enterprise administration in on-premises Active
+Directory.</li>
+<li>Administrative access to the HR and user system of record, the ERP
+estate, the ticketing system, Intune, the network estate, and the
+telephony platform.</li>
+<li>Any account that can grant any of the above to somebody else. This
+is the one people forget, and it is the most powerful of the set. Vendor
+and partner administrative access — for example, an implementation
+partner on the HR system servers, or a managed security provider in the
+security tooling — is privileged access held by somebody outside the
+organization and is governed here together with <a href="/sops/ACC-11">ACC-11</a>.</li>
+</ul>
+<h2 id="3-separate-identities">3. Separate identities</h2>
+<blockquote>
+<p><strong>Administrative work is never done from a person’s ordinary
+account.</strong></p>
+<p>A staff account reads email, opens attachments, browses the web and
+joins meetings. That is a large attack surface, and it is exactly the
+surface a phishing campaign targets. Attaching directory privilege to it
+means one successful phish is a tenant compromise rather than a mailbox
+compromise.</p>
+<p>A separate administrative identity does none of those things, which
+is what makes the control work.</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Rule</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Naming</td>
+<td>One consistent pattern, for example initials plus SA on the
+onmicrosoft.com domain. Visually distinct from a mail-enabled staff
+account at a glance (<a href="/sops/ACC-02">ACC-02</a> §3).</td>
+</tr>
+<tr class="even">
+<td>No mailbox</td>
+<td>Administrative identities are not mail-enabled and do not receive
+email. If one needs to receive a notification, that notification goes to
+the person’s ordinary account or to a monitored address.</td>
+</tr>
+<tr class="odd">
+<td>No licence beyond what the role requires</td>
+<td>An administrative identity with a full productivity licence is an
+administrative identity somebody will start working from.</td>
+</tr>
+<tr class="even">
+<td>One per person</td>
+<td>Never shared. A shared administrative account defeats every audit
+and makes the §10 records meaningless.</td>
+</tr>
+<tr class="odd">
+<td>Not used for daily work</td>
+<td>Sign in to it to do the administrative task, sign out afterwards.
+Where the tooling allows, use a separate browser profile so the two
+sessions cannot be confused.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="4-authentication">4. Authentication</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Current state</th>
+<th>Target state</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Method</td>
+<td>Phishing-resistant only — Windows Hello for Business, platform
+credential, or FIDO2 security key. SMS and voice are not permitted for
+privileged accounts in either state.</td>
+<td>Unchanged. Privileged accounts move to phishing-resistant first, as
+Wave 0 of the <a href="/sops/ACC-03">ACC-03</a> §11.2 rollout.</td>
+</tr>
+<tr class="even">
+<td>Self-service reset</td>
+<td>Not available. Never available.</td>
+<td>Unchanged.</td>
+</tr>
+<tr class="odd">
+<td>Recovery</td>
+<td>Verified in person or by video (<a href="/sops/ACC-06">ACC-06</a> §8) — V1 or V2 only, no
+vouching, no callback.</td>
+<td>Unchanged, with a Temporary Access Pass rather than a password.</td>
+</tr>
+<tr class="even">
+<td>Conditional Access</td>
+<td>Privileged roles required to sign in from a compliant device.</td>
+<td>Plus location and risk conditions as Conditional Access
+matures.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Privileged accounts go first in the phishing-resistant rollout for
+two reasons: they carry the most risk, and the people who will have to
+support everybody else through it should hit the problems first (<a href="/sops/ACC-03">ACC-03</a>
+§11.2).</p>
+<h2 id="5-assigning-a-role">5. Assigning a role</h2>
+<ol type="1">
+<li>The request names the person, the role, the reason, and how long it
+is needed. “Ongoing” is an acceptable answer for a substantive job
+function and needs saying explicitly rather than assumed.</li>
+<li>Tier 4 approves. Every assignment, including for Tier 3 staff and
+including for the Head of IT.</li>
+<li>Grant the narrowest role that does the job. Global Administrator is
+not the answer to “they need to reset passwords” — Helpdesk
+Administrator is, and the difference matters. Where a built-in role is
+far broader than the need, build a custom role.</li>
+<li>Assign to the person’s administrative identity, never to their staff
+account.</li>
+<li>Where the platform supports just-in-time elevation, use it: the role
+is eligible rather than permanently active, and activation is requested,
+time-boxed and logged. This is the single largest reduction in standing
+privilege available and it should be the default for anything above
+Helpdesk Administrator.</li>
+<li>Record the assignment, the approver, the reason and any end
+date.</li>
+</ol>
+<h2 id="6-break-glass-accounts">6. Break-glass accounts</h2>
+<p>Two accounts exist so that the organization is never locked out of
+its own tenant — by a Conditional Access misconfiguration, a federation
+failure, or the unavailability of the people who normally hold
+access.</p>
+<ul>
+<li>Two, not one. A single break-glass account is a single point of
+failure at exactly the moment nothing else works.</li>
+<li>Cloud-only, permanently assigned Global Administrator, excluded from
+every Conditional Access policy — and that exclusion is tested before
+each policy goes live, not assumed (<a href="/sops/ACC-03">ACC-03</a> §11.1).</li>
+<li>Credentials split and held in sealed physical custody by two
+separate senior people, so no one person can use one alone.</li>
+<li>Excluded from MFA enforcement, which is why the physical custody
+matters.</li>
+<li>Sign-in generates an immediate alert to the Head of IT and to Tier
+3. Any use is an incident until shown otherwise (<a href="/sops/GOV-03">GOV-03</a>).</li>
+<li>Tested twice a year: sign in, confirm access, rotate credentials,
+reseal, record. An untested break-glass account is a break-glass account
+that does not work.</li>
+</ul>
+<h2 id="7-using-a-privileged-account">7. Using a privileged account</h2>
+<ul>
+<li>Sign in, do the task, sign out. Do not leave a privileged session
+open alongside ordinary work.</li>
+<li>Do not read email, browse, or open documents from a privileged
+session.</li>
+<li>Record what you changed. Tenant configuration changes go through
+<a href="/sops/M365-21">M365-21</a>; device and network changes through <a href="/sops/GOV-04">GOV-04</a>.</li>
+<li>Verify identity per <a href="/sops/ACC-06">ACC-06</a> before performing an account action for
+somebody else — privileged access does not exempt the holder from the
+verification gate. It makes it more important.</li>
+<li>Retrieving a recovery key or a credential is a recorded, audited act
+with a verified requester (<a href="/sops/DEV-03">DEV-03</a> §7).</li>
+</ul>
+<h2 id="8-review">8. Review</h2>
+<ol type="1">
+<li>Quarterly, Tier 3 produces the full list of privileged assignments —
+who, what role, since when, approved by whom, and last used.</li>
+<li>Tier 4 confirms each one is still required. Last-used is the most
+informative column: a role nobody has activated in six months is a role
+nobody needs.</li>
+<li>Anything unconfirmed is removed. As everywhere else in this
+catalogue, silence is not approval.</li>
+<li>Vendor and partner administrative access is reviewed in the same
+cycle, against the current contract.</li>
+<li>The list of people who can read recovery keys is reviewed
+specifically, because it grows quietly and is easy to overlook (<a href="/sops/DEV-03">DEV-03</a>
+§7).</li>
+<li>Break-glass credentials are tested and rotated twice a year, and
+that test is recorded.</li>
+</ol>
+<h2 id="9-service-levels">9. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>New privileged role assignment</td>
+<td>P3 — 3 coverage days, allowing for Tier 4 approval.</td>
+</tr>
+<tr class="even">
+<td>Just-in-time activation by an eligible holder</td>
+<td>Immediate, self-service, logged.</td>
+</tr>
+<tr class="odd">
+<td>Privileged account recovery, verified V1 or V2</td>
+<td>P2 — 2 coverage hours.</td>
+</tr>
+<tr class="even">
+<td>Removal on separation or role change</td>
+<td>Immediate. This is the highest-priority line of the leaver
+checklist.</td>
+</tr>
+<tr class="odd">
+<td>Break-glass sign-in detected</td>
+<td>P1 — treated as an incident until shown otherwise.</td>
+</tr>
+<tr class="even">
+<td>Quarterly review pack</td>
+<td>Produced by Tier 3 on schedule.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10-records">10. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Privileged assignment register: person, role, reason, approver,
+dates</td>
+<td>IT governance record</td>
+<td>7 years</td>
+</tr>
+<tr class="even">
+<td>Just-in-time activations</td>
+<td>Entra audit log</td>
+<td>Per tenant retention, exported quarterly</td>
+</tr>
+<tr class="odd">
+<td>Quarterly review outcomes</td>
+<td>Tier 4 record</td>
+<td>7 years</td>
+</tr>
+<tr class="even">
+<td>Break-glass tests and rotations</td>
+<td>Sealed record + Tier 4</td>
+<td>7 years</td>
+</tr>
+<tr class="odd">
+<td>Break-glass sign-ins</td>
+<td>Incident record</td>
+<td>7 years</td>
+</tr>
+<tr class="even">
+<td>Recovery-key read permission holders, reviewed quarterly</td>
+<td>IT governance record</td>
+<td>3 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-related-documents">11. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA Enrollment, Reset &amp; Account Recovery</td>
+<td>§4, and Wave 0 of the phishing-resistant rollout.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-06">ACC-06</a></td>
+<td>Identity Verification</td>
+<td>§8 — V1 or V2 only for privileged accounts.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-02">ACC-02</a></td>
+<td>Account Naming Standard</td>
+<td>The naming pattern in §3.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>Privileged removal on separation and role change.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-08">ACC-08</a></td>
+<td>Service, Application &amp; Non-Human Account Standard</td>
+<td>Non-human privilege, which is governed separately.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-11">ACC-11</a></td>
+<td>Vendor, Contractor &amp; Consultant Account Standard</td>
+<td>Vendor administrative access.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-17">ACC-17</a></td>
+<td>Periodic Access Review</td>
+<td>Consumes §8.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-03">DEV-03</a></td>
+<td>Disk Encryption &amp; BitLocker Recovery Keys</td>
+<td>§7 — who may read a key.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-12">DEV-12</a></td>
+<td>Local Administrator Rights on Endpoints</td>
+<td>The endpoint equivalent of this document.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-21">M365-21</a></td>
+<td>Tenant Configuration Change Control</td>
+<td>Where privileged changes are recorded.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response</td>
+<td>Break-glass use, and privileged account compromise.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--privileged-account-checklist">Appendix A —
+Privileged account checklist</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>✓</th>
+<th>Before the role is assigned</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>☐</td>
+<td>Separate administrative identity exists, not the staff account</td>
+<td>Account name</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Not mail-enabled</td>
+<td>Confirmed</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Phishing-resistant method registered — no SMS, no voice</td>
+<td>Method</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Narrowest role that does the job, not Global Administrator by
+default</td>
+<td>Role name</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Just-in-time eligibility rather than standing assignment, where
+supported</td>
+<td>Activation model</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Tier 4 approved, with a reason</td>
+<td>Approver + reason</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>End date recorded, or “ongoing” stated explicitly</td>
+<td>Date or note</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Added to the quarterly review register</td>
+<td>Register entry</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Holder has read §7 — sign in, do the task, sign out</td>
+<td>Confirmed</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

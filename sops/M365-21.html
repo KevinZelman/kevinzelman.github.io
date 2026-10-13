@@ -1,0 +1,377 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M365-21 · Tenant Configuration Change Control | Known Good</title>
+<meta name="description" content="How a change to the Microsoft 365 tenant is proposed, recorded and reversed — and why the directory attribute register matters more than it sounds.">
+<meta property="og:title" content="M365-21 · Tenant Configuration Change Control | Known Good">
+<meta property="og:description" content="How a change to the Microsoft 365 tenant is proposed, recorded and reversed — and why the directory attribute register matters more than it sounds.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="m365-21--tenant-configuration-change-control">M365-21 · Tenant
+Configuration Change Control</h1>
+<p><em>How a change to the Microsoft 365 tenant is proposed, recorded
+and reversed — and why the directory attribute register matters more
+than it sounds.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/M365-21-Tenant-Configuration-Change-Control.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/M365-21.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/M365-21">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>M365-21</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>A. Microsoft 365</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 4 — IT Management approves; Tier 3 executes.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>A tenant setting changed on a Tuesday can affect every member of the
+organization on Wednesday, and there is frequently no way to tell
+afterwards what was changed or why. This document is a light change
+process for tenant configuration — light enough to actually be used,
+which is the only kind that works in a small department.</p>
+<h2 id="2-what-counts-as-a-tenant-change">2. What counts as a tenant
+change</h2>
+<ul>
+<li>Conditional Access policies, authentication methods and
+authentication strengths.</li>
+<li>Sharing and guest settings, at tenant or site-collection level.</li>
+<li>Retention, labelling and data loss prevention policies.</li>
+<li>Directory schema: extension attributes, and what populates them
+(§3).</li>
+<li>Dynamic group rules over a whole population.</li>
+<li>Licensing assignment rules.</li>
+<li>Mail flow rules, connectors and the external-mail banner.</li>
+<li>Anything that changes what a user sees or can do without them asking
+for it. Not in scope: adding a person to a group, provisioning a site or
+mailbox, or any per-user action — those are governed by their own
+documents. The test is whether the change affects a population rather
+than a person.</li>
+</ul>
+<h2 id="3-the-finite-resources">3. The finite resources</h2>
+<blockquote>
+<p><strong>Some tenant resources cannot be un-allocated once
+committed.</strong></p>
+<p>Directory extension attributes are the clearest example. There are
+fifteen, each can serve one purpose, and once a system depends on one it
+cannot be repurposed without breaking that system.</p>
+<p>A typical case: a department asks for a new dynamic group, and the
+attribute it needs has already been committed to the ticketing system.
+Declining is the correct answer and it is very hard to explain, because
+the commitment was made at some point by somebody for a good reason and
+nothing recorded it.</p>
+<p>So: no attribute is committed without a change record under this
+document, and IT maintains a register of what each one holds, what
+populates it, and what depends on it (<a href="/sops/M365-04">M365-04</a> §7).</p>
+</blockquote>
+<p>The same care applies to anything else the tenant has a limited
+number of, or that becomes load-bearing once something depends on it —
+mail domains, tenant-wide policy slots, and naming conventions once they
+are in use.</p>
+<h2 id="4-proposing-a-change">4. Proposing a change</h2>
+<ol type="1">
+<li>Anybody in IT may propose. The proposal states: what changes, why,
+who it affects, what could go wrong, and how it is reversed.</li>
+<li>That last field is the important one. A change nobody can describe
+reversing is a change nobody should make on a Friday.</li>
+<li>Tier 3 assesses the blast radius: how many people, which
+populations, and whether anybody is affected who cannot easily tell IT
+that something broke — people on leave, part-time staff, guests.</li>
+<li>Tier 4 approves. For anything affecting the whole organization, the
+Head of IT approves explicitly rather than by absence of objection.</li>
+<li>Where the change can be piloted, it is piloted. Where it can run in
+report-only first, it does.</li>
+<li>Schedule it under <a href="/sops/GOV-04">GOV-04</a>. Not at the end of a Friday, and not during
+a business deadline or the first week of a busy season.</li>
+<li>Make the change, verify it did what was intended, and record it per
+§6.</li>
+</ol>
+<h2 id="5-changes-that-require-extra-care">5. Changes that require extra
+care</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Change</th>
+<th>The specific risk</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Conditional Access</td>
+<td>Locks people out at scale, immediately, with no warning to them and
+often none to IT.</td>
+<td>Report-only for at least ten business days. Break-glass exclusion
+verified BEFORE enabling (<a href="/sops/ACC-07">ACC-07</a> §6). This is the change behind the
+classic MFA setup loop.</td>
+</tr>
+<tr class="even">
+<td>Authentication methods or strengths</td>
+<td>Same as above, plus the registration-endpoint trap (<a href="/sops/ACC-03">ACC-03</a>
+§11.1).</td>
+<td>Wave rollout per <a href="/sops/ACC-03">ACC-03</a> §11.2.</td>
+</tr>
+<tr class="odd">
+<td>Directory attributes</td>
+<td>Irreversible commitment (§3).</td>
+<td>Register updated as part of the change, not afterwards.</td>
+</tr>
+<tr class="even">
+<td>Retention or deletion policies</td>
+<td>Can destroy data. The failure is silent and discovered much
+later.</td>
+<td>Tested on a scoped pilot. Never applied tenant-wide first. Confirm
+what it deletes, not what it retains.</td>
+</tr>
+<tr class="odd">
+<td>Mail flow rules</td>
+<td>Can silently drop or misroute mail. Nobody reports mail they never
+knew was sent to them.</td>
+<td>Piloted, and monitored for 48 hours after.</td>
+</tr>
+<tr class="even">
+<td>Sharing settings</td>
+<td>Tightening breaks existing links people depend on; loosening exposes
+content.</td>
+<td>Report what will break before changing it.</td>
+</tr>
+<tr class="odd">
+<td>Licensing rules</td>
+<td>Removing a licence removes services, and can remove data with
+them.</td>
+<td>Confirm data survives (<a href="/sops/ACC-01">ACC-01</a> §7.3).</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="6-recording-it">6. Recording it</h2>
+<p>A change record is short. Appendix A is the whole thing, and it
+should take five minutes.</p>
+<ul>
+<li>What was changed, in terms somebody could use to find the setting
+again.</li>
+<li>Why, and who asked.</li>
+<li>Who approved, and who made the change.</li>
+<li>When — the actual time, because correlating a change with the
+tickets it caused is the main use of this record.</li>
+<li>What was observed afterwards.</li>
+<li>How to reverse it. The records live in one place and are searchable.
+Their value is almost entirely retrospective: when something behaves
+oddly three weeks later, the first question is what changed, and a
+department that can answer that in two minutes saves itself a day.</li>
+</ul>
+<h2 id="7-reversing-it">7. Reversing it</h2>
+<ul>
+<li>Any Tier 3 engineer may reverse a change that is actively causing
+harm, immediately, without approval. Record it afterwards.</li>
+<li>That authority is stated deliberately. A change process that makes
+people hesitate to undo a breaking change is worse than no process.</li>
+<li>A reversal is itself recorded, with what was observed.</li>
+<li>A change reversed twice is not re-attempted without a different
+approach and a Tier 4 conversation.</li>
+</ul>
+<h2 id="8-service-levels">8. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Change proposal assessment</td>
+<td>P3 — 3 coverage days at Tier 3.</td>
+</tr>
+<tr class="even">
+<td>Tier 4 approval</td>
+<td>5 coverage days, or immediately where it accompanies an
+incident.</td>
+</tr>
+<tr class="odd">
+<td>Emergency change during an incident</td>
+<td>Immediate. Recorded within 24 hours (<a href="/sops/GOV-03">GOV-03</a> takes precedence).</td>
+</tr>
+<tr class="even">
+<td>Reversal of a harmful change</td>
+<td>Immediate, by any Tier 3 engineer, no approval needed.</td>
+</tr>
+<tr class="odd">
+<td>Attribute commitment</td>
+<td>Tier 4 decision. Not made at the desk, ever.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="9-records">9. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Change record (Appendix A)</td>
+<td>IT change log</td>
+<td>7 years</td>
+</tr>
+<tr class="even">
+<td>Attribute register</td>
+<td>IT register</td>
+<td>Permanent — this one matters most</td>
+</tr>
+<tr class="odd">
+<td>Report-only evidence for Conditional Access changes</td>
+<td>Project record</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Reversals, with what was observed</td>
+<td>IT change log</td>
+<td>7 years</td>
+</tr>
+<tr class="odd">
+<td>Emergency changes made during incidents</td>
+<td>Change log + incident record</td>
+<td>7 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10-related-documents">10. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/GOV-04">GOV-04</a></td>
+<td>IT Change Management &amp; Maintenance Windows</td>
+<td>The wider change process. This document is its tenant-specific
+instance.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-04">M365-04</a></td>
+<td>Distribution List &amp; Dynamic Group Standard</td>
+<td>§7 attribute register lives there operationally.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-14">M365-14</a></td>
+<td>External Sharing &amp; Guest Access Governance</td>
+<td>Sharing settings changed here.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-16">M365-16</a></td>
+<td>Retention, Legal Hold &amp; eDiscovery</td>
+<td>Retention policy changes.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-20">M365-20</a></td>
+<td>License Assignment &amp; Reclamation</td>
+<td>Licensing rule changes.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA Enrollment, Reset &amp; Account Recovery</td>
+<td>Authentication changes, and §5.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-07">ACC-07</a></td>
+<td>Privileged &amp; Administrative Account Standard</td>
+<td>Break-glass exclusion verification.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-02">DEV-02</a></td>
+<td>Device Compliance &amp; Configuration Baseline</td>
+<td>Compliance policy enforcement is a tenant change.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response</td>
+<td>Emergency changes.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--change-record">Appendix A — Change record</h2>
+<p>Five minutes. Its value is retrospective: “what changed three weeks
+ago?” should take two minutes to answer.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Reference</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>What changed</td>
+<td>Specific enough to find the setting again.</td>
+</tr>
+<tr class="odd">
+<td>Why, and who asked</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Who is affected</td>
+<td>Which populations, and how many.</td>
+</tr>
+<tr class="odd">
+<td>What could go wrong</td>
+<td>Written before, not after.</td>
+</tr>
+<tr class="even">
+<td>How to reverse it</td>
+<td>Required. If this cannot be answered, do not proceed.</td>
+</tr>
+<tr class="odd">
+<td>Piloted or report-only first?</td>
+<td>Required for anything in M365-21 §5.</td>
+</tr>
+<tr class="even">
+<td>Approved by</td>
+<td>Tier 4. Named.</td>
+</tr>
+<tr class="odd">
+<td>Made by, and when</td>
+<td>Actual date and time.</td>
+</tr>
+<tr class="even">
+<td>Observed afterwards</td>
+<td>What was checked, and what it showed.</td>
+</tr>
+<tr class="odd">
+<td>Reversed?</td>
+<td>If so, when, why, and what was observed.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

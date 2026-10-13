@@ -1,0 +1,874 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACC-17 · Periodic Access Review &amp; Entitlement Recertification | Known Good</title>
+<meta name="description" content="Without recertification, every grant becomes permanent by default. What is reviewed, on what cycle, by whom — and what actually happens when nobody answers.">
+<meta property="og:title" content="ACC-17 · Periodic Access Review &amp; Entitlement Recertification | Known Good">
+<meta property="og:description" content="Without recertification, every grant becomes permanent by default. What is reviewed, on what cycle, by whom — and what actually happens when nobody answers.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1
+id="acc-17--periodic-access-review--entitlement-recertification">ACC-17
+· Periodic Access Review &amp; Entitlement Recertification</h1>
+<p><em>Without recertification, every grant becomes permanent by
+default. What is reviewed, on what cycle, by whom — and what actually
+happens when nobody answers.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/ACC-17-Periodic-Access-Review-and-Entitlement-Recertification.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/ACC-17.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/ACC-17">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>ACC-17</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>B. Account Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 4 — IT Management owns the cycle and receives the annual
+report. Tier 3 produces the lists; Tier 2 executes the removals. No tier
+of IT decides whether a person still needs access.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually, and after the first full cycle has run once.</td>
+</tr>
+<tr class="even">
+<td>Relationship to <a href="/sops/ACC-07">ACC-07</a></td>
+<td><a href="/sops/ACC-07">ACC-07</a> §8 already requires a quarterly privileged review and it
+stands unchanged. This document does not replace it; it places it in one
+calendar with the other eight review classes, so that a single cycle is
+planned and staffed rather than nine being separately remembered.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose--the-thesis-and-the-two-cases-behind-it">1. Purpose —
+the thesis, and the two cases behind it</h2>
+<p>Every access grant at the organization was made for a reason, on a
+particular day, by somebody solving a particular problem. Almost none of
+them are ever revisited. The reason expires, the project ends, the
+temporary worker’s engagement ends, the person who granted it moves on —
+and the grant remains, because nothing in the system removes it and
+nobody is ever asked.</p>
+<p>Without recertification, every grant becomes permanent by default.
+That single sentence is the argument for this document, and everything
+below is an attempt to make acting on it affordable.</p>
+<p>Two ordinary cases:</p>
+<ul>
+<li>Several temporary-worker accounts are added to a departmental shared
+mailbox by a reply-all email thread. There is no form, no named mailbox
+owner and no review date. When those engagements end, the mailbox
+membership will not know it — and nothing else will ask.</li>
+<li>HR asks IT whether the old network drives are really going away
+while payroll-sensitive permissions are being reworked. The question is
+entirely reasonable. What it reveals is that nobody outside that piece
+of work can say who can reach payroll data, and that the only reason
+anybody is looking is that a migration forced it.</li>
+</ul>
+<blockquote>
+<p><strong>What this document is honest about from the
+start</strong></p>
+<p>This is written for small IT teams, where most staff wear several
+hats. A review cycle that cannot be staffed is a review cycle that does
+not run, and a document describing one is worse than nothing because it
+produces the appearance of a control.</p>
+<p>So §2 lists fewer classes than a large organization would review, on
+longer cycles. §5 is deliberately softer than an auditor would prefer.
+Both are choices, stated as choices, with the reasoning shown — not
+aspirations quietly missed.</p>
+<p>The measure of success in year one is not a clean estate. It is that
+every class in §2 has been reviewed once, that IT knows the response
+rate by department, and that the department heads who did respond saw
+something change as a result.</p>
+</blockquote>
+<h2 id="2-what-is-reviewed-and-how-often">2. What is reviewed, and how
+often</h2>
+<p>This table drives the whole document. Everything after it is
+machinery for making these nine rows happen.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>What is reviewed</th>
+<th>Cycle</th>
+<th>Reviewed by</th>
+<th>List produced by</th>
+<th>Why this cycle</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Privileged and administrative role assignments (<a href="/sops/ACC-07">ACC-07</a>)</td>
+<td>Quarterly</td>
+<td>Tier 4 with the role owner</td>
+<td>Tier 3</td>
+<td>Highest consequence per grant, smallest population. Already required
+by <a href="/sops/ACC-07">ACC-07</a> §8 — this is that review, in this calendar.</td>
+</tr>
+<tr class="even">
+<td>Vendor, contractor and consultant accounts (<a href="/sops/ACC-11">ACC-11</a>)</td>
+<td>Quarterly</td>
+<td>The contract owner</td>
+<td>Tier 3</td>
+<td>The engagement can end without anybody telling IT. Reviewed against
+the current contract, not against memory of it.</td>
+</tr>
+<tr class="odd">
+<td>Guest and sponsored external accounts (<a href="/sops/ACC-10">ACC-10</a>)</td>
+<td>Quarterly</td>
+<td>The named sponsor</td>
+<td>Tier 2</td>
+<td><a href="/sops/ACC-10">ACC-10</a> §6 already expires guests on non-response. This is the
+register review that sits behind that rule.</td>
+</tr>
+<tr class="even">
+<td>Shared mailbox membership, delegation and send-as (<a href="/sops/M365-03">M365-03</a>,
+<a href="/sops/ACC-14">ACC-14</a>)</td>
+<td>Semi-annual</td>
+<td>The mailbox owner</td>
+<td>Tier 2</td>
+<td>Membership grows by reply-all and nothing removes it. The most
+reliably productive review on this list.</td>
+</tr>
+<tr class="odd">
+<td>SharePoint site membership and external sharing (<a href="/sops/M365-10">M365-10</a>, <a href="/sops/M365-11">M365-11</a>,
+<a href="/sops/M365-14">M365-14</a>)</td>
+<td>Semi-annual</td>
+<td>The site owner</td>
+<td>Tier 2</td>
+<td>Sharing links outlive the work that created them, and external
+sharing is the class where a stale grant reaches outside the
+organization.</td>
+</tr>
+<tr class="even">
+<td>Departmental and payroll-sensitive shares (<a href="/sops/M365-13">M365-13</a>, <a href="/sops/M365-15">M365-15</a>)</td>
+<td>Semi-annual</td>
+<td>The data owner</td>
+<td>Tier 2</td>
+<td>Low volume, high consequence. Reviewed separately from ordinary site
+membership so it is never the last section of a long list.</td>
+</tr>
+<tr class="odd">
+<td>Application access (the <a href="/sops/ACC-16">ACC-16</a> §10 register)</td>
+<td>Annual</td>
+<td>The application’s business owner</td>
+<td>Tier 3</td>
+<td>Many applications, usually lower per-grant consequence — but an
+application without SCIM is not covered by the leaver process at all
+(<a href="/sops/ACC-16">ACC-16</a> §7), so this review is the only thing that reaches it.</td>
+</tr>
+<tr class="even">
+<td>Standard group membership (<a href="/sops/M365-04">M365-04</a>)</td>
+<td>Annual</td>
+<td>The group owner</td>
+<td>Tier 3</td>
+<td>For a dynamic group the object of review is the RULE, not the member
+list. Reviewing 400 auto-populated members is work that changes
+nothing.</td>
+</tr>
+<tr class="odd">
+<td>Service, application and non-human accounts (<a href="/sops/ACC-08">ACC-08</a>)</td>
+<td>Annual</td>
+<td>The account owner</td>
+<td>Tier 3</td>
+<td>No leaver process will ever reach these. If this review does not
+remove them, nothing will.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="21-the-calendar">2.1 The calendar</h3>
+<p>Reviews are not issued into your peak periods, period-end closes or
+the first weeks after a large intake. The reviewers are department
+heads, and those are precisely the weeks in which they are busiest — a
+review sent then gets no response, which §5 then has to treat as a
+failure of the reviewer rather than of the scheduling. The freeze
+periods are the same ones <a href="/sops/GOV-04">GOV-04</a> §7 defines for changes, and they are
+honoured here for the same reason.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>When</th>
+<th>What runs</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Your peak periods</td>
+<td>Nothing new.</td>
+<td>The desk is busiest with joiners and temporary-worker onboarding
+(<a href="/sops/ACC-01">ACC-01</a>, <a href="/sops/ACC-09">ACC-09</a>), and reviewers are busy too. Nothing is asked of
+anybody.</td>
+</tr>
+<tr class="even">
+<td>Quarter 1, month 1</td>
+<td>Quarterly: privileged, vendor, guest. Semi-annual round A: shared
+mailboxes and delegation, SharePoint sites and external sharing,
+departmental and payroll-sensitive shares.</td>
+<td>The heaviest month by design. Place it where reviewers are available
+and access patterns have settled.</td>
+</tr>
+<tr class="odd">
+<td>Quarter 1, month 2</td>
+<td>Remediation from month 1. No new packets.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Quarter 2, month 1</td>
+<td>Quarterly: privileged, vendor, guest.</td>
+<td>A deliberately light month.</td>
+</tr>
+<tr class="odd">
+<td>Quarter 2, month 2</td>
+<td>Annual round: application access, standard group membership, service
+and non-human accounts.</td>
+<td>The longest lists, placed in your quietest month.</td>
+</tr>
+<tr class="even">
+<td>Quarter 2, month 3</td>
+<td>Remediation. Exceptions reaching expiry are notified.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Quarter 3, month 1</td>
+<td>Quarterly: privileged, vendor, guest. Semi-annual round B.</td>
+<td>Issued after any peak period, never during one.</td>
+</tr>
+<tr class="even">
+<td>Quarter 3, month 3</td>
+<td>The annual report to Tier 4 (§9).</td>
+<td>The one output the Head of IT actually reads.</td>
+</tr>
+<tr class="odd">
+<td>Quarter 4, month 1</td>
+<td>Quarterly: privileged, vendor, guest.</td>
+<td>Small populations; a good fit for a quiet month.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Map the quarters onto your own year so that no round lands in a peak
+period.</p>
+<h2 id="3-who-reviews--and-why-it-is-never-it">3. Who reviews — and why
+it is never IT</h2>
+<p>The accountable manager or data owner reviews. Not IT, not the
+service desk, and not the person who happens to administer the
+system.</p>
+<p>The reason is not a division of labour, it is a limit on knowledge.
+IT can see that a person HAS access. IT cannot see whether they still
+NEED it, because that depends on what the person does now, what the
+department has reorganised, which project ended last quarter and whether
+last year’s cover arrangement is still in place. A review answered by IT
+confirms the current state — which is precisely the thing being
+questioned.</p>
+<blockquote>
+<p><strong>The counter-argument, and why it does not change the
+answer</strong></p>
+<p>Managers do not want to do this. It takes time they do not have, it
+is not their job as they understand it, and asking them is unpopular.
+All of that is true and none of it is a reason to move the decision.</p>
+<p>The alternative fails in both directions. If IT removes access on its
+own judgement, it will eventually remove something somebody needed, and
+the department will stop co-operating with the process entirely — which
+costs far more than the grant that was removed. If IT keeps everything
+to avoid that, the review is theatre and produces evidence of a control
+that is not operating, which is worse than having no control at all.</p>
+<p>What IT can do is make it cheap. That is §4, and it is the part of
+this document that determines whether any of the rest of it happens.</p>
+</blockquote>
+<h3 id="31-its-three-jobs">3.1 IT’s three jobs</h3>
+<ol type="1">
+<li>Produce the list — accurately, from the platform, for the whole
+class rather than the part that is easy to extract.</li>
+<li>Make it readable — §4. A list a department head can act on in ten
+minutes gets acted on; a list of object IDs gets approved
+wholesale.</li>
+<li>Act on the answer, promptly and visibly. A reviewer who spends forty
+minutes on a review and sees nothing change will not do the next one,
+and there is no recovering from that. Removals are executed within the
+§6 service level and the reviewer is told they were done.</li>
+</ol>
+<h3 id="32-the-reviewer-of-record">3.2 The reviewer of record</h3>
+<ul>
+<li>Every review class has a named reviewer of record, identified BEFORE
+the packet is issued. Chasing down who should answer after the packet
+has gone out wastes the review window.</li>
+<li>Where no reviewer can be identified, that is the finding. An
+entitlement with no accountable owner is removed rather than researched
+— the same rule <a href="/sops/ACC-10">ACC-10</a> §6 applies to a guest with no identifiable
+sponsor.</li>
+<li>A reviewer may delegate to a named deputy in writing, and remains
+accountable for the answer.</li>
+<li>Where the reviewer has left the organization, their successor or
+their manager is substituted before the packet is issued, not during it.
+This is a small check that prevents a whole round being lost to an
+unread mailbox.</li>
+</ul>
+<h2 id="4-the-review-packet">4. The review packet</h2>
+<p>The single biggest determinant of whether a review is done properly
+is whether the list is readable. A spreadsheet of four hundred rows of
+group object identifiers will be approved in four minutes, and that
+approval is worse than worthless — it produces evidence that a review
+took place.</p>
+<h3 id="41-what-each-row-contains">4.1 What each row contains</h3>
+<ul>
+<li>The person’s full name and current role. Not the UPN alone, and
+certainly not the object ID.</li>
+<li>What they can reach, in plain words — “read and write to the Payroll
+folder”, not “member of Y-PAYROLL-RW”.</li>
+<li>How they got it: who requested it, on what date, and the ticket
+reference where one exists. Frequently this column is empty, and an
+empty column is itself informative.</li>
+<li>Last used, where the platform can tell us — and an honest note where
+it cannot. Sign-in dates are available for accounts; last use of a
+specific permission usually is not. A blank column reads as “never used”
+and will get things removed for the wrong reason.</li>
+<li>Three boxes: Keep, Remove, Change — with a free-text line for
+Change.</li>
+</ul>
+<h3 id="42-rules-about-the-packet-itself">4.2 Rules about the packet
+itself</h3>
+<ul>
+<li>Nothing is pre-filled, and there is no “approve all” control. If
+approving everything is one click, that is what the data will say
+happened.</li>
+<li>Rows are sorted with the highest-risk first: external and guest
+access, privileged assignments, and dormant accounts. Attention runs out
+before the list does, so it is spent where it matters.</li>
+<li>A packet longer than about fifty rows is split by department or by
+site. Batch by the reviewer’s world, not by the system’s.</li>
+<li>The due date is stated on the packet as a date, not as a number of
+days.</li>
+<li>Appendix A goes with every packet, every time, including to
+reviewers who have done it before.</li>
+<li>The packet says what will happen if there is no response (§5).
+Nobody should be surprised by an escalation they were not warned
+about.</li>
+</ul>
+<h2 id="5-what-no-response-means">5. What “no response” means</h2>
+<p>It does not mean approval. A grant that nobody is willing to confirm
+is a grant nobody is accountable for, and treating silence as a Keep
+would make the whole exercise a formality.</p>
+<p>What this document does not do is convert that into automatic
+revocation on day eleven, and it is worth being explicit about why,
+because auto-revoke is what best practice recommends and what an auditor
+will ask for.</p>
+<blockquote>
+<p><strong>Why an aggressive auto-revoke is the wrong control at this
+organization</strong></p>
+<p>An auto-revoke does not fire against the least justified entitlement.
+It fires against the busiest reviewer — the department head covering two
+roles who did not open the email, whose own access to their own share
+then disappears in the middle of the week.</p>
+<p>It generates P1 restoration tickets on a desk where lockouts are
+already among the largest ticket categories, which means the review
+cycle becomes a source of the very work it was meant to reduce.</p>
+<p>And it only has to happen twice before everybody in the organization
+learns that the correct response to a review email is to approve
+everything immediately without reading it. At that point the control is
+inverted: it looks better in the evidence and it is worth nothing.</p>
+<p>The model below is escalate-then-revoke with a stated grace period.
+It is slower than best practice and it is a control the organization can
+actually operate, which is the trade every document in this catalogue
+tries to make.</p>
+</blockquote>
+<h3 id="51-the-escalation-ladder">5.1 The escalation ladder</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Day</th>
+<th>Action</th>
+<th>By</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>Packet issued with the due date stated as a date, and with Appendix
+A attached.</td>
+<td>Tier 3</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>No response: an individual reminder to the reviewer, by name, with
+the list attached again. Not a broadcast — a broadcast reminder is read
+as noise and reaches the people who already responded.</td>
+<td>Tier 2</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>No response: escalated to the reviewer’s manager, with the list and
+the date the packet was issued.</td>
+<td>Tier 3</td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td>No response: the entitlements are listed for revocation. The
+reviewer and their manager are told the exact date on which it will
+happen, and the list goes to Tier 4.</td>
+<td>Tier 4</td>
+</tr>
+<tr class="odd">
+<td>25</td>
+<td>Grace period ends. Revocation proceeds for everything on the list,
+except where Tier 4 has recorded a specific hold with a reason.</td>
+<td>Tier 2</td>
+</tr>
+</tbody>
+</table></div>
+<p>That is a twenty-five coverage-day grace period from issue to
+removal. It is longer than an auditor would like, and it is the interval
+at which the organization can hold the line without the process
+collapsing.</p>
+<h3 id="52-two-classes-that-are-outside-this-ladder-deliberately">5.2
+Two classes that are outside this ladder, deliberately</h3>
+<ul>
+<li>An entitlement with NO IDENTIFIABLE OWNER is removed at day 20 with
+no further escalation, because there is nobody to escalate to.
+Researching who might once have wanted it costs more than restoring it
+if somebody objects (§6).</li>
+<li>PRIVILEGED assignments follow <a href="/sops/ACC-07">ACC-07</a> §8, where anything unconfirmed
+is removed. The population is small, the reviewers are Tier 4
+themselves, and the consequence of a stale administrative role is high
+enough to justify the harder rule. The two documents differ on purpose,
+and this paragraph exists so that the difference is not read as an
+inconsistency to be tidied away.</li>
+</ul>
+<h3 id="53-capacity-and-why-the-cycle-extends-rather-than-lapses">5.3
+Capacity, and why the cycle extends rather than lapses</h3>
+<p>Where the department is in a declared Constrained or Degraded
+capacity state (<a href="/sops/GOV-06">GOV-06</a> §7), each stage of §5.1 moves by the length of
+the declared state, the extension is recorded on the review itself, and
+the annual report says how many days were lost to capacity.</p>
+<ul>
+<li>Under Constrained: packets already issued continue on the extended
+ladder. New packets may be deferred to the next month, with the deferral
+recorded.</li>
+<li>Under Degraded: issuing new packets is suspended. Remediation of
+answers already received continues, because removing access is cheap and
+reviewing it is not.</li>
+<li>A suspended round is made up, not skipped. The next round covers the
+interval since the last completed one, and the report says so. A review
+missed silently teaches nobody anything and is discovered a year later
+by an auditor. A review visibly extended, with the days counted, is a
+fact about staffing that Tier 4 can act on — which is the entire purpose
+of the <a href="/sops/GOV-06">GOV-06</a> states.</li>
+</ul>
+<h2 id="6-remediation-and-its-service-level">6. Remediation, and its
+service level</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Outcome</th>
+<th>Action</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Keep</td>
+<td>Recorded with the reviewer’s name and the date. Nothing
+changes.</td>
+<td>n/a — but it is recorded, because next year’s review starts from it
+(§8).</td>
+</tr>
+<tr class="even">
+<td>Remove</td>
+<td>Access revoked.</td>
+<td>Within 5 coverage days of the response.</td>
+</tr>
+<tr class="odd">
+<td>Change (reduce)</td>
+<td>Reduced to the level the reviewer stated.</td>
+<td>Within 5 coverage days.</td>
+</tr>
+<tr class="even">
+<td>Keep, but the reviewer cannot say why</td>
+<td>Treated as an exception under §7 with a 90-day expiry, not as a
+Keep. The distinction matters: a Keep is a decision, this is a
+deferral.</td>
+<td>Exception recorded within 5 coverage days.</td>
+</tr>
+<tr class="odd">
+<td>A removal that turns out to be wrong</td>
+<td>Restored on request. No argument, no re-approval, and the
+restoration is recorded as a defect in the review rather than as a fault
+of the requester.</td>
+<td>Within 1 coverage day.</td>
+</tr>
+<tr class="even">
+<td>An entitlement that should never have been granted</td>
+<td>Not a remediation item. Referred to <a href="/sops/GOV-03">GOV-03</a> as a question about
+whether anything was accessed — specifically where it is privileged,
+payroll-sensitive or client-record access held by somebody with no
+business need.</td>
+<td>Same day referral.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Removals are executed, not scheduled indefinitely. An unactioned
+removal is the worst available outcome: the department has spent the
+effort and the risk is unchanged.</li>
+<li>Where a removal would break something — a mailbox rule, an
+integration, a service account dependency — it is staged and the
+dependency is recorded. That dependency is itself a finding for <a href="/sops/ACC-08">ACC-08</a>,
+because it means a person’s access is load-bearing for an automated
+process.</li>
+<li>The reviewer is told when their removals have been done. This is the
+cheapest thing on the list and it is what buys next year’s co-operation
+(§3.1). IT restores first and asks afterwards. A department that has to
+argue its way back to access it needed will not co-operate with the next
+review, and that co-operation is the only mechanism holding this
+document up.</li>
+</ul>
+<h2 id="7-exceptions">7. Exceptions</h2>
+<ul>
+<li>Every exception records four things: what is being excepted, why,
+who approved it, and the date it expires. There are no open-ended
+exceptions.</li>
+<li>Maximum initial term twelve months. Renewal is a fresh approval by
+the same authority, not a roll-over.</li>
+<li>An expired exception reverts to the rule automatically. Nobody has
+to remember, which is the point.</li>
+<li>The exception register goes to Tier 4 in the annual report with the
+age of each entry.</li>
+<li>An exception renewed three times is not a special case — it is
+evidence that the rule is wrong. Raise it as a change to the governing
+document under <a href="/sops/GOV-01">GOV-01</a> rather than renewing it a fourth time.</li>
+</ul>
+<h2 id="8-evidencing-the-review">8. Evidencing the review</h2>
+<p>The evidence is the reviewer’s answer, not IT’s summary of it. The
+returned packet is kept as returned.</p>
+<ul>
+<li>Kept per round: the packet as issued, the response with the
+reviewer’s name and date, the actions taken with their dates, the
+exceptions raised, and every escalation under §5.1.</li>
+<li>An approval with no identifiable individual behind it is not
+evidence of a review. “Approved by the department” is not a reviewer.
+There is a second, more practical reason to keep the answers, and it
+matters more day to day than the audit one: the next review starts from
+the last one. A reviewer shown “you approved these twenty-four rows last
+round; here are the three that have changed since” completes a review in
+five minutes rather than forty, and reads the three properly. Full lists
+are issued annually; the intermediate rounds are deltas against the last
+completed answer.</li>
+</ul>
+<p>That is also why the first cycle is the expensive one, and why it
+should not be judged by how long it takes. Everything after it is
+cheaper because of it.</p>
+<h2 id="9-the-annual-report-to-tier-4">9. The annual report to Tier
+4</h2>
+<p>One report a year, at the same point each year, covering the previous
+twelve months. It is short and it is the mechanism by which this
+document survives contact with a busy year.</p>
+<ul>
+<li>Entitlements reviewed, by class, against what §2 says should have
+been reviewed.</li>
+<li>Response rate by class and BY DEPARTMENT, with departments named. An
+anonymised response rate changes nobody’s behaviour.</li>
+<li>Counts removed, reduced and kept — and the ratio, which is the
+number that says whether the review is finding anything.</li>
+<li>Open exceptions with their ages, and any renewed more than twice
+(§7).</li>
+<li>Entitlements found with no identifiable owner, by system. This is
+usually the most uncomfortable and most useful section.</li>
+<li>Days lost to declared Constrained or Degraded capacity states
+(§5.3).</li>
+<li>Three findings the Head of IT should act on, named as such. Not a
+list of everything observed.</li>
+</ul>
+<blockquote>
+<p><strong>And it says plainly if the cycle did not run</strong></p>
+<p>A year in which two rounds were skipped is a staffing statement, and
+the report makes it rather than quietly reporting on the rounds that did
+happen.</p>
+<p>The most useful number in this report is usually the response rate.
+The most useful sentence is usually about a department rather than a
+system.</p>
+</blockquote>
+<h2 id="10-service-levels">10. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Review packet produced and issued</td>
+<td>On the §2.1 calendar. Deferred only under a declared capacity state,
+and recorded.</td>
+</tr>
+<tr class="even">
+<td>Reviewer response window</td>
+<td>10 coverage days, stated on the packet as a date.</td>
+</tr>
+<tr class="odd">
+<td>Removals and reductions after a response</td>
+<td>5 coverage days.</td>
+</tr>
+<tr class="even">
+<td>Restoration of an incorrect removal</td>
+<td>1 coverage day. No re-approval required.</td>
+</tr>
+<tr class="odd">
+<td>Escalation to the reviewer’s manager</td>
+<td>Day 15 of the ladder (§5.1).</td>
+</tr>
+<tr class="even">
+<td>Revocation after the grace period</td>
+<td>Day 25, with the date given in advance.</td>
+</tr>
+<tr class="odd">
+<td>Referral of an entitlement that should never have existed</td>
+<td>Same day, to <a href="/sops/GOV-03">GOV-03</a>.</td>
+</tr>
+<tr class="even">
+<td>Annual report to Tier 4</td>
+<td>Once a year, on schedule.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-records">11. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Review packets as issued</td>
+<td>IT governance record</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Reviewer responses, named and dated</td>
+<td>IT governance record</td>
+<td>3 years; 7 for privileged and payroll-sensitive classes</td>
+</tr>
+<tr class="odd">
+<td>Actions taken, with dates</td>
+<td>Ticket + governance record</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Escalations and non-responses</td>
+<td>IT governance record</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Exception register</td>
+<td>IT register</td>
+<td>Life of the exception + 3 years</td>
+</tr>
+<tr class="even">
+<td>Entitlements removed for having no identifiable owner</td>
+<td>IT governance record</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Annual report to Tier 4</td>
+<td>Tier 4 record</td>
+<td>Permanent</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="12-related-documents">12. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/ACC-07">ACC-07</a></td>
+<td>Privileged &amp; Administrative Account Standard</td>
+<td>§8 there is the quarterly privileged review. Its harder non-response
+rule is preserved (§5.2).</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-08">ACC-08</a></td>
+<td>Service, Application &amp; Non-Human Account Standard</td>
+<td>The annual class no leaver process reaches.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-09">ACC-09</a></td>
+<td>Temporary Worker &amp; Departmental Access Account Standard</td>
+<td>The engagement boundary should remove most temporary-worker grants
+before a review has to.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-10">ACC-10</a></td>
+<td>Guest &amp; Sponsored External Account Standard</td>
+<td>§6 there already expires guests on non-response; this is the
+register review behind it.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-11">ACC-11</a></td>
+<td>Vendor, Contractor &amp; Consultant Account Standard</td>
+<td>The quarterly vendor class, reviewed against the current
+contract.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-14">ACC-14</a></td>
+<td>Mailbox &amp; Calendar Delegation Standard</td>
+<td>Delegation and send-as are reviewed semi-annually.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-16">ACC-16</a></td>
+<td>Application Onboarding, SSO &amp; SAML Claims Standard</td>
+<td>§10 there is the register this document’s annual application review
+runs off.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>The mover procedure should remove what a role change ends; this
+review catches what it missed.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-03">M365-03</a></td>
+<td>Shared Mailbox Standard</td>
+<td>Mailbox owner is the reviewer of record.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-11">M365-11</a></td>
+<td>SharePoint &amp; OneDrive Permissions</td>
+<td>Site membership and permission inheritance.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-14">M365-14</a></td>
+<td>External Sharing &amp; Guest Access</td>
+<td>External sharing links, reviewed semi-annually.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-13">M365-13</a></td>
+<td>File Share Retirement Runbook</td>
+<td>The migration is the cheapest moment to set the baseline.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-04">M365-04</a></td>
+<td>Distribution List &amp; Dynamic Group Standard</td>
+<td>For a dynamic group the rule is reviewed, not the members.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments, Priority &amp; Escalation</td>
+<td>§5.3 capacity states, and §10.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response</td>
+<td>Where an entitlement that should never have existed goes.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-01">GOV-01</a></td>
+<td>SOP Catalog Governance</td>
+<td>Where a thrice-renewed exception is raised as a rule change.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--the-reviewers-one-page-instruction-sheet">Appendix A
+— The reviewer’s one-page instruction sheet</h2>
+<p>Sent with every packet. Written so that a department head can act on
+it without training and without asking anybody what it means.</p>
+<div class="tbl"><table>
+<tbody>
+<tr class="odd">
+<td>What this is</td>
+<td>A list of the people who currently have access to something you are
+responsible for. We are asking you to confirm whether each of them
+should still have it. We are not suggesting anything is wrong — this is
+a routine check we run on a schedule.</td>
+</tr>
+<tr class="even">
+<td>Why we are asking you and not deciding ourselves</td>
+<td>We can see who has access. We cannot see whether they still need it.
+Only you know whether that project finished, whether the cover
+arrangement is still running, or whether somebody has changed roles. If
+we guessed, we would either take away something you need or keep
+everything, and neither is any use to you.</td>
+</tr>
+<tr class="odd">
+<td>What we need from you</td>
+<td>For each line: Keep, Remove, or Change. If you choose Change, tell
+us in a few words what they should have instead. That is the whole
+task.</td>
+</tr>
+<tr class="even">
+<td>How long it takes</td>
+<td>Most lists take about ten minutes. If yours is long enough that it
+does not, tell us — that usually means we have batched it wrongly and we
+will split it.</td>
+</tr>
+<tr class="odd">
+<td>Four questions that make it quick</td>
+<td>1. Do they still do the work this access was for? 2. If they asked
+you for it today, would you say yes? 3. Do they need this much, or would
+less do? 4. Do you recognise the name at all?</td>
+</tr>
+<tr class="even">
+<td>If you are not sure</td>
+<td>Choose Remove. If it turns out somebody needed it, we will put it
+back the next working day, with no argument and no form to fill in.
+Keeping something “just in case” is exactly how these lists get longer
+every year.</td>
+</tr>
+<tr class="odd">
+<td>If a name means nothing to you</td>
+<td>Say so. An entitlement nobody can account for is one we should not
+be carrying, and telling us that is genuinely one of the most useful
+answers you can give.</td>
+</tr>
+<tr class="even">
+<td>If you are not the right person</td>
+<td>Tell us who is, and we will send it to them and update our records.
+This is the single thing that will most reduce the time this takes you
+next time.</td>
+</tr>
+<tr class="odd">
+<td>What happens next</td>
+<td>We make the changes within five working days and tell you they are
+done. Your answers are kept, so next time we will send you only what has
+changed since — which usually takes about five minutes.</td>
+</tr>
+<tr class="even">
+<td>What happens if you do not reply</td>
+<td>We will remind you at ten working days, and let your manager know at
+fifteen. At twenty working days we will tell you the date on which the
+access will be removed, and at twenty-five we remove it. We would much
+rather have your answer than do that.</td>
+</tr>
+<tr class="odd">
+<td>If you need more time</td>
+<td>Ask. A short extension recorded on the review is entirely normal,
+and it is far better than a rushed approval or a silence we have to
+escalate.</td>
+</tr>
+<tr class="even">
+<td>Who to ask</td>
+<td>Reply to the message that sent you this list, or contact the service
+desk, quoting the review reference at the top of your packet.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

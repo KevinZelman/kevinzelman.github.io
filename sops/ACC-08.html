@@ -1,0 +1,991 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACC-08 · Service, Application &amp; Non-Human Account Standard | Known Good</title>
+<meta name="description" content="The identities that are not people — which kind to use, who owns them, how their credentials are held and rotated, and how they end.">
+<meta property="og:title" content="ACC-08 · Service, Application &amp; Non-Human Account Standard | Known Good">
+<meta property="og:description" content="The identities that are not people — which kind to use, who owns them, how their credentials are held and rotated, and how they end.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="acc-08--service-application--non-human-account-standard">ACC-08
+· Service, Application &amp; Non-Human Account Standard</h1>
+<p><em>The identities that are not people — which kind to use, who owns
+them, how their credentials are held and rotated, and how they
+end.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/ACC-08-Service-Application-and-Non-Human-Account-Standard.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/ACC-08.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/ACC-08">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>ACC-08</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>B. Account Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 3 — Expert Services creates, holds and reviews every non-human
+identity. Tier 4 approves any privileged assignment and every
+multifactor exemption. Tier 1 and Tier 2 act on this document only by
+refusing an interactive sign-in request and escalating it.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually, and on any change to what the tenant can offer as a
+workload identity.</td>
+</tr>
+<tr class="even">
+<td>Relationship to <a href="/sops/ACC-16">ACC-16</a></td>
+<td><a href="/sops/ACC-16">ACC-16</a> is the intake: how an application arrives at the
+organization, how its single sign-on is configured and how its claims
+are mapped. This document is the identity that application carries once
+it is here. They are the same problem from opposite ends and should be
+read together; neither repeats the other.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>A familiar scene: two engineers spend a working session on SAML claim
+configuration for one application integration. That session settles, for
+one application, a set of questions that arrive with every application:
+what kind of identity does this thing get, what credential does it
+carry, who owns it, what may it reach, and what happens when the
+credential expires. If none of those answers is written down, the next
+integration settles them all again.</p>
+<p>The identities that are not people are the least visible population
+in the tenant and the least well governed. Nobody sends a leaver
+notification for a service account. Nobody notices that one has not been
+used in a year, and nobody notices when one signs in from somewhere it
+never has before. They hold standing permissions, frequently high ones,
+and they authenticate with credentials that were set once, by someone
+who may no longer work here, and written down somewhere that seemed
+reasonable at the time.</p>
+<p>This is not an argument for fewer integrations — modern IT runs on
+them: the HR system feeding and being fed, the ticketing system, Intune,
+the identity platform itself, the CRM, and the nightly jobs nobody
+thinks about until they stop. It is an argument for knowing what they
+are.</p>
+<h2 id="2-the-four-kinds-of-non-human-identity">2. The four kinds of
+non-human identity</h2>
+<p>These four are routinely all called “service accounts”, which is how
+the wrong one gets created. They are not variants of one thing; they
+have different security properties and different failure modes.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Kind</th>
+<th>What it actually is</th>
+<th>Use when</th>
+<th>Assessment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Service account</td>
+<td>An ordinary user object in Active Directory or Entra ID, with a
+password, driven by a script, a scheduled task or an application.
+Human-shaped: it can sign in interactively, it falls under password
+policy, and it appears in the directory like a person.</td>
+<td>A product can authenticate only as a user, with a username and a
+password. Where you have them, they rarely go away quickly.</td>
+<td>The legacy pattern. Permitted as a documented exception, never as a
+default. Every control in §6 to §9 applies to it without exception.</td>
+</tr>
+<tr class="even">
+<td>Application registration / service principal</td>
+<td>An identity in Entra ID belonging to an application rather than a
+person, holding its own credential — a certificate, or a client secret —
+and an explicit, enumerable set of consented permissions.</td>
+<td>Any new integration against Microsoft 365, Entra ID, or anything
+speaking OAuth or SAML. The normal case.</td>
+<td>The right answer for the great majority of new work. No interactive
+sign-in, no multifactor question, permissions you can list.</td>
+</tr>
+<tr class="odd">
+<td>Managed identity</td>
+<td>An identity the platform creates for a workload it hosts, whose
+credential the platform issues and rotates. No credential ever exists
+for a person to hold, store or leak.</td>
+<td>The workload runs on a platform that offers one — in practice, an
+Azure-hosted resource.</td>
+<td>Best available where it applies, and it applies less often than the
+literature implies in an estate that is largely on-premises and SaaS.
+Use it whenever it is genuinely on the table.</td>
+</tr>
+<tr class="even">
+<td>Shared operational account</td>
+<td>One login used by more than one member of IT for an appliance,
+console or vendor portal that cannot do single sign-on.</td>
+<td>The product offers no other way, and that has been confirmed rather
+than assumed.</td>
+<td>Not really a service account — a shared credential with an
+operational excuse. Governed here so it is at least counted. The goal is
+fewer of them each year.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="3-which-one-to-use--and-the-default-for-anything-new">3. Which
+one to use — and the default for anything new</h2>
+<blockquote>
+<p><strong>A new integration gets a workload identity. It does not get a
+person-shaped account with a password.</strong></p>
+<p>The default is an Entra application registration with a CERTIFICATE
+credential, or a managed identity where the platform hosting the
+workload offers one. That is the answer unless a documented exception
+says otherwise.</p>
+<p>This is not a matter of taste. A user account with a password can
+sign in interactively, so it can be phished, sprayed, and used by
+whoever finds the password in a runbook. It falls under password policy,
+so it either expires — taking the integration down — or is exempted,
+which is worse. And it needs a multifactor exemption, which is a hole
+cut in the tenant’s strongest control.</p>
+<p>An application registration has none of those properties: no
+interactive sign-in, no multifactor question, permissions that are a
+list somebody can read, and support for two credentials at once — which
+is what makes rotation possible without an outage.</p>
+<p>Where a product genuinely cannot do this — an older on-premises
+application that authenticates only against Active Directory with a
+username and a password — a service account is permitted. That is an
+exception recorded in the register with the reason, not a decision made
+quietly because it was quicker on the afternoon it was needed.</p>
+</blockquote>
+<p>The exception is recorded in one sentence, naming the product and the
+technical limitation. “The vendor recommended it” is not the technical
+limitation; it is a description of the conversation. Ask the vendor
+whether the product supports OAuth client credentials or a certificate,
+and record the answer.</p>
+<h2 id="4-the-owner">4. The owner</h2>
+<p>Every non-human account has one named staff member accountable for
+it, and one named deputy. Not a team, not a distribution list, not “IT”
+— a person, and a second person for when the first is on leave.</p>
+<blockquote>
+<p><strong>An account with no owner is an orphan waiting to be
+exploited.</strong></p>
+<p>Nobody knows what it does, so nobody dares disable it. Nobody knows
+what it needs, so its permissions are never reduced. Nobody is watching
+its credential, so the expiry is a surprise. It survives every review
+because researching it costs more than leaving it alone.</p>
+<p>That is precisely why an orphaned service account is one of the most
+productive things an attacker finds inside a compromised tenant: high
+standing privilege, no multifactor, a password that has not changed in
+years, and an institutional reluctance to touch it.</p>
+<p>The deputy exists because a single owner on annual leave is exactly
+how a credential expiry becomes a two-day outage.</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>The owner</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Asks for it</td>
+<td>Raises the request, states in one sentence what the identity is for,
+and names the systems it must reach.</td>
+</tr>
+<tr class="even">
+<td>Justifies its permissions</td>
+<td>Can explain, at review, why it holds each permission it holds. “It
+stopped working when we removed that” is an acceptable answer only if it
+is followed by finding out which permission was actually needed.</td>
+</tr>
+<tr class="odd">
+<td>Holds the credential</td>
+<td>Knows where the secret lives, and has never put it anywhere in
+§9.</td>
+</tr>
+<tr class="even">
+<td>Watches the expiry</td>
+<td>Receives the 60, 30 and 7-day notices and raises the rotation
+ticket. The notice is a prompt, not the plan.</td>
+</tr>
+<tr class="odd">
+<td>Answers at review</td>
+<td>Confirms annually that the integration still exists, still needs
+what it holds, and still has an owner (§12, <a href="/sops/ACC-17">ACC-17</a>).</td>
+</tr>
+<tr class="even">
+<td>Ends it</td>
+<td>Tells Tier 3 when the integration is retired, rather than leaving
+the account to be found later.</td>
+</tr>
+<tr class="odd">
+<td>Is replaced when they leave</td>
+<td>Ownership transfers before their last working day, and the
+credential is rotated at separation (§10).</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="5-the-register-and-naming">5. The register, and naming</h2>
+<p>The register is the whole control. Every rule in this document is
+enforceable only against a list of things that exist. If that list does
+not exist yet, this is the reason to start it. Appendix A is the field
+template; the mandatory fields are: what it is, what kind it is, what it
+is for, who owns it, what it may reach, what credential it carries, when
+that credential expires, where the secret is stored, whether it is
+exempt from multifactor and why, and when it was last reviewed.</p>
+<p>A field left blank is a defect, not a formatting preference. An
+account whose purpose is recorded as “integration” has not been
+recorded.</p>
+<blockquote>
+<p><strong>Open question — how many are there?</strong></p>
+<p>In many shops this document is written against a population that has
+never been enumerated. That is not a criticism of anybody; it is the
+normal state of an organization that has been running integrations for
+longer than it has had a standard for them.</p>
+<p>ACTION: Tier 3 to produce a first enumeration within 60 days of
+approval — every Entra user object that is not a person, every
+application registration holding credentials, every service principal
+with consented permissions, and every on-premises Active Directory
+account used by a service or a scheduled task. Owner: the Tier 3 lead.
+Reported to Tier 4.</p>
+<p>The first pass will be incomplete and should be published anyway. A
+register improves by being wrong in public; it does not improve by being
+perfect in private, because it never gets finished.</p>
+</blockquote>
+<h3 id="51-naming">5.1 Naming</h3>
+<ul>
+<li>Service accounts carry a distinguishing prefix and name the system
+and function, not the person who built it — svc-hr-feed, not svc-jsmith.
+A non-human account named after a member of staff becomes
+indistinguishable from that member of staff in a log.</li>
+<li>Application registrations carry a display name that names the
+application and the purpose, and nothing else. “Test app 2” is how a
+production integration ends up with nobody able to identify it.</li>
+<li>The exact prefixes and forms are settled in <a href="/sops/ACC-02">ACC-02</a>, not here. That
+is deliberate: a naming convention extended live while it is still
+contested is the argument for one document owning naming rather than
+each standard inventing its own.</li>
+<li>Non-human accounts are hidden from the address book. They are not
+people and should not autocomplete as though they were.</li>
+</ul>
+<h2 id="6-credentials-rotation-and-the-3am-expiry">6. Credentials,
+rotation, and the 3am expiry</h2>
+<h3 id="61-certificates-over-secrets">6.1 Certificates over secrets</h3>
+<p>Where an application registration is used, a certificate credential
+is preferred over a client secret, and it is worth being specific about
+why. A client secret is a string, and a string can be pasted into a
+ticket, a chat message or a configuration file — after which there is no
+way to know where it now is. A certificate’s private key stays in a key
+store and is referenced rather than copied. The difference is not
+cryptographic strength; it is that one leaks by accident and the other
+does not.</p>
+<h3 id="62-maximum-lifetimes">6.2 Maximum lifetimes</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Credential</th>
+<th>Maximum lifetime</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Certificate on an application registration</td>
+<td>12 months, 24 by exception</td>
+<td>Renewal overlaps: the new certificate is added and confirmed working
+before the old one is removed.</td>
+</tr>
+<tr class="even">
+<td>Client secret on an application registration</td>
+<td>6 months, 12 by exception</td>
+<td>Only where a certificate is not supported. Record which of those it
+is.</td>
+</tr>
+<tr class="odd">
+<td>Service account password</td>
+<td>12 months, and on any suspicion</td>
+<td>Long, unique, machine-generated. Never a variant of a previous one,
+and never a word plus a year.</td>
+</tr>
+<tr class="even">
+<td>Shared operational account password</td>
+<td>90 days, and on every departure of anyone who knew it</td>
+<td>This is the operating cost of a shared account. It is also the
+argument for having fewer of them.</td>
+</tr>
+<tr class="odd">
+<td>Managed identity</td>
+<td>Not applicable</td>
+<td>The platform issues and rotates it. Nothing to hold, nothing to
+expire, nothing to leak. This is the point of them.</td>
+</tr>
+<tr class="even">
+<td>Any credential set to “never expires”</td>
+<td>Not permitted</td>
+<td>Where the platform allows an unlimited credential, an expiry is set
+anyway. An unlimited credential is an unreviewed one.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="63-expiry-monitoring--the-part-that-actually-matters">6.3 Expiry
+monitoring — the part that actually matters</h3>
+<blockquote>
+<p><strong>An expired secret takes an integration down at three in the
+morning, and the symptom never says so.</strong></p>
+<p>What appears is “the overnight HR feed did not run”, or “nobody can
+sign in to the portal”, or a queue quietly filling up that somebody
+notices on Tuesday. Hours are then spent rediscovering a fact that was
+knowable months in advance and written on a certificate.</p>
+<p>So expiries are TRACKED, not discovered. Every credential expiry date
+is entered in the register at the moment the credential is issued — not
+later, not when somebody gets round to it. A credential issued without
+its expiry recorded is a future outage that has already been
+scheduled.</p>
+</blockquote>
+<ol type="1">
+<li>The expiry date is recorded in the register at issue, by the person
+who issued it.</li>
+<li>Tier 3 produces a monthly report of every credential expiring within
+90 days, and takes it to Tier 4 as a standing item.</li>
+<li>The owner and the deputy are notified at 60, 30 and 7 days. Notices
+go to people, not to a shared mailbox that nobody has been made
+responsible for reading.</li>
+<li>Rotate with overlap wherever the platform allows two credentials:
+add the new one, confirm the integration is using it, then remove the
+old one. An application registration supports this; a password does not,
+which is one more reason §3 prefers the former.</li>
+<li>Record the rotation and the new expiry in the register. A rotation
+that is not recorded has reset the clock on a date nobody knows.</li>
+<li>An expiry that arrives with no rotation ticket already open is a
+defect in this procedure and is reported as one under <a href="/sops/GOV-01">GOV-01</a>, not
+treated as bad luck.</li>
+</ol>
+<h2 id="7-sign-in-and-the-multifactor-exemptions-that-hide-here">7.
+Sign-in, and the multifactor exemptions that hide here</h2>
+<ul>
+<li>Interactive sign-in is blocked for every non-human account. If a
+person can sign in as it, it is not a service account; it is a shared
+credential.</li>
+<li>Any interactive sign-in attempt against a non-human account is
+alerted on, not merely logged. It is either a misconfiguration or
+somebody using the credential by hand, and both need to be known
+about.</li>
+<li>Non-human accounts are not mail-enabled and do not hold a mailbox.
+Where an integration must send mail, it sends through an authorised path
+with a defined sender, not from an identity somebody could read.</li>
+<li>A non-human account is never used by a person “just this once”. That
+sentence is how the credential ends up in a chat message.</li>
+</ul>
+<blockquote>
+<p><strong>Be honest about this: service accounts are where multifactor
+exemptions hide.</strong></p>
+<p>Every tenant that has deployed multifactor authentication has a
+Conditional Access exclusion group, and every exclusion group
+accumulates. The accounts inside it are, by definition, the ones the
+strongest control does not reach. Because they are not people, they are
+not swept up in the annual push, nobody complains on their behalf, and
+they are invisible in every metric that counts users.</p>
+<p>External deadlines land hardest here. When a SaaS vendor starts
+enforcing phishing-resistant multifactor authentication by a set date,
+integration identities are exactly where that bites, and an exclusion
+list that cannot be produced before the deadline will be produced after
+it, under pressure, by an outage.</p>
+</blockquote>
+<p>So the exemptions are not forbidden — that would be a rule the
+department could not keep. They are made visible and made expensive to
+hold.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Requirement</th>
+<th>What it means</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Enumerated</td>
+<td>One named exclusion group, and only one.</td>
+<td>Exclusions scattered across several policies cannot be counted, and
+a control that cannot be counted is not operating. Membership is
+mirrored in the register.</td>
+</tr>
+<tr class="even">
+<td>Justified</td>
+<td>One sentence in the register, naming the technical reason.</td>
+<td>“Legacy application, authenticates against AD with username and
+password, vendor confirms no OAuth support, ticket reference.” Not
+“needed for integration”.</td>
+</tr>
+<tr class="odd">
+<td>Compensated</td>
+<td>Every exempt account carries the controls below.</td>
+<td>Source-IP or named-location restriction; interactive sign-in blocked
+and alerted; certificate credential where possible; permissions scoped
+to the minimum; a long machine-generated secret held only in the secret
+store; sign-in activity reviewed.</td>
+</tr>
+<tr class="even">
+<td>Reviewed</td>
+<td>Every six months by Tier 4, with a presumption of removal.</td>
+<td>The question is not “does it still need the exemption?” but “what
+would it take to remove it?”, with an owner and a date attached to the
+answer.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="8-permissions-consent-and-standing-global-administrator">8.
+Permissions, consent, and standing Global Administrator</h2>
+<ul>
+<li>Permissions are granted to the specific scope the integration needs
+and no more. Where the platform supports scoping — an Exchange Online
+application access policy limiting an application to named mailboxes,
+for example — it is scoped. An application permission granted
+tenant-wide reads every mailbox at the organization, and it is granted
+in one click by somebody who only wanted it to read one.</li>
+<li>Prefer the narrower permission even when it is more work: read where
+read is enough, one mailbox where one mailbox is enough, one site rather
+than the tenant.</li>
+<li>Admin consent is granted by Tier 3 only, and every consent is
+recorded in the register with the date and the person. End-user consent
+to third-party applications is the mechanism behind illicit consent
+grant attacks, and it should be restricted at the tenant rather than
+trusted to judgement (<a href="/sops/M365-21">M365-21</a>, <a href="/sops/M365-22">M365-22</a>).</li>
+<li>Permissions granted “temporarily” to get something working carry a
+90-day expiry and a ticket. Without one, temporary means permanent —
+this is not cynicism, it is the observed behaviour of every estate.</li>
+</ul>
+<blockquote>
+<p><strong>No non-human account holds standing Global
+Administrator.</strong></p>
+<p>A Global Administrator role on an integration account is a tenant
+takeover with a service-level agreement attached. It is granted because
+it is faster than working out which role is actually required, and it is
+never revisited because the integration works — and a working
+integration is nobody’s Tuesday morning priority.</p>
+<p>It also has no multifactor prompt in front of it, no person to notice
+the sign-in, and frequently a password in a runbook. It is the strongest
+credential in the organization held by the least-watched identity.</p>
+<p>Where an integration genuinely needs directory write access, it gets
+the narrowest role that does the job, granted by Tier 4, recorded with
+the permission list and the reason, and reviewed at six months alongside
+the <a href="/sops/ACC-07">ACC-07</a> privileged review. Where a vendor asks for Global
+Administrator as a precondition of support, that is a procurement
+conversation (<a href="/sops/ACC-11">ACC-11</a> §8), not a technical one.</p>
+</blockquote>
+<h2 id="9-where-a-secret-must-never-be">9. Where a secret must never
+be</h2>
+<p>Written as a list because it needs to be quotable, and because every
+item on it has happened somewhere.</p>
+<ul>
+<li>In a ticket. The ticketing system is not a secret store. Tickets are
+readable across the desk, exported into reports, and retained for
+years.</li>
+<li>In a Teams message or a chat, including a chat with yourself. Chat
+content is retained, searchable, and discoverable (<a href="/sops/M365-16">M365-16</a>).</li>
+<li>In a script, a configuration file, or anything under source control.
+A secret committed once is in the history for ever, and removing the
+line does not remove it.</li>
+<li>In a shared document, a OneNote, a SharePoint page, a wiki, or a
+spreadsheet with “passwords” anywhere in its name or its purpose. Also:
+a whiteboard, a sticky note, and a printed runbook.</li>
+<li>In an email, including an email to yourself, and including one you
+intend to delete afterwards.</li>
+<li>In a scheduled task’s stored credential, a mapped drive, or a saved
+connection, where any alternative exists. Secrets live in the
+organization’s secret store, are retrieved for use rather than copied
+out, and are rotated immediately if they have ever been in any of the
+places above. A secret that has appeared in a ticket is a compromised
+secret: it is rotated, not redacted. Redaction hides it from the reader;
+it does not retrieve it from wherever the ticket has already been.</li>
+</ul>
+<blockquote>
+<p><strong>Open question — which secret store, and who runs
+it?</strong></p>
+<p>If your organization has not formally chosen a store, say so here.
+Writing the rule without naming the place is how the rule gets ignored,
+so this is stated rather than glossed.</p>
+<p>ACTION: Tier 3 to recommend a secret storage mechanism to Tier 4
+within 60 days of approval — evaluating what is already licensed before
+buying anything, and covering both application credentials and the
+shared operational passwords in §2. Owner: the Tier 3 lead.</p>
+<p>Until it is chosen, secrets are held in the existing controlled
+mechanism and the exposure is recorded as an open risk rather than
+treated as solved.</p>
+</blockquote>
+<h2 id="10-when-the-owner-leaves">10. When the owner leaves</h2>
+<p>Non-human accounts are not covered by the leaver process, because a
+leaver notification concerns the person leaving and says nothing about
+the six integrations they built years ago. The register is what makes
+them visible at the moment it matters.</p>
+<ol type="1">
+<li>The HR leaver notification (<a href="/sops/ACC-01">ACC-01</a> §5.1) triggers a register query:
+which non-human accounts does this person own or deputise for?</li>
+<li>Ownership transfers before the last working day. The deputy becomes
+the owner, or the leaver’s manager names a replacement. This is part of
+the handover conversation, not an IT afterthought.</li>
+<li>Every credential the leaver held or could retrieve is rotated at
+separation. Without exception, and regardless of how the departure went
+— this is not a statement about the person. It is what makes it possible
+to say, in a year, that the credential was not available to anybody
+outside the organization.</li>
+<li>Shared operational account passwords are changed on the departure of
+anyone who knew them (§6.2).</li>
+<li>Where no owner can be found, the account is escalated to Tier 4 with
+a 30-day disable date. The burden of proof sits on keeping it, not on
+removing it.</li>
+<li>Where the leaver is themselves a vendor or contractor, <a href="/sops/ACC-11">ACC-11</a> §10
+runs as well; the account may be one the organization created for them,
+and the contract end date may already have passed. <a href="/sops/ACC-12">ACC-12</a> sets what
+happens to the person’s own identity. This section is only about the
+identities they were holding on behalf of the organization, which is a
+different question and is otherwise nobody’s.</li>
+</ol>
+<h2 id="11-decommissioning">11. Decommissioning</h2>
+<p>This is the hardest part of the document to actually do, because
+nothing forces it. An integration is retired and the identity behind it
+simply stays, holding its permissions, until it is found in an audit
+years later by somebody with no way of establishing what it was for.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Trigger</th>
+<th>What happens</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>The integration is retired</td>
+<td>The owner tells Tier 3. This is the clean case and it is the
+rarest.</td>
+</tr>
+<tr class="even">
+<td>A contract ends</td>
+<td><a href="/sops/ACC-11">ACC-11</a> §10 offboarding includes any non-human account created for
+the vendor’s integration.</td>
+</tr>
+<tr class="odd">
+<td>The register review finds no owner</td>
+<td>Escalated to Tier 4, disabled after 30 days (§10).</td>
+</tr>
+<tr class="even">
+<td>90 days with no sign-in and no explanation</td>
+<td>Treated as a decommissioning candidate. Some integrations are
+genuinely quarterly or annual, which is why the register records the
+expected cadence — so that silence can be read correctly.</td>
+</tr>
+<tr class="odd">
+<td>The account is found and nobody can say what it does</td>
+<td>Disable it. See below.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="111-the-sequence">11.1 The sequence</h3>
+<ol type="1">
+<li>DISABLE first. Never delete as the first action — deletion removes
+the evidence of what the account was and, for a service principal, takes
+its permission grants with it.</li>
+<li>Observe for 30 days. Watch for the failures that tell you what it
+was doing.</li>
+<li>Remove its permissions and group memberships, recording what they
+were before removal.</li>
+<li>Revoke and remove its credentials.</li>
+<li>Delete the object, and record the deletion in the register with the
+date and the approver. A deleted application registration is recoverable
+for a limited window; a deleted on-premises account is not, unless it is
+in a backup somebody can find.</li>
+<li>Close the register entry rather than deleting the row. The history
+of what existed is worth more than a tidy list.</li>
+</ol>
+<blockquote>
+<p><strong>The rule that unblocks this section</strong></p>
+<p>A non-human account that nobody can explain is decommissioned, not
+researched indefinitely. If disabling it breaks something, the thing it
+broke will announce itself within a fortnight and the account can be
+re-enabled in minutes.</p>
+<p>That is a considerably cheaper way of establishing what an account
+does than an archaeology project, and it is the only approach that ever
+actually reduces the population. The alternative — leaving it because
+somebody might need it — is how the organization arrives at an estate
+nobody can account for.</p>
+<p>Do it deliberately: disable in a maintenance window under <a href="/sops/GOV-04">GOV-04</a>,
+tell Tier 2 and Tier 3 what has been disabled and why, and be ready to
+reverse it the same day.</p>
+</blockquote>
+<h2 id="12-review">12. Review</h2>
+<ul>
+<li>ANNUALLY, the full register goes to Tier 4 under <a href="/sops/ACC-17">ACC-17</a>: every
+account, its owner, its purpose, its permissions, its credential state,
+its last sign-in, and its exemption status.</li>
+<li>EVERY SIX MONTHS, the multifactor exemption list is reviewed against
+§7, with a presumption of removal.</li>
+<li>MONTHLY, the 90-day credential expiry report (§6.3).</li>
+<li>AT REVIEW the questions are: does the integration still exist; does
+it still need every permission it holds; is the owner still here and
+still the right person; when was the credential last rotated; and could
+this account be moved to a workload identity yet.</li>
+<li>An account whose owner does not respond to the review is escalated,
+not carried forward with last year’s answer.</li>
+</ul>
+<h2 id="13-service-levels">13. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>New non-human identity, complete request</td>
+<td>P3 — within 3 coverage days. The design conversation (§3) happens
+first and may take longer; the creation does not.</td>
+</tr>
+<tr class="even">
+<td>Credential rotation, planned</td>
+<td>Scheduled before the expiry date, in a maintenance window under
+<a href="/sops/GOV-04">GOV-04</a>.</td>
+</tr>
+<tr class="odd">
+<td>Credential expired and an integration is down</td>
+<td>P1 — treated as an outage, with the post-incident question being why
+§6.3 did not catch it.</td>
+</tr>
+<tr class="even">
+<td>Suspected compromise of a non-human credential</td>
+<td>P1 — rotate immediately, then investigate under <a href="/sops/GOV-03">GOV-03</a>. Rotation
+does not wait for the investigation.</td>
+</tr>
+<tr class="odd">
+<td>Multifactor exemption request</td>
+<td>Tier 4 decision, at the next scheduled review unless the integration
+is blocked, in which case a recorded interim decision with a 90-day
+expiry.</td>
+</tr>
+<tr class="even">
+<td>Register enumeration and monthly expiry report</td>
+<td>On schedule. These are the controls; late is failed.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="14-records">14. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Non-human account register, all fields</td>
+<td>IT register</td>
+<td>Live, plus 3 years after decommissioning</td>
+</tr>
+<tr class="even">
+<td>Creation requests and design decisions (§3)</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Exception records where a service account was used</td>
+<td>IT register + ticket</td>
+<td>Life of the account + 3 years</td>
+</tr>
+<tr class="even">
+<td>Credential rotations, with dates and new expiries</td>
+<td>IT register</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Multifactor exemptions: justification, compensating controls,
+reviews</td>
+<td>Tier 4 record</td>
+<td>7 years</td>
+</tr>
+<tr class="even">
+<td>Admin consent grants and permission changes</td>
+<td>IT register + tenant audit log</td>
+<td>7 years</td>
+</tr>
+<tr class="odd">
+<td>Decommissioning approvals and dates</td>
+<td>IT register</td>
+<td>Permanent — this is what answers “what happened to it?”</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="15-related-documents">15. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/ACC-16">ACC-16</a></td>
+<td>Application Onboarding, SSO &amp; SAML Claims Standard</td>
+<td>The intake side of the same problem. <a href="/sops/ACC-16">ACC-16</a> brings the application
+in; this document is the identity it carries.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-07">ACC-07</a></td>
+<td>Privileged &amp; Administrative Account Standard</td>
+<td>§8 — no standing Global Administrator, and the six-monthly
+privileged review.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-11">ACC-11</a></td>
+<td>Vendor, Contractor &amp; Consultant Account Standard</td>
+<td>Where the integration belongs to a vendor. §10 offboarding covers
+the identity too.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-02">ACC-02</a></td>
+<td>Account Naming Standard</td>
+<td>Owns naming. §5.1 defers to it.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>§5.1 leaver notification is the trigger for §10.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-12">ACC-12</a></td>
+<td>Separation, Retiree &amp; Former-Member Disposition</td>
+<td>The person’s own identity, as distinct from the ones they
+owned.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-17">ACC-17</a></td>
+<td>Periodic Access Review &amp; Entitlement Recertification</td>
+<td>The annual review in §12.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA Enrollment &amp; Account Recovery</td>
+<td>§7 — the exclusion group is a hole in that control and is governed
+here.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-21">M365-21</a></td>
+<td>Tenant Configuration Change Control</td>
+<td>Consent settings and Conditional Access changes.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-22">M365-22</a></td>
+<td>Phishing Reporting &amp; Email Threat Response</td>
+<td>Illicit consent grants (§8).</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-16">M365-16</a></td>
+<td>Retention, Legal Hold &amp; eDiscovery</td>
+<td>Why a secret in a chat message is a secret in a discoverable
+record.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-04">GOV-04</a></td>
+<td>IT Change Management &amp; Maintenance Windows</td>
+<td>Rotations and decommissioning run as changes.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response</td>
+<td>Suspected credential compromise.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-01">GOV-01</a></td>
+<td>SOP Catalog Governance</td>
+<td>§6.3 defect reporting.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--the-register-mandatory-fields">Appendix A — The
+register: mandatory fields</h2>
+<p>One row per non-human identity. A blank in any field below is a
+defect, not a formatting preference.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>What goes in it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Account name / object ID</td>
+<td>The exact identifier, so the row can be matched to the directory
+without guessing.</td>
+</tr>
+<tr class="even">
+<td>Kind</td>
+<td>Service account / application registration / managed identity /
+shared operational account (§2).</td>
+</tr>
+<tr class="odd">
+<td>Purpose</td>
+<td>One sentence a colleague could read in three years. Not
+“integration”.</td>
+</tr>
+<tr class="even">
+<td>Systems it authenticates to</td>
+<td>Named. Both ends of the integration.</td>
+</tr>
+<tr class="odd">
+<td>Owner and deputy</td>
+<td>Two named people. Not a team, and not a distribution list.</td>
+</tr>
+<tr class="even">
+<td>Permissions held, and where granted</td>
+<td>The list, and the place it was granted — directory role, application
+permission, group membership, on-premises rights.</td>
+</tr>
+<tr class="odd">
+<td>Credential type, and expiry date</td>
+<td>Certificate / client secret / password / platform-managed, with the
+expiry entered at issue. This field is what §6.3 runs on.</td>
+</tr>
+<tr class="even">
+<td>Rotation interval and last rotation</td>
+<td>Both dates.</td>
+</tr>
+<tr class="odd">
+<td>Where the secret is stored</td>
+<td>The store, not the person.</td>
+</tr>
+<tr class="even">
+<td>Interactive sign-in blocked?</td>
+<td>YES / NO. NO requires a Tier 4 record.</td>
+</tr>
+<tr class="odd">
+<td>Multifactor exemption?</td>
+<td>YES / NO. YES requires the justification, the compensating controls
+and the review date (§7).</td>
+</tr>
+<tr class="even">
+<td>Expected activity cadence</td>
+<td>Continuous / daily / weekly / monthly / quarterly / annual. This is
+how §11 reads silence correctly.</td>
+</tr>
+<tr class="odd">
+<td>Created — date, ticket, by whom</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Exception recorded?</td>
+<td>Where §3 was departed from, the one-sentence technical reason.</td>
+</tr>
+<tr class="odd">
+<td>Last reviewed — date, by whom</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Decommission trigger</td>
+<td>What event should end this account.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--new-non-human-identity-checklist">Appendix B — New
+non-human identity checklist</h2>
+<p>Completed by Tier 3 at creation and attached to the ticket. An
+unticked line is a gap somebody will inherit.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>✓</th>
+<th>Step</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>☐</td>
+<td>Kind chosen against §2, with a workload identity as the default</td>
+<td>Kind recorded</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Where a service account was used, the technical exception is
+recorded in one sentence</td>
+<td>Exception text</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Named owner AND named deputy confirmed, both aware</td>
+<td>Names on ticket</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Purpose written in a sentence a stranger could read, and the
+expected activity cadence recorded</td>
+<td>Register entry</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Named per <a href="/sops/ACC-02">ACC-02</a>, not after a person, and hidden from the address
+book</td>
+<td>Account name</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Interactive sign-in blocked, and an alert configured for any
+attempt</td>
+<td>Policy reference</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Credential type is a certificate, or the reason it is not is
+recorded</td>
+<td>Credential type</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Credential expiry date entered in the register at issue</td>
+<td>Expiry date</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Secret placed in the secret store, and nowhere in §9</td>
+<td>Store location</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Permissions granted at the narrowest scope that works; no Global
+Administrator</td>
+<td>Permission list</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Any directory role approved by Tier 4, and any admin consent granted
+by Tier 3 and recorded</td>
+<td>Approval reference</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Multifactor exemption: not requested, or justified, compensated and
+dated</td>
+<td>Exemption record</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Decommission trigger recorded at creation</td>
+<td>Trigger</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Register row complete — every field in Appendix A</td>
+<td>Register entry</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

@@ -1,0 +1,521 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GOV-01 · SOP Catalog Governance &amp; Document Control | Known Good</title>
+<meta name="description" content="How the catalogue is numbered, owned, approved, reviewed and retired — and how the material that already exists is consolidated into it.">
+<meta property="og:title" content="GOV-01 · SOP Catalog Governance &amp; Document Control | Known Good">
+<meta property="og:description" content="How the catalogue is numbered, owned, approved, reviewed and retired — and how the material that already exists is consolidated into it.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="gov-01--sop-catalog-governance--document-control">GOV-01 · SOP
+Catalog Governance &amp; Document Control</h1>
+<p><em>How the catalogue is numbered, owned, approved, reviewed and
+retired — and how the material that already exists is consolidated into
+it.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/GOV-01-SOP-Catalog-Governance-and-Document-Control.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/GOV-01.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/GOV-01">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>GOV-01</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>D. Cross-Cutting Governance</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 4 — IT Management. Tier 4 owns every document in the catalogue,
+which keeps ownership in one place.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>A catalogue without document control becomes the email threads it was
+built to replace. This document is the machinery that keeps it alive:
+how documents are numbered, who owns them, when they are reviewed, and
+how somebody proposes a change.</p>
+<p>It also has a specific first task. Many organizations do not lack
+policy and procedure material — they lack a single index. Search the
+tenant for “standard operating procedure” and the material usually turns
+up in several places, with the IT policies missing from the page where
+people look for policies.</p>
+<blockquote>
+<p><strong>So this is a consolidation, not a creation</strong></p>
+<p>Section 9 is the consolidation worklist. It comes before writing
+anything new, because publishing a new catalogue alongside the existing
+partial ones would make the problem worse rather than better.</p>
+</blockquote>
+<h2 id="2-the-two-document-types-and-why-both-exist">2. The two document
+types, and why both exist</h2>
+<p>Many service desks already keep a tier-based guide library. The
+catalogue is domain-based. These are different axes and both are correct
+— the mistake would be to force one into the other.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>SOP</th>
+<th>Tier guide</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Answers</td>
+<td>What the organization’s procedure is.</td>
+<td>What this tier does during a shift.</td>
+</tr>
+<tr class="even">
+<td>Organised by</td>
+<td>Domain — M365, ACC, DEV, GOV.</td>
+<td>Tier — one knowledge base folder per tier.</td>
+</tr>
+<tr class="odd">
+<td>Audience</td>
+<td>Whoever must follow or approve the procedure. Often several
+tiers.</td>
+<td>One tier, at the point of work.</td>
+</tr>
+<tr class="even">
+<td>Length</td>
+<td>As long as the procedure needs.</td>
+<td>Short. A guide that is not usable during a call is not a guide.</td>
+</tr>
+<tr class="odd">
+<td>Authority</td>
+<td>Authoritative. The SOP is the source.</td>
+<td>Derived. A guide never contradicts its SOP; where it appears to, the
+SOP is right and the guide is a defect.</td>
+</tr>
+<tr class="even">
+<td>Lives in</td>
+<td>The SOP library (§8).</td>
+<td>The knowledge base, in its tier folder.</td>
+</tr>
+<tr class="odd">
+<td>Example</td>
+<td><a href="/sops/ACC-04">ACC-04</a> Password Standard &amp; Self-Service Password Reset.</td>
+<td>Guide — Password Reset and Account Access (Tier 1).</td>
+</tr>
+</tbody>
+</table></div>
+<p>One SOP may yield several guides — one per tier that touches it —
+plus an end-user article under <a href="/sops/GOV-05">GOV-05</a>. All three derive from one source,
+which is what stops them drifting apart. A guide written independently
+of its SOP is the origin of every contradictory instruction a service
+desk has ever given.</p>
+<h2 id="3-numbering">3. Numbering</h2>
+<ul>
+<li>Format: DOMAIN-nn. Domains are M365, ACC, DEV and GOV.</li>
+<li>Numbers are never reused and never renumbered. A retired document
+keeps its number and is marked retired, so that every reference in an
+older SOP, a ticket or an email still resolves.</li>
+<li>A new domain requires a Tier 4 decision. Four is deliberately few; a
+fifth should have to justify itself. Renumbering is the single most
+tempting and most damaging thing to do to a catalogue. It breaks every
+cross-reference at once, silently, and there is no way to detect the
+breakage except by reading everything.</li>
+</ul>
+<h2 id="4-ownership-and-approval">4. Ownership and approval</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Contributing tier</td>
+<td>The tier that operates the procedure. Consulted before approval and
+again at review — a procedure the operating tier has not read will not
+be followed.</td>
+</tr>
+<tr class="even">
+<td>Anybody</td>
+<td>May propose a change (§10).</td>
+</tr>
+</tbody>
+</table></div>
+<p>One owner and one approver per document. Shared ownership means no
+ownership, and a document with two owners is reviewed by neither.</p>
+<h2 id="5-the-control-block">5. The control block</h2>
+<p>Every document opens with one. It reuses the fields your knowledge
+base already uses, typically Version, Tier, Owner, Created and Review,
+and adds what a catalogue needs. Appendix A is the template.</p>
+<p>Two fields are worth explaining because they are unusual and both
+earn their place:</p>
+<ul>
+<li>Cutover-sensitive. Says whether the document changes when a
+migration in flight completes. Where a document is, it carries a
+current-state and a target-state section rather than being rewritten
+later.</li>
+<li>Evidence base. Cites the observed items that justify the document.
+It is what lets any entry be defended in a budget or audit conversation,
+and it stops the catalogue accumulating documents nobody can remember
+the reason for.</li>
+</ul>
+<h2 id="6-review-cadence">6. Review cadence</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Document class</th>
+<th>Cadence</th>
+<th>Also triggered by</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cutover-sensitive, migration live</td>
+<td>Every 6 months</td>
+<td>The cutover completing — at which point the current-state section is
+removed</td>
+</tr>
+<tr class="even">
+<td>Identity and security</td>
+<td>Annually</td>
+<td>Any attempted social-engineering incident; any change to Entra
+configuration</td>
+</tr>
+<tr class="odd">
+<td>Everything else</td>
+<td>Annually</td>
+<td>A change to the system it describes</td>
+</tr>
+<tr class="even">
+<td>A document that produced a defect report</td>
+<td>Immediately</td>
+<td>Any report under §10 that the procedure did not work in
+practice</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>A document past its review date is flagged, not quietly
+trusted</strong></p>
+<p>Stale documentation is more dangerous than none, because people
+follow it. An expired SOP should be visibly expired in the register —
+the reader can then decide, rather than being misled.</p>
+<p>The register carries the review date for exactly this purpose, and a
+monthly check of overdue documents is a five-minute Tier 4 task.</p>
+</blockquote>
+<h2
+id="7-recording-gaps--the-most-valuable-convention-in-the-catalogue">7.
+Recording gaps — the most valuable convention in the catalogue</h2>
+<p>This convention is worth making standard, because it is unusually
+good practice.</p>
+<blockquote>
+<p><strong>What it looks like</strong></p>
+<p>Picture a Tier 1 password guide with a section headed “Gaps — read
+before using this on a live call”. It says plainly that identity
+verification is not documented anywhere, that this is the most important
+missing piece, and that it has been left blank rather than invented.</p>
+<p>That single paragraph is worth more than a confident answer would
+have been. It tells the next reader exactly what to build; in this
+catalogue, that is <a href="/sops/ACC-06">ACC-06</a>.</p>
+</blockquote>
+<p>So: every document in this catalogue may carry a Gaps section, and is
+expected to where gaps exist. The rules are short.</p>
+<ul>
+<li>State what is unknown, not a guess dressed as procedure. A guessed
+value that later proves wrong costs more than an acknowledged
+blank.</li>
+<li>Say what would be needed to close it, so it becomes a task rather
+than a complaint.</li>
+<li>Where a value must be confirmed from a live system, mark it and say
+so — as <a href="/sops/ACC-04">ACC-04</a> §3 does with the password policy.</li>
+<li>Gaps are reviewed at each review. A gap that has been open for two
+cycles is either not important or not resourced, and either answer is
+useful.</li>
+</ul>
+<h2 id="8-where-documents-live">8. Where documents live</h2>
+<div class="tbl"><table>
+<tbody>
+<tr class="odd">
+<td>SOP library</td>
+<td>A single SharePoint document library with versioning on, one folder
+per domain, and the register as its index. Approved documents as PDF
+alongside the editable source, so that the approved version cannot be
+edited by accident.</td>
+</tr>
+<tr class="even">
+<td>Tier guides</td>
+<td>The knowledge base, one folder per tier. If that structure already
+exists and works, keep it.</td>
+</tr>
+<tr class="odd">
+<td>End-user articles</td>
+<td>The knowledge base, per <a href="/sops/GOV-05">GOV-05</a>.</td>
+</tr>
+<tr class="even">
+<td>Organization policies</td>
+<td>The staff portal’s policies page, which is where people look. §9
+makes sure the IT policies are actually linked there.</td>
+</tr>
+<tr class="odd">
+<td>The register</td>
+<td>The index. One row per document, with owner, approver, status,
+review date and operating tier.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="9-consolidating-what-already-exists">9. Consolidating what
+already exists</h2>
+<p>In order, before new documents are added. Appendix B is the
+worklist.</p>
+<ol type="1">
+<li>Find out who has already begun. Look for existing workspaces,
+trackers or templates for SOP work. Where somebody has done work,
+duplicating it would be both wasteful and discouraging.</li>
+<li>Inventory the existing published policies: the acceptable use
+policy, the information security policy (if it exists in more than one
+place, decide which copy is authoritative), and any other IT policies
+sitting in shared folders: network use, shared storage, sensitive data
+disposal, software acquisition, computer use, and email and
+accounts.</li>
+<li>Map each existing policy to the catalogue entry that should align to
+it rather than replace it. Record each mapping in the register’s Basis
+column.</li>
+<li>Fix the staff portal’s policies page. Policies often sit in a page’s
+own asset folder with nothing linking to them. This is the cheapest
+visible win available and it requires no new writing.</li>
+<li>Adopt the existing guide format and tier folders rather than
+inventing a parallel structure (§2).</li>
+<li>Only then publish the register and begin the first phase of
+writing.</li>
+</ol>
+<h2 id="10-change-intake">10. Change intake</h2>
+<ol type="1">
+<li>Anybody may propose a change through the service desk against the
+document ID. No form, no committee — an ID and a sentence.</li>
+<li>The owner responds within ten business days: accepted, accepted with
+modification, declined with a reason, or deferred to the next review
+with a date.</li>
+<li>A report that a procedure turned out to be wrong in practice is a
+defect and takes priority over writing new documents. The register is
+worth nothing if people learn to work around it.</li>
+<li>A change that alters a decision recorded in the document — a
+retention window, a naming convention, a service commitment — needs the
+approver, not just the owner.</li>
+<li>Version increments: 0.x while draft, 1.0 on first approval, minor
+increment for clarification, major for a change in what the procedure
+requires.</li>
+</ol>
+<h2 id="11-retirement">11. Retirement</h2>
+<ol type="1">
+<li>A document is retired when the system it describes is gone, or when
+it is superseded by another entry.</li>
+<li>It keeps its number, is marked RETIRED with a date and a pointer to
+whatever replaced it, and stays in the library. It does not leave.</li>
+<li>The register keeps the row. A reader following an old reference must
+be able to find out what happened rather than encountering nothing.</li>
+<li>Retirement is an approver decision, recorded like any other.</li>
+</ol>
+<h2 id="12-records">12. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>The register</td>
+<td>SOP library</td>
+<td>Live — permanent</td>
+</tr>
+<tr class="even">
+<td>Approved PDF of every version</td>
+<td>SOP library</td>
+<td>Permanent</td>
+</tr>
+<tr class="odd">
+<td>Change proposals and their outcomes</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Approver decisions on retention, naming and commitments</td>
+<td>Document revision history</td>
+<td>Permanent</td>
+</tr>
+<tr class="odd">
+<td>Overdue-review log</td>
+<td>IT governance record</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Consolidation worklist outcomes (§9)</td>
+<td>Project record</td>
+<td>Life of the project + 2 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13-related-documents">13. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tier model</td>
+<td>Your tiers and escalation guide</td>
+<td>The tier model this catalogue attaches to. Not superseded.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-05">GOV-05</a></td>
+<td>Knowledge Base Article Standard</td>
+<td>The derived end-user article format (§2).</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments, Priority &amp; Escalation</td>
+<td>Supplies the §10 response commitment.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-02">GOV-02</a></td>
+<td>Service Desk Intake, Ticket Quality &amp; Categorisation</td>
+<td>The intake channel §10 uses.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-10">M365-10</a></td>
+<td>SharePoint Site Request, Provisioning &amp; Ownership</td>
+<td>How the SOP library itself is provisioned and owned.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-16">M365-16</a></td>
+<td>Retention, Legal Hold &amp; eDiscovery</td>
+<td>Retention of approved documents.</td>
+</tr>
+<tr class="odd">
+<td>All entries</td>
+<td>Every document in the catalogue</td>
+<td>This document governs all of them.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--control-block-template">Appendix A — Control block
+template</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>DOMAIN-nn. Never reused.</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>One of the four.</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Which tier executes. Tier 4 owns regardless.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Per §6.</td>
+</tr>
+<tr class="even">
+<td>Related existing policy</td>
+<td>Where an existing organization policy already covers this ground.
+Align, do not replace.</td>
+</tr>
+<tr class="odd">
+<td>Closes / Gaps</td>
+<td>What this document closes, and what it still cannot answer
+(§7).</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--consolidation-worklist">Appendix B — Consolidation
+worklist</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>✓</th>
+<th>Task</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>☐</td>
+<td>Find out who started the SOP work and how far it got</td>
+<td>Existing workspaces, trackers and templates</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>If the information security policy exists in more than one place,
+decide which copy is authoritative</td>
+<td>Wherever the copies live</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Confirm the acceptable use policy is current, and whether any draft
+revision supersedes it</td>
+<td>IT policies library</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Link every IT policy from the policies page</td>
+<td>The staff portal</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Map each existing policy to its catalogue entry</td>
+<td>Register — Basis column</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Adopt the existing guide format and tier folders</td>
+<td>The knowledge base tier folders</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Provision the SOP library with versioning and domain folders</td>
+<td>New SharePoint library (<a href="/sops/M365-10">M365-10</a>)</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Publish the register as its index</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Then, and only then, start the first phase of writing</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

@@ -1,0 +1,990 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DEV-08 · Mobile Device Access to Organization Data | Known Good</title>
+<meta name="description" content="Your phone became part of the organization’s security perimeter the day you set up Authenticator. What that means, what we can and cannot see, and what to do when you change phones.">
+<meta property="og:title" content="DEV-08 · Mobile Device Access to Organization Data | Known Good">
+<meta property="og:description" content="Your phone became part of the organization’s security perimeter the day you set up Authenticator. What that means, what we can and cannot see, and what to do when you change phones.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="dev-08--mobile-device-access-to-organization-data">DEV-08 ·
+Mobile Device Access to Organization Data</h1>
+<p><em>Your phone became part of the organization’s security perimeter
+the day you set up Authenticator. What that means, what we can and
+cannot see, and what to do when you change phones.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/DEV-08-Mobile-Device-Access-to-Organization-Data.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/DEV-08.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/DEV-08">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>DEV-08</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>C. Device Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 1 — the front door handles almost everything in this document:
+setting up mail on a phone, the phone-change case in §9, and answering
+“what can you see?”. Tier 3 owns the app protection and Conditional
+Access configuration; Tier 4 approves full enrollment and the §10
+cutover.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually, and on any change to the MFA method position in
+<a href="/sops/ACC-03">ACC-03</a>.</td>
+</tr>
+<tr class="even">
+<td>Relationship to <a href="/sops/DEV-07">DEV-07</a></td>
+<td><a href="/sops/DEV-07">DEV-07</a> sets the bargain for any personally-owned device and is
+written to be read by the device’s owner. This document is the
+mobile-specific standard underneath it: the three postures, the
+settings, wipe scope, and the phone-change procedure. Where they
+overlap, <a href="/sops/DEV-07">DEV-07</a> §5 is the organization’s privacy statement and §3 here
+must match it exactly. If they ever diverge, that is a defect
+(<a href="/sops/GOV-01">GOV-01</a>).</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose--the-day-your-phone-joined-the-perimeter">1. Purpose —
+the day your phone joined the perimeter</h2>
+<p>Almost everybody thinks of their phone as outside the organization’s
+world. It is their own property, bought with their own money, full of
+their own life. That instinct is correct about the phone and wrong about
+one app on it.</p>
+<blockquote>
+<p><strong>The moment you registered Microsoft Authenticator, your phone
+became the thing that proves you are you.</strong></p>
+<p>It is no longer only a device that reads organization mail. It is the
+second factor on your organization identity — the object that approves a
+sign-in to your mailbox, your files, your business systems and
+everything the organization has connected to that identity.</p>
+<p>That is true whether or not you read email on it. A phone with
+Authenticator and nothing else on it is more security-relevant than a
+phone with the whole Microsoft 365 suite and no MFA method.</p>
+<p>Which means two things. The organization has a legitimate interest in
+a small, specific part of your phone — and a corresponding obligation to
+be precise about how small that part is (§3).</p>
+</blockquote>
+<p>The second reason this document exists is a specific, common failure:
+a service desk receives a request to fix an Authenticator sign-in
+problem. It arrives from a personal Gmail address, on behalf of a person
+with a different name, and nobody records any verification of who was
+asking before acting.</p>
+<p>That is the exact shape of a help desk social-engineering attack: the
+request is plausible, the sympathy is genuine, the pressure is real, and
+the account being changed is the one thing protecting everything else.
+Section 9 is the procedure whose absence makes it possible, and it is
+written as a step sequence for that reason.</p>
+<h2
+id="2-the-three-postures-and-which-one-the-organization-should-adopt">2.
+The three postures, and which one the organization should adopt</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Posture</th>
+<th>What the organization applies</th>
+<th>Who it is for</th>
+<th>Assessment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Unmanaged device, protected apps (app protection / MAM-WE)</td>
+<td>Protection applied to organization data inside organization apps: a
+PIN or biometric to open them, encryption of organization data at rest,
+no copying organization data into personal apps, and the ability to
+remove organization data and nothing else. The device itself is not
+enrolled and not managed.</td>
+<td>Every personally-owned phone and tablet. This is the default and it
+should cover the great majority of devices.</td>
+<td>RECOMMENDED. It achieves the actual objective — protecting
+organization data — without the organization acquiring any control over
+somebody’s personal property. It is also the posture people will accept,
+which matters, because a posture nobody accepts does not get
+adopted.</td>
+</tr>
+<tr class="even">
+<td>Fully enrolled (MDM)</td>
+<td>The device is enrolled and managed: configuration profiles,
+compliance policy, app deployment, restrictions, and — where the
+platform allows — a full device wipe.</td>
+<td>Organization-owned mobile devices only: a small number of shared or
+role phones and tablets, department iPads, kiosk and check-in
+tablets.</td>
+<td>Correct for organization property, wrong for personal property. Full
+enrollment of a personal phone should be rare and by explicit agreement
+(<a href="/sops/DEV-07">DEV-07</a> §3), and the better answer is almost always to issue an
+organization device instead.</td>
+</tr>
+<tr class="odd">
+<td>Unmanaged, no controls</td>
+<td>Nothing. Organization mail and files reach the device through
+whatever client the person chose, with no PIN requirement, no encryption
+requirement, no restriction on where the data goes, and no way to remove
+it.</td>
+<td>Nobody, by design. In many organizations it is the status quo.</td>
+<td>Where this is where you are today, the honest assessment is:
+organization data — including client records read in Outlook — is on an
+unknown number of phones. The organization cannot say how many, cannot
+require a passcode on any of them, and cannot remove its data from a
+single one. When somebody leaves, the mail app on their phone keeps
+working until the account is disabled, and nothing after that is
+verifiable.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The recommendation is therefore: app protection required for
+personally-owned devices, full enrollment for organization-owned devices
+only, and the third posture closed — in that order, on the sequence in
+§10.</p>
+<h2
+id="3-what-the-organization-can-and-cannot-see-on-a-personal-phone">3.
+What the organization can and cannot see on a personal phone</h2>
+<p>This is the single biggest obstacle to adoption, and honesty is the
+only thing that removes it. People decline app protection because they
+assume it means the organization can read their messages and see their
+photos. It does not, and the fix for that assumption is not reassurance
+in general terms — it is a table.</p>
+<p>Under app protection, on a device that is not enrolled:</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>The organization can see</th>
+<th>The organization cannot see</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>That a device is being used with your organization account, and its
+make, model and operating system version.</td>
+<td>Your photos, videos or personal files.</td>
+</tr>
+<tr class="even">
+<td>Whether organization apps on it meet the protection requirements
+(§4).</td>
+<td>Your personal messages, iMessage, WhatsApp, or your calls and call
+history.</td>
+</tr>
+<tr class="odd">
+<td>Which organization apps you use, and when organization data was last
+synchronised to them.</td>
+<td>Your other apps, or which apps you have installed at all.</td>
+</tr>
+<tr class="even">
+<td>Sign-in activity for your organization account — as for any device,
+including an organization laptop.</td>
+<td>Your browsing history, other than organization sites opened in a
+managed organization browser profile.</td>
+</tr>
+<tr class="odd">
+<td>That the device reports itself as jailbroken or rooted, if it
+does.</td>
+<td>Your location. There is no location capability under app protection,
+and the organization does not want one.</td>
+</tr>
+<tr class="even">
+<td>That organization data was removed, when the organization removes
+it.</td>
+<td>Your personal email accounts — including a personal account added to
+the same Outlook app, which is separate and unmanaged.</td>
+</tr>
+<tr class="odd">
+<td>Your mobile number, but only if you registered it yourself as an MFA
+or password-reset method.</td>
+<td>Your contacts, calendar or notes, other than the organization ones
+inside organization apps.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>There is no mechanism under app protection for the organization to
+read personal content on a personal device. It is not that the
+organization chooses not to; the capability does not exist in this
+posture.</li>
+<li>The organization cannot wipe your phone under app protection. It can
+remove organization data from organization apps, which is a different
+action with a different scope (§6).</li>
+<li>Access to sign-in or mailbox logs for a security investigation is a
+Tier 4 decision with a recorded reason, and where it concerns an
+employee, HR is involved from the start (<a href="/sops/ACC-15">ACC-15</a> §6).</li>
+<li>Under full enrollment the organization can see and do considerably
+more — installed application inventory, configuration state, and on
+organization-owned hardware a full wipe. That is exactly why §2
+restricts full enrollment to organization-owned devices.</li>
+<li>This table must stay identical in substance to <a href="/sops/DEV-07">DEV-07</a> §5. Two
+documents giving different answers to “what can you see?” is worse than
+neither document existing.</li>
+</ul>
+<h2 id="4-the-app-protection-baseline">4. The app protection
+baseline</h2>
+<p>Recommended settings for personally-owned devices. Each is chosen
+because it protects organization data rather than because the platform
+offers it — and two of them are deliberately not set, which is stated
+here so the omissions are decisions rather than oversights.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Setting</th>
+<th>Requirement</th>
+<th>What the person experiences</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PIN or biometric on organization apps</td>
+<td>Required. Six digits minimum, or the device biometric. Re-prompt
+after 30 minutes of inactivity.</td>
+<td>Face or fingerprint when opening Outlook or Teams after a break. On
+most phones this is unnoticeable.</td>
+</tr>
+<tr class="even">
+<td>Encryption of organization data at rest</td>
+<td>Required within organization apps.</td>
+<td>Nothing visible.</td>
+</tr>
+<tr class="odd">
+<td>Minimum operating system</td>
+<td>Recommended: the current major version and the one before it for iOS
+and iPadOS; Android 13 and above. Reviewed every six months with a
+published floor.</td>
+<td>A device below the floor cannot use organization apps. This falls
+hardest on people with older phones, which is a real cost — the
+mitigations are Outlook on the web, or an organization device.</td>
+</tr>
+<tr class="even">
+<td>Jailbreak / root detection</td>
+<td>Blocked. Organization data is removed from organization apps on a
+device reporting as jailbroken or rooted.</td>
+<td>Affects a very small number of people, who will know why.</td>
+</tr>
+<tr class="odd">
+<td>Copy and paste out of organization apps</td>
+<td>Blocked into unmanaged apps. Paste into organization apps is
+allowed, and copying within organization apps is allowed.</td>
+<td>The most-noticed restriction. Pasting a paragraph from organization
+email into a personal note will not work.</td>
+</tr>
+<tr class="even">
+<td>Save As to personal storage</td>
+<td>Blocked. Saving to OneDrive for Business and SharePoint is
+allowed.</td>
+<td>An organization attachment cannot be saved to personal iCloud,
+Google Drive or the phone’s local files.</td>
+</tr>
+<tr class="odd">
+<td>Backup of organization data to iCloud or Google</td>
+<td>Blocked.</td>
+<td>Nothing visible.</td>
+</tr>
+<tr class="even">
+<td>Offline grace</td>
+<td>Organization data removed from apps after 30 days with no check-in;
+access blocked after 12 hours offline for the most sensitive apps is NOT
+recommended — it punishes travel.</td>
+<td>A phone left in a drawer for a month will ask you to sign in
+again.</td>
+</tr>
+<tr class="odd">
+<td>Screen capture (Android)</td>
+<td>NOT blocked — recommended. The platform allows it, and blocking it
+stops people photographing a schedule or a room number while providing
+very little protection against anybody determined.</td>
+<td>Screenshots continue to work.</td>
+</tr>
+<tr class="even">
+<td>Third-party keyboards</td>
+<td>NOT blocked — recommended, with a note. Blocking them breaks
+accessibility and multilingual input for the people who most need them.
+The risk is real but the control is disproportionate.</td>
+<td>Your keyboard keeps working.</td>
+</tr>
+<tr class="odd">
+<td>Which apps are managed</td>
+<td>Outlook, Teams, OneDrive, Word, Excel, PowerPoint, OneNote,
+SharePoint, and Edge for organization sites. Authenticator is treated
+separately (§8).</td>
+<td>These are the apps to install. The organization publishes the list
+rather than leaving people to guess.</td>
+</tr>
+<tr class="even">
+<td>Unmanaged mail clients</td>
+<td>Blocked once app protection is live — the built-in iOS Mail app, the
+Android mail client, and any third-party client, all of which reach mail
+without any of the protections above.</td>
+<td>This is the change that will affect people. See §10; it needs
+sequencing and warning, not an announcement.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>The policy only bites when the unmanaged path is
+closed</strong></p>
+<p>App protection policies apply to organization apps. They do nothing
+at all about a phone reading organization mail through the built-in Mail
+app, because that path never touches a managed app.</p>
+<p>So the control that actually delivers this document is a Conditional
+Access policy requiring an approved client application with an app
+protection policy applied. Until that is in place, §4 is a
+recommendation that protects the people who were never the risk.</p>
+<p>And that policy will stop some people’s mail working on the day it
+turns on. Everybody currently using the built-in Mail app has to move to
+Outlook first. That is §10, and the classic MFA setup loop shows what
+happens when a control is enforced against a population that cannot yet
+satisfy it (<a href="/sops/ACC-03">ACC-03</a> §11).</p>
+</blockquote>
+<h2 id="5-organization-owned-mobile-devices">5. Organization-owned
+mobile devices</h2>
+<ul>
+<li>Organization-owned phones and tablets are fully enrolled, and appear
+in inventory like any other device (<a href="/sops/DEV-01">DEV-01</a>). An organization iPad in a
+department drawer with no enrollment record is an untracked asset
+holding organization data.</li>
+<li>Apple devices are enrolled through Apple Business Manager and
+Automated Device Enrollment, which requires them to have been bought
+through an ABM-linked channel — the same purchasing rule that governs
+Macs, and the same failure if it is not followed (<a href="/sops/DEV-09">DEV-09</a> §3, <a href="/sops/DEV-04">DEV-04</a>
+§3).</li>
+<li>Shared tablets — check-in stations, event devices, meeting room sets
+— run as shared or single-app devices with no persistent personal state,
+on the same principle as a lab machine (<a href="/sops/DEV-06">DEV-06</a> §2).</li>
+<li>An organization mobile device issued to one named person carries the
+same rules as an organization laptop: it is organization property,
+subject to the Acceptable Use Policy, returned at separation, and wiped
+and recorded through <a href="/sops/DEV-15">DEV-15</a> when it is retired.</li>
+<li>Personal use of an organization phone is a reasonable thing to
+permit and should be stated explicitly one way or the other, because a
+full wipe of an organization device takes the personal photographs with
+it and the person deserves to have known that in advance.</li>
+</ul>
+<h2 id="6-selective-wipe-full-wipe-and-the-lost-phone">6. Selective
+wipe, full wipe, and the lost phone</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Selective wipe (organization data only)</th>
+<th>Full wipe (whole device)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>What it removes</td>
+<td>Organization mail, files, Teams content and cached organization data
+from managed apps. Personal content, apps, photos and accounts are
+untouched.</td>
+<td>Everything on the device, returning it to factory state.</td>
+</tr>
+<tr class="even">
+<td>Applies to</td>
+<td>Any device, personally-owned or organization-owned. The default
+action in every case.</td>
+<td>Organization-owned devices only.</td>
+</tr>
+<tr class="odd">
+<td>When</td>
+<td>Separation (§7), a lost or stolen device, a device reporting
+jailbroken or rooted, a device that has not checked in for 30 days, or
+on the owner’s request.</td>
+<td>A lost or stolen organization device with no prospect of recovery;
+an organization device being retired or reassigned (<a href="/sops/DEV-15">DEV-15</a>).</td>
+</tr>
+<tr class="even">
+<td>Who authorises</td>
+<td>Tier 2, on the leaver record or the lost-device report. It does not
+need a Tier 4 decision, because its scope is organization data.</td>
+<td>Tier 4. A full wipe is irreversible and takes anything of the user’s
+with it.</td>
+</tr>
+<tr class="odd">
+<td>On a personal device</td>
+<td>Yes — this is the mechanism the whole document rests on.</td>
+<td>Never. Not on personal property, not as a convenience, not because
+the platform offers the button. Only with the owner’s explicit,
+contemporaneous agreement, recorded (<a href="/sops/DEV-07">DEV-07</a> §6).</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="61-the-lost-or-stolen-phone">6.1 The lost or stolen phone</h3>
+<p>A lost phone is two incidents at once, and the second one is the one
+people forget: it is a data event and an identity event. <a href="/sops/DEV-16">DEV-16</a> is the
+full procedure; what is specific to a phone is the identity half.</p>
+<ol type="1">
+<li>The person reports it — one number, immediately, without waiting to
+be sure it is not just in the car (<a href="/sops/DEV-16">DEV-16</a> §2). Nobody is ever criticised
+for reporting a phone that turns up.</li>
+<li>Selective wipe queued for organization data. It executes when the
+device next has a network connection, which may be never — so this is a
+mitigation, not a guarantee, and it should be described that way.</li>
+<li>Sign-in sessions revoked, so a signed-in app on that phone stops
+working rather than continuing until its token expires.</li>
+<li>If that phone carried an MFA method — which it almost certainly did
+— that method is removed, and the person needs another way to sign in.
+This is the step that makes a lost phone urgent rather than merely
+annoying.</li>
+<li>The person is verified in person or by the <a href="/sops/ACC-06">ACC-06</a> standard before
+any method is re-registered. A lost phone is the ideal pretext for an
+attacker, and the request will arrive by exactly the route real
+impersonation attempts arrive by.</li>
+<li>Where the phone held CONFIDENTIAL or RESTRICTED material beyond what
+a mailbox ordinarily holds, <a href="/sops/GOV-03">GOV-03</a> is engaged. Where it is a theft,
+<a href="/sops/DEV-16">DEV-16</a> §7.</li>
+</ol>
+<h2 id="7-when-you-leave">7. When you leave</h2>
+<ul>
+<li>Organization data is removed from organization apps on your device.
+Your phone, your photos, your personal accounts and your apps are
+untouched (§6).</li>
+<li>This happens as part of the leaver procedure (<a href="/sops/ACC-01">ACC-01</a> §7.2) and is
+not discretionary or personal.</li>
+<li>Your MFA methods are removed with the account, which is why the
+Authenticator entry for the organization disappears. Delete it from the
+app at your leisure; it no longer does anything.</li>
+<li>If your mobile number was registered for SMS or self-service
+password reset, it goes with the account. The organization does not
+retain a personal number after separation for any other purpose.</li>
+<li>Retiree and affiliate accounts continue to exist under <a href="/sops/ACC-12">ACC-12</a>, and
+so does the app protection requirement on them. A retained account with
+a phone reading its mail is still an account inside the perimeter.</li>
+<li>If anything of yours is genuinely mixed into organization storage,
+say so before your last day. It is far easier to separate then than
+afterwards, and afterwards it may not be possible at all (<a href="/sops/M365-16">M365-16</a>).</li>
+</ul>
+<h2 id="8-the-identity-dimension--authenticator-passkeys-and-sms">8. The
+identity dimension — Authenticator, passkeys and SMS</h2>
+<p>This section is the reason a mobile standard belongs to Tier 1 rather
+than to a device team. <a href="/sops/ACC-03">ACC-03</a> is the governing document for methods;
+what follows is the phone-shaped view of it.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Position</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Microsoft Authenticator push with number matching</td>
+<td>The current standard method for most people.</td>
+<td>Resistant to blind approval fatigue, because the number must be read
+from the sign-in screen. Still phishable in principle by a determined
+real-time attacker, which is why it is not the destination.</td>
+</tr>
+<tr class="even">
+<td>Passkey in Authenticator, or a platform passkey (Face ID /
+fingerprint on the device)</td>
+<td>The direction of travel, and the recommended method for anybody
+willing to set it up now.</td>
+<td>Phishing-resistant: the credential is bound to the site and cannot
+be replayed by an attacker who has intercepted it. This is what vendor
+phishing-resistant MFA requirements are actually asking for.</td>
+</tr>
+<tr class="odd">
+<td>FIDO2 security key</td>
+<td>Recommended for privileged and administrative accounts (<a href="/sops/ACC-07">ACC-07</a>), and
+as the second method for anybody whose phone is their only factor.</td>
+<td>Phishing-resistant and independent of the phone entirely — which is
+precisely its value in the phone-change and lost-phone cases.</td>
+</tr>
+<tr class="even">
+<td>SMS and voice call</td>
+<td>Enabled today as fallback. A weak factor, and the direction is to
+disable it.</td>
+<td>Interceptable, and vulnerable to SIM-swap — an attacker who
+persuades a mobile carrier to move a number receives the codes. It is
+also the method people fall back to on a new phone, which is exactly the
+moment verification matters most (§9).</td>
+</tr>
+<tr class="odd">
+<td>A single method, whatever it is</td>
+<td>Not acceptable, and the commonest real problem.</td>
+<td>One method on one phone means one lost, stolen, broken, wet or
+traded-in phone is a verified in-person recovery. Two methods, on two
+different things, is ninety seconds of setup that saves a bad
+afternoon.</td>
+</tr>
+</tbody>
+</table></div>
+<p>On the direction of travel: SaaS vendors are increasingly enforcing
+phishing-resistant MFA by fixed dates. That is a hard external date
+against a control with a classic failure mode — a rushed rollout that
+leaves people stuck in an MFA setup loop. The lesson recorded in <a href="/sops/ACC-03">ACC-03</a>
+§11 applies here without modification: register the method across the
+population first, verify from the authentication-methods report that
+they hold it, run report-only, and only then enforce. SMS is disabled
+after that, not before, because disabling the fallback while people
+still depend on it is how the setup loop happens.</p>
+<h2 id="9-changing-your-phone">9. Changing your phone</h2>
+<p>This is one of the most common calls Tier 1 takes and one of the most
+painful when it goes wrong, because the person is locked out of
+everything at once and their proof of identity was on the phone they no
+longer have. It deserves a written procedure on both sides.</p>
+<h3 id="91-the-good-path--you-still-have-the-old-phone">9.1 The good
+path — you still have the old phone</h3>
+<ol type="1">
+<li>Before you do anything else with the new phone, install Microsoft
+Authenticator on it.</li>
+<li>Add your organization account as a new method from the new phone.
+Sign in and approve the prompt on the OLD phone — this is why doing it
+before the trade-in matters, and it is the whole trick.</li>
+<li>Confirm both methods now appear on your account, then remove the old
+phone’s method yourself.</li>
+<li>Install the organization apps on the new phone: Outlook, Teams,
+OneDrive. Sign in. Set the PIN or biometric when prompted (§4).</li>
+<li>Only now factory-reset, sell or trade in the old phone. Signing out
+of the organization account is not the same as removing the device; do
+the reset.</li>
+<li>Total elapsed time: about five minutes, no ticket, no verification
+appointment.</li>
+</ol>
+<h3 id="92-the-recovery-path--the-old-phone-is-gone-broken-or-wiped">9.2
+The recovery path — the old phone is gone, broken or wiped</h3>
+<ol type="1">
+<li>If you have a second registered method — a security key, a passkey
+on a laptop, or Authenticator on a tablet — use it. This is the entire
+reason for having one, and no further procedure is required.</li>
+<li>If you have no other method: contact the service desk. This is a
+verified recovery, not a reset, and it will take longer than you want it
+to.</li>
+<li>IT verifies your identity to the <a href="/sops/ACC-06">ACC-06</a> standard for a method change
+— which is the highest verification tier the organization operates,
+because re-registering an MFA method is functionally the same as handing
+somebody the account (<a href="/sops/ACC-06">ACC-06</a> §4, §5).</li>
+<li>IT issues a Temporary Access Pass or equivalent, valid briefly and
+once, forcing re-registration at next sign-in (<a href="/sops/ACC-03">ACC-03</a> §5).</li>
+<li>You register at least two methods this time, and IT should insist on
+it rather than leaving it as advice.</li>
+<li>The verification performed, and by whom, is recorded on the ticket.
+Not “verified”; what was checked (<a href="/sops/ACC-06">ACC-06</a> §9).</li>
+</ol>
+<blockquote>
+<p><strong>The request IT will not action, however genuine it
+looks</strong></p>
+<p>A common failure: an Authenticator request arrives at the service
+desk from a personal email address, on behalf of a person with a
+different name, and is acted on with no verification recorded.</p>
+<p>So, explicitly: IT does not add, remove or reset an MFA method on the
+strength of an email from an address that is not the account holder’s
+organization address; on the strength of a request made by somebody else
+on the holder’s behalf — including a manager, an assistant, a spouse or
+a colleague being helpful; or because the request is urgent and the
+person is travelling and stuck.</p>
+<p>Every one of those is a legitimate-sounding request that an attacker
+would make word for word. The verification in <a href="/sops/ACC-06">ACC-06</a> is not an obstacle
+to the account holder; it is the only thing standing between an attacker
+and the account. Where a request cannot be verified, it is declined with
+the script in <a href="/sops/ACC-06">ACC-06</a> Appendix B — courteously, and with the route that
+will work.</p>
+<p>This applies with no exception at Tier 1, and no member of staff can
+waive it by seniority or by pressure (<a href="/sops/ACC-06">ACC-06</a> §10).</p>
+</blockquote>
+<p>The practical prevention, which Tier 1 should say out loud in every
+conversation about phones: register a second method now, on something
+that is not your phone. It converts §9.2 into §9.1.</p>
+<h2 id="10-cutover--from-no-controls-to-app-protection">10. Cutover —
+from no controls to app protection</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Current state — governs today</th>
+<th>Target state</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Access from a personal phone</td>
+<td>Any client, no controls, no inventory. Unknown population.</td>
+<td>Approved organization apps only, with app protection applied,
+enforced by Conditional Access.</td>
+</tr>
+<tr class="even">
+<td>PIN on organization data</td>
+<td>Whatever the person has on their phone, if anything.</td>
+<td>Required on organization apps (§4).</td>
+</tr>
+<tr class="odd">
+<td>Built-in Mail app / third-party clients</td>
+<td>Working, and used by an unknown number of people.</td>
+<td>Blocked. This is the change people will feel.</td>
+</tr>
+<tr class="even">
+<td>Removing organization data</td>
+<td>Not possible. The organization can disable the account and
+hope.</td>
+<td>Selective wipe, on the leaver record or on report (§6).</td>
+</tr>
+<tr class="odd">
+<td>organization-owned phones and tablets</td>
+<td>Mixed; some enrolled, some not, some not in inventory.</td>
+<td>Fully enrolled, in inventory, ABM-linked where Apple (§5).</td>
+</tr>
+<tr class="even">
+<td>MFA methods</td>
+<td>Typically Authenticator push (and sometimes a legacy provider’s
+app), with SMS and voice as fallback (<a href="/sops/ACC-03">ACC-03</a> §3).</td>
+<td>Passkeys and phishing-resistant methods as the standard; SMS and
+voice disabled — after registration, not before (§8).</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Cutover trigger, and the order that avoids the setup
+loop</strong></p>
+<ol type="1">
+<li><p>Publish Appendix A first. People need to know what the
+organization can and cannot see before being asked to accept anything
+(§3). This step is not optional and it is not marketing.</p></li>
+<li><p>Make the target work before blocking the source. Outlook, Teams
+and OneDrive available, app protection applied, and a Tier 1 script for
+setting them up (§11).</p></li>
+<li><p>Measure who is affected. Identify the population still using
+unmanaged mail clients, from sign-in data, before anything is switched.
+A cutover against an unmeasured population is the classic
+mistake.</p></li>
+<li><p>Warn that population by name, twice, with a date and a how-to.
+Not a broadcast to everybody, which the affected people will not read as
+being about them.</p></li>
+<li><p>Run the Conditional Access policy in report-only for at least ten
+business days and read the would-be-blocked report daily.</p></li>
+<li><p>Enforce by wave, smallest and best-understood population first,
+with Tier 1 briefed and staffed for the day.</p></li>
+<li><p>Only then consider disabling SMS as an MFA method (§8), and only
+against the evidence that the population holds another one.</p></li>
+</ol>
+<p>Where a hard external date exists — a vendor’s phishing-resistant
+requirement, say — it moves the affected population to the front of the
+wave order. It does not license skipping steps 3 to 5; that is precisely
+what produces an MFA setup loop.</p>
+</blockquote>
+<h2 id="11-service-levels">11. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Help setting up organization mail on a phone</td>
+<td>P3 — Tier 1, usually within the same conversation.</td>
+</tr>
+<tr class="even">
+<td>“What can you see on my phone?”</td>
+<td>Answered at Tier 1 from §3, immediately. A fair question that
+deserves a straight answer, not an escalation.</td>
+</tr>
+<tr class="odd">
+<td>Phone change, old phone available (§9.1)</td>
+<td>Self-service. Tier 1 talks it through in about five minutes if
+asked.</td>
+</tr>
+<tr class="even">
+<td>Phone change, no other method (§9.2)</td>
+<td>P2 — verified recovery within one coverage day. Not faster, because
+the verification is the control.</td>
+</tr>
+<tr class="odd">
+<td>Lost or stolen phone holding organization data</td>
+<td>P1 — selective wipe queued and sessions revoked within 1 coverage
+hour of report (<a href="/sops/DEV-16">DEV-16</a>).</td>
+</tr>
+<tr class="even">
+<td>MFA method removed after a lost phone, person unable to work</td>
+<td>P1 — but only after <a href="/sops/ACC-06">ACC-06</a> verification. The clock does not license
+skipping it.</td>
+</tr>
+<tr class="odd">
+<td>Device below the minimum OS floor</td>
+<td>P3 — Tier 1 explains, offers web access or an organization device.
+Not treated as a fault.</td>
+</tr>
+<tr class="even">
+<td>Full enrollment request for a personally-owned device</td>
+<td>P3 to Tier 4 — expect to be offered an organization device instead
+(<a href="/sops/DEV-07">DEV-07</a> §3).</td>
+</tr>
+<tr class="odd">
+<td>Organization data removal at separation</td>
+<td>With the <a href="/sops/ACC-01">ACC-01</a> leaver procedure, same day as the account
+action.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="12-records">12. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Devices with app protection applied — model, OS, last check-in</td>
+<td>Management platform</td>
+<td>While in use</td>
+</tr>
+<tr class="even">
+<td>Organization-owned mobile devices, assignee and enrollment
+state</td>
+<td>Inventory</td>
+<td>Life of the device + 3 years</td>
+</tr>
+<tr class="odd">
+<td>Selective wipes: device, reason, who authorised, outcome</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Full wipes of organization devices, with Tier 4 approval</td>
+<td>Ticket + Tier 4 record</td>
+<td>7 years</td>
+</tr>
+<tr class="odd">
+<td>Full enrollment agreements for personally-owned devices, with
+recorded consent</td>
+<td>Ticket + Tier 4 record</td>
+<td>Life of the arrangement + 3 years</td>
+</tr>
+<tr class="even">
+<td>MFA method changes, with the verification performed and by whom</td>
+<td>Ticket</td>
+<td>3 years — the field is mandatory (<a href="/sops/ACC-06">ACC-06</a> §9)</td>
+</tr>
+<tr class="odd">
+<td>Declined or unverifiable method requests, including who asked</td>
+<td>Security record</td>
+<td>3 years — the pattern matters more than the case</td>
+</tr>
+<tr class="even">
+<td>Cutover evidence: report-only findings, waves, affected
+population</td>
+<td>Tier 4 record</td>
+<td>7 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13-related-documents">13. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AUP</td>
+<td>Your organization's acceptable use policy</td>
+<td>Applies to a personal phone used for organization work exactly as to
+an organization device.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-07">DEV-07</a></td>
+<td>Personally-Owned Device Access Standard</td>
+<td>The bargain, and the privacy statement §3 must match. Read first by
+anybody whose device it is.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-16">DEV-16</a></td>
+<td>Lost, Stolen or Compromised Device Response</td>
+<td>§6.1 is the phone-shaped view of it.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-01">DEV-01</a></td>
+<td>Device Enrollment &amp; Lifecycle</td>
+<td>Organization-owned mobile devices are enrolled and inventoried
+there.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-09">DEV-09</a></td>
+<td>macOS Device Management Standard</td>
+<td>§3 — the ABM purchasing rule, which applies to iPhones and iPads
+too.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-15">DEV-15</a></td>
+<td>Device Reassignment, Wipe, Retirement &amp; Disposal</td>
+<td>Retirement of an organization phone or tablet.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA &amp; Account Recovery</td>
+<td>The governing document for methods, the Temporary Access Pass path,
+and the §11 rollout lesson.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-06">ACC-06</a></td>
+<td>Identity Verification</td>
+<td>The verification standard §9.2 depends on. The §1 request is a
+failure of this control, not of a mobile setting.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>§7 — removal at separation.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-12">ACC-12</a></td>
+<td>Separation, Retiree &amp; Former-Member Disposition</td>
+<td>Retained accounts stay inside the perimeter, and so do their
+phones.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-07">ACC-07</a></td>
+<td>Privileged Account Standard</td>
+<td>Privileged accounts use phishing-resistant methods and are not
+administered from a phone.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-15">ACC-15</a></td>
+<td>Acceptable Use &amp; Credential-Sharing Standard</td>
+<td>Never approve a prompt you did not trigger; the monitoring position
+in §6.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-15">M365-15</a></td>
+<td>Data Classification &amp; Handling</td>
+<td>What may be opened on a phone.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-22">M365-22</a></td>
+<td>Phishing Reporting &amp; Email Threat Response</td>
+<td>Where a suspicious prompt or message goes.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response</td>
+<td>A lost phone that is more than a lost phone.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments, Priority &amp; Escalation</td>
+<td>Supplies §11.</td>
+</tr>
+</tbody>
+</table></div>
+<h2
+id="appendix-a--getting-your-work-email-on-your-phone-and-what-we-can-and-cannot-see">Appendix
+A — Getting your work email on your phone, and what we can and cannot
+see</h2>
+<p>Source text for the knowledge base, publishable as written. Format
+per <a href="/sops/GOV-05">GOV-05</a>. This is the article that has to exist before anything in §10
+is switched on.</p>
+<div class="tbl"><table>
+<tbody>
+<tr class="odd">
+<td>Yes, put your organization email on your phone</td>
+<td>Most people do, and it is genuinely useful. Install Outlook, Teams
+and OneDrive from your app store, sign in with your work address, and
+that is it. If you get stuck, the service desk will do it with you in
+about five minutes.</td>
+</tr>
+<tr class="even">
+<td>Use Outlook, not the mail app that came with your phone</td>
+<td>We know that is a small annoyance if you have used the built-in Mail
+app for years. The reason is simple: we can protect organization email
+inside Outlook, and we cannot protect anything inside the built-in app.
+Everything else on your phone stays exactly as it is either way.</td>
+</tr>
+<tr class="odd">
+<td>What we can see</td>
+<td>That your phone exists, its make, model and operating system
+version, that organization apps on it are protected, and when
+organization data last synced. Plus the sign-in activity on your
+organization account, which we can see for any device including an
+organization laptop.</td>
+</tr>
+<tr class="even">
+<td>What we cannot see</td>
+<td>Your photos. Your personal messages. Your calls. Your other apps, or
+which apps you have. Your browsing. Your location. Your personal email —
+even if it is in the same Outlook app, it is separate and we cannot
+touch it. We have no way to look at any of that, and we do not want
+one.</td>
+</tr>
+<tr class="odd">
+<td>What we can remove, and what we cannot</td>
+<td>We can remove organization email and organization files from
+organization apps — if your phone is lost, or when you leave. We cannot
+wipe your phone. Your photos and everything else of yours are not ours
+to touch and we could not do it if we tried.</td>
+</tr>
+<tr class="even">
+<td>What you will notice day to day</td>
+<td>Face ID or a PIN when you open Outlook after a while. You will not
+be able to copy text out of organization email into a personal note, or
+save an organization attachment into your personal cloud storage. That
+is the whole of it.</td>
+</tr>
+<tr class="odd">
+<td>What not to put on your phone</td>
+<td>Do not download client records, job applicant files or personnel
+records onto a phone. Read them in the app instead. Never anything with
+social security numbers, card details or health information — those do
+not belong on a personal device at all.</td>
+</tr>
+<tr class="even">
+<td>Your Authenticator app is the important one</td>
+<td>That is the app that proves you are you. Keep a passcode or Face ID
+on your phone — that is the real protection — and please register a
+second way of signing in, on something that is not your phone. A
+security key, or Authenticator on a tablet. It takes ninety seconds and
+it is the difference between a five-minute fix and an appointment with
+photo ID.</td>
+</tr>
+<tr class="odd">
+<td>Getting a new phone? Do this first</td>
+<td>Before you trade in or reset the old one: install Authenticator on
+the NEW phone, add your organization account to it, and approve the
+prompt on the OLD phone. Then check both are listed, then wipe the old
+phone. Five minutes, no ticket. If the old phone has already gone and
+you have no other sign-in method, we can still get you back in — but we
+will have to verify who you are properly first, and that takes
+longer.</td>
+</tr>
+<tr class="even">
+<td>If your phone is lost or stolen</td>
+<td>Tell us straight away, even if you think it might turn up in the
+car. We will remove organization data from it and stop it approving
+sign-ins. Nobody has ever been told off for reporting a phone that then
+turned up.</td>
+</tr>
+<tr class="odd">
+<td>Why we will not just take your word for it</td>
+<td>If somebody rings us claiming to be you and asks us to move your
+sign-in method to a new phone, and we do it, they now have your account
+— your mail, your files, and everything the organization connects to it.
+It is a common attack. So we will always check who you are before
+changing anything, including when you are in a hurry, and including when
+it is obviously really you. It is not about you; it is the only thing
+protecting you.</td>
+</tr>
+<tr class="even">
+<td>If you would rather not have organization email on your phone</td>
+<td>Then do not. There is no expectation and no consequence. Outlook on
+the web works fine from any browser, and plenty of people prefer to
+leave work at work.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

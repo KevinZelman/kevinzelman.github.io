@@ -1,0 +1,406 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DEV-16 · Lost, Stolen or Compromised Device Response | Known Good</title>
+<meta name="description" content="One number to call, and what happens in the first hour.">
+<meta property="og:title" content="DEV-16 · Lost, Stolen or Compromised Device Response | Known Good">
+<meta property="og:description" content="One number to call, and what happens in the first hour.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="dev-16--lost-stolen-or-compromised-device-response">DEV-16 ·
+Lost, Stolen or Compromised Device Response</h1>
+<p><em>One number to call, and what happens in the first hour.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/DEV-16-Lost-Stolen-or-Compromised-Device-Response.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/DEV-16.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/DEV-16">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>DEV-16</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>C. Device Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 2 — Advanced Technical Services acts; Tier 4 authorises remote
+wipe and declares incidents.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually, and after every use.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>A device goes missing perhaps a handful of times a year, which is
+exactly why nobody remembers what to do. This document is short enough
+to follow while somebody anxious is on the phone.</p>
+<h2 id="2-what-the-person-does">2. What the person does</h2>
+<blockquote>
+<p><strong>Tell the service desk immediately. That is the whole
+ask.</strong></p>
+<p>Not after looking for it again. Not after the weekend. Not after
+deciding whether it counts as lost.</p>
+<p>Nobody is in trouble for losing a device. Losing one is an accident;
+not reporting it turns an accident into an exposure. The service desk’s
+first question will be whether you are all right, particularly if it was
+taken from you.</p>
+<p>Contact the service desk by email, phone or in person. If it is out
+of hours and the device held CONFIDENTIAL data, say so in the subject
+line so it is picked up first.</p>
+</blockquote>
+<h2 id="3-the-first-hour">3. The first hour</h2>
+<ol type="1">
+<li>Establish the facts: which device, when it was last seen, where,
+whether it was taken or mislaid, and whether the person was
+present.</li>
+<li>Look up the device in inventory: asset tag, class, primary user, and
+— critically — its encryption and escrow position (§4).</li>
+<li>Establish what was on it. Not what should have been — what was. Ask
+about local files, and check the classification of anything the person
+had access to (<a href="/sops/M365-15">M365-15</a>).</li>
+<li>Protect the account before the device. Revoke sessions and refresh
+tokens on the person’s account; a signed-in session on a stolen laptop
+is more immediately useful to a thief than the disk is.</li>
+<li>Mark the device non-compliant and block it in Conditional Access, so
+it cannot be used to reach organization resources even if somebody signs
+in.</li>
+<li>Decide on remote wipe (§5).</li>
+<li>Assess exposure. Where CONFIDENTIAL or RESTRICTED data may be
+readable, this is a <a href="/sops/GOV-03">GOV-03</a> incident and Tier 4 is informed now rather
+than after the device is dealt with.</li>
+<li>Get the person working again — a loaner the same day (<a href="/sops/DEV-05">DEV-05</a>). This
+matters more to them than anything above and should not wait for the
+investigation.</li>
+</ol>
+<h2 id="4-the-question-that-determines-everything">4. The question that
+determines everything</h2>
+<blockquote>
+<p><strong>Was the disk encrypted, and is the key escrowed?</strong></p>
+<p>ENCRYPTED, KEY ESCROWED — the good case. The data is not readable by
+whoever has the device. This is a property-loss event, not a data event,
+and the response is proportionate to that.</p>
+<p>ENCRYPTED, NO KEY ESCROWED — the data is still not readable by a
+finder, but the organization also cannot recover it. Treat as property
+loss, and record it: this is another instance of the <a href="/sops/DEV-03">DEV-03</a> §2 gap and
+it should feed that count.</p>
+<p>NOT ENCRYPTED — assume the data is readable. This is a data exposure
+and it is a <a href="/sops/GOV-03">GOV-03</a> incident from the outset, not after assessment.</p>
+<p>UNKNOWN — treat as not encrypted until shown otherwise. Never assume
+in the favourable direction on this question.</p>
+</blockquote>
+<p>This is the strongest practical argument for <a href="/sops/DEV-02">DEV-02</a> condition 3 and
+<a href="/sops/DEV-03">DEV-03</a>: the difference between a lost laptop being a purchase order and
+being an incident is one setting, verified in advance.</p>
+<h2 id="5-remote-wipe">5. Remote wipe</h2>
+<ul>
+<li>Authorised by Tier 4 for an organization device. Tier 2
+executes.</li>
+<li>Issued for a device that is stolen, or lost with no realistic
+prospect of recovery, or which held CONFIDENTIAL or RESTRICTED
+data.</li>
+<li>A wipe command executes when the device next connects. It may never
+execute — a wipe issued is not a wipe done, and the response should not
+assume it landed. Check and record whether it did.</li>
+<li>Do not delay account protection (§3 step 4) waiting for a wipe.
+Revoking sessions is immediate and certain; the wipe is neither.</li>
+<li>For a personal device, §6.</li>
+</ul>
+<h2 id="6-personal-devices">6. Personal devices</h2>
+<ul>
+<li>The organization removes organization data from organization apps.
+It does not wipe personal property (<a href="/sops/DEV-07">DEV-07</a> §5).</li>
+<li>That removal is issued immediately on report and does not need Tier
+4 authorisation, because it affects only organization data.</li>
+<li>Where the device carried the person’s only MFA method, they will
+also need account recovery — verified per <a href="/sops/ACC-06">ACC-06</a>, then a Temporary
+Access Pass (<a href="/sops/ACC-03">ACC-03</a> §5.4). Expect this and handle both in one contact
+rather than making them come back.</li>
+<li>Encourage them to use the device manufacturer’s own find-and-lock
+service. That is theirs to run, and it is more capable on their device
+than anything the organization holds.</li>
+</ul>
+<h2 id="7-theft-and-the-police-report">7. Theft, and the police
+report</h2>
+<ul>
+<li>Theft is reported to site security, and to the police where it
+occurred off site. IT does not make that report on the person’s behalf
+but should ask whether it has been made.</li>
+<li>Where a person was present during the theft, their welfare comes
+first and the device conversation waits. Site security and the person’s
+manager or HR lead; IT supports.</li>
+<li>Record the crime reference where one exists. Insurance and any
+subsequent regulatory question will both want it.</li>
+<li>A pattern of thefts in one location is a Security matter and IT
+should say so rather than treating each as an isolated device loss.</li>
+</ul>
+<h2 id="8-if-it-comes-back">8. If it comes back</h2>
+<ol type="1">
+<li>Do not simply hand it back. A device that has been out of the
+organization’s control is not trusted.</li>
+<li>Confirm what happened to it while it was gone, as far as anybody can
+say.</li>
+<li>Wipe and re-provision through Autopilot, whatever its apparent
+condition (<a href="/sops/DEV-15">DEV-15</a> §4).</li>
+<li>Where it was recovered after a theft, and where any tampering is
+suspected, Tier 3 examines it before it returns to service — or it is
+retired. Physical access to a device is a strong position for an
+attacker and reimaging does not answer every question.</li>
+<li>Close the incident record, noting the recovery and what was
+done.</li>
+</ol>
+<h2 id="9-service-levels">9. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Report received — sessions revoked and device blocked</td>
+<td>P1 — within 30 minutes.</td>
+</tr>
+<tr class="even">
+<td>Escrow and encryption position established</td>
+<td>Within the first hour.</td>
+</tr>
+<tr class="odd">
+<td>Tier 4 wipe decision</td>
+<td>Within 1 coverage hour of the facts being established.</td>
+</tr>
+<tr class="even">
+<td>Organization data removal from a personal device</td>
+<td>P2 — within 4 coverage hours, no Tier 4 authorisation needed.</td>
+</tr>
+<tr class="odd">
+<td>Loaner issued to the person</td>
+<td>Same coverage day. They still have a job to do.</td>
+</tr>
+<tr class="even">
+<td>Unencrypted device lost</td>
+<td>P1 — <a href="/sops/GOV-03">GOV-03</a> incident from the outset.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10-records">10. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Report: device, circumstances, last seen, encryption position</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Account protection actions and times</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Wipe authorisation, issue, and whether it executed</td>
+<td>Ticket + Tier 4 record</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Exposure assessment and any incident declaration</td>
+<td>Security record (<a href="/sops/GOV-03">GOV-03</a>)</td>
+<td>7 years</td>
+</tr>
+<tr class="odd">
+<td>Crime reference</td>
+<td>Ticket + asset register</td>
+<td>7 years</td>
+</tr>
+<tr class="even">
+<td>Recovery and disposition if returned</td>
+<td>Ticket + inventory</td>
+<td>Life of the asset + 1 year</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-related-documents">11. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/DEV-03">DEV-03</a></td>
+<td>Disk Encryption &amp; BitLocker Recovery Keys</td>
+<td>§4 — the question that determines the whole response.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-02">DEV-02</a></td>
+<td>Device Compliance &amp; Configuration Baseline</td>
+<td>Condition 3 is what makes §4 answerable in the good direction.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-01">DEV-01</a></td>
+<td>Device Enrollment &amp; Lifecycle</td>
+<td>§10 inventory — without it, §3 step 2 is guesswork.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-05">DEV-05</a></td>
+<td>Loaner Device Issue, Support &amp; Return</td>
+<td>§3 step 8.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-07">DEV-07</a></td>
+<td>Personally-Owned Device Access Standard</td>
+<td>§6.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-15">DEV-15</a></td>
+<td>Device Reassignment, Wipe, Retirement &amp; Disposal</td>
+<td>§8 — a returned device.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA Enrollment, Reset &amp; Account Recovery</td>
+<td>Where the lost device held the only method.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-06">ACC-06</a></td>
+<td>Identity Verification</td>
+<td>Before restoring access to somebody who has lost their device.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-15">M365-15</a></td>
+<td>Data Classification &amp; Handling</td>
+<td>§3 step 3 — what was on it.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response</td>
+<td>Where an exposure goes.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--first-hour-card">Appendix A — First-hour card</h2>
+<p>Keep at the desk. In order.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Do</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Ask if the person is all right</td>
+<td>Especially if it was taken from them. This comes first.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Facts: which device, when, where, taken or mislaid</td>
+<td>Asset tag from inventory</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>ENCRYPTED? KEY ESCROWED?</td>
+<td>§4. Unknown = treat as not encrypted.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Revoke sessions and refresh tokens on their account</td>
+<td>Immediate and certain — do this before anything about the
+device</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Mark non-compliant, block in Conditional Access</td>
+<td>Stops it reaching resources even if signed into</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>What was actually on it?</td>
+<td>Ask. Check classification (<a href="/sops/M365-15">M365-15</a>).</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Tier 4: remote wipe decision</td>
+<td>A wipe issued is not a wipe done</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Unencrypted, or CONFIDENTIAL/RESTRICTED at risk?</td>
+<td><a href="/sops/GOV-03">GOV-03</a> incident. Tell Tier 4 now.</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Issue a loaner today</td>
+<td>They still have a job. This matters to them more than steps
+1–8.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--what-to-tell-the-person">Appendix B — What to tell
+the person</h2>
+<div class="tbl"><table>
+<tbody>
+<tr class="odd">
+<td>You are not in trouble</td>
+<td>Losing a device is an accident. Reporting it quickly is the helpful
+thing, and you have done it.</td>
+</tr>
+<tr class="even">
+<td>What we are doing right now</td>
+<td>Signing your account out everywhere and blocking the device, so
+nobody can use it to reach organization systems.</td>
+</tr>
+<tr class="odd">
+<td>Whether your files are at risk</td>
+<td>If the laptop was encrypted — and most are — the data is not
+readable by whoever has it. We will confirm and tell you either
+way.</td>
+</tr>
+<tr class="even">
+<td>Your account</td>
+<td>Change your password, and if your only security method was on that
+device we will get you set up again — bring photo ID or join a short
+video call.</td>
+</tr>
+<tr class="odd">
+<td>A replacement</td>
+<td>We will get you a loaner today so you can keep working.</td>
+</tr>
+<tr class="even">
+<td>If it was stolen</td>
+<td>Please report it to site security, and to the police if it happened
+off site. Let us know the reference when you have it.</td>
+</tr>
+<tr class="odd">
+<td>If you find it</td>
+<td>Tell us before you start using it again. We will need to reset it,
+which takes a little while but is straightforward.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

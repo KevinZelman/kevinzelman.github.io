@@ -1,0 +1,425 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M365-10 · SharePoint Site Request, Provisioning &amp; Ownership | Known Good</title>
+<meta name="description" content="How a site is created with an owner, a classification and a purpose — so it does not become the thing nobody maintains.">
+<meta property="og:title" content="M365-10 · SharePoint Site Request, Provisioning &amp; Ownership | Known Good">
+<meta property="og:description" content="How a site is created with an owner, a classification and a purpose — so it does not become the thing nobody maintains.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1
+id="m365-10--sharepoint-site-request-provisioning--ownership">M365-10 ·
+SharePoint Site Request, Provisioning &amp; Ownership</h1>
+<p><em>How a site is created with an owner, a classification and a
+purpose — so it does not become the thing nobody maintains.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/M365-10-SharePoint-Site-Request-Provisioning-and-Ownership.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/M365-10.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/M365-10">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>M365-10</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>A. Microsoft 365</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 3 — Expert Services owns SharePoint architecture; Tier 2
+provisions.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>SharePoint sites are cheap to create and expensive to leave unowned.
+This document makes sure that every site starts with somebody
+accountable for it, a classification that determines its rules, and a
+purpose that makes it reviewable later.</p>
+<p>The cost of not doing that is easy to see. A typical example is a
+broken-links ticket against the main intranet site that sits open past
+its service target. Link rot is not difficult to fix — it is difficult
+to assign, because the content has no owner, so the ticket sits.</p>
+<h2 id="2-three-things-every-site-has-from-the-moment-it-exists">2.
+Three things every site has from the moment it exists</h2>
+<div class="tbl"><table>
+<tbody>
+<tr class="odd">
+<td>A named owner</td>
+<td>A staff member, plus a deputy. Not a department, not IT, and not the
+person who happened to request it if they are not going to look after
+it. The owner approves access (<a href="/sops/M365-11">M365-11</a>) and confirms membership at
+review.</td>
+</tr>
+<tr class="even">
+<td>A classification</td>
+<td>PUBLIC, INTERNAL, CONFIDENTIAL or RESTRICTED, set at creation by the
+owner under <a href="/sops/M365-15">M365-15</a>. Everything in the site inherits it, which is what
+makes classification workable at all.</td>
+</tr>
+<tr class="odd">
+<td>A stated purpose</td>
+<td>One sentence. It is what makes review possible: at review the
+question is “is this still true?”, which somebody can answer, rather
+than “is this site still needed?”, which nobody can.</td>
+</tr>
+</tbody>
+</table></div>
+<p>A site cannot be provisioned without all three. This is the single
+control that prevents the situation the broken-links ticket
+represents.</p>
+<h2 id="3-do-you-need-a-site">3. Do you need a site?</h2>
+<p>Asking honestly saves the organization a site it will have to govern
+for a decade.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>You need a site when</th>
+<th>You need something else when</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A team needs a shared place for documents that outlives any
+individual.</td>
+<td>You want to send mail to a group — that is <a href="/sops/M365-04">M365-04</a>.</td>
+</tr>
+<tr class="even">
+<td>Content must be permissioned as a set, with an owner.</td>
+<td>A department needs one published address several people answer —
+<a href="/sops/M365-03">M365-03</a>.</td>
+</tr>
+<tr class="odd">
+<td>A department is receiving content from a retiring file share
+(<a href="/sops/M365-13">M365-13</a>).</td>
+<td>One person needs to share a few documents — share them from where
+they are.</td>
+</tr>
+<tr class="even">
+<td>A project has documents, a lifespan and a defined membership.</td>
+<td>A team wants chat and files together — a Team, which creates a site
+anyway (<a href="/sops/M365-07">M365-07</a>).</td>
+</tr>
+<tr class="odd">
+<td>Content needs a classification distinct from an existing site
+(<a href="/sops/M365-15">M365-15</a> §4).</td>
+<td>It duplicates an existing site with slightly different membership —
+that is two half-maintained sites.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="4-requesting-one">4. Requesting one</h2>
+<ol type="1">
+<li>Requested through the service desk with the Appendix A fields.
+Self-service site creation is disabled, which is what allows §2 to be
+enforced.</li>
+<li>Tier 2 checks the request names an owner who is staff, a deputy, a
+classification and a purpose. Missing any of them, the request goes back
+— politely, with an explanation of why each is needed.</li>
+<li>Tier 2 checks it is not duplicating an existing site. Where it
+nearly is, the better answer is usually access to the existing one.</li>
+<li>CONFIDENTIAL and RESTRICTED classifications are confirmed by Tier 4
+before provisioning (<a href="/sops/M365-15">M365-15</a>).</li>
+<li>Where the site will receive content from a retiring file share, it
+is created under <a href="/sops/M365-13">M365-13</a> §4.1 with the migration in view.</li>
+</ol>
+<h2 id="5-provisioning">5. Provisioning</h2>
+<ol type="1">
+<li>Create the site with a name that describes its function, not its
+current project name or leader. Names outlive both.</li>
+<li>Set the owner and deputy in Site Owners. Two or three people, never
+more.</li>
+<li>Create Site Members and Site Visitors and permission the site
+through them only (<a href="/sops/M365-11">M365-11</a> §2). No individual grants, from the first
+day.</li>
+<li>Apply the sharing configuration for the classification: external
+sharing off for CONFIDENTIAL and RESTRICTED, anonymous links disabled
+above INTERNAL (<a href="/sops/M365-14">M365-14</a> §5).</li>
+<li>Apply the retention policy for the classification (<a href="/sops/M365-16">M365-16</a>).</li>
+<li>Record the site in the site register: URL, owner, deputy,
+classification, purpose, created date, review date.</li>
+<li>Send the owner the one-pager at Appendix B. Most owners do not know
+they have become one, and an owner who does not know is functionally no
+owner at all.</li>
+</ol>
+<h2 id="6-the-owners-job">6. The owner’s job</h2>
+<p>Deliberately small. An owner role that demands much will be declined
+or ignored.</p>
+<ul>
+<li>Approve who has access, when asked (<a href="/sops/M365-11">M365-11</a> §4).</li>
+<li>Confirm the membership once a year — five minutes, from a list IT
+sends.</li>
+<li>Say when the site is no longer needed.</li>
+<li>Nominate a successor before leaving or changing role.</li>
+<li>Keep the content sane: no obligation to curate it, but a broken link
+somebody reports is the owner’s to fix or to ask IT to fix. That single
+line is what closes the broken-links ticket.</li>
+</ul>
+<h2 id="7-ownership-changes">7. Ownership changes</h2>
+<ul>
+<li>Ownership transfers before the outgoing owner loses access, never
+after (<a href="/sops/ACC-01">ACC-01</a> §7.2 step 4).</li>
+<li>On a role change within the organization, the question is asked
+rather than assumed — a mover frequently keeps ownership of something
+that belonged to their old job (<a href="/sops/ACC-01">ACC-01</a> §6.2).</li>
+<li>Where an owner has left with no successor named, Tier 4 assigns one
+from the department. IT does not become the owner by default; that is
+how a site becomes nobody’s.</li>
+<li>An owner who declines the role is a useful signal. Either the site
+belongs to a different department, or it is no longer needed (§8).</li>
+</ul>
+<h2 id="8-review-and-closure">8. Review and closure</h2>
+<ol type="1">
+<li>Annually, Tier 2 sends each owner: the membership, the
+classification, the stated purpose, and the date of the most recent
+content change.</li>
+<li>The owner confirms, corrects, or says it is finished.</li>
+<li>A site with no content change in two years and an owner who cannot
+say what it is for is a candidate for closure. Say so plainly and give
+them a month.</li>
+<li>Closure means: set read-only, retain per <a href="/sops/M365-16">M365-16</a>, remove from active
+navigation, mark closed in the register. It does not mean delete — a
+closed site can be reopened; a deleted one produces the phone call
+nobody wants.</li>
+<li>A site with no identifiable owner at review goes to Tier 4 as a
+decision, not to IT as a default.</li>
+</ol>
+<h2 id="9-service-levels">9. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Request</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>New site, complete request, INTERNAL</td>
+<td>P3 — 2 coverage days.</td>
+</tr>
+<tr class="even">
+<td>New site, CONFIDENTIAL or above</td>
+<td>P3 — 5 coverage days, allowing for Tier 4 confirmation.</td>
+</tr>
+<tr class="odd">
+<td>Incomplete request</td>
+<td>Returned same day with what is missing and why.</td>
+</tr>
+<tr class="even">
+<td>Migration destination site (<a href="/sops/M365-13">M365-13</a>)</td>
+<td>Tier 3 protected capacity, on the migration schedule.</td>
+</tr>
+<tr class="odd">
+<td>Ownership transfer</td>
+<td>With the <a href="/sops/ACC-01">ACC-01</a> leaver or mover procedure.</td>
+</tr>
+<tr class="even">
+<td>Broken content reported on an owned site</td>
+<td>P3 — routed to the owner, with IT assisting.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10-records">10. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Site register: URL, owner, deputy, classification, purpose,
+dates</td>
+<td>IT register</td>
+<td>Life of the site + 3 years</td>
+</tr>
+<tr class="even">
+<td>Request and Tier 4 confirmation where applicable</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Annual review confirmations</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Ownership transfers</td>
+<td>Ticket + register</td>
+<td>Life of the site</td>
+</tr>
+<tr class="odd">
+<td>Closure decisions</td>
+<td>Register</td>
+<td>7 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-related-documents">11. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/M365-15">M365-15</a></td>
+<td>Data Classification &amp; Handling</td>
+<td>Classification is assigned here — §2 is what makes that scheme
+work.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-11">M365-11</a></td>
+<td>SharePoint &amp; OneDrive Permission Management</td>
+<td>How the groups created at §5 are then managed.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-13">M365-13</a></td>
+<td>File Share Retirement &amp; Migration Runbook</td>
+<td>Creates destinations through this document.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-14">M365-14</a></td>
+<td>External Sharing &amp; Guest Access Governance</td>
+<td>Site-level sharing configuration.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-16">M365-16</a></td>
+<td>Retention, Legal Hold &amp; eDiscovery</td>
+<td>Retention applied at §5.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-07">M365-07</a></td>
+<td>Teams Provisioning, Naming &amp; Lifecycle</td>
+<td>A Team creates a site; the same three things apply.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-12">M365-12</a></td>
+<td>OneDrive Appropriate Use</td>
+<td>Sites are where institutional records belong.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>Ownership transfer at mover and leaver.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-01">GOV-01</a></td>
+<td>SOP Catalog Governance</td>
+<td>The SOP library is itself a site provisioned under this
+document.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--request-fields">Appendix A — Request fields</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Site name</td>
+<td>Function, not project name or leader. Names outlive both.</td>
+</tr>
+<tr class="even">
+<td>Purpose, one sentence</td>
+<td>What makes annual review answerable.</td>
+</tr>
+<tr class="odd">
+<td>Named owner (staff)</td>
+<td>A person. A department cannot approve access.</td>
+</tr>
+<tr class="even">
+<td>Named deputy</td>
+<td>So the site is not stuck when the owner is on leave.</td>
+</tr>
+<tr class="odd">
+<td>Classification</td>
+<td>PUBLIC / INTERNAL / CONFIDENTIAL / RESTRICTED (<a href="/sops/M365-15">M365-15</a> §4).</td>
+</tr>
+<tr class="even">
+<td>Who needs access, and who only needs to read</td>
+<td>Members and Visitors from the outset.</td>
+</tr>
+<tr class="odd">
+<td>External access needed?</td>
+<td>Triggers <a href="/sops/M365-14">M365-14</a> rather than being configured later.</td>
+</tr>
+<tr class="even">
+<td>Receiving content from a file share?</td>
+<td>Links the site to the <a href="/sops/M365-13">M365-13</a> migration.</td>
+</tr>
+<tr class="odd">
+<td>Expected lifespan</td>
+<td>A project site with an end date is easier to close than one
+without.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--owners-one-pager">Appendix B — Owner’s
+one-pager</h2>
+<p>Send this at provisioning. Most owners do not know they are one.</p>
+<div class="tbl"><table>
+<tbody>
+<tr class="odd">
+<td>You now own a site</td>
+<td>You decide who can get into it. IT will do the administration, but
+will not add anybody without your say-so.</td>
+</tr>
+<tr class="even">
+<td>Its classification is</td>
+<td>[ stated ] — which sets the rules on sharing, external access and
+retention. If that looks wrong, tell us.</td>
+</tr>
+<tr class="odd">
+<td>To give somebody access</td>
+<td>Ask the service desk, naming the person. That way there is a record
+of who authorised it, which protects you as much as anyone.</td>
+</tr>
+<tr class="even">
+<td>Once a year</td>
+<td>We will send you the list of people with access and ask you to
+confirm it. Five minutes, and it is the main thing that stops access
+accumulating.</td>
+</tr>
+<tr class="odd">
+<td>If something breaks</td>
+<td>A broken link or a missing document on your site is yours to fix or
+to ask us to fix. Please do ask — that is not an imposition.</td>
+</tr>
+<tr class="even">
+<td>Before you leave or change role</td>
+<td>Tell us who should take over. A site with no owner stops being
+maintained and nobody notices until somebody needs it.</td>
+</tr>
+<tr class="odd">
+<td>When it is finished</td>
+<td>Tell us. We will set it read-only and keep the content — closing a
+site is easy and reopening one is possible.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

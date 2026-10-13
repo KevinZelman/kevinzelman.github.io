@@ -1,0 +1,458 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACC-09 · Temporary Worker &amp; Departmental Access Standard | Known Good</title>
+<meta name="description" content="How a temporary worker employed by a department gets the access their job needs, and how it ends at the end of the engagement.">
+<meta property="og:title" content="ACC-09 · Temporary Worker &amp; Departmental Access Standard | Known Good">
+<meta property="og:description" content="How a temporary worker employed by a department gets the access their job needs, and how it ends at the end of the engagement.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="acc-09--temporary-worker--departmental-access-standard">ACC-09 ·
+Temporary Worker &amp; Departmental Access Standard</h1>
+<p><em>How a temporary worker employed by a department gets the access
+their job needs, and how it ends at the end of the engagement.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/ACC-09-Temporary-Worker-and-Departmental-Access-Standard.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/ACC-09.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/ACC-09">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>ACC-09</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>B. Account Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 2 — Advanced Technical Services.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Each quarter, and annually as a document.</td>
+</tr>
+<tr class="even">
+<td>Depends on</td>
+<td><a href="/sops/ACC-02">ACC-02</a>. This document is written to operate under either option, and
+says so at §3.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>Temporary workers do a great deal of the organization’s work, and
+giving them the access to do it is entirely proper. This document says
+how that access is granted, bounded and removed, so that it matches the
+job rather than outlasting it.</p>
+<p>The failure it addresses is a common one. Several temporary workers
+are added to a department’s shared mailbox through a reply-all email
+thread. There is no request record, no named mailbox owner approving it,
+and nothing scheduled to remove the access when the work ends. Nobody
+does anything unreasonable; there is simply no other route
+available.</p>
+<h2 id="2-two-relationships-expiring-independently">2. Two
+relationships, expiring independently</h2>
+<blockquote>
+<p><strong>Holding an end-user account and being employed are different
+things, and must expire separately.</strong></p>
+<p>Many temporary workers already hold an account with the organization
+in another capacity: as a client, member, volunteer or learner. A person
+can hold that end-user account and not be employed, be employed and hold
+no other account, or both, and either relationship can end without the
+other. Conflating them is the root of most temporary-worker access
+problems.</p>
+<p>So departmental access ends at the close of each engagement period,
+regardless of whether the person still holds an end-user account and
+regardless of whether they are still employed. The engagement period is
+whatever fixed cycle fits your organization: a quarter, a season, or a
+contract term. Continuing requires a fresh approval.</p>
+<p>That may look bureaucratic. It is one confirmation per person per
+period, and it is the only mechanism that reliably stops access
+accumulating over years of repeat engagements.</p>
+</blockquote>
+<h2 id="3-how-access-is-provisioned">3. How access is provisioned</h2>
+<p><a href="/sops/ACC-02">ACC-02</a> has not yet been decided between two options, and this
+document works under either. Throughout, “departmental access” means
+whichever of the following is in force:</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>If <a href="/sops/ACC-02">ACC-02</a> Option…</th>
+<th>Then departmental access means</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A — suffixed second account (a common existing pattern)</td>
+<td>A second account with a departmental prefix. Provisioned by Tier 2,
+with its own MFA registration, and disabled at the end of the
+engagement. The person keeps two credentials.</td>
+</tr>
+<tr class="even">
+<td>B — role group on the single identity (recommended)</td>
+<td>Membership of a ROLE-<DEPT>-TempWorker group on the person’s own
+identity, carrying an end-date expiry. One credential, one MFA
+registration, one thing to remove.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Everything else in this document — approval, scope, engagement
+boundaries, supervision — applies identically either way. The choice
+affects the mechanism, not the governance.</p>
+<h2 id="4-requesting-it">4. Requesting it</h2>
+<ol type="1">
+<li>The hiring department raises a ticket. Not a reply-all thread — this
+is the specific practice being replaced, and the reason is that an email
+thread leaves no record of who authorised what.</li>
+<li>The request names: the person, the department, the supervisor, the
+end date, and exactly what they need to reach.</li>
+<li>The owner of each resource approves. A department’s mailbox owner
+approves access to that mailbox; IT does not decide who reads a
+department’s correspondence (<a href="/sops/M365-03">M365-03</a> §4).</li>
+<li>Tier 2 checks the classification of what they will reach. Applicant
+records, client records and conduct records are CONFIDENTIAL, which
+means named access and annual owner review at minimum (<a href="/sops/M365-15">M365-15</a>).</li>
+<li>MFA is registered before access is granted, not afterwards (<a href="/sops/ACC-03">ACC-03</a>
+§5.1).</li>
+<li>Access is scoped to what the job needs. “The same as the last
+temporary worker had” is not a scope — the last temporary worker may
+have had a different job, or too much.</li>
+<li>The end-date expiry is set at the point of granting, and the
+supervisor is told the date.</li>
+<li>Record the request, each owner approval, the scope and the
+expiry.</li>
+</ol>
+<h2 id="5-what-a-temporary-worker-may-and-may-not-hold">5. What a
+temporary worker may and may not hold</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>May</th>
+<th>May not</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Membership of a departmental shared mailbox, approved by its
+owner.</td>
+<td>Ownership of a shared mailbox, site or Team. Ownership is a staff
+responsibility.</td>
+</tr>
+<tr class="even">
+<td>Access to a departmental SharePoint site, scoped to what the job
+needs.</td>
+<td>Any administrative role in any system (<a href="/sops/ACC-07">ACC-07</a>). Where an elevated
+action is needed, staff perform it.</td>
+</tr>
+<tr class="odd">
+<td>An organization device, or supervised access to a shared one.</td>
+<td>Local administrator rights on any endpoint (<a href="/sops/DEV-12">DEV-12</a>).</td>
+</tr>
+<tr class="even">
+<td>Access to systems the job requires, approved per system.</td>
+<td>Standing access to anything classified RESTRICTED (<a href="/sops/M365-15">M365-15</a>).</td>
+</tr>
+<tr class="odd">
+<td>Send-as for the department, so outbound mail reads as the
+department.</td>
+<td>Access retained over a gap between engagement periods without fresh
+approval.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="6-the-engagement-boundary">6. The engagement boundary</h2>
+<ol type="1">
+<li>Two weeks before each engagement period ends, Tier 2 sends each
+department a list of its temporary workers and their access.</li>
+<li>The supervisor confirms who is returning for the next period. One
+line per person.</li>
+<li>Access for anybody not confirmed expires on the last day of the
+period. Automatically, without a further decision.</li>
+<li>Returning people have their access re-approved for the next period,
+with the scope checked rather than assumed — jobs change between
+periods.</li>
+<li>A non-response from a supervisor means everything expires. This is
+deliberate: the safe default when nobody answers is less access, not
+more.</li>
+<li>Record the end-of-engagement action for each person, including
+expiries that happened automatically.</li>
+</ol>
+<h2 id="7-when-employment-ends-mid-engagement">7. When employment ends
+mid-engagement</h2>
+<ul>
+<li>The supervisor tells the service desk. Same day where the departure
+is not amicable.</li>
+<li>Departmental access is removed — the group membership, or the second
+account disabled, per §3.</li>
+<li>Their end-user identity, if they have one, is untouched. They keep
+it and whatever access comes with it; that separation is the point of
+§2.</li>
+<li>Ownership of anything they were working on transfers to the
+supervisor.</li>
+<li>Any organization device is returned per <a href="/sops/DEV-15">DEV-15</a>.</li>
+</ul>
+<h2 id="8-supervision-and-training">8. Supervision and training</h2>
+<p>Temporary workers on an IT desk often sit at Tier 1 and are the front
+door for the whole organization. Temporary workers in a front office
+often read applicant or client correspondence. Both are positions of
+real trust held by people early in their working lives, and the
+organization owes them clear expectations rather than assumed ones.</p>
+<ul>
+<li>Every temporary worker reads and acknowledges the Technology
+Acceptable Use Policy before access is granted (<a href="/sops/ACC-15">ACC-15</a>).</li>
+<li>Where the role touches CONFIDENTIAL data, the supervisor briefs them
+on what that means in practice — not a policy reference, a conversation
+about the specific records they will see.</li>
+<li>Temporary workers at Tier 1 read <a href="/sops/ACC-06">ACC-06</a> before their first shift,
+and again at the start of each engagement period, because the cohort
+changes and this is the tier attackers call.</li>
+<li>A named supervisor exists for every temporary worker at all times.
+If the supervisor leaves, the access is reassigned or expires — it does
+not continue unsupervised.</li>
+</ul>
+<h2 id="9-service-levels">9. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>New temporary-worker access, complete request with owner
+approval</td>
+<td>P3 — 1 coverage day.</td>
+</tr>
+<tr class="even">
+<td>Access requested without owner approval</td>
+<td>Held. The department is told what is needed.</td>
+</tr>
+<tr class="odd">
+<td>End-of-engagement list to departments</td>
+<td>Two weeks before each period ends, by Tier 2.</td>
+</tr>
+<tr class="even">
+<td>End-of-engagement expiry</td>
+<td>Automatic on the last day of the period.</td>
+</tr>
+<tr class="odd">
+<td>Mid-engagement removal on supervisor request</td>
+<td>Same coverage day.</td>
+</tr>
+<tr class="even">
+<td>Removal where the departure is not amicable</td>
+<td>P2 — within 1 coverage hour.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10-records">10. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Request, with each resource owner’s approval</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Scope granted, and the expiry date</td>
+<td>Ticket + access register</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>End-of-engagement confirmations and automatic expiries</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Acceptable Use acknowledgement</td>
+<td>Training record</td>
+<td>Duration of employment + 1 year</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-06">ACC-06</a> reading confirmation for Tier 1 temporary staff</td>
+<td>Training record</td>
+<td>Duration + 1 year</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-related-documents">11. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/ACC-02">ACC-02</a></td>
+<td>Account Naming, UPN &amp; Identifier Standard</td>
+<td>Decides the mechanism in §3. This document works under either
+option.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>§6.3 — an existing account holder becoming a temporary worker.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA Enrollment</td>
+<td>Registered before access is granted.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-06">ACC-06</a></td>
+<td>Identity Verification</td>
+<td>Read by Tier 1 temporary staff each engagement period.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-15">ACC-15</a></td>
+<td>Acceptable Use &amp; Credential-Sharing Standard</td>
+<td>Acknowledged before access.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-03">M365-03</a></td>
+<td>Shared Mailbox Request &amp; Ownership</td>
+<td>The owner who approves mailbox access.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-11">M365-11</a></td>
+<td>SharePoint &amp; OneDrive Permission Management</td>
+<td>How site access is granted.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-15">M365-15</a></td>
+<td>Data Classification &amp; Handling</td>
+<td>What CONFIDENTIAL means for §4 step 4.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-12">DEV-12</a></td>
+<td>Local Administrator Rights on Endpoints</td>
+<td>§5.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments</td>
+<td>Supplies §9.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--engagement-start-card">Appendix A — Engagement-start
+card</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>✓</th>
+<th>Step</th>
+<th>Who</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>☐</td>
+<td>Ticket raised naming the person, department, supervisor, end date
+and what they need</td>
+<td>Hiring department</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Each resource owner has approved, on the ticket</td>
+<td>Mailbox / site owner</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Classification of what they will reach checked</td>
+<td>Tier 2</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>MFA registered BEFORE access is granted</td>
+<td>Temporary worker</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Scope set to the job, not to what the last person had</td>
+<td>Tier 2 + supervisor</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Acceptable Use acknowledged</td>
+<td>Temporary worker</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Tier 1 staff only: <a href="/sops/ACC-06">ACC-06</a> read before first shift</td>
+<td>Temporary worker</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>End-of-engagement expiry set and supervisor told the date</td>
+<td>Tier 2</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--end-of-engagement-card">Appendix B —
+End-of-engagement card</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>✓</th>
+<th>Step</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>☐</td>
+<td>List of temporary workers and their access sent to each
+department</td>
+<td>Two weeks before the period ends</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Supervisor confirms who is returning — one line per person</td>
+<td>Within those two weeks</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Anybody not confirmed expires automatically</td>
+<td>Last day of the period</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Returning people re-approved, with scope re-checked</td>
+<td>Before the next period starts</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>No supervisor response? Everything expires</td>
+<td>Last day of the period — the safe default</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>End-of-engagement action recorded for every person, including
+automatic expiries</td>
+<td>At completion</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

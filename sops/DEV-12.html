@@ -1,0 +1,379 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DEV-12 · Local Administrator Rights on Endpoints | Known Good</title>
+<meta name="description" content="Who has administrative rights on an organization computer, why the answer should be almost nobody, and how to say yes safely when it must be yes.">
+<meta property="og:title" content="DEV-12 · Local Administrator Rights on Endpoints | Known Good">
+<meta property="og:description" content="Who has administrative rights on an organization computer, why the answer should be almost nobody, and how to say yes safely when it must be yes.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="dev-12--local-administrator-rights-on-endpoints">DEV-12 · Local
+Administrator Rights on Endpoints</h1>
+<p><em>Who has administrative rights on an organization computer, why
+the answer should be almost nobody, and how to say yes safely when it
+must be yes.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/DEV-12-Local-Administrator-Rights-on-Endpoints.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/DEV-12.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/DEV-12">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>DEV-12</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>C. Device Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 3 — Expert Services designs; Tier 2 applies; Tier 4 approves
+exceptions.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Every six months.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>This document says who holds administrative rights on an organization
+endpoint, and how somebody who genuinely needs elevation gets it without
+holding it permanently.</p>
+<h2 id="2-why-this-one-matters-disproportionately">2. Why this one
+matters disproportionately</h2>
+<blockquote>
+<p><strong>Standing local admin is the control that undoes the other
+controls.</strong></p>
+<p>A user with permanent administrative rights on their machine can —
+deliberately or by clicking something — disable endpoint protection,
+stop the management agent, suspend BitLocker, block updates, and install
+software that does any of those things on their behalf.</p>
+<p>Every condition in the <a href="/sops/DEV-02">DEV-02</a> baseline sits underneath it. So does
+the compliance signal Conditional Access reads, which means a
+compromised machine with local admin can present as healthy.</p>
+<p>It is also the most common single factor in ransomware reaching
+beyond one device.</p>
+</blockquote>
+<p>And it is usually granted for a reason that was good at the time: an
+application that would not install otherwise, a printer driver, a
+specialist who needed to move fast years ago. Nobody grants standing
+local admin carelessly. It accumulates because nothing ever removes
+it.</p>
+<h2 id="3-the-standard">3. The standard</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Current state</th>
+<th>Target state</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ordinary users</td>
+<td>A mixed estate. Some devices carry standing local admin from
+historical builds and grants.</td>
+<td>No standing local administrator rights on any organization
+endpoint.</td>
+</tr>
+<tr class="even">
+<td>IT staff</td>
+<td>Administrative work done from separate identities (<a href="/sops/ACC-07">ACC-07</a>), but
+local rights may be broadly held.</td>
+<td>Elevation on demand from the administrative identity, not standing
+rights on the user account.</td>
+</tr>
+<tr class="odd">
+<td>Elevation when needed</td>
+<td>Ad hoc — a technician signs in, or rights are granted and left.</td>
+<td>A supported elevation mechanism: approved application self-service,
+or time-boxed elevation with a recorded reason.</td>
+</tr>
+<tr class="even">
+<td>The built-in administrator account</td>
+<td>Present, and where a common password was ever used across builds,
+that password is a shared secret across the estate.</td>
+<td>Enabled only where required, with a unique password per device,
+rotated automatically and escrowed centrally (§4).</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="4-the-built-in-administrator-account">4. The built-in
+administrator account</h2>
+<p>Every Windows device has one. It is the account that matters most and
+the one least often thought about.</p>
+<ul>
+<li>Where it is enabled, its password must be unique per device,
+generated automatically, rotated on a schedule and after every use, and
+stored centrally where an authorised technician can retrieve it.</li>
+<li>A shared local administrator password across an estate means one
+recovered password grants administrative access to every device it was
+used on. This is the classic lateral-movement path and it survives
+reimaging if the same build is reused.</li>
+<li>Retrieval is an account action: verified requester, recorded, and
+rotated afterwards — the same discipline as a BitLocker recovery key
+(<a href="/sops/DEV-03">DEV-03</a> §7, <a href="/sops/ACC-06">ACC-06</a> §2).</li>
+<li>Auditing which devices still carry a legacy shared password is a
+Tier 3 task and should happen before, not after, the Intune transition
+completes.</li>
+</ul>
+<h2 id="5-when-somebody-genuinely-needs-it">5. When somebody genuinely
+needs it</h2>
+<p>Sometimes the answer is yes. The objective is that yes is bounded,
+recorded and reviewable rather than permanent and forgotten.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“I need to install software”</td>
+<td>Not local admin. Publish it through the management platform
+(<a href="/sops/DEV-11">DEV-11</a>). If it is needed once, a technician installs it. If it is
+needed often, package it.</td>
+</tr>
+<tr class="even">
+<td>A developer or researcher who installs tools constantly</td>
+<td>Time-boxed elevation on their own account, or a separate managed
+development device. A standing grant on a device that also reads their
+email is the worst of both.</td>
+</tr>
+<tr class="odd">
+<td>Specialist instrument or lab hardware with vendor software that
+demands admin</td>
+<td>A recorded exception on that device, with a compensating control —
+network isolation, restricted use, no email or browsing on it.</td>
+</tr>
+<tr class="even">
+<td>A senior member of staff who has always had it</td>
+<td>Not a technical justification. This is the conversation this
+document exists to make possible: it is an organization standard rather
+than an IT preference, and it applies to everyone.</td>
+</tr>
+<tr class="odd">
+<td>An emergency, right now, in front of a class</td>
+<td>A technician elevates, does the thing, and removes it. Elevation is
+a task, not a grant.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Every exception carries: a named holder, the device, the reason, a
+compensating control, an expiry, and Tier 4 approval. Expiry is not
+optional — an exception with no end date is a standing grant with
+paperwork.</p>
+<h2 id="6-removing-standing-rights-from-the-estate">6. Removing standing
+rights from the estate</h2>
+<ol type="1">
+<li>Inventory who currently holds local administrator rights, on which
+devices. Expect this to be larger than anybody predicts.</li>
+<li>Sort into: historical grants nobody remembers, grants tied to a
+specific need, and IT staff.</li>
+<li>Remove the historical group first. Tell the holders in advance, name
+what changes, and give them the route to elevation if they hit
+something. Most will never notice.</li>
+<li>For need-tied grants, package or publish the underlying application
+(<a href="/sops/DEV-11">DEV-11</a>). Removing the need is more durable than removing the
+right.</li>
+<li>For IT staff, move elevation to the administrative identity (<a href="/sops/ACC-07">ACC-07</a>
+§3).</li>
+<li>Convert what genuinely remains into recorded exceptions with
+expiries.</li>
+<li>Then add condition 8 to the enforced <a href="/sops/DEV-02">DEV-02</a> baseline. Not before —
+enforcing a condition the estate fails is §2 of <a href="/sops/DEV-02">DEV-02</a>.</li>
+</ol>
+<h2 id="7-who-never-gets-it">7. Who never gets it</h2>
+<ul>
+<li>Temporary workers, in any department (<a href="/sops/ACC-09">ACC-09</a> §5).</li>
+<li>Guests and external parties.</li>
+<li>Anybody on a shared, lab, meeting room, kiosk or conference-room
+device.</li>
+<li>Anybody on a loaner.</li>
+<li>Anybody on a device holding RESTRICTED data (<a href="/sops/M365-15">M365-15</a>).</li>
+</ul>
+<h2 id="8-service-levels">8. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Software installation request</td>
+<td>P3 — routed to <a href="/sops/DEV-11">DEV-11</a>, not answered with elevation.</td>
+</tr>
+<tr class="even">
+<td>Technician elevation for a specific task</td>
+<td>P2 where the person is blocked; same contact where possible.</td>
+</tr>
+<tr class="odd">
+<td>Exception request</td>
+<td>P3 to Tier 4 — 5 coverage days.</td>
+</tr>
+<tr class="even">
+<td>Built-in administrator password retrieval, verified</td>
+<td>P2 — 30 minutes.</td>
+</tr>
+<tr class="odd">
+<td>Quarterly exception review</td>
+<td>Tier 4, on schedule.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="9-measurement">9. Measurement</h2>
+<ul>
+<li>Devices with standing local administrator rights. The number that
+should be falling.</li>
+<li>Active exceptions, with age and compensating control.</li>
+<li>Elevation events per month — a healthy number, because it means
+people are using the supported route.</li>
+<li>Devices still carrying a legacy shared built-in administrator
+password.</li>
+<li>Software requests answered by packaging rather than by
+elevation.</li>
+</ul>
+<h2 id="10-records">10. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exception register: holder, device, reason, control, expiry,
+approver</td>
+<td>Tier 4 register</td>
+<td>Life of exception + 3 years</td>
+</tr>
+<tr class="even">
+<td>Elevation events</td>
+<td>Management platform log</td>
+<td>1 year</td>
+</tr>
+<tr class="odd">
+<td>Built-in administrator password retrievals</td>
+<td>Ticket + platform audit</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Removal programme progress</td>
+<td>Project record</td>
+<td>Life of programme + 2 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-related-documents">11. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/DEV-02">DEV-02</a></td>
+<td>Device Compliance &amp; Configuration Baseline</td>
+<td>Condition 8. Do not enforce before §6 is complete.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-11">DEV-11</a></td>
+<td>Software Request, Approval, Licensing &amp; Deployment</td>
+<td>The answer to most requests for local admin.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-01">DEV-01</a></td>
+<td>Device Enrollment &amp; Lifecycle</td>
+<td>Exit criterion 10.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-03">DEV-03</a></td>
+<td>Disk Encryption &amp; BitLocker Recovery Keys</td>
+<td>Same retrieval discipline for a device secret.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-07">ACC-07</a></td>
+<td>Privileged &amp; Administrative Account Standard</td>
+<td>IT elevation from the administrative identity.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-09">ACC-09</a></td>
+<td>Temporary Worker &amp; Departmental Access Standard</td>
+<td>§7.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-06">ACC-06</a></td>
+<td>Identity Verification</td>
+<td>Before any password retrieval.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-15">M365-15</a></td>
+<td>Data Classification &amp; Handling</td>
+<td>RESTRICTED devices, §7.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--exception-request-card">Appendix A — Exception
+request card</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Who</td>
+<td>Named person. Not a role, not a team.</td>
+</tr>
+<tr class="even">
+<td>Which device</td>
+<td>Asset tag. An exception is per device, never per person across all
+their devices.</td>
+</tr>
+<tr class="odd">
+<td>Why</td>
+<td>The specific software or task. “Convenience” and “always had it” are
+not reasons.</td>
+</tr>
+<tr class="even">
+<td>Why packaging will not work</td>
+<td>Has <a href="/sops/DEV-11">DEV-11</a> been tried? Most requests end here.</td>
+</tr>
+<tr class="odd">
+<td>Compensating control</td>
+<td>Network isolation, restricted use, no email or browsing, additional
+monitoring — something.</td>
+</tr>
+<tr class="even">
+<td>Expiry</td>
+<td>Required. An exception with no end date is a standing grant with
+paperwork.</td>
+</tr>
+<tr class="odd">
+<td>Tier 4 approver</td>
+<td>Named.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

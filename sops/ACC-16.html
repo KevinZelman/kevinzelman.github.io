@@ -1,0 +1,1263 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACC-16 · Application Onboarding, SSO &amp; SAML Claims Standard | Known Good</title>
+<meta name="description" content="What IT needs before an application is federated, which protocol it gets, the claim set every application receives — and how an application moves from one identity provider to another without breaking on the day.">
+<meta property="og:title" content="ACC-16 · Application Onboarding, SSO &amp; SAML Claims Standard | Known Good">
+<meta property="og:description" content="What IT needs before an application is federated, which protocol it gets, the claim set every application receives — and how an application moves from one identity provider to another without breaking on the day.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="acc-16--application-onboarding-sso--saml-claims-standard">ACC-16
+· Application Onboarding, SSO &amp; SAML Claims Standard</h1>
+<p><em>What IT needs before an application is federated, which protocol
+it gets, the claim set every application receives — and how an
+application moves from one identity provider to another without breaking
+on the day.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/ACC-16-Application-Onboarding-SSO-and-SAML-Claims-Standard.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/ACC-16.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/ACC-16">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>ACC-16</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>B. Account Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 3 — Expert Services owns federation, claim configuration and
+the identity provider. Tier 4 approves every cutover of an application
+already in use. Tier 1 and Tier 2 do not configure federation, and
+should not be asked to.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually, and on any change of identity provider.</td>
+</tr>
+<tr class="even">
+<td>Relationship to <a href="/sops/ACC-08">ACC-08</a></td>
+<td>This document governs how a PERSON signs in to an application.
+<a href="/sops/ACC-08">ACC-08</a> governs the non-human identity the application uses to act on the
+organization’s behalf — the service account, the API credential, the
+SCIM bearer token. Most integrations need both, they are configured in
+the same hour by the same engineer, and that is precisely why they are
+written down separately.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>Picture two members of IT in a meeting called “saml claims”, working
+out how one application should receive identity information from the
+organization. That is a perfectly reasonable way to configure one
+application. It is a poor way to configure thirty, because the next
+integration starts from the same blank page, reaches its own conclusions
+about which attribute should be the identifier, and nobody discovers the
+difference until an address changes or a vendor asks why two
+applications disagree about who somebody is.</p>
+<p>Many organizations are also federating twice. When applications trust
+a legacy identity provider (Okta, Ping, or an on-premises federation
+server) and will eventually trust Entra ID, every claim decision made in
+one system has to be reproduced in the other. Decisions made from memory
+do not reproduce; decisions written down do.</p>
+<p>This document does four things: it defines what IT needs from a
+department before an application can be onboarded at all, it fixes one
+claim standard for the whole estate, it states the two rules that cause
+the most damage when they are got wrong — the identifier and the group
+claim — and it defines how an application is migrated between identity
+providers with a rollback that actually works.</p>
+<h2 id="2-the-intake--what-it-needs-before-anything-is-configured">2.
+The intake — what IT needs before anything is configured</h2>
+<p>An application is not federated on the strength of an email saying
+that a vendor needs the metadata. The intake below is short, and every
+line of it exists because its absence has cost somebody something.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>What IT needs</th>
+<th>Why</th>
+<th>Supplied by</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A named business owner — a person, not a department</td>
+<td>Somebody has to answer the access review (<a href="/sops/ACC-17">ACC-17</a>), approve the claim
+set, decide who may use it, and be told when the vendor changes
+something. A department cannot do any of those.</td>
+<td>The requesting department</td>
+</tr>
+<tr class="even">
+<td>The user population</td>
+<td>Staff, contractors, temporary workers on second accounts, guests, or
+a named list. This determines the group strategy (§6), the provisioning
+model (§7) and the licence count.</td>
+<td>The requesting department</td>
+</tr>
+<tr class="odd">
+<td>The data classes the application will hold or receive</td>
+<td>A claim is a disclosure. Sending an employee ID or a group
+membership to a third party is a data transfer, and the sensitive
+classes in <a href="/sops/M365-15">M365-15</a> determine what is permitted.</td>
+<td>Department, with IT</td>
+</tr>
+<tr class="even">
+<td>Licence model, cost, and who pays</td>
+<td>Per-user licensing changes what the leaver process has to do and
+what a dormant account costs. Named-user licences that nobody reclaims
+are a standing bill (<a href="/sops/M365-20">M365-20</a>).</td>
+<td>Department, with Finance</td>
+</tr>
+<tr class="odd">
+<td>The contract, its term and its renewal date</td>
+<td>The renewal date goes on the register (§10). An application nobody
+remembers renewing is an application nobody remembers reviewing.</td>
+<td>The requesting department</td>
+</tr>
+<tr class="even">
+<td>A security review of the vendor</td>
+<td>Before signature, not after. At minimum: where data is held, whether
+the vendor supports SAML or OIDC and SCIM, their breach-notification
+terms, and whether they support the authentication strength the
+organization requires (§9).</td>
+<td>IT, with the department</td>
+</tr>
+<tr class="odd">
+<td>Protocol and provisioning capability, in the vendor’s own words</td>
+<td>Vendors describe “SSO support” loosely. Ask for the specific
+standard, the metadata endpoint, whether they support signed assertions,
+and whether SCIM 2.0 is included in the purchased tier or is an
+upgrade.</td>
+<td>The vendor, in writing</td>
+</tr>
+<tr class="even">
+<td>A test instance, or a documented way to test safely</td>
+<td>Every rule in §8 assumes something can be tried before it is done to
+everybody.</td>
+<td>The vendor</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Two rules about the intake, stated because they will be
+tested</strong></p>
+<p>IT does not configure federation for an application with no named
+owner. Not as a favour, not for a pilot, and not “until we sort out who
+owns it”. An unowned integration is an entitlement nobody will ever
+review and a vendor relationship nobody will ever end.</p>
+<p>The intake belongs before contract signature. In practice it usually
+arrives afterwards, when the department has already committed and the
+answer to “does it support SCIM?” is no. IT should still complete it —
+late intake is worth far more than none — and the register should record
+that the application was contracted before it was assessed, because that
+pattern is the finding, not the individual application.</p>
+</blockquote>
+<h2 id="3-choosing-the-protocol">3. Choosing the protocol</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Use when</th>
+<th>What it gives the organization</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SAML 2.0</td>
+<td>The application is an established enterprise product whose
+federation support is SAML. Usually the most common answer today.</td>
+<td>Central authentication, Conditional Access, MFA and authentication
+strength, and one sign-in log.</td>
+<td>Claims per §4. Signed assertions. Certificate expiry is a diarised
+change under <a href="/sops/GOV-04">GOV-04</a>.</td>
+</tr>
+<tr class="even">
+<td>OIDC / OAuth 2.0</td>
+<td>The application is modern, or is a mobile or single-page
+application, or needs delegated access to Microsoft 365 data on a user’s
+behalf.</td>
+<td>The same, plus scoped API access and refresh-token control rather
+than a shared credential.</td>
+<td>Prefer this for new integrations where the vendor supports both.
+Consent and permission scopes are a Tier 3 review, not a
+click-through.</td>
+</tr>
+<tr class="odd">
+<td>SCIM 2.0</td>
+<td>Alongside either of the above. SCIM is not a sign-in protocol — it
+is how accounts are created, updated and deactivated inside the
+application.</td>
+<td>It is what makes <a href="/sops/ACC-01">ACC-01</a>’s leaver process actually reach the
+application (§7).</td>
+<td>Requested at intake. Retrofitting it later means reconciling
+accounts that already exist.</td>
+</tr>
+<tr class="even">
+<td>Directory-integrated (LDAP / Kerberos)</td>
+<td>A legacy on-premises application that cannot federate but can read
+the directory.</td>
+<td>Central credentials, but not central policy — MFA and Conditional
+Access do not apply.</td>
+<td>Treated as a transitional state with a stated end. Record the
+intended replacement on the register.</td>
+</tr>
+<tr class="odd">
+<td>No federation — local credentials</td>
+<td>The vendor genuinely supports nothing else, and the business need is
+real.</td>
+<td>Nothing. This is the option the organization pays for in every other
+document.</td>
+<td>Requires a Tier 4 decision and a named compensating control. See the
+callout below.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>What a local-credential application actually costs the
+organization</strong></p>
+<p>It is chosen far more often than it should be, because the bill
+arrives somewhere else. Costed honestly:</p>
+<p>The password is outside <a href="/sops/ACC-04">ACC-04</a>, so the organization’s standard and
+self-service reset do not apply and every reset becomes a ticket, on a
+desk where lockouts are already among the largest ticket categories. It
+also teaches users that some organization systems have their own
+password, which is the condition under which credential-harvesting
+messages succeed.</p>
+<p>MFA is whatever the vendor offers, if anything, and it is invisible
+to <a href="/sops/ACC-03">ACC-03</a>. The organization cannot state which multifactor system
+governs that application — exactly the question a managed security
+partner will ask, and one that often cannot be answered from any
+record.</p>
+<p>The <a href="/sops/ACC-01">ACC-01</a> leaver procedure does not reach it. Disabling the
+organization account does nothing; access ends only when somebody
+remembers this application exists. And there is no sign-in log the
+organization can see, so <a href="/sops/GOV-03">GOV-03</a> cannot investigate it and <a href="/sops/ACC-17">ACC-17</a> cannot
+review it without asking the vendor for a list.</p>
+<p>None of this makes a local-credential application forbidden. It makes
+it a decision with a price, taken at Tier 4, recorded on the register,
+with a named manual deprovisioning step on the <a href="/sops/ACC-01">ACC-01</a> checklist and a
+date at which federation is revisited.</p>
+</blockquote>
+<h2 id="4-the-organizations-claims-standard">4. The organization’s
+claims standard</h2>
+<p>This is the centrepiece of the document. It exists so that the next
+“saml claims” meeting is a ten-minute confirmation against a table
+rather than a fresh derivation.</p>
+<p>Every application receives the same core claim set unless it has a
+documented reason not to. Deviations are recorded on the register (§10)
+with the reason, so that a future engineer can tell a deliberate
+exception from an accident.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Claim</th>
+<th>What it is for</th>
+<th>Entra source attribute</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NameID (Unique User Identifier)</td>
+<td>The identifier the application keys the user record on. The single
+most consequential claim in the assertion.</td>
+<td>user.objectid</td>
+<td>Format persistent
+(urn:oasis:names:tc:SAML:2.0:nameid-format:persistent). NEVER an email
+address. See §5.</td>
+</tr>
+<tr class="even">
+<td>emailaddress</td>
+<td>Display, notification and correspondence inside the
+application.</td>
+<td>user.mail</td>
+<td>Sent for display only. If the application keys on this, it is
+misconfigured (§5).</td>
+</tr>
+<tr class="odd">
+<td>upn</td>
+<td>The sign-in name, where the application shows or matches on it.</td>
+<td>user.userprincipalname</td>
+<td>Also mutable. Same caution as email — it changes when a name changes
+(<a href="/sops/M365-05">M365-05</a>, <a href="/sops/ACC-02">ACC-02</a>).</td>
+</tr>
+<tr class="even">
+<td>givenname</td>
+<td>First name.</td>
+<td>user.givenname</td>
+<td>Straightforward. Empty for some service and shared identities — test
+for it.</td>
+</tr>
+<tr class="odd">
+<td>surname</td>
+<td>Last name.</td>
+<td>user.surname</td>
+<td>As above.</td>
+</tr>
+<tr class="even">
+<td>displayname / name</td>
+<td>The name the application shows.</td>
+<td>user.displayname</td>
+<td>Send only if the application uses it. Do not send a claim nothing
+consumes.</td>
+</tr>
+<tr class="odd">
+<td>employeeid / record ID</td>
+<td>Matching a person to their record in a system of record — the HR and
+user system of record, a CRM, a line-of-business platform.</td>
+<td>user.employeeid for staff. The attribute carrying any other record
+ID must be settled first — see the open item below.</td>
+<td>Where an application needs to match a record in a system of record,
+this is the claim that does it, not the email address.</td>
+</tr>
+<tr class="even">
+<td>groups / roles</td>
+<td>Authorisation — what the person may do inside the application.</td>
+<td>user.groups (filtered) or user.assignedroles</td>
+<td>Read §6 before configuring this one. The default configuration does
+not scale.</td>
+</tr>
+<tr class="odd">
+<td>department, jobtitle</td>
+<td>Only where the application does something with them.</td>
+<td>user.department, user.jobtitle</td>
+<td>Optional. Each is a disclosure of personal data to a third party
+(<a href="/sops/M365-15">M365-15</a>).</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="41-rules-that-apply-to-every-claim">4.1 Rules that apply to
+every claim</h3>
+<ul>
+<li>Claims are mapped from a source attribute. A value typed in by hand
+is a value that will be wrong for somebody, silently, forever. Anything
+the application does not consume is not sent — every claim leaves the
+tenant.</li>
+<li>Claim names are used exactly as the vendor’s documentation
+specifies, including the full schema URI where one is required. A claim
+under a nearly-correct name is not an error — it is ignored, which is
+much harder to diagnose.</li>
+<li>Where a source attribute is empty for part of the population, the
+claim is empty for those people. Part-time staff, guests, temporary
+workers on second accounts (<a href="/sops/ACC-02">ACC-02</a>, <a href="/sops/ACC-09">ACC-09</a>) and service identities are
+the usual gaps.</li>
+<li>Test with a real account from every population that will use the
+application — never with the configuring engineer’s own account, which
+is the least representative in the tenant: fully attributed, in every
+group, and usually privileged.</li>
+<li>The finished mapping is recorded on the worksheet at Appendix B and
+attached to the register entry. That worksheet is the artefact that is
+missing after a one-off claims meeting.</li>
+</ul>
+<h3 id="42-the-oidc-equivalents">4.2 The OIDC equivalents</h3>
+<p>The same rules apply with different names, and the identifier rule is
+the one that translates least obviously. In an OpenID Connect token the
+durable identifiers are oid — the user’s object ID in the tenant — and
+sub, which is stable but scoped to the individual application. Key on
+one of those. Do not key on email or preferred_username: both are
+mutable, and preferred_username is explicitly documented as not suitable
+as an identifier. given_name, family_name, roles and groups carry the
+rest, and the §6 size limits apply to a JWT as well as to an
+assertion.</p>
+<blockquote>
+<p><strong>Open — owner: Tier 3, before the next integration that needs
+a user identifier</strong></p>
+<p>Many organizations have no settled answer to which directory
+attribute carries a person’s record ID from the system of record, and
+the next application that needs to match a user to their record will
+have to pick one under time pressure.</p>
+<p>This is not a small housekeeping item. Directory extension attributes
+are finite and cannot be un-allocated once something depends on them — a
+dynamic group request can be declined because the attribute it needs has
+already been committed to the ticketing system (<a href="/sops/M365-21">M365-21</a> §3).</p>
+<p>ACTION: Tier 3 to determine which attribute holds that record ID
+today, record it in the attribute register (<a href="/sops/M365-04">M365-04</a> §7), and raise a
+change under <a href="/sops/M365-21">M365-21</a> if a new commitment is required. Until it is
+recorded, no application may be configured to consume it.</p>
+</blockquote>
+<h2
+id="5-nameid--immutable-non-reassignable-and-never-an-email-address">5.
+NameID — immutable, non-reassignable, and never an email address</h2>
+<blockquote>
+<p><strong>The rule, and it is not a preference</strong></p>
+<p>NameID is the value the application uses to decide which existing
+user this is. It must be immutable — it never changes for a given person
+— and non-reassignable — it is never later given to somebody else.</p>
+<p>An email address is neither. Changing an address is a routine,
+supported, correct workflow with its own procedure (<a href="/sops/M365-05">M365-05</a>).</p>
+<p>So: NameID is user.objectid, in persistent format, on every new
+integration. No exceptions without a Tier 4 decision recorded on the
+register.</p>
+</blockquote>
+<h3
+id="51-why-this-is-the-rule-that-costs-the-most-when-it-is-broken">5.1
+Why this is the rule that costs the most when it is broken</h3>
+<p>An address change is not exotic. Marriage, a legal name change, a
+correction to a misspelling made at hiring, a change of preferred name,
+a person moving between populations under <a href="/sops/ACC-02">ACC-02</a> — each produces a new
+primary address, and <a href="/sops/M365-05">M365-05</a> exists to handle them properly. On an
+application keyed to the address, that routine change produces one of
+two failures, and both arrive at the desk days later as “I cannot get
+into X”:</p>
+<ul>
+<li>The application does not recognise the new value, creates a
+brand-new empty account, and the person loses their history, their
+permissions, their saved work and their open items. Nothing indicates
+that the old record still exists.</li>
+<li>Or — worse — the address is later reassigned to a different person
+under the naming standard, and that person signs in to the first
+person’s record, with their access and their data. This is the failure
+that is not merely inconvenient. Neither failure is visible in the
+identity provider. The sign-in succeeds. The assertion is correct. The
+damage is entirely inside the application, which is why it is found late
+and by the user.</li>
+</ul>
+<h3 id="52-applications-already-keyed-on-email">5.2 Applications already
+keyed on email</h3>
+<p>Some are. The honest position is that most organizations do not know
+how many, and the first pass of the register (§10) is how that is
+established.</p>
+<ol type="1">
+<li>Identify them. For each federated application, record the NameID
+source attribute and format on the register. Where it is an email
+address or a UPN, flag it.</li>
+<li>Add every flagged application to the <a href="/sops/M365-05">M365-05</a> procedure as a named
+downstream dependency, so that an address change triggers a
+per-application remediation instead of a surprise. This is a small edit
+to <a href="/sops/M365-05">M365-05</a> and it is the immediate mitigation.</li>
+<li>Migrate the identifier at the next cutover (§8). That is the natural
+moment, because the trust relationship is being rebuilt anyway and the
+vendor is already engaged.</li>
+<li>Be realistic about the cost. Changing the NameID on a live
+application means the vendor must re-map every existing user record from
+the old value to the new one. Some vendors do this on request, some
+charge for it, and some cannot do it at all — in which case the
+application stays flagged, permanently, and that fact belongs in the
+annual report to Tier 4 rather than in an engineer’s memory.</li>
+</ol>
+<h2 id="6-group-and-role-claims-and-the-claim-size-limit">6. Group and
+role claims, and the claim-size limit</h2>
+<p>Authorisation inside an application is driven either by group claims
+— the identity provider sends the groups the person is in, and the
+application maps them to its own roles — or by app roles, where the
+assignment is made in the identity provider and the application receives
+one or two role values. The choice matters more than it appears to.</p>
+<blockquote>
+<p><strong>The failure nobody predicts: the claim-size
+limit</strong></p>
+<p>Sending “all groups” is the default configuration and the one most
+vendors ask for. It works in testing, because the engineer testing it is
+in a manageable number of groups, and it fails later for the users who
+are in the most.</p>
+<p>Microsoft’s documented behaviour is that when a user is a member of
+more than 150 groups for a SAML assertion, or more than 200 for a JWT,
+the groups claim is not emitted at all. In its place the token carries a
+link to a Microsoft Graph endpoint from which the application is
+expected to retrieve the list. Most applications do not implement that
+link.</p>
+<p>The result is the most confusing of all authorisation failures: the
+sign-in succeeds, the user arrives, and the application shows them
+nothing, because as far as it can tell they are in no groups and so have
+no role. It affects only some users — usually the longest-serving and
+most senior — which makes it look like a personal account problem rather
+than a design problem. Large tokens also hit HTTP header size limits at
+the application or its proxy, producing an opaque failure at the
+redirect that looks like a broken link.</p>
+<p>And the group count grows without anybody deciding to grow it:
+dynamic groups (<a href="/sops/M365-04">M365-04</a>) add members by rule, so a user’s count rises as
+the organization adds groups, not as the user does anything.</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Strategy</th>
+<th>How it works</th>
+<th>Assessment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>App roles (preferred)</td>
+<td>Roles are defined on the application in Entra. Users or groups are
+assigned to a role explicitly. The token carries the role value, and
+nothing else.</td>
+<td>PREFERRED for new integrations. The token stays small regardless of
+group count, the assignment is explicit and readable, and it is a clean
+object for the <a href="/sops/ACC-17">ACC-17</a> annual application review.</td>
+</tr>
+<tr class="even">
+<td>Filtered group claims</td>
+<td>Emit only the groups assigned to this application, or only groups
+matching a naming pattern such as APP-<AppName>-<Role>.</td>
+<td>The right answer where the application insists on group claims.
+Requires a naming convention that filtering can key on (<a href="/sops/ACC-02">ACC-02</a>) — which
+means the group names must be decided before the application is
+configured, not after.</td>
+</tr>
+<tr class="odd">
+<td>All groups, unfiltered</td>
+<td>The default. Every group the user is in, as object IDs.</td>
+<td>NOT PERMITTED for a new integration. It is the configuration that
+produces the failure above, and it discloses the organization’s entire
+group structure to a third party on every sign-in.</td>
+</tr>
+<tr class="even">
+<td>Group names rather than IDs</td>
+<td>Emit sAMAccountName or display name where the application matches on
+a name.</td>
+<td>Acceptable where required, with a caution: a group name is mutable,
+so renaming a group breaks authorisation in the same way §5 describes
+for identifiers. Groups used for application authorisation are not
+renamed casually, and the register records which ones they are.</td>
+</tr>
+<tr class="odd">
+<td>Graph callback for overage</td>
+<td>The application follows the link and retrieves the group list from
+Microsoft Graph.</td>
+<td>Only where the vendor documents support for it, and only after it
+has been demonstrated on a test account deliberately placed in more than
+150 groups. Vendor claims about overage handling are tested, not
+accepted.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="61-standing-rules">6.1 Standing rules</h3>
+<ul>
+<li>Groups used for application authorisation are purpose-built for that
+application and named so that they can be filtered — the recommended
+pattern is APP-<AppShortName>-<Role>. An existing distribution list is
+never reused as an authorisation group: conflating mail membership with
+access rights means a mail request silently grants access
+(<a href="/sops/M365-04">M365-04</a>).</li>
+<li>Every authorisation group has a named owner and is an object of the
+<a href="/sops/ACC-17">ACC-17</a> review. A group that grants access to an application and is
+reviewed by nobody is the definition of a grant that becomes
+permanent.</li>
+<li>Test with an account deliberately placed in a large number of groups
+before go-live. It takes one test account and twenty minutes, and it is
+the only way to see the overage failure before a user does.</li>
+</ul>
+<h2
+id="7-provisioning-and-deprovisioning--and-the-gap-when-there-is-none">7.
+Provisioning and deprovisioning — and the gap when there is none</h2>
+<blockquote>
+<p><strong>Federation without provisioning means the leaver process does
+not remove access.</strong></p>
+<p>This is the most common unrecognised hole in a federated estate, and
+it is worth stating in the plainest possible terms.</p>
+<p><a href="/sops/ACC-01">ACC-01</a> §7 disables the organization account. That stops the person
+signing in THROUGH the identity provider. It does not delete, disable or
+even touch the account that exists inside the application. Whether that
+matters depends entirely on the application, and nobody checks per
+application at the moment somebody leaves.</p>
+<p>What can still work after a leaver is offboarded: a local password
+the user set inside the application; an invitation the vendor sent to a
+personal address; an API or personal access token the user generated; a
+mobile app holding a long-lived session; and any account the application
+created that the organization has no inventory of.</p>
+<p>Most organizations do not know how large this gap is. The register
+(§10) and the first <a href="/sops/ACC-17">ACC-17</a> application review are how the size is
+established, and the honest expectation is that the first pass finds
+accounts in applications nobody has thought about in two years.</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Provisioning model</th>
+<th>At joiner</th>
+<th>At leaver</th>
+<th>Residual risk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SCIM 2.0 (target state)</td>
+<td>The account is created in the application automatically when the
+person enters the assigned group or role.</td>
+<td>The account is DEACTIVATED automatically when the organization
+account is disabled or the assignment is removed.</td>
+<td>Low — but only while the SCIM credential is valid. See below.</td>
+</tr>
+<tr class="even">
+<td>Just-in-time provisioning from the assertion</td>
+<td>The account is created on first successful sign-in, from the
+claims.</td>
+<td>Nothing happens. The account remains, dormant but present, and any
+local credential still works.</td>
+<td>Medium. A named manual step is required on the leaver
+checklist.</td>
+</tr>
+<tr class="odd">
+<td>Manual, by the vendor or by IT</td>
+<td>Somebody creates it on request.</td>
+<td>Somebody must remember to remove it.</td>
+<td>High. This is the model that produces forgotten accounts, and in
+many estates it is still the model for most applications.</td>
+</tr>
+<tr class="even">
+<td>None — local credentials</td>
+<td>The user self-registers, often with an address the organization
+never sees.</td>
+<td>Nothing. The organization may not even hold a list.</td>
+<td>Highest. §3 costs this honestly.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="71-rules">7.1 Rules</h3>
+<ul>
+<li>SCIM is asked for at intake (§2) and is a factor in the purchasing
+decision. Retrofitting it means reconciling accounts that already exist,
+which is a project rather than a configuration.</li>
+<li>The deprovisioning action is DEACTIVATE, not delete, wherever the
+application holds records the organization needs — casework, customer
+history, audit history.</li>
+<li>The SCIM bearer token is a non-human credential under <a href="/sops/ACC-08">ACC-08</a>: named
+owner, recorded expiry, rotation date in the calendar. A token that
+expires silently stops provisioning, and the first symptom is a joiner
+who cannot get in — while the leavers it also stopped removing go
+unnoticed for months. Provisioning jobs in a quarantined or failed state
+are alerted and acted on.</li>
+<li>Where there is no SCIM, a named per-application step goes on the
+<a href="/sops/ACC-01">ACC-01</a> leaver checklist and the register carries the flag. That is worse
+than SCIM and enormously better than nothing. Where there is neither
+SCIM nor federation, the application is on the checklist twice — account
+and credential — and is a candidate for replacement at renewal.</li>
+</ul>
+<h2 id="8-current-state-target-state-and-migrating-an-application">8.
+Current state, target state, and migrating an application</h2>
+<p>While the organization runs two identity providers, “which one
+governs this application?” has to be answerable per application, in
+writing. A managed security partner asking whether the old provider’s
+MFA is still in use should get an answer from a record, not from
+memory.</p>
+<p>So every register entry carries two identity provider rows and a
+migration state: Not started, Configured in target, Piloting, Cut over,
+or Retired from source. The estate’s progress is the count of those
+states, and the migration plan is a filter on the register rather than a
+separate document.</p>
+<h3 id="81-migrating-one-application">8.1 Migrating one application</h3>
+<ol type="1">
+<li>RECORD THE CURRENT STATE COMPLETELY BEFORE CHANGING ANYTHING: the
+existing NameID source attribute and format, every claim and its exact
+name, the group or role mapping, the provisioning configuration, the
+signing certificate and its expiry, and the list of users who actually
+sign in. A rollback to a configuration nobody wrote down is a
+reconstruction, not a rollback.</li>
+<li>Build the target configuration in Entra against §4, §5 and §6. Where
+the current NameID is an email address, this is the moment §5.2 is paid
+for, and the vendor conversation about re-mapping existing records
+happens now — not on the night.</li>
+<li>Where the application supports more than one federation connection,
+configure both and run them in parallel — it converts the cutover from
+an event into a switch, and is worth asking for even when it is not
+offered. Where it supports only one, the cutover is atomic and the
+rollback is the restoration of the old provider’s connection: TESTED,
+with the metadata, certificate and claim mapping held ready and
+confirmed still valid, not assumed to be a matter of pasting a URL
+back.</li>
+<li>Pilot with named real users drawn from every population that uses
+the application: one who is not in IT, one on a personal or unmanaged
+device (<a href="/sops/DEV-07">DEV-07</a>), one temporary worker on a second account, and one
+person who is in a great many groups (§6).</li>
+<li>Run the pilot for a stated period with a named contact and a stated
+back-out trigger — the specific observation that ends the pilot rather
+than a general sense that it is going badly.</li>
+<li>Cut over inside a maintenance window under <a href="/sops/GOV-04">GOV-04</a>, with a change
+record, a named organization approver, and a communication that tells
+people what to do if it does not work for them.</li>
+<li>Verify with a real sign-in from each population before the window
+closes. The engineer’s own account is not a verification (§4.1). Keep
+the source configuration in place but disabled for 30 days — deleting
+the rollback path on the night converts a five-minute recovery into a
+rebuild under pressure.</li>
+<li>Record the cutover under <a href="/sops/GOV-04">GOV-04</a> and update the register: migration
+state, new claim mapping, the Appendix B worksheet, and anything the
+vendor did on their side.</li>
+</ol>
+<blockquote>
+<p><strong>The rollback question that must be answered before, not
+after</strong></p>
+<p>Establish, in writing from the vendor, what the application does when
+the identifier changes. Some applications rebind an existing record to
+the new NameID on first sign-in; some create a duplicate; some refuse
+the sign-in outright.</p>
+<p>This matters because it determines whether the rollback still works.
+If the application has already rebound its records to the new
+identifier, restoring the old identity provider does not restore the old
+state — the users are now keyed to a value the old provider does not
+send, and the rollback fails silently at the second step.</p>
+<p>Where the vendor cannot answer this question, the answer is found on
+a test instance before the cutover is scheduled. Where there is no test
+instance, the change is escalated as irreversible under <a href="/sops/GOV-04">GOV-04</a> §5.</p>
+</blockquote>
+<h2 id="9-authentication-strength-and-vendor-mfa-deadlines">9.
+Authentication strength and vendor MFA deadlines</h2>
+<p>Authentication requirements are applied to an application by
+Conditional Access at the identity provider, not by asking the vendor to
+enforce something. That is the whole point of federating it: <a href="/sops/ACC-03">ACC-03</a> sets
+what a strong authentication is, and this document is how a given
+application comes to require it.</p>
+<p>A common worked example: a SaaS vendor announces it will enforce
+phishing-resistant multifactor authentication from a fixed date. The
+timeline below counts back from that date (D) and assumes about five
+weeks of notice.</p>
+<blockquote>
+<p><strong>The classic way this breaks access.</strong></p>
+<p>A rushed phishing-resistant rollout breaks access and leaves people
+stuck in an MFA setup loop. The mechanism is documented in <a href="/sops/ACC-03">ACC-03</a> §11
+and is not re-derived here; the one-line summary is that the policy
+requiring a phishing-resistant method was in scope for the registration
+endpoint at which users would have registered one, so the only way to
+satisfy the policy was to already have satisfied it.</p>
+<p>The rule that follows is short: ENFORCEMENT FOLLOWS REGISTRATION. It
+never drives it. An authentication-strength change is staged behind a
+pilot group, with a back-out that has been performed once in test, and
+it is never applied to a population that has not first been shown — from
+the Entra authentication-methods report, not from an assumption — to
+hold the method it will require.</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>By</th>
+<th>What must be true</th>
+<th>Why this gate exists</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>D – 26 days</td>
+<td>The population is identified from the application’s sign-in logs —
+every account that actually signs in — not from the licence list and not
+from memory.</td>
+<td>A licence list includes people who never sign in and excludes shared
+and integration access. Enforcing against the wrong list is how a
+population gets missed.</td>
+</tr>
+<tr class="even">
+<td>D – 19 days</td>
+<td>Every account in that population holds a registered
+phishing-resistant method, evidenced from the Entra
+authentication-methods report. FIDO2 keys are physically in the hands of
+anyone whose device cannot support a platform method.</td>
+<td>This is the gate most often skipped. Everything below depends on it
+and nothing below it can compensate for it.</td>
+</tr>
+<tr class="odd">
+<td>D – 19 to D – 9 days</td>
+<td>The Conditional Access policy runs in report-only against the
+population, and the report-only results are read.</td>
+<td>Report-only tells you who would have been blocked. The absence of
+complaints during report-only tells you nothing, because nothing was
+enforced (<a href="/sops/M365-21">M365-21</a> §5).</td>
+</tr>
+<tr class="even">
+<td>D – 7 days</td>
+<td>A named pilot group is enforced, with a named contact, a stated
+back-out trigger, and a back-out that has been performed once so that
+its duration is known.</td>
+<td>A back-out whose duration is unknown cannot be used under pressure,
+because nobody can say whether it will finish before the business
+opens.</td>
+</tr>
+<tr class="odd">
+<td>D – 7 to D – 2 days</td>
+<td>Full enforcement, in waves, with the service desk briefed and
+holding a written recovery path for a user who is stuck.</td>
+<td>Tier 1 will receive these calls. A desk that has not been told what
+changed diagnoses it as an ordinary MFA fault.</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>Nothing happens. The deadline is met by a change made a week
+earlier.</td>
+<td>This is the objective. The day itself should be uneventful.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>The deadline is met by starting early, not by cutting over on
+the day</strong></p>
+<p>Cutting over on the deadline leaves no time to back out and still
+comply. Cutting over a week early leaves a week — which is the
+difference between an incident and an inconvenience.</p>
+<p>The asymmetry is worth stating: missing the deadline costs the
+organization access to that application. A rushed
+authentication-strength change costs it access to that application AND
+to everything else in scope of the policy, at a moment when nobody can
+sign in to fix it.</p>
+<p>And a caution about this document’s own timetable. If the population
+above is not identified within the first week, the schedule is no longer
+available. The correct response at that point is to ask the vendor for
+an extension, not to compress the gates — compressing the gates is
+exactly what produces the setup loop.</p>
+</blockquote>
+<p>The same pattern applies to any application-level authentication
+change: identify the population from real sign-ins, prove registration,
+run report-only, pilot with a tested back-out, enforce in waves, and
+record it as a change under <a href="/sops/GOV-04">GOV-04</a>.</p>
+<h2 id="10-the-application-register">10. The application register</h2>
+<p>One register, holding one row per application. It is the input to the
+<a href="/sops/ACC-17">ACC-17</a> annual application review, to the <a href="/sops/ACC-01">ACC-01</a> leaver checklist, and to
+<a href="/sops/GOV-04">GOV-04</a> scheduling — which means it earns its keep three times over.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Application name, and what it is for</td>
+<td>In words a non-specialist would recognise.</td>
+</tr>
+<tr class="even">
+<td>Business owner / IT owner</td>
+<td>Named people (§2).</td>
+</tr>
+<tr class="odd">
+<td>User population and approximate count</td>
+<td>Drives the review packet under <a href="/sops/ACC-17">ACC-17</a> §4.</td>
+</tr>
+<tr class="even">
+<td>Protocol</td>
+<td>SAML 2.0 / OIDC / SCIM alongside / directory-integrated / none.</td>
+</tr>
+<tr class="odd">
+<td>Current IdP → Target IdP</td>
+<td>For example, Okta → Entra ID, with the migration state (§8).</td>
+</tr>
+<tr class="even">
+<td>NameID source and format</td>
+<td>FLAGGED where it is an email address or a UPN (§5.2).</td>
+</tr>
+<tr class="odd">
+<td>Claim deviations from §4</td>
+<td>With the reason. Silence here means the standard set.</td>
+</tr>
+<tr class="even">
+<td>Group or role strategy</td>
+<td>App roles / filtered groups / other, with the group naming
+pattern.</td>
+</tr>
+<tr class="odd">
+<td>Provisioning</td>
+<td>SCIM / JIT / manual / none — and the leaver action that
+follows.</td>
+</tr>
+<tr class="even">
+<td>Authentication strength required</td>
+<td>And any external deadline driving it (§9).</td>
+</tr>
+<tr class="odd">
+<td>Data classes held</td>
+<td>Per <a href="/sops/M365-15">M365-15</a>.</td>
+</tr>
+<tr class="even">
+<td>Contract renewal date</td>
+<td>The date that forces the annual conversation.</td>
+</tr>
+<tr class="odd">
+<td>Certificate expiry</td>
+<td>Federation certificates expire and take the application down when
+they do. Diarised as a change under <a href="/sops/GOV-04">GOV-04</a>.</td>
+</tr>
+<tr class="even">
+<td>Last reviewed</td>
+<td>By <a href="/sops/ACC-17">ACC-17</a> §2.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>If the register does not exist yet, the first pass is the
+interesting part</strong></p>
+<p>The first task on approval is to build it from three sources: the
+legacy identity provider’s connector list, the Entra enterprise
+application list, and the contracts held by departments.</p>
+<p>Those three lists will not agree. Expect applications in the legacy
+provider that nobody can name an owner for, contracted applications with
+no federation at all, and Entra enterprise applications created by
+consent that nobody requested.</p>
+<p>The disagreements are the finding, not an obstacle to producing the
+register. They are reported to Tier 4 as part of the first <a href="/sops/ACC-17">ACC-17</a> annual
+application review.</p>
+</blockquote>
+<h2 id="11-service-levels">11. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Intake reviewed and a protocol recommendation returned</td>
+<td>P3 — 5 coverage days from a complete intake (§2).</td>
+</tr>
+<tr class="even">
+<td>Incomplete intake</td>
+<td>Returned within 2 coverage days naming what is missing, not held
+silently.</td>
+</tr>
+<tr class="odd">
+<td>Federation configured for a straightforward SAML or OIDC
+application</td>
+<td>10 coverage days from a complete intake and vendor metadata.</td>
+</tr>
+<tr class="even">
+<td>SCIM provisioning configured and verified</td>
+<td>A further 5 coverage days. Reconciling pre-existing accounts is
+scoped separately.</td>
+</tr>
+<tr class="odd">
+<td>Migration of an existing application between identity providers</td>
+<td>Scheduled work under <a href="/sops/GOV-04">GOV-04</a>. Not an on-demand request.</td>
+</tr>
+<tr class="even">
+<td>Authentication-strength change on an application</td>
+<td>Never same-day. §9 gates apply regardless of the deadline driving
+it.</td>
+</tr>
+<tr class="odd">
+<td>Federation broken in production</td>
+<td>P1 — this is an outage for everybody who uses that application.</td>
+</tr>
+<tr class="even">
+<td>Certificate expiry approaching</td>
+<td>Diarised 60 days ahead as a normal change. An expired federation
+certificate is an avoidable P1.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="12-records">12. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Application register (§10)</td>
+<td>IT register</td>
+<td>Permanent — it outlives every individual application</td>
+</tr>
+<tr class="even">
+<td>Completed intake form (Appendix A)</td>
+<td>Ticket + register entry</td>
+<td>Life of the application + 3 years</td>
+</tr>
+<tr class="odd">
+<td>Claim mapping worksheet (Appendix B)</td>
+<td>Attached to the register entry</td>
+<td>Life of the application, superseded versions kept 3 years</td>
+</tr>
+<tr class="even">
+<td>Cutover records, including the tested back-out</td>
+<td><a href="/sops/GOV-04">GOV-04</a> change log</td>
+<td>7 years</td>
+</tr>
+<tr class="odd">
+<td>Tier 4 decisions permitting a local-credential application or an
+email NameID</td>
+<td>Tier 4 record</td>
+<td>Permanent</td>
+</tr>
+<tr class="even">
+<td>Vendor security review and contract reference</td>
+<td>Contract file, referenced from the register</td>
+<td>Life of the contract + 7 years</td>
+</tr>
+<tr class="odd">
+<td>Authentication-strength rollout evidence, including report-only
+results</td>
+<td>Project record</td>
+<td>3 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13-related-documents">13. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA Enrollment, Reset &amp; Account Recovery</td>
+<td>§9 — what a strong authentication is, and §11 there is the
+setup-loop mechanism this document must not repeat.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-07">ACC-07</a></td>
+<td>Privileged &amp; Administrative Account Standard</td>
+<td>Administrative access to an application is privileged access,
+whoever federates it.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-08">ACC-08</a></td>
+<td>Service, Application &amp; Non-Human Account Standard</td>
+<td>The SCIM token, the API credential and the integration identity
+(§7).</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>§7 leaver procedure — and §7 here is the gap in it.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-02">ACC-02</a></td>
+<td>Account Naming, UPN &amp; Identifier Standard</td>
+<td>Why an address is neither immutable nor non-reassignable (§5).</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-17">ACC-17</a></td>
+<td>Periodic Access Review &amp; Entitlement Recertification</td>
+<td>The annual application review runs off the §10 register.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-05">M365-05</a></td>
+<td>Email Alias &amp; Address Change</td>
+<td>§5. Every application keyed on email breaks on an <a href="/sops/M365-05">M365-05</a>
+workflow.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-04">M365-04</a></td>
+<td>Distribution List &amp; Dynamic Group Standard</td>
+<td>§6 groups, and the attribute register behind §4.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-15">M365-15</a></td>
+<td>Data Classification &amp; Handling</td>
+<td>What may be sent as a claim.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-20">M365-20</a></td>
+<td>License Assignment &amp; Reclamation</td>
+<td>Per-user application licences and dormant accounts.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-21">M365-21</a></td>
+<td>Tenant Configuration Change Control</td>
+<td>Conditional Access, authentication strengths and attribute
+commitments.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-04">GOV-04</a></td>
+<td>IT Change Management &amp; Maintenance Windows</td>
+<td>Every cutover in §8 and §9 is a change record and a window.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response</td>
+<td>Where a federation compromise goes.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments, Priority &amp; Escalation</td>
+<td>Supplies §11.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--application-onboarding-intake-form">Appendix A —
+Application onboarding intake form</h2>
+<p>Submitted to Tier 3, ideally before the contract is signed. An
+incomplete form is returned with the missing fields named, not actioned
+on a best guess.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Application name and vendor</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>What it is for, in one sentence</td>
+<td>Written for somebody outside the department.</td>
+</tr>
+<tr class="odd">
+<td>Business owner</td>
+<td>Named person, role, email. Not a department.</td>
+</tr>
+<tr class="even">
+<td>Who will use it</td>
+<td>Staff / contractors / temporary workers / guests / a named list —
+with approximate numbers.</td>
+</tr>
+<tr class="odd">
+<td>Data it will hold or receive</td>
+<td>Including whether any of it is payroll, client-record or otherwise
+sensitive (<a href="/sops/M365-15">M365-15</a>).</td>
+</tr>
+<tr class="even">
+<td>Licence model and annual cost</td>
+<td>Per user / site / consumption. Who pays.</td>
+</tr>
+<tr class="odd">
+<td>Contract status</td>
+<td>Signed / in negotiation / renewal date.</td>
+</tr>
+<tr class="even">
+<td>Federation support, in the vendor’s words</td>
+<td>SAML 2.0 / OIDC / neither. Metadata URL. Signed assertions
+supported?</td>
+</tr>
+<tr class="odd">
+<td>SCIM 2.0 provisioning</td>
+<td>Included / chargeable upgrade / not supported. If not supported, who
+removes leavers by hand?</td>
+</tr>
+<tr class="even">
+<td>Authorisation model</td>
+<td>App roles / group claims / managed inside the application.</td>
+</tr>
+<tr class="odd">
+<td>Multifactor and authentication strength</td>
+<td>Can it accept the strength required by <a href="/sops/ACC-03">ACC-03</a>? Any external deadline
+(§9)?</td>
+</tr>
+<tr class="even">
+<td>Test instance available?</td>
+<td>YES / NO. If no, how is anything tested before it reaches
+everybody?</td>
+</tr>
+<tr class="odd">
+<td>Support model</td>
+<td>Who does a user contact when it does not work — the vendor, the
+department, or the service desk?</td>
+</tr>
+<tr class="even">
+<td>Accessibility statement / VPAT</td>
+<td>Requested from the vendor.</td>
+</tr>
+<tr class="odd">
+<td>— IT USE — protocol decision (§3)</td>
+<td>And the Tier 4 decision reference if no federation.</td>
+</tr>
+<tr class="even">
+<td>— IT USE — register entry created</td>
+<td>Date, by whom.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--saml-claim-mapping-worksheet">Appendix B — SAML
+claim mapping worksheet</h2>
+<p>Completed for every federated application and attached to the
+register entry. This is the artefact whose absence makes a one-off
+claims meeting unrepeatable. Fill in the actual configured values, not
+the intended ones.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Claim as the vendor names it</th>
+<th>Claim name / URI configured</th>
+<th>Source attribute</th>
+<th>Verified</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Unique identifier (NameID)</td>
+<td>Format: persistent</td>
+<td>user.objectid</td>
+<td>☐ Confirmed not an email address</td>
+</tr>
+<tr class="even">
+<td>Email address</td>
+<td>…/claims/emailaddress</td>
+<td>user.mail</td>
+<td>☐ Display only — application does not key on it</td>
+</tr>
+<tr class="odd">
+<td>User principal name</td>
+<td>…/claims/upn</td>
+<td>user.userprincipalname</td>
+<td>☐</td>
+</tr>
+<tr class="even">
+<td>First name</td>
+<td>…/claims/givenname</td>
+<td>user.givenname</td>
+<td>☐</td>
+</tr>
+<tr class="odd">
+<td>Last name</td>
+<td>…/claims/surname</td>
+<td>user.surname</td>
+<td>☐</td>
+</tr>
+<tr class="even">
+<td>Display name</td>
+<td>…/claims/displayname</td>
+<td>user.displayname</td>
+<td>☐ Only if consumed</td>
+</tr>
+<tr class="odd">
+<td>Employee or record ID</td>
+<td></td>
+<td>user.employeeid / [ attribute per §4.2 open item ]</td>
+<td>☐</td>
+</tr>
+<tr class="even">
+<td>Groups or roles</td>
+<td></td>
+<td>user.assignedroles / filtered user.groups</td>
+<td>☐ Strategy per §6 recorded below</td>
+</tr>
+<tr class="odd">
+<td>Other (list)</td>
+<td></td>
+<td></td>
+<td>☐ Reason recorded on the register</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="confirmations-before-go-live">Confirmations before go-live</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Tested with a staff account, a
+contractor account, a temporary-worker second account and a guest —
+whichever populations apply.</label></li>
+<li><label><input type="checkbox" />Tested with an account deliberately
+in more than 150 groups, if group claims are used (§6).</label></li>
+<li><label><input type="checkbox" />Group strategy recorded: app roles /
+filtered groups / group names, and the naming pattern used.</label></li>
+<li><label><input type="checkbox" />Provisioning model recorded, and the
+leaver action stated in words (§7).</label></li>
+<li><label><input type="checkbox" />SCIM credential owner and rotation
+date recorded under <a href="/sops/ACC-08">ACC-08</a>.</label></li>
+<li><label><input type="checkbox" />Signing certificate expiry diarised
+as a change under <a href="/sops/GOV-04">GOV-04</a>.</label></li>
+<li><label><input type="checkbox" />Vendor’s written answer on what
+happens when the identifier changes (§8.1).</label></li>
+<li><label><input type="checkbox" />Back-out configuration captured and
+held, and confirmed still valid.</label></li>
+<li><label><input type="checkbox" />Register entry created or updated,
+with the migration state.</label></li>
+</ul>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

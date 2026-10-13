@@ -1,0 +1,424 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DEV-03 · Disk Encryption &amp; BitLocker Recovery Key Handling | Known Good</title>
+<meta name="description" content="How organization devices are encrypted, how recovery keys are held, and how to find and fix a device whose key is not where it should be.">
+<meta property="og:title" content="DEV-03 · Disk Encryption &amp; BitLocker Recovery Key Handling | Known Good">
+<meta property="og:description" content="How organization devices are encrypted, how recovery keys are held, and how to find and fix a device whose key is not where it should be.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="dev-03--disk-encryption--bitlocker-recovery-key-handling">DEV-03
+· Disk Encryption &amp; BitLocker Recovery Key Handling</h1>
+<p><em>How organization devices are encrypted, how recovery keys are
+held, and how to find and fix a device whose key is not where it should
+be.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/DEV-03-Disk-Encryption-and-BitLocker-Recovery-Key-Handling.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/DEV-03.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/DEV-03">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>DEV-03</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>C. Device Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 2 — Advanced Technical Services. Key retrieval for a user is
+Tier 1 or Tier 2; policy and remediation design is Tier 3.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Every six months while the estate is mixed, then annually.</td>
+</tr>
+<tr class="even">
+<td>Related existing policy</td>
+<td>Your sensitive data disposal policy, if you have one.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>Encryption without a recoverable key is not a security control. It is
+a mechanism for permanently destroying organization data at an
+unpredictable moment. Most organizations that have ever changed
+encryption tools have devices in exactly that state and do not know how
+many.</p>
+<blockquote>
+<p><strong>How it usually happens</strong></p>
+<p>A move from one encryption tool to another plans to decrypt every
+device and re-encrypt it under Intune with the key escrowed in Entra.
+The plan only reaches machines that are online and healthy at the
+time.</p>
+<p>That is why some devices show a key in Entra and others show
+nothing.</p>
+<p>A device in the second category is encrypted, in use, and
+unrecoverable the first time it prompts for a recovery key. Nothing
+about its appearance to the user distinguishes it from a healthy
+one.</p>
+</blockquote>
+<h2 id="2-the-three-states-the-estate-is-in">2. The three states the
+estate is in</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>State</th>
+<th>What it means</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Encrypted, key escrowed in Entra</td>
+<td>Correct. Recoverable, and safe to wipe or reissue.</td>
+<td>Nothing. Record the key ID against the device.</td>
+</tr>
+<tr class="even">
+<td>Encrypted, no key escrowed</td>
+<td>The dangerous state. Data is unrecoverable at the next recovery
+prompt, and the device cannot be safely reissued or closed out on a
+leaver checklist.</td>
+<td>Remediate per §6. Priority work, not backlog. Do not wipe.</td>
+</tr>
+<tr class="odd">
+<td>Not encrypted</td>
+<td>Non-compliant, but not at risk of unrecoverable loss.</td>
+<td>Apply the policy, then verify escrow per §5. The safer of the two
+failures.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The first task under this document is to find out how many devices
+are in each state. That number is usually not known, and every other
+decision depends on it.</p>
+<h2 id="3-the-standard">3. The standard</h2>
+<ul>
+<li>Every organization-owned Windows device is encrypted with BitLocker,
+managed by Intune, with the recovery key escrowed in Entra ID.</li>
+<li>Every organization-owned macOS device is encrypted with FileVault,
+with the recovery key escrowed. A macOS device with FileVault on and no
+escrowed key carries exactly the same risk as its Windows equivalent,
+and this is easy to overlook where macOS management is still maturing
+(<a href="/sops/DEV-09">DEV-09</a>).</li>
+<li>There is no device class at the organization for which an unescrowed
+key is acceptable — including labs, loaners, kiosks and conference-room
+machines.</li>
+<li>Escrow is verified by looking, per device, and recorded. It is never
+inferred from the encryption policy having been applied.</li>
+<li>The key ID is recorded in the inventory against the device. The key
+itself stays in Entra and is never copied into a ticket, a spreadsheet
+or a document.</li>
+</ul>
+<h2 id="4-how-escrow-actually-works-and-how-it-silently-fails">4. How
+escrow actually works, and how it silently fails</h2>
+<p>Silent BitLocker enablement backs the recovery key up to Entra
+automatically when encryption begins — but only under conditions that
+are easy to miss and produce no error when unmet.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Escrow requires</th>
+<th>When it is absent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>The device is Entra joined</td>
+<td>Automatic backup does not occur. This is the most common single
+cause.</td>
+</tr>
+<tr class="even">
+<td>No policy conflict blocking the backup</td>
+<td>Encryption can proceed while the backup is blocked — the worst
+combination.</td>
+</tr>
+<tr class="odd">
+<td>The backup succeeding before encryption starts</td>
+<td>Encryption completes and the key exists only on the device.</td>
+</tr>
+<tr class="even">
+<td>The device being online and healthy at the moment of the change</td>
+<td>Exactly the condition a tool migration cannot guarantee, which is
+why estates end up mixed.</td>
+</tr>
+</tbody>
+</table></div>
+<p>One further limit worth knowing before it is diagnosed the hard way:
+Entra holds a maximum of 200 recovery keys per device. A device that has
+churned through rotations near that ceiling will fail silent encryption
+because the key backup fails first.</p>
+<h2 id="5-verification">5. Verification</h2>
+<h3 id="51-one-device">5.1 One device</h3>
+<ol type="1">
+<li>Open the device in Intune, and under Monitor select Recovery
+keys.</li>
+<li>Where Intune states that no BitLocker key was found for the device,
+that is a finding and not a display problem. Treat it as §6.</li>
+<li>Record the key ID — not the key — against the device in
+inventory.</li>
+</ol>
+<h3 id="52-a-population">5.2 A population</h3>
+<ol type="1">
+<li>Use the Intune encryption report (Devices → Monitor → Encryption
+report) to list encryption state across the estate.</li>
+<li>For every device the report shows as encrypted, confirm a key
+exists. The report tells you the device is encrypted; it is not by
+itself proof of escrow.</li>
+<li>Produce the §2 three-state count. Publish it internally — this is
+the number the remediation is measured against.</li>
+<li>List every device that has not checked in. Silent devices are where
+the current gap came from, and they will not appear in any report as a
+problem.</li>
+</ol>
+<h2 id="6-remediation">6. Remediation</h2>
+<ol type="1">
+<li>Confirm the device is Entra joined. If it is not, resolve that first
+— most cases end here.</li>
+<li>Check for policy conflicts between the encryption profile and any
+security baseline.</li>
+<li>Trigger a key rotation from Intune, then re-verify per §5.1.
+Rotation generates a new recovery password and stores it in Entra, which
+resolves the majority of cases without touching the volume.</li>
+<li>If rotation produces no key, escalate to Tier 3. Do not wipe,
+reimage or reissue — the volume is currently unrecoverable and a wipe
+makes that permanent and irreversible.</li>
+<li>Where the device must be recovered and no key can be produced,
+confirm resident data is safe, then reimage via Autopilot. It returns
+enrolled, encrypted and escrowed.</li>
+<li>Record the remediation and the resulting key ID.</li>
+</ol>
+<h2 id="7-retrieving-a-key-for-a-user">7. Retrieving a key for a
+user</h2>
+<blockquote>
+<p><strong>Retrieval is an account action</strong></p>
+<p>Verify identity per <a href="/sops/ACC-06">ACC-06</a> before reading out a recovery key. A
+48-digit key handed to the wrong person defeats the encryption entirely,
+and “I am locked out of my laptop” is a completely plausible story for
+somebody holding a stolen device.</p>
+<p>Privileged-account rules do not apply here, but V1 or V2 verification
+is strongly preferred for a key retrieval regardless of whose device it
+is.</p>
+</blockquote>
+<ol type="1">
+<li>Verify identity per <a href="/sops/ACC-06">ACC-06</a> and record the tier used.</li>
+<li>Confirm the device is assigned to that person in inventory (<a href="/sops/DEV-01">DEV-01</a>
+§10). A device with no recorded primary user is a different
+conversation.</li>
+<li>Retrieve and read out the key. Do not paste it into the ticket, an
+email or a chat message.</li>
+<li>Record that a retrieval occurred, the key ID, and the verification
+tier. Every retrieval is separately audited in Entra under Key
+Management.</li>
+<li>Afterwards, rotate the key. A key that has been read aloud should
+not remain the standing recovery key. Retrieval requires an Entra role
+carrying the recovery-key read permission — Cloud Device Administrator,
+Helpdesk Administrator, Intune Administrator, or a purpose-built custom
+role. Grant the narrowest role that works and review holders quarterly
+under <a href="/sops/ACC-07">ACC-07</a>.</li>
+</ol>
+<h2 id="8-before-any-wipe-reimage-or-reissue">8. Before any wipe,
+reimage or reissue</h2>
+<blockquote>
+<p><strong>The check that must never be skipped</strong></p>
+<p>Confirm the recovery key is escrowed BEFORE wiping. A wipe of an
+unescrowed encrypted volume is unrecoverable.</p>
+<p>This is also the check <a href="/sops/ACC-01">ACC-01</a> §7.2 step 8 depends on to close a
+leaver ticket, and <a href="/sops/DEV-01">DEV-01</a> exit criterion 6 to call a device enrolled.
+Three separate procedures rely on this one action, which is why it has
+its own document.</p>
+</blockquote>
+<h2 id="9-service-levels">9. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Key retrieval for a verified user</td>
+<td>P2 — 30 minutes. Somebody is locked out of their computer.</td>
+</tr>
+<tr class="even">
+<td>Encrypted device found with no escrowed key</td>
+<td>P2 — remediation started the same coverage day.</td>
+</tr>
+<tr class="odd">
+<td>Estate-wide three-state count (§5.2)</td>
+<td>Once, as Tier 3 protected capacity, then monthly.</td>
+</tr>
+<tr class="even">
+<td>Policy conflict blocking escrow across several devices</td>
+<td>P1 at Tier 3 — it is silently creating unrecoverable devices.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10-measurement">10. Measurement</h2>
+<ul>
+<li>Count of devices in each of the three §2 states, monthly. The
+headline number is “encrypted with no escrowed key” and the target is
+zero.</li>
+<li>Devices not checked in for 30 days. These are unmeasurable and
+therefore unmanaged.</li>
+<li>Key retrievals per month, with verification tier recorded.</li>
+<li>Remediation attempts that failed after rotation — these indicate a
+systemic cause rather than individual device faults.</li>
+</ul>
+<h2 id="11-records">11. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Key ID against each device</td>
+<td>Inventory</td>
+<td>Life of the asset</td>
+</tr>
+<tr class="even">
+<td>Verification of escrow at enrollment</td>
+<td>Ticket (<a href="/sops/DEV-01">DEV-01</a> criterion 6)</td>
+<td>Life of the asset + 1 year</td>
+</tr>
+<tr class="odd">
+<td>Remediation actions and outcomes</td>
+<td>Ticket + project record</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Key retrievals: who, when, verification tier, key ID</td>
+<td>Ticket + Entra Key Management audit</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Monthly three-state count</td>
+<td><a href="/sops/GOV-06">GOV-06</a> monthly pack</td>
+<td>3 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="12-related-documents">12. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/DEV-01">DEV-01</a></td>
+<td>Device Enrollment &amp; Lifecycle</td>
+<td>§9 of that document is the operational summary; this is the full
+standard. Exit criterion 6 depends on §5 here.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-02">DEV-02</a></td>
+<td>Device Compliance &amp; Configuration Baseline</td>
+<td>Where the encryption policy is defined.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-09">DEV-09</a></td>
+<td>macOS Device Management Standard</td>
+<td>FileVault escrow for Macs.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-15">DEV-15</a></td>
+<td>Device Reassignment, Wipe, Retirement &amp; Disposal</td>
+<td>§8 is its precondition.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-16">DEV-16</a></td>
+<td>Lost, Stolen or Compromised Device Response</td>
+<td>Depends on knowing whether the volume is recoverable.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>§7.2 step 8 leaver check.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-06">ACC-06</a></td>
+<td>Identity Verification</td>
+<td>Mandatory before §7.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-07">ACC-07</a></td>
+<td>Privileged &amp; Administrative Account Standard</td>
+<td>Quarterly review of who can read keys.</td>
+</tr>
+<tr class="odd">
+<td>Disposal Policy</td>
+<td>the organization Disposal of Sensitive Data Policy (existing)</td>
+<td>Governs the disposal end of §8.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--verification-and-remediation-card">Appendix A —
+Verification and remediation card</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Check</th>
+<th>If it fails</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Intune → device → Monitor → Recovery keys. Key present?</td>
+<td>“No BitLocker key found” is a finding. Go to 2.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Is the device Entra joined?</td>
+<td>No → automatic backup never happens. Fix the join. Most cases end
+here.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Policy conflict between encryption profile and a security
+baseline?</td>
+<td>Conflict can block backup silently while encryption proceeds.
+Resolve, then 4.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Trigger key rotation from Intune. Re-check 1.</td>
+<td>Key now present → record the key ID and close.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Still no key?</td>
+<td>ESCALATE to Tier 3. Do NOT wipe, reimage or reissue.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Device must be recovered and no key can be produced.</td>
+<td>Confirm resident data is safe, then reimage via Autopilot — it
+returns escrowed.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Retrieving a key for a user: verify per <a href="/sops/ACC-06">ACC-06</a> first, never paste the
+key into a ticket, and rotate it afterwards.</p>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

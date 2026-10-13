@@ -1,0 +1,1171 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DEV-14 · Endpoint Security Agent &amp; MDR Escalation Standard | Known Good</title>
+<meta name="description" content="How many devices actually have a healthy agent reporting — and then who acts on an MDR case, in what time, on whose authority, and what closes it.">
+<meta property="og:title" content="DEV-14 · Endpoint Security Agent &amp; MDR Escalation Standard | Known Good">
+<meta property="og:description" content="How many devices actually have a healthy agent reporting — and then who acts on an MDR case, in what time, on whose authority, and what closes it.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="dev-14--endpoint-security-agent--mdr-escalation-standard">DEV-14
+· Endpoint Security Agent &amp; MDR Escalation Standard</h1>
+<p><em>How many devices actually have a healthy agent reporting — and
+then who acts on an MDR case, in what time, on whose authority, and what
+closes it.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/DEV-14-Endpoint-Security-Agent-and-MDR-Escalation-Standard.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/DEV-14.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/DEV-14">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>DEV-14</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>C. Device Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 3 — Expert Services owns the agent estate and the MDR
+relationship. Tier 2 remediates unhealthy agents and executes
+containment within §6. Tier 4 authorises isolation above the §6
+threshold and declares incidents under <a href="/sops/GOV-03">GOV-03</a>.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Every six months, and after any change to the MDR service
+description.</td>
+</tr>
+<tr class="even">
+<td>Relationship to <a href="/sops/GOV-03">GOV-03</a></td>
+<td><a href="/sops/GOV-03">GOV-03</a> governs an incident once declared. This document governs
+everything before that: the telemetry, the agent, the MDR case, and the
+decision about whether a case becomes an incident. A case that becomes
+an incident hands over at <a href="/sops/GOV-03">GOV-03</a> §5 and is not then worked under two
+procedures in parallel.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>An MDR analyst raises a case at 02:40 concerning an organization
+device. Who reads it, how quickly, who is allowed to accept the
+containment recommendation, and what has to be true before the case can
+be closed? None of those four is written down, which means each is
+answered by whoever happens to be awake and available.</p>
+<p>And before any of it, a question many organizations have never
+answered: how many of their devices actually have a healthy security
+agent reporting into the service at all? That is the number this
+document opens with, because every other commitment in it is conditional
+on it.</p>
+<h2
+id="2-coverage-first--an-mdr-service-is-only-as-good-as-its-telemetry">2.
+Coverage first — an MDR service is only as good as its telemetry</h2>
+<blockquote>
+<p><strong>Every estate shows what happens to a device that is not
+online and healthy.</strong></p>
+<p>A common cutover plan: uninstall the old antivirus product, decrypt,
+and re-encrypt under Intune with Entra escrow. The usual outcome is that
+it only reaches machines that are online and healthy. Some devices end
+up with BitLocker keys in Entra and others with nothing.</p>
+<p>That work is not done badly. It simply cannot reach what is not there
+— and the estate does not tell anybody which devices those are.</p>
+<p>A security-agent estate has the identical failure mode and a worse
+consequence. A device with no healthy agent generates no telemetry,
+appears in no MDR case, and is therefore invisible in precisely the way
+that looks like safety. A quiet month is indistinguishable from a blind
+one.</p>
+<p>An agent installed but not reporting is worse than no agent at all,
+because it counts as coverage. <a href="/sops/DEV-02">DEV-02</a> condition 6 already says so; this
+document is where the number lives.</p>
+<p>An organization that has not measured agent coverage is paying for a
+managed detection service whose input it does not know. That is why §3
+step 1 is the first numbered step in this document rather than a
+measurement section at the end.</p>
+</blockquote>
+<h2
+id="3-measuring-coverage-and-the-path-for-a-device-that-has-stopped-reporting">3.
+Measuring coverage, and the path for a device that has stopped
+reporting</h2>
+<h3 id="31-producing-the-coverage-number">3.1 Producing the coverage
+number</h3>
+<ol type="1">
+<li>PRODUCE THE NUMBER. Devices in the authoritative asset record
+(<a href="/sops/DEV-01">DEV-01</a> §10) as the denominator, against devices with an agent that has
+reported within the last 7 days as the numerator. State both figures and
+the ratio, with a date. Do not start from the security console: it can
+only show what reported, which makes the denominator wrong and the
+resulting number flattering.</li>
+<li>RECONCILE THE TWO INVENTORIES, both directions. A device in the
+asset record and not in the console is the gap this document exists for.
+A device in the console and not in the asset record is also a finding —
+it is unmanaged, or it is somebody’s personal machine, or it is a
+decommissioned device never removed (<a href="/sops/DEV-15">DEV-15</a>).</li>
+<li>CLASSIFY THE GAP, because the remediation differs entirely: never
+enrolled (<a href="/sops/DEV-01">DEV-01</a>); enrolled but the agent never installed; agent
+installed and unhealthy; agent healthy but not reporting, which is
+usually network, proxy or an exclusion; and genuinely retired but never
+removed from the record.</li>
+<li>SET AND PUBLISH THE TARGET: 98% of the managed Windows estate
+reporting within 7 days, measured monthly. Not 100% — devices are
+legitimately switched off for weeks, in a drawer, or in transit, and a
+100% target makes the figure a fiction nobody investigates. 98% with a
+named list of the remainder is a number somebody can act on.</li>
+<li>CHASE THE REMAINDER INDIVIDUALLY. This is the step that will not
+happen by itself, and it is the step that matters most. A silent device
+does not remediate itself and it does not appear as a failure — it
+simply does not appear.</li>
+<li>GIVE THE NUMBER A STANDING HOME: the monthly position in §12, and
+the <a href="/sops/DEV-02">DEV-02</a> §10 three-number report. A coverage figure produced once for
+a meeting decays immediately.</li>
+<li>ONLY THEN treat MDR case volume as meaningful. A quiet month on
+partial coverage is not a quiet month, and reporting it as one is worse
+than not reporting at all.</li>
+</ol>
+<h3 id="32-what-a-healthy-agent-means">3.2 What a healthy agent
+means</h3>
+<ul>
+<li>Installed, at a supported version.</li>
+<li>Real-time protection enabled.</li>
+<li>Threat intelligence and definitions current within 3 days.</li>
+<li>Reported to the service within the last 7 days.</li>
+<li>Tamper protection enabled.</li>
+<li>ONBOARDED TO THE MDR TENANT — not merely installed locally. This is
+the condition that gets missed, and a device that satisfies the first
+five and fails this one produces no case for the MDR provider to raise.
+It looks perfect in the local console.</li>
+</ul>
+<h3 id="33-remediation-for-a-device-that-has-stopped-reporting">3.3
+Remediation for a device that has stopped reporting</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>Action</th>
+<th>Owner</th>
+<th>Timeframe</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Not reported for 7–30 days</td>
+<td>Automated remediation attempt — policy reapply, agent repair. Then
+Tier 2 outreach to the assigned user (<a href="/sops/DEV-01">DEV-01</a> §10).</td>
+<td>Tier 2</td>
+<td>Within the monthly cycle</td>
+</tr>
+<tr class="even">
+<td>Not reported for 30–60 days</td>
+<td>Treated as non-compliant (<a href="/sops/DEV-02">DEV-02</a> condition 6). Tier 2 contacts the
+assigned user directly and books a fix.</td>
+<td>Tier 2</td>
+<td>5 coverage days</td>
+</tr>
+<tr class="odd">
+<td>Not reported for more than 60 days and the user cannot be
+reached</td>
+<td>Escalate to the department head. Consider whether the device is
+actually lost rather than unpatched (<a href="/sops/DEV-16">DEV-16</a>), and say so plainly rather
+than leaving it on a list.</td>
+<td>Tier 2 to Tier 3</td>
+<td>10 coverage days</td>
+</tr>
+<tr class="even">
+<td>Tamper protection off, or real-time protection disabled</td>
+<td>Treated as SUSPICIOUS, not as configuration drift. Disabling
+protection is what an attacker does first, and it is also what a user
+does when software will not install (<a href="/sops/DEV-11">DEV-11</a> §5.1).</td>
+<td>Tier 3</td>
+<td>Same coverage day</td>
+</tr>
+<tr class="odd">
+<td>Agent present but not onboarded to the MDR tenant</td>
+<td>Tier 3. This is a packaging or policy fault and it will not affect
+only one device — check the whole cohort.</td>
+<td>Tier 3</td>
+<td>2 coverage days</td>
+</tr>
+<tr class="even">
+<td>Device in the console but not in the asset record</td>
+<td>Identify it. Unmanaged, personal, or decommissioned and never
+removed. Each has a different answer and none of them is “leave
+it”.</td>
+<td>Tier 2</td>
+<td>Within the monthly cycle</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="4-one-agent-not-two--moving-to-a-single-product">4. One agent,
+not two — moving to a single product</h2>
+<p>In this standard, Microsoft Defender for Endpoint is the endpoint
+protection product and the telemetry source for the MDR service. Where
+an older antivirus product is being removed and both are present on one
+device, that is a fault to be fixed, not defence in depth.</p>
+<blockquote>
+<p><strong>Two endpoint protection products on one device is a
+fault.</strong></p>
+<p>They scan each other’s activity and quarantine each other’s files.
+They produce false positives that consume exactly the triage capacity §9
+depends on. They degrade the device enough that users start asking for
+exclusions, and an exclusion granted to make a machine usable is a hole
+granted for the wrong reason (§4.2).</p>
+<p>And the one that matters most: when something is blocked, it becomes
+ambiguous which product blocked it. That makes an incident timeline
+unreconstructable, which is the thing <a href="/sops/GOV-03">GOV-03</a> §6 exists to protect.</p>
+<p>Layering is a real principle and it is delivered at different layers
+— mail, identity, network, endpoint — not by two agents doing the same
+job on the same disk.</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Current state</th>
+<th>Target state</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Windows endpoints</td>
+<td>Often mixed. Defender under Intune on the devices the transition
+reached; the old product’s residue on the devices it did not, and an
+unknown number carrying both or neither.</td>
+<td>Defender only, onboarded to the MDR tenant, tamper protection on,
+reporting within 7 days (§3.2).</td>
+</tr>
+<tr class="even">
+<td>macOS</td>
+<td>Under test with enrollment. No published standard.</td>
+<td>Per <a href="/sops/DEV-09">DEV-09</a> once written. Recorded as a gap, not assumed to be
+covered.</td>
+</tr>
+<tr class="odd">
+<td>Servers, including core business systems</td>
+<td>Confirm in writing that the MDR provider’s scope includes every
+server, including those a vendor maintains. Servers are a common blind
+spot.</td>
+<td>Onboarded, with server-appropriate policy and exclusions agreed with
+the system’s vendor in writing rather than by convention (<a href="/sops/ACC-11">ACC-11</a>).
+Record the exclusion list itself, per §4.2.</td>
+</tr>
+<tr class="even">
+<td>Lab, meeting-room and shared devices</td>
+<td>Per the image, which means per whenever the image was last
+built.</td>
+<td>Per <a href="/sops/DEV-06">DEV-06</a>, and verified after each quiet-period rebuild (<a href="/sops/DEV-13">DEV-13</a>
+§5.2).</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="41-the-removal-rule">4.1 The removal rule</h3>
+<p>Removing the old agent and confirming the new one is healthy is ONE
+operation with one verification, not two tasks in a queue. A device with
+neither product is the worst possible outcome and it is precisely what
+doing them separately produces — the removal succeeds, the install is
+deferred, and nobody notices because the device has stopped reporting to
+both consoles.</p>
+<h3 id="42-exclusions">4.2 Exclusions</h3>
+<ul>
+<li>Every exclusion is a hole. It is recorded, owned, given an expiry,
+and approved by Tier 3.</li>
+<li>A vendor asking for a blanket directory or process-tree exclusion
+gets a specific path or a conversation. “Exclude the application folder”
+is a request to stop protecting the thing most likely to be
+attacked.</li>
+<li>Exclusions are reviewed with the age profile in §12. An old
+exclusion is a decision made about a version of the software that no
+longer exists.</li>
+</ul>
+<h2 id="5-the-mdr-relationship">5. The MDR relationship</h2>
+<p>This is the heart of the document. The division of labour is simple
+to state and is routinely blurred in practice, which is why it is
+stated.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>The MDR provider does</th>
+<th>The organization does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Detects, analyses, correlates and raises cases. Recommends
+containment. Acts within the pre-authorised set in §7.</td>
+<td>Reads, decides, authorises, executes where the partner is not
+pre-authorised, verifies, and closes.</td>
+</tr>
+<tr class="even">
+<td>Provides expertise the organization does not staff and monitoring
+hours the organization does not cover.</td>
+<td>Provides the context the partner cannot have: who is travelling,
+what migration is running this week, which scanning is sanctioned
+(§8).</td>
+</tr>
+<tr class="odd">
+<td>Keeps its own case record.</td>
+<td>Keeps the organization record, and ensures the two match (§9). An
+external case list that diverges from reality is worse than none (<a href="/sops/GOV-03">GOV-03</a>
+§8).</td>
+</tr>
+<tr class="even">
+<td>Does NOT declare an organization incident, communicate to the
+organization community, contact an end user, or decide organization
+risk.</td>
+<td>Declares under <a href="/sops/GOV-03">GOV-03</a> §3, or records explicitly that no incident is
+declared and why.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="51-case-severity-and-the-organizations-response-commitment">5.1
+Case severity and the organization’s response commitment</h3>
+<p>The severity labels below are the organization’s. The provider’s own
+scale is mapped to them ONCE, in writing, and recorded in the MDR
+service description — not interpreted per case by whoever picks it up.
+Confirming that mapping is a specific action arising from this
+document.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Severity</th>
+<th>What it typically means</th>
+<th>Organization response commitment</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CRITICAL</td>
+<td>Confirmed compromise, ransomware indication, hands-on-keyboard
+activity, or containment already applied by the partner under §7.</td>
+<td>Acknowledged within 15 minutes in coverage; 1 hour out of coverage
+via the §7 on-call path. Declared under <a href="/sops/GOV-03">GOV-03</a> §3, or a recorded
+decision that no incident is declared.</td>
+<td>Tier 3</td>
+</tr>
+<tr class="even">
+<td>HIGH</td>
+<td>Credible compromise of one account or one device, needing an
+organization decision.</td>
+<td>Acknowledged within 1 coverage hour. Contained within §6 authority.
+Scope assessed before closure.</td>
+<td>Tier 3</td>
+</tr>
+<tr class="odd">
+<td>MEDIUM</td>
+<td>Suspicious activity that needs context the partner does not have: a
+staff member travelling, a sanctioned scanning tool, an administrative
+action, a migration wave.</td>
+<td>1 coverage day. Frequently closed by supplying the context — and the
+context is then given to the partner so the same case is not raised
+again (§8).</td>
+<td>Tier 2, Tier 3 reviews</td>
+</tr>
+<tr class="even">
+<td>LOW / INFO</td>
+<td>Hygiene findings, policy drift, vulnerability notifications.</td>
+<td>The weekly review (§8). Vulnerability items go to <a href="/sops/DEV-13">DEV-13</a> §9 triage
+rather than being closed here.</td>
+<td>Tier 2</td>
+</tr>
+</tbody>
+</table></div>
+<p>One overriding rule: the organization’s response is set by the
+ORGANIZATION’S assessment of impact, not by the partner’s label. A
+partner Medium on the chief executive’s laptop is not a Medium, and a
+partner Critical on a lab machine due for reimaging next week may
+genuinely be a High. The partner sees telemetry; the organization sees
+consequence.</p>
+<ul>
+<li>Every case gets a recorded organization outcome, including “no
+action, and here is why”. A case closed on the partner’s side with no
+organization record is a case the organization cannot account for
+later.</li>
+</ul>
+<h2 id="6-authority--who-accepts-containment-and-who-may-isolate">6.
+Authority — who accepts containment, and who may isolate</h2>
+<blockquote>
+<p><strong>Authority is defined by tier and by impact, not by
+urgency.</strong></p>
+<p>Urgency argues for acting quickly. It does not say who is allowed to
+decide, and treating it as though it does is how a technician ends up
+making an institutional decision alone at three in the morning.</p>
+<p>Isolating the chief executive’s laptop during a board meeting is a
+different decision from isolating a lab machine. The technical action is
+identical; the institutional consequence is not. What Tier 4 is deciding
+in that case is not whether the device is compromised — it is what to do
+in the next ten minutes about a person who is mid-commitment, and that
+requires a conversation IT should not be having on its own.</p>
+<p>So the matrix below is organised by WHAT is being contained, not by
+how urgent it feels.</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Action</th>
+<th>Authorised by</th>
+<th>Executed by</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Block a URL, domain, sender or file hash</td>
+<td>Tier 3; Tier 2 in coverage for a phishing URL</td>
+<td>Tier 2 or Tier 3</td>
+<td>Low blast radius, reversible, and the most common containment there
+is (<a href="/sops/M365-22">M365-22</a>).</td>
+</tr>
+<tr class="even">
+<td>Disable sign-in and revoke sessions on an end-user account</td>
+<td>Tier 3; Tier 2 in coverage on a confirmed compromise</td>
+<td>Tier 2</td>
+<td>Proportionate and time-limited (<a href="/sops/ACC-13">ACC-13</a> §4). The person is told
+through a channel independent of the affected account (<a href="/sops/GOV-03">GOV-03</a> §7).</td>
+</tr>
+<tr class="odd">
+<td>Isolate a lab, meeting room, kiosk, presenter or loaner device</td>
+<td>Tier 2</td>
+<td>Tier 2</td>
+<td>Nobody’s individual work stops. Do it, record it, and reimage under
+<a href="/sops/DEV-15">DEV-15</a> §4.</td>
+</tr>
+<tr class="even">
+<td>Isolate a staff endpoint</td>
+<td>Tier 3</td>
+<td>Tier 2</td>
+<td>The assigned user and their manager are told within the hour.
+Somebody has just lost their working day and should hear why from a
+person.</td>
+</tr>
+<tr class="odd">
+<td>Isolate a device belonging to the chief executive, an executive, or
+anyone in a live governance or customer commitment</td>
+<td>Tier 4 / Head of IT</td>
+<td>Tier 3</td>
+<td>The row this section exists for. Same technical action, different
+decision. The Head of IT weighs exposure against the institutional cost
+of the interruption; IT supplies the facts.</td>
+</tr>
+<tr class="even">
+<td>Isolate a server, or anything in a core business system</td>
+<td>Tier 4, with the system owner; the system’s vendor informed</td>
+<td>Tier 3</td>
+<td>Isolating a core business system is an organization outage. <a href="/sops/GOV-03">GOV-03</a>
+S1 candidate and a <a href="/sops/GOV-04">GOV-04</a> emergency change.</td>
+</tr>
+<tr class="odd">
+<td>Disable an administrative identity or a break-glass account</td>
+<td>Tier 4 only</td>
+<td>Tier 3</td>
+<td><a href="/sops/ACC-07">ACC-07</a> §6. Never disabled by the partner, and never by
+automation.</td>
+</tr>
+<tr class="even">
+<td>Remote wipe a device</td>
+<td>Tier 4 only</td>
+<td>Tier 2</td>
+<td><a href="/sops/DEV-16">DEV-16</a> §5. Never an MDR decision and never pre-authorised (§7).</td>
+</tr>
+<tr class="odd">
+<td>LIFT an isolation or re-enable an account</td>
+<td>The tier that authorised it, or higher</td>
+<td>Tier 2</td>
+<td>Never by the technician who applied it, acting alone. And it is done
+promptly once resolved — an isolated device nobody revisits is a person
+who cannot work.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>WHERE THE AUTHORISING TIER CANNOT BE REACHED and the exposure is
+active, the most senior person available acts and informs the authoriser
+as soon as possible. This is the same rule <a href="/sops/GOV-03">GOV-03</a> §3 applies to
+declaration, for the same reason: a delayed containment is usually worse
+than a slightly over-broad one. Record who acted, and why the authoriser
+was not reached.</li>
+<li>Every isolation carries a stated maximum duration and a review point
+at the next coverage day. Containment is proportionate, fast and
+TIME-LIMITED (<a href="/sops/ACC-13">ACC-13</a> §4) — all three words, and the third is the one
+that gets forgotten.</li>
+<li>Containment is not punishment and it is not evidence of wrongdoing.
+Where the affected person is a member of staff or another end user, that
+distinction is made explicitly to them, because a disabled account feels
+like an accusation (<a href="/sops/ACC-13">ACC-13</a> §8).</li>
+</ul>
+<h2
+id="7-the-247-problem-and-what-the-mdr-provider-is-pre-authorised-to-do">7.
+The 24×7 problem, and what the MDR provider is pre-authorised to do</h2>
+<blockquote>
+<p><strong>An unanswered 3am call is a decision by default.</strong></p>
+<p>The MDR provider watches around the clock. A small IT team does not
+staff around the clock, and <a href="/sops/GOV-06">GOV-06</a> §6 says so in the organization’s own
+published commitments. Pretending otherwise produces the worst available
+outcome: a partner holding a containment recommendation, waiting for an
+authorisation that will not arrive until 08:30, with the compromise
+running in the meantime.</p>
+<p>A department that has not decided what the partner may do without
+waiting has still decided. It has decided that nothing happens until
+somebody wakes up, and it has done so without saying it out loud or
+telling anybody the cost.</p>
+<p>So the organization decides, in advance and in daylight, in the table
+below.</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Action, out of coverage</th>
+<th>Pre-authorised?</th>
+<th>Conditions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Isolate a device on a high-confidence malware or ransomware
+detection</td>
+<td>YES</td>
+<td>Notify the on-call number and Tier 3 at the time of action. Reviewed
+at the start of the next coverage day, and not extended beyond that
+review without an organization decision.</td>
+</tr>
+<tr class="even">
+<td>Disable a compromised end-user account and revoke its sessions</td>
+<td>YES</td>
+<td>On a confirmed compromise, not on a suspicion. Same notification.
+Excludes administrative identities and break-glass accounts, which the
+partner never touches (<a href="/sops/ACC-07">ACC-07</a> §6).</td>
+</tr>
+<tr class="odd">
+<td>Block a malicious URL, domain, sender or file hash</td>
+<td>YES</td>
+<td>Recorded, and reviewed at the weekly review (§8). Reversible and low
+cost to get wrong.</td>
+</tr>
+<tr class="even">
+<td>Isolate a server, or anything in a core business system</td>
+<td>NO</td>
+<td>Wake a human. On-call first, then the Head of IT. An outage decision
+on a core system is never taken by a partner, whatever the hour.</td>
+</tr>
+<tr class="odd">
+<td>Isolate a device belonging to the chief executive or another
+executive</td>
+<td>NO</td>
+<td>Wake a human. §6 applies at 3am exactly as it applies at 3pm.</td>
+</tr>
+<tr class="even">
+<td>Remote wipe anything</td>
+<td>NO, ever</td>
+<td><a href="/sops/DEV-16">DEV-16</a> §5. Tier 4 only, and irreversible actions are never
+pre-authorised.</td>
+</tr>
+<tr class="odd">
+<td>Change a policy, an exclusion, or the monitoring configuration</td>
+<td>NO</td>
+<td>That is a change, and it enters the <a href="/sops/GOV-04">GOV-04</a> register (<a href="/sops/GOV-04">GOV-04</a>
+§8.1).</td>
+</tr>
+<tr class="even">
+<td>Contact an end user directly</td>
+<td>NO</td>
+<td>The organization communicates with its own people, in its own words
+(<a href="/sops/GOV-03">GOV-03</a> §7).</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="71-the-on-call-expectation-stated-honestly">7.1 The on-call
+expectation, stated honestly</h3>
+<ul>
+<li>One named on-call contact per week, with a documented rota and a
+real telephone number a person answers, plus a documented second. Not a
+shared mailbox — a mailbox is where an out-of-hours case goes to wait
+until morning.</li>
+<li>The on-call expectation is: ANSWER, decide within the §6 authority,
+and escalate to the Head of IT where the decision sits above it. It is
+not an expectation to remediate at 3am, and it should not be described
+as one.</li>
+<li>The on-call person records the decision in the morning. A verbal 3am
+authorisation with no record is indistinguishable, three months later,
+from nobody having been asked.</li>
+<li>THE UNCOMFORTABLE PART. An on-call rota across a small department is
+a real cost borne by a very small number of people. If the organization
+will not resource it, the honest answer is a BROADER pre-authorisation
+set — not an unstaffed rota that produces the unanswered call anyway.
+Choosing the second while describing the first is the worst of the three
+options.</li>
+</ul>
+<blockquote>
+<p><strong>Open question, with a named owner</strong></p>
+<p>The pre-authorisation set above and the on-call rota are both
+proposals until they are agreed with the provider and funded.</p>
+<p>ACTION 1: Head of IT to confirm the pre-authorised action list with
+the MDR provider IN WRITING and record it in the MDR service
+description, so that the partner’s standing instructions and this
+document say the same thing. A provider cannot be expected to act on a
+table in an unapproved internal SOP.</p>
+<p>ACTION 2: Head of IT to decide whether the organization funds an
+on-call rota or accepts a broader pre-authorisation, and to record the
+decision either way.</p>
+<p>Owner: Head of IT. Until ACTION 2 is taken, the operative answer is
+the second — a broad de facto pre-authorisation by absence — whether or
+not anybody has said so. Which is exactly why it belongs in a document
+rather than in a habit.</p>
+</blockquote>
+<h2
+id="8-the-weekly-mdr-review-and-keeping-the-partners-picture-accurate">8.
+The weekly MDR review, and keeping the partner’s picture accurate</h2>
+<p>Most MDR services include a regular review, and it is the
+organization’s main governance mechanism over the service. What it needs
+is a standing agenda and a record.</p>
+<h3 id="81-standing-agenda">8.1 Standing agenda</h3>
+<ul>
+<li>Open cases, with an organization outcome stated for each. Not a
+status — an outcome or a next action with an owner.</li>
+<li>Cases closed since the last review, and whether the two records
+match (§9).</li>
+<li>The coverage number (§3). Stated every week, because it is the
+figure that qualifies everything else in the meeting.</li>
+<li>The vulnerability position, by exception rather than in full (<a href="/sops/DEV-13">DEV-13</a>
+§9).</li>
+<li>Changes on the organization side the partner needs to know about
+(§8.3).</li>
+<li>Anything the partner has asked and not had answered. This item
+exists because of §8.2.</li>
+<li>Who is on call next week (§7.1).</li>
+</ul>
+<h3
+id="82-why-keeping-the-partner-current-is-an-obligation-of-this-document">8.2
+Why keeping the partner current is an obligation of this document</h3>
+<p>A typical moment in a weekly review: the partner asks whether the
+organization is still using its old identity provider’s MFA.</p>
+<p>That is a fair and sensible question. The problem is when the
+organization cannot answer it from anything written down, and that the
+question needs asking at all. Both halves matter. It is evidence that
+the partner’s picture of the estate has drifted from reality, and that
+the organization has no authoritative record with which to correct
+it.</p>
+<p>A managed detection service reasons from a model of the environment.
+Where that model is stale, the service raises cases about normal
+activity and — far worse — fails to raise cases about activity that only
+looks normal against the old model. Keeping the partner’s picture
+accurate is therefore not a courtesy. It is a control, and it belongs in
+this document.</p>
+<h3 id="83-what-the-partner-is-told-and-when">8.3 What the partner is
+told, and when</h3>
+<ul>
+<li>IDENTITY: which identity provider governs which population, and any
+change to it. <a href="/sops/ACC-03">ACC-03</a> §3 is the authoritative record.</li>
+<li>MIGRATION WAVES, before they run (<a href="/sops/DEV-01">DEV-01</a> §8). A wave produces
+exactly the anomalous enrollment and authentication patterns a detection
+service is built to flag.</li>
+<li>NEW APPLICATIONS WITH SSO, from the <a href="/sops/ACC-16">ACC-16</a> §10 register. A new
+federated sign-in source looks like new attack surface until somebody
+says otherwise.</li>
+<li>CHANGES TO THE AGENT ESTATE, exclusions or monitoring configuration
+— which are <a href="/sops/GOV-04">GOV-04</a> changes as well.</li>
+<li>SANCTIONED SCANNING, penetration testing, or a vendor remote
+session, BEFORE it happens rather than after the case is raised (<a href="/sops/ACC-11">ACC-11</a>
+§6).</li>
+<li>PEAK DATES AND THE FREEZE CALENDAR (<a href="/sops/GOV-04">GOV-04</a> §7.1). A partner
+scheduling anything into peak week is a problem the organization created
+by not telling them.</li>
+<li>The rule: tell the partner before, not after. It costs one line in a
+weekly meeting and saves an escalation at 3am.</li>
+<li>THE REVIEW IS MINUTED. A weekly meeting with no record lets the
+partner’s picture drift again within six months, and nobody will be able
+to say when the drift started.</li>
+</ul>
+<h2 id="9-case-closure">9. Case closure</h2>
+<p>A case closes when all eight of these are true. Fewer than eight is a
+case that has stopped being worked, which is a different thing.</p>
+<ol type="1">
+<li>THE ORGANIZATION HAS RECORDED AN OUTCOME: remediated; contained with
+no further action; no incident, with the reason; or escalated to
+<a href="/sops/GOV-03">GOV-03</a>.</li>
+<li>CONTAINMENT HELD. No further activity from the identity, device or
+infrastructure involved, across a stated observation period — 48 hours
+for a confirmed compromise.</li>
+<li>SCOPE WAS ASSESSED, NOT ASSUMED. What else did this identity or
+device touch? One compromised account is rarely the whole picture
+(<a href="/sops/GOV-03">GOV-03</a> §5 step 6).</li>
+<li>ANY ISOLATION OR ACCOUNT DISABLEMENT HAS BEEN LIFTED, or its
+continuation is recorded with a reason and a review date (§6).</li>
+<li>THE AFFECTED PERSON HAS BEEN TOLD, through a channel independent of
+the affected account (<a href="/sops/GOV-03">GOV-03</a> §7). Including where the answer turned out
+to be nothing — especially then.</li>
+<li>THE AGENT ON THE AFFECTED DEVICE IS HEALTHY AND REPORTING (§3.2). A
+remediated device that is now silent is not remediated; it is
+invisible.</li>
+<li>THE PARTNER’S RECORD MATCHES THE ORGANIZATION’S. Closed on their
+side with the organization’s outcome — not left open, and not closed
+with a guess (<a href="/sops/GOV-03">GOV-03</a> §8).</li>
+<li>WHERE THE CAUSE WAS A CONTROL GAP, it is raised against the relevant
+SOP under <a href="/sops/GOV-01">GOV-01</a> §7 rather than remembered. Several documents in this
+catalogue exist by exactly that route.</li>
+</ol>
+<h3 id="91-what-does-not-close-a-case">9.1 What does not close a
+case</h3>
+<ul>
+<li>The alert stopping. Alerts stop for many reasons, including the
+device going offline and the attacker becoming quieter.</li>
+<li>The user saying it is fine now.</li>
+<li>A reimage with no scope assessment. It removes the evidence and
+leaves the question — and if the credential was the route in, the
+reimage changed nothing (<a href="/sops/DEV-15">DEV-15</a> §4).</li>
+<li>A week passing. Age is not an outcome, in this document or in <a href="/sops/DEV-13">DEV-13</a>
+§9.3.</li>
+</ul>
+<h2
+id="10-when-a-case-becomes-an-incident-and-when-it-becomes-a-person">10.
+When a case becomes an incident, and when it becomes a person</h2>
+<h3 id="101-into-gov-03">10.1 Into <a href="/sops/GOV-03">GOV-03</a></h3>
+<ul>
+<li>A case becomes an incident on the <a href="/sops/GOV-03">GOV-03</a> §2 test, and it is declared
+by a person at the organization. A partner case is not an organization
+declaration (<a href="/sops/GOV-03">GOV-03</a> §8).</li>
+<li>The handover is explicit: the case reference goes on the incident
+record, the incident lead takes it from <a href="/sops/GOV-03">GOV-03</a> §5, and the case is not
+worked in parallel under two procedures by two people.</li>
+<li>PRESERVE BEFORE YOU FIX (<a href="/sops/GOV-03">GOV-03</a> §6). Remediating an MDR case
+efficiently can destroy the evidence the incident then needs — revoking
+sessions and resetting a password is correct containment and it also
+removes much of the trail.</li>
+</ul>
+<h3 id="102-into-acc-13">10.2 Into <a href="/sops/ACC-13">ACC-13</a></h3>
+<ul>
+<li>A case becomes a person when the technical finding stops being a
+compromise and starts being conduct: sharing, selling, or deliberate
+misuse.</li>
+<li>That is a different document with a different authority and a
+different standard of evidence. The transition is a decision taken and
+recorded, not a drift that happens because the case notes got more
+confident each week.</li>
+<li>IT supplies the technical facts and does not draw conclusions about
+a person’s conduct (<a href="/sops/ACC-13">ACC-13</a> §9).</li>
+</ul>
+<h3 id="103-the-archetype-and-why-it-spans-all-three-documents">10.3 The
+archetype, and why it spans all three documents</h3>
+<p>A typical case: an account is blocked for the third time in a month.
+Several similar IP addresses have passed MFA on it, and account sharing
+is suspected. The person is told not to use a VPN or to share access
+with anyone.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Read as</th>
+<th>It is</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A DEV-14 case</td>
+<td>Repeated authentication anomalies from related addresses on one
+identity. Triage, establish the cause, assess scope, contain
+proportionately. Appendix A, row 4.</td>
+</tr>
+<tr class="even">
+<td>A <a href="/sops/GOV-03">GOV-03</a> matter</td>
+<td>At most S3 — a suspected compromise under investigation — unless
+exposure is confirmed. Declared, or explicitly not declared with the
+reason recorded.</td>
+</tr>
+<tr class="odd">
+<td>An <a href="/sops/ACC-13">ACC-13</a> / <a href="/sops/ACC-15">ACC-15</a> matter</td>
+<td>Potentially credential sharing, which is conduct. It goes to the
+person’s manager or department head, on evidence, through <a href="/sops/ACC-13">ACC-13</a> §3 and
+<a href="/sops/ACC-15">ACC-15</a> §5 — not from IT to the user.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>The caution all three documents repeat, and it belongs here
+too</strong></p>
+<p>A repeat count is not evidence. A person travelling with their own
+device, or one with a single MFA method and an unreliable phone,
+produces a pattern that looks very like credential sharing — and
+treating them as a suspect is both wrong and corrosive to the
+relationship the service desk depends on (<a href="/sops/ACC-05">ACC-05</a> §2, <a href="/sops/ACC-15">ACC-15</a> §5).</p>
+<p>The MDR service will not make that distinction for the organization.
+It will surface the pattern, correctly, and the judgement stays with the
+organization. This is worth being clear about internally, because a
+partner’s case notes carry an authority that can substitute for
+thinking.</p>
+<p>And the reason to write any of this down: cases like this are usually
+handled in a chat thread and a spoken instruction not to share access.
+The instruction is right, but it cannot be cited, and it leaves the
+organization with nothing to point at when the same account appears for
+a fourth time.</p>
+</blockquote>
+<h2 id="11-service-levels">11. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Critical case, in coverage</td>
+<td>Acknowledged within 15 minutes — P1 (<a href="/sops/GOV-06">GOV-06</a> §5.2).</td>
+</tr>
+<tr class="even">
+<td>Critical case, out of coverage</td>
+<td>The §7 on-call path. Partner acts within the pre-authorised set;
+organization acknowledgement within 1 hour.</td>
+</tr>
+<tr class="odd">
+<td>High case</td>
+<td>Acknowledged within 1 coverage hour.</td>
+</tr>
+<tr class="even">
+<td>Medium case</td>
+<td>1 coverage day.</td>
+</tr>
+<tr class="odd">
+<td>Low / informational</td>
+<td>The weekly review. Vulnerability items to <a href="/sops/DEV-13">DEV-13</a> §9.</td>
+</tr>
+<tr class="even">
+<td>Containment of a confirmed account compromise</td>
+<td>30 minutes from the decision (<a href="/sops/GOV-03">GOV-03</a> §10).</td>
+</tr>
+<tr class="odd">
+<td>Tier 4 isolation decision for a §6 row requiring one</td>
+<td>Within 30 minutes of the facts being established.</td>
+</tr>
+<tr class="even">
+<td>Lifting an isolation once the case is resolved</td>
+<td>Same coverage day. Somebody is unable to work.</td>
+</tr>
+<tr class="odd">
+<td>Agent health remediation</td>
+<td>Per the §3.3 table.</td>
+</tr>
+<tr class="even">
+<td>Coverage number</td>
+<td>Monthly, with the <a href="/sops/GOV-06">GOV-06</a> pack, and stated at every weekly
+review.</td>
+</tr>
+<tr class="odd">
+<td>Weekly MDR review</td>
+<td>On schedule, and minuted.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Anything at Critical overrides every <a href="/sops/GOV-06">GOV-06</a> target and capacity
+state, per <a href="/sops/GOV-03">GOV-03</a> §10. A capacity state cannot suppress a security
+matter (<a href="/sops/GOV-06">GOV-06</a> §7) — but it does affect how quickly everything else in
+this document happens, and the §12 out-of-coverage figure is where that
+shows.</p>
+<h2 id="12-measurement">12. Measurement</h2>
+<ul>
+<li>AGENT COVERAGE: devices in the asset record against devices
+reporting within 7 days. Monthly. The headline number of this document
+and the first thing on the weekly agenda.</li>
+<li>Devices with an unhealthy agent, by fault class (§3.1 step 3).</li>
+<li>Devices with an agent present but NOT ONBOARDED to the MDR tenant.
+Should be zero and rarely is.</li>
+<li>Devices carrying two protection products (§4). Should be falling to
+zero on a stated curve.</li>
+<li>MDR cases by severity per month, each with a recorded organization
+outcome. A month with cases and no outcomes is not a report.</li>
+<li>Median time from case raised to organization acknowledgement, IN and
+OUT of coverage, reported separately. The out-of-coverage figure is the
+one that tells the truth about §7.</li>
+<li>Pre-authorised partner actions taken out of coverage, and how many
+were still judged correct at the next-day review. A high correctness
+rate is the argument for widening the pre-authorisation; a low one is
+the argument for funding the rota. This is the most useful number in the
+document and nobody currently produces it.</li>
+<li>Active exclusions, with age (§4.2).</li>
+<li>Cases that became <a href="/sops/GOV-03">GOV-03</a> incidents, and cases that became <a href="/sops/ACC-13">ACC-13</a>
+referrals. Both should be small; neither should be zero every
+quarter.</li>
+</ul>
+<h2 id="13-records">13. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Monthly coverage number, with the device lists behind it</td>
+<td>IT register</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Agent health remediation actions</td>
+<td>Ticket</td>
+<td>1 year</td>
+</tr>
+<tr class="odd">
+<td>MDR case log: reference, severity, organization outcome, owner,
+closed</td>
+<td>IT register</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Isolation and account-disablement authorisations: who, what, why,
+authoriser, lifted</td>
+<td>Tier 4 record</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Out-of-coverage partner actions and the next-day review of each</td>
+<td>IT register</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>The pre-authorisation list as agreed with the MDR provider</td>
+<td>MDR service description, and §7 of this document</td>
+<td>Life of the contract</td>
+</tr>
+<tr class="odd">
+<td>On-call rota</td>
+<td>IT operational record</td>
+<td>1 year</td>
+</tr>
+<tr class="even">
+<td>Weekly MDR review minutes</td>
+<td>IT governance record</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Exclusions register: device or path, reason, owner, expiry,
+approver</td>
+<td>IT register</td>
+<td>Life of the exclusion + 3 years</td>
+</tr>
+<tr class="even">
+<td>Cases escalated to <a href="/sops/GOV-03">GOV-03</a> or <a href="/sops/ACC-13">ACC-13</a></td>
+<td>Per those documents</td>
+<td>Per those documents</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="14-related-documents">14. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response &amp; Escalation Matrix</td>
+<td>Where a case goes when it becomes an incident. §8 there governs the
+partner relationship in an incident.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments, Priority &amp; Escalation</td>
+<td>§6 coverage — the reason §7 exists at all.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-04">GOV-04</a></td>
+<td>IT Change Management &amp; Maintenance Windows</td>
+<td>Monitoring and exclusion configuration changes (§8.1 there).</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-02">DEV-02</a></td>
+<td>Device Compliance &amp; Configuration Baseline</td>
+<td>Condition 6. This document is where its number lives.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-13">DEV-13</a></td>
+<td>Patch, Update &amp; Maintenance Window Standard</td>
+<td>Defender is the vulnerability input there and the protection agent
+here. §3 coverage determines whether the <a href="/sops/DEV-13">DEV-13</a> §9 input is
+complete.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-01">DEV-01</a></td>
+<td>Device Enrollment &amp; Lifecycle</td>
+<td>§10 — the asset record that is the coverage denominator.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-15">DEV-15</a></td>
+<td>Device Reassignment, Wipe, Retirement &amp; Disposal</td>
+<td>Decommissioned devices left in the console; reimaging after a
+case.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-16">DEV-16</a></td>
+<td>Lost, Stolen or Compromised Device Response</td>
+<td>§5 wipe authority, and where a device silent for 60 days may
+actually belong.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-09">DEV-09</a></td>
+<td>macOS Device Management Standard</td>
+<td>The provisional macOS row of §4.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-11">DEV-11</a></td>
+<td>Software Request, Approval, Licensing &amp; Deployment</td>
+<td>§5.1 there — software that brings its own protection component.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA Enrollment &amp; Account Recovery</td>
+<td>§3 — the authoritative record a partner will ask for.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-07">ACC-07</a></td>
+<td>Privileged &amp; Administrative Account Standard</td>
+<td>§6 — break-glass and administrative identities, never touched by the
+partner.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-11">ACC-11</a></td>
+<td>Vendor, Contractor &amp; Consultant Account Standard</td>
+<td>The MDR provider’s own access, and vendor sessions notified before
+rather than after.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-13">ACC-13</a></td>
+<td>Account Suspension for Misuse or Policy Investigation</td>
+<td>§10.2 — where a case becomes a person.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-15">ACC-15</a></td>
+<td>Acceptable Use &amp; Credential Sharing</td>
+<td>§5 there — the ladder the §10.3 case actually belongs on.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-05">ACC-05</a></td>
+<td>Account Lockout Triage &amp; Escalation</td>
+<td>§2 — establish the cause before treating a repeat count as
+evidence.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-22">M365-22</a></td>
+<td>Phishing Reporting &amp; Email Threat Response</td>
+<td>The URL and sender blocks in §6.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--mdr-case-triage-and-authority-matrix">Appendix A —
+MDR case triage and authority matrix</h2>
+<p>The one-page card. Find the row, act within it, escalate where it
+says so.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Case looks like</th>
+<th>Owner</th>
+<th>Contain how</th>
+<th>Authorised by</th>
+<th>Then</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ransomware or hands-on-keyboard indication, any device</td>
+<td>Tier 3</td>
+<td>Isolate immediately. Pre-authorised out of coverage (§7).</td>
+<td>Tier 2 in coverage; MDR provider out of coverage</td>
+<td><a href="/sops/GOV-03">GOV-03</a> S1. Head of IT now, with incomplete information.</td>
+</tr>
+<tr class="even">
+<td>Confirmed account compromise, credentials used</td>
+<td>Tier 3</td>
+<td>Disable sign-in, revoke sessions, re-register all MFA methods.</td>
+<td>Tier 3; Tier 2 in coverage; MDR provider out of coverage</td>
+<td><a href="/sops/GOV-03">GOV-03</a> §5. Preserve before you fix.</td>
+</tr>
+<tr class="odd">
+<td>Malware detected and blocked by the agent, no execution</td>
+<td>Tier 2</td>
+<td>None. Verify agent health.</td>
+<td>Tier 2</td>
+<td>Close with the outcome recorded (§9).</td>
+</tr>
+<tr class="even">
+<td>Repeated authentication anomalies on one identity, related
+addresses</td>
+<td>Tier 2, Tier 3 reviews</td>
+<td>Proportionate: password reset and MFA re-registration before any
+disablement.</td>
+<td>Tier 3</td>
+<td><a href="/sops/ACC-05">ACC-05</a> §2 first — establish the cause. <a href="/sops/ACC-13">ACC-13</a> only on evidence
+(§10.3).</td>
+</tr>
+<tr class="odd">
+<td>Impossible travel or unfamiliar sign-in, single event</td>
+<td>Tier 2</td>
+<td>None pending context.</td>
+<td>Tier 2</td>
+<td>Ask the person. Close with the outcome, and tell the partner
+(§8).</td>
+</tr>
+<tr class="even">
+<td>Detection on the chief executive’s or another executive’s
+device</td>
+<td>Tier 3</td>
+<td>Isolation requires Tier 4. Not pre-authorised at any hour.</td>
+<td>Head of IT</td>
+<td>§6. Same technical action; different decision.</td>
+</tr>
+<tr class="odd">
+<td>Detection on a core business system or other server</td>
+<td>Tier 3</td>
+<td>Never isolated without Tier 4.</td>
+<td>Tier 4, with the system owner; the system’s vendor informed</td>
+<td><a href="/sops/GOV-03">GOV-03</a> S1 candidate. <a href="/sops/GOV-04">GOV-04</a> emergency change.</td>
+</tr>
+<tr class="even">
+<td>Detection on a lab, meeting room, kiosk or loaner device</td>
+<td>Tier 2</td>
+<td>Isolate. Nobody’s individual work stops.</td>
+<td>Tier 2</td>
+<td>Reimage (<a href="/sops/DEV-15">DEV-15</a> §4), then verify agent health.</td>
+</tr>
+<tr class="odd">
+<td>Device has stopped reporting</td>
+<td>Tier 2</td>
+<td>Not a containment matter.</td>
+<td>Tier 2</td>
+<td>The §3.3 table. Beyond 60 days and unreachable, <a href="/sops/DEV-16">DEV-16</a>.</td>
+</tr>
+<tr class="even">
+<td>Two protection products found on one device</td>
+<td>Tier 2</td>
+<td>Remove the old, confirm the new is healthy — one operation.</td>
+<td>Tier 2</td>
+<td>§4.1. Check the whole cohort, not just this device.</td>
+</tr>
+<tr class="odd">
+<td>Sanctioned scanning or a vendor session the partner flagged</td>
+<td>Tier 3</td>
+<td>None.</td>
+<td>Tier 3</td>
+<td>Tell the partner BEFORE next time (§8.3, <a href="/sops/ACC-11">ACC-11</a> §6).</td>
+</tr>
+<tr class="even">
+<td>Daily vulnerability notification</td>
+<td>Tier 3</td>
+<td>Not a case.</td>
+<td>Tier 3</td>
+<td><a href="/sops/DEV-13">DEV-13</a> §9 triage. Not closed by ageing out of the console.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

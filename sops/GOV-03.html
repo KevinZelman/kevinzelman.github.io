@@ -1,0 +1,626 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GOV-03 · Security Incident Response &amp; Escalation Matrix | Known Good</title>
+<meta name="description" content="Who declares an incident, who is told, what the clock is, and what must be preserved before anything is fixed.">
+<meta property="og:title" content="GOV-03 · Security Incident Response &amp; Escalation Matrix | Known Good">
+<meta property="og:description" content="Who declares an incident, who is told, what the clock is, and what must be preserved before anything is fixed.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="gov-03--security-incident-response--escalation-matrix">GOV-03 ·
+Security Incident Response &amp; Escalation Matrix</h1>
+<p><em>Who declares an incident, who is told, what the clock is, and
+what must be preserved before anything is fixed.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/GOV-03-Security-Incident-Response-and-Escalation-Matrix.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/GOV-03.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/GOV-03">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>GOV-03</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>D. Cross-Cutting Governance</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 4 — IT Management, which owns security and regulated-data
+incidents. Detection and containment are Tiers 2 and 3.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Every six months, and after every declared incident.</td>
+</tr>
+<tr class="even">
+<td>Precedence</td>
+<td>This document takes precedence over every service commitment and
+capacity state in <a href="/sops/GOV-06">GOV-06</a>.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>This document names who declares a security incident, who is
+notified, what the clock is, and what must be preserved before
+remediation begins. All four are currently implicit, which means they
+depend on who happens to be on duty.</p>
+<p>Most organizations are not short of detection. A managed detection
+partner may run weekly reviews and raise cases; Defender notifications
+arrive daily; the tenant has a report button and an external-mail
+banner. What is missing is the human procedure that turns a detection
+into a decision.</p>
+<h2 id="2-scope--what-is-an-incident-and-what-is-not">2. Scope — what is
+an incident and what is not</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Incident</th>
+<th>Not an incident (but may become one)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Confirmed or suspected account compromise.</td>
+<td>A single failed sign-in from an unfamiliar location.</td>
+</tr>
+<tr class="even">
+<td>Credentials entered into a phishing page.</td>
+<td>A phishing message reported and purged with no interaction
+(<a href="/sops/M365-22">M365-22</a>).</td>
+</tr>
+<tr class="odd">
+<td>Malware or ransomware indication on any device.</td>
+<td>A blocked download or a quarantined attachment.</td>
+</tr>
+<tr class="even">
+<td>Unauthorised access to, or disclosure of, personal or institutional
+data.</td>
+<td>A file shared too widely internally and corrected (<a href="/sops/M365-11">M365-11</a>).</td>
+</tr>
+<tr class="odd">
+<td>A lost or stolen device holding organization data with no confirmed
+escrow.</td>
+<td>A misplaced device found the same day, still encrypted and escrowed
+(<a href="/sops/DEV-16">DEV-16</a>).</td>
+</tr>
+<tr class="even">
+<td>Anything with a regulatory clock, such as health, financial or
+personal-data privacy rules, or state breach notification.</td>
+<td>A policy violation with no data exposure (<a href="/sops/ACC-15">ACC-15</a>, <a href="/sops/ACC-13">ACC-13</a>).</td>
+</tr>
+<tr class="odd">
+<td>Confirmed credential sharing or sale.</td>
+<td>A third lockout with no evidence of a third party (<a href="/sops/ACC-05">ACC-05</a> §5).</td>
+</tr>
+<tr class="even">
+<td>Suspected social engineering against the service desk.</td>
+<td>A verification correctly declined and logged (<a href="/sops/ACC-06">ACC-06</a>).</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>When in doubt, declare</strong></p>
+<p>The cost of declaring an incident that turns out to be nothing is a
+short meeting and a record. The cost of not declaring one that turns out
+to be something is measured in weeks.</p>
+<p>Nobody will be criticised for declaring. The bias in this document is
+deliberately toward over-declaration, because the reverse bias is what
+causes the failures that end up in the press.</p>
+</blockquote>
+<h2 id="3-severity">3. Severity</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Sev</th>
+<th>Applies when</th>
+<th>Declared by</th>
+<th>Leadership informed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>S1</td>
+<td>Organization-wide impact, ransomware, confirmed exposure of personal
+data, or any regulatory clock running.</td>
+<td>The head of IT. If they are unreachable, the most senior IT staff
+member available declares and the head of IT is informed as soon as
+possible — a delayed declaration is worse than a wrong one.</td>
+<td>Immediately</td>
+</tr>
+<tr class="even">
+<td>S2</td>
+<td>Confirmed compromise of one or more accounts or devices, contained,
+with no confirmed data exposure.</td>
+<td>Tier 3, head of IT informed within the hour.</td>
+<td>Same day</td>
+</tr>
+<tr class="odd">
+<td>S3</td>
+<td>Suspected compromise under investigation; or a pattern across
+several accounts not yet confirmed.</td>
+<td>Tier 3.</td>
+<td>In the monthly report unless it escalates</td>
+</tr>
+<tr class="even">
+<td>S4</td>
+<td>Attempted attack, unsuccessful. Includes social engineering against
+the desk.</td>
+<td>Tier 2, recorded and circulated.</td>
+<td>In the monthly report</td>
+</tr>
+</tbody>
+</table></div>
+<p>Severity can rise and frequently does. It is set on what is currently
+known and revised as more emerges; revising upward is normal and carries
+no implication that the first assessment was careless.</p>
+<h2 id="4-who-does-what">4. Who does what</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>In an incident</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Incident lead</td>
+<td>One named person, appointed at declaration, who holds the decisions
+and the timeline. Usually Tier 3 for S2–S3 and the head of IT for S1.
+Not the same person doing the technical work — the lead who is also
+remediating stops leading.</td>
+</tr>
+<tr class="even">
+<td>Technical responders</td>
+<td>Tier 2 and Tier 3. Contain, preserve, remediate, and report to the
+lead. Do not communicate outside IT.</td>
+</tr>
+<tr class="odd">
+<td>Head of IT / Tier 4</td>
+<td>Declares S1, approves all external and community communication,
+decides on notification obligations, and holds the relationship with
+leadership.</td>
+</tr>
+<tr class="even">
+<td>Tier 1</td>
+<td>Fields the resulting contacts using the words the lead supplies. Not
+left to improvise — the front door will be asked before anybody
+else.</td>
+</tr>
+<tr class="odd">
+<td>Managed detection partner</td>
+<td>Detection, analysis and advice. Does not declare your incidents and
+does not communicate to your people (§8).</td>
+</tr>
+<tr class="even">
+<td>Leadership</td>
+<td>Informed per §3. Decides anything with institutional, legal or
+reputational consequence beyond IT.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="5-the-first-hour">5. The first hour</h2>
+<p>In order. Appendix A is the card.</p>
+<ol type="1">
+<li>Establish what is known and what is assumed, and keep them separate.
+Most bad incident decisions come from acting on an assumption that had
+hardened into a fact.</li>
+<li>Declare, with a severity. Appoint the incident lead by name.</li>
+<li>Start a timeline. One document, appended to as things happen, with
+times. Reconstructing it afterwards is far harder and considerably less
+accurate.</li>
+<li>Preserve, per §6. This comes before remediation wherever the two
+conflict and the lead decides when they do.</li>
+<li>Contain: disable sign-in, revoke sessions and tokens, isolate
+devices, block senders and URLs.</li>
+<li>Assess scope. What else did this identity or device touch? One
+compromised account is rarely the whole picture.</li>
+<li>Notify per §3 and §7. Tell leadership early for S1 — an early call
+with incomplete information is better received than a complete one that
+is late.</li>
+<li>Only then remediate, and record what was done as you go.</li>
+</ol>
+<h2 id="6-preserve-before-you-fix">6. Preserve before you fix</h2>
+<blockquote>
+<p><strong>The instinct to fix immediately destroys the evidence needed
+to know what happened</strong></p>
+<p>Resetting a password and revoking sessions is the correct containment
+action and it also removes much of the trail. Wiping a device removes
+all of it.</p>
+<p>So: where containment and preservation conflict, the incident lead
+decides, and the default is to preserve first unless the exposure is
+actively ongoing. An attacker with live access is a reason to contain
+immediately; an attacker who logged in yesterday is not.</p>
+</blockquote>
+<p>Preserve, before remediating:</p>
+<ul>
+<li>Entra sign-in logs for the affected accounts, exported rather than
+relied on in place — retention is finite.</li>
+<li>Mailbox audit logs, including rules created, items sent, and items
+accessed.</li>
+<li>Any inbox rule, delegation, send-as grant or OAuth consent the
+attacker created — record it before you delete it.</li>
+<li>The phishing message with full headers, where relevant.</li>
+<li>Device state: do not wipe an affected device until the lead agrees,
+and confirm the BitLocker key is escrowed first (<a href="/sops/DEV-03">DEV-03</a> §8).</li>
+<li>The timeline itself, which is the record everything else is read
+against.</li>
+</ul>
+<h2 id="7-notification">7. Notification</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Audience</th>
+<th>When and by whom</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>The affected individual</td>
+<td>As soon as containment allows, by the incident lead or Tier 1 using
+the lead’s words. Through a channel independent of the affected
+account.</td>
+</tr>
+<tr class="even">
+<td>Their manager</td>
+<td>Where access to institutional data is involved, or under the <a href="/sops/ACC-05">ACC-05</a>
+§5 repeat ladder.</td>
+</tr>
+<tr class="odd">
+<td>Everyone in the organization</td>
+<td>S1, or where people must act — a compromised internal sender, for
+instance. Head of IT approves. From the established IT notification
+address, with no links and no requested action beyond contacting the
+service desk.</td>
+</tr>
+<tr class="even">
+<td>Leadership</td>
+<td>Per §3.</td>
+</tr>
+<tr class="odd">
+<td>External parties — regulators, affected data subjects, insurers,
+counsel</td>
+<td>Never by IT. Leadership decides, on advice. IT supplies facts and
+timelines.</td>
+</tr>
+<tr class="even">
+<td>The managed detection partner</td>
+<td>Kept current on any case they raised, so the external record matches
+the internal one (§8).</td>
+</tr>
+</tbody>
+</table></div>
+<p>One thing IT must be clear about internally: whether a notification
+obligation exists is a legal question, not a technical one. IT’s job is
+to establish the facts quickly and accurately enough that somebody else
+can answer it.</p>
+<h2 id="8-working-with-the-managed-detection-partner">8. Working with
+the managed detection partner</h2>
+<p>The partner raises cases and provides analysis; you decide and act.
+Three practical points:</p>
+<ul>
+<li>A partner case is not your declaration. Somebody on your side still
+declares under §3, or explicitly records that no incident is declared
+and why.</li>
+<li>Close the loop on every case. Where an account was locked for
+impossible travel and you resolved it, the partner’s record should say
+so — an external case list that diverges from reality is worse than
+none.</li>
+<li>The partner should be able to find out which MFA system governs
+which population without asking. If they have to ask, nothing written
+down answers it. <a href="/sops/ACC-03">ACC-03</a> §3 is where that answer lives, and keeping it
+current is part of this relationship.</li>
+</ul>
+<h2 id="9-closing-an-incident-and-the-review">9. Closing an incident,
+and the review</h2>
+<ol type="1">
+<li>The incident lead closes, with the timeline complete and the
+remediation recorded.</li>
+<li>Confirm containment held: no further activity from the identity,
+device or infrastructure involved.</li>
+<li>Hold a review within ten business days for S1 and S2. Blameless —
+the question is what the system allowed, not who did what.</li>
+<li>Produce at most three actions. A review generating twelve produces
+none.</li>
+<li>Where an action is a documentation gap, raise it against the
+relevant SOP under <a href="/sops/GOV-01">GOV-01</a> §10. That is how a catalogue like this one
+grows.</li>
+<li>Circulate what happened, in specifics, to the department. Specifics
+teach; policy reminders do not.</li>
+</ol>
+<h2 id="10-service-levels">10. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Declare, from the point suspicion is credible</td>
+<td>15 minutes. Declaring is cheap.</td>
+</tr>
+<tr class="even">
+<td>Appoint an incident lead</td>
+<td>At declaration.</td>
+</tr>
+<tr class="odd">
+<td>Contain a confirmed account compromise</td>
+<td>30 minutes from declaration.</td>
+</tr>
+<tr class="even">
+<td>Inform the head of IT — S1 or S2</td>
+<td>Immediately for S1; within the hour for S2.</td>
+</tr>
+<tr class="odd">
+<td>Inform leadership — S1</td>
+<td>Immediately, with incomplete information if necessary.</td>
+</tr>
+<tr class="even">
+<td>Community notice where warranted</td>
+<td>Within 4 hours of containment.</td>
+</tr>
+<tr class="odd">
+<td>Review for S1 and S2</td>
+<td>Within 10 business days.</td>
+</tr>
+</tbody>
+</table></div>
+<p>These commitments override every <a href="/sops/GOV-06">GOV-06</a> target and capacity state. An
+incident suspends protected capacity at every tier for its duration.</p>
+<h2 id="11-measurement">11. Measurement</h2>
+<ul>
+<li>Incidents by severity per quarter, including S4 attempts. A quarter
+with no S4 recorded means attempts are not being logged, not that none
+occurred.</li>
+<li>Median time from detection to declaration, and declaration to
+containment.</li>
+<li>Share of incidents where evidence was preserved before
+remediation.</li>
+<li>Review actions raised, and how many closed.</li>
+<li>Partner cases raised versus incidents declared — a persistent gap
+either way is worth understanding.</li>
+</ul>
+<h2 id="12-records">12. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Declaration record (Appendix B)</td>
+<td>Security record</td>
+<td>7 years</td>
+</tr>
+<tr class="even">
+<td>Incident timeline</td>
+<td>Security record</td>
+<td>7 years</td>
+</tr>
+<tr class="odd">
+<td>Preserved evidence exports</td>
+<td>Secured store, access logged</td>
+<td>7 years</td>
+</tr>
+<tr class="even">
+<td>Notifications sent, with approver</td>
+<td>Security record</td>
+<td>7 years</td>
+</tr>
+<tr class="odd">
+<td>Review notes and actions</td>
+<td>Security record</td>
+<td>7 years</td>
+</tr>
+<tr class="even">
+<td>S4 attempts, with what was said</td>
+<td>Security + training record</td>
+<td>7 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13-related-documents">13. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments, Priority &amp; Escalation</td>
+<td>Subordinate to this document during an incident.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-22">M365-22</a></td>
+<td>Phishing Reporting &amp; Email Threat Response</td>
+<td>Escalates here at confirmed interaction.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA Enrollment, Reset &amp; Account Recovery</td>
+<td>§10 risky sign-in handling feeds this.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-05">ACC-05</a></td>
+<td>Account Lockout Triage</td>
+<td>§5 repeat ladder escalates here.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-06">ACC-06</a></td>
+<td>Identity Verification</td>
+<td>S4 attempts against the desk.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-13">ACC-13</a></td>
+<td>Account Suspension for Misuse</td>
+<td>Where confirmed sharing goes.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-03">DEV-03</a></td>
+<td>Disk Encryption &amp; BitLocker Keys</td>
+<td>Escrow position determines device recoverability.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-16">DEV-16</a></td>
+<td>Lost, Stolen or Compromised Device Response</td>
+<td>Device-side of §2.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-14">DEV-14</a></td>
+<td>Endpoint Security Agent &amp; MDR Escalation</td>
+<td>The partner relationship in §8.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-16">M365-16</a></td>
+<td>Retention, Legal Hold &amp; eDiscovery</td>
+<td>Preservation obligations in §6.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--first-hour-card">Appendix A — First-hour card</h2>
+<p>In order. When containment and preservation conflict, the lead
+decides — default is preserve unless exposure is ongoing.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Do</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Separate what is known from what is assumed</td>
+<td>Write both down. Most bad calls come from an assumption hardening
+into a fact.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Declare, with a severity. Appoint a lead by name.</td>
+<td>When in doubt, declare. Nobody is criticised for it.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Start the timeline</td>
+<td>One document, times against entries, appended as you go.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Preserve — sign-in logs, mailbox audit, rules, delegations,
+consents</td>
+<td>Export. Do not rely on retention.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Contain — disable sign-in, revoke sessions AND tokens, isolate
+devices</td>
+<td>A password reset alone does not end a live session.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Assess scope — what else did this identity or device touch?</td>
+<td>One account is rarely the whole picture.</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Notify per §3 and §7</td>
+<td>S1 → leadership immediately, even with incomplete information.</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Then remediate. Check for attacker-created MFA methods.</td>
+<td>This is the step most often missed — it survives a password
+reset.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--declaration-record">Appendix B — Declaration
+record</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Incident reference</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Declared at (date and time)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Declared by</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Severity</td>
+<td>S1 / S2 / S3 / S4 — revise upward as needed and record when</td>
+</tr>
+<tr class="odd">
+<td>Incident lead</td>
+<td>One named person. Not also doing the technical work.</td>
+</tr>
+<tr class="even">
+<td>What is known</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>What is assumed</td>
+<td>Kept separate, deliberately</td>
+</tr>
+<tr class="even">
+<td>Accounts / devices / data involved</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Regulatory clock?</td>
+<td>Health, financial or personal-data privacy / state breach
+notification / none known — if unsure, treat as yes and tell Tier 4</td>
+</tr>
+<tr class="even">
+<td>Preservation completed before remediation?</td>
+<td>Yes / No / Partial — with the lead’s reason</td>
+</tr>
+<tr class="odd">
+<td>Partner case reference, if any</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Notifications made, and approved by</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Closed at, by</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Review held (S1/S2)</td>
+<td>Date, and up to three actions</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

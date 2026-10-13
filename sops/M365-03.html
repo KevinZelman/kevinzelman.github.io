@@ -1,0 +1,501 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M365-03 · Shared Mailbox Request, Provisioning &amp; Ownership | Known Good</title>
+<meta name="description" content="How a departmental mailbox is requested, who owns it, who may be added to it, and when that access goes away.">
+<meta property="og:title" content="M365-03 · Shared Mailbox Request, Provisioning &amp; Ownership | Known Good">
+<meta property="og:description" content="How a departmental mailbox is requested, who owns it, who may be added to it, and when that access goes away.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="m365-03--shared-mailbox-request-provisioning--ownership">M365-03
+· Shared Mailbox Request, Provisioning &amp; Ownership</h1>
+<p><em>How a departmental mailbox is requested, who owns it, who may be
+added to it, and when that access goes away.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/M365-03-Shared-Mailbox-Request-Provisioning-and-Ownership.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/M365-03.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/M365-03">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>M365-03</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>A. Microsoft 365</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 2 — Advanced Technical Services, which already owns
+permissions.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually.</td>
+</tr>
+<tr class="even">
+<td>Related existing policy</td>
+<td>Your organization's email and account policy. This procedure
+operates under it and does not replace it.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>A shared mailbox lets a department receive and answer mail as the
+department rather than as a person, so that enquiries survive holidays,
+role changes and departures. This document says how one is obtained and,
+more importantly, who is answerable for it afterwards.</p>
+<p>It exists because that second part is so often missing. The common
+version: a busy front-desk team adds several temporary workers to its
+departmental mailbox through a reply-all email thread. There is no named
+owner, no request record, and nothing scheduled to remove the access at
+the end of the engagement. Then the next department asks the same
+way.</p>
+<blockquote>
+<p><strong>The single change this document makes</strong></p>
+<p>Every shared mailbox has one named owner, and that owner approves
+every addition. IT provisions and administers; it does not decide who in
+a department should read the department’s mail.</p>
+<p>Without an owner, IT is left inferring authorisation from whoever is
+on an email thread — which is not authorisation, and is not a position
+anybody should be put in.</p>
+</blockquote>
+<h2 id="2-scope">2. Scope</h2>
+<ul>
+<li>Shared mailboxes for departments, functions, roles and
+projects.</li>
+<li>Membership, delegation, send-as and send-on-behalf.</li>
+<li>Review, ownership transfer and closure. Out of scope: distribution
+lists and dynamic groups, which are <a href="/sops/M365-04">M365-04</a> and are a different thing
+frequently asked for by the same words; personal mailbox delegation,
+which is <a href="/sops/ACC-14">ACC-14</a>; Microsoft 365 group mailboxes created with a Team,
+which are <a href="/sops/M365-07">M365-07</a>.</li>
+</ul>
+<h2 id="3-what-a-shared-mailbox-is-for-and-what-it-is-not">3. What a
+shared mailbox is for, and what it is not</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>A shared mailbox is right when</th>
+<th>Use something else when</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A department needs one published address that several people answer
+— info@, billing@, servicedesk@.</td>
+<td>You want to send mail to a group of people. That is a distribution
+list or dynamic group (<a href="/sops/M365-04">M365-04</a>).</td>
+</tr>
+<tr class="even">
+<td>Continuity matters more than individual attribution: the enquiry
+must be answerable if one person is away.</td>
+<td>One person needs someone to manage their calendar or mail. That is
+delegation (<a href="/sops/ACC-14">ACC-14</a>).</td>
+</tr>
+<tr class="odd">
+<td>A role or function outlives the person holding it.</td>
+<td>A team needs a workspace with files and chat. That is a Team
+(<a href="/sops/M365-07">M365-07</a>).</td>
+</tr>
+<tr class="even">
+<td>Mail must be retained with the function rather than in an
+individual’s mailbox.</td>
+<td>You want a login that several people share. Never. That defeats
+every audit (<a href="/sops/ACC-15">ACC-15</a>).</td>
+</tr>
+</tbody>
+</table></div>
+<p>The last row is worth stating plainly: a shared mailbox is not a
+shared account. Nobody signs in as the mailbox. Members sign in as
+themselves and the mailbox appears alongside their own — which is what
+preserves the audit trail.</p>
+<h2 id="4-roles--the-owner-is-the-point-of-this-document">4. Roles — the
+owner is the point of this document</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Responsible for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mailbox owner (a named staff member, not IT)</td>
+<td>Deciding who has access and approving every addition. Confirming at
+review that the membership is still right. Nominating a successor before
+they leave. The owner is a person, not a department — “Front desk”
+cannot approve anything.</td>
+</tr>
+<tr class="even">
+<td>Deputy owner (recommended)</td>
+<td>Doing the above when the owner is unavailable. A mailbox whose only
+owner is on leave becomes an IT judgement call again.</td>
+</tr>
+<tr class="odd">
+<td>Members</td>
+<td>Answering the mail. Not adding other people.</td>
+</tr>
+<tr class="even">
+<td>Tier 2 — Account Services</td>
+<td>Provisioning, adding and removing on the owner’s written approval,
+and running the review.</td>
+</tr>
+<tr class="odd">
+<td>Tier 4</td>
+<td>Approving exceptions, and deciding ownership where a department
+cannot or will not nominate.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Why IT cannot be the owner</strong></p>
+<p>IT is asked to be, frequently, because it is easier. But IT does not
+know which members of the front-desk team should read customer
+correspondence — that is the department’s judgement, and the moment IT
+makes it, IT owns the consequences of getting it wrong.</p>
+<p>Where a department genuinely has nobody to name, that is a Tier 4
+conversation with the department head rather than a default to IT.</p>
+</blockquote>
+<h2 id="5-requesting-one">5. Requesting one</h2>
+<ol type="1">
+<li>The requester submits the fields in Appendix A through the service
+desk. Not by reply-all email thread — the whole point is that the
+authorisation is recorded somewhere it can be found later.</li>
+<li>Tier 2 checks that the request names an owner who is a member of
+staff, and that the address does not already exist in some other
+form.</li>
+<li>Where the request is really for a distribution list, Tier 2 says so
+and redirects to <a href="/sops/M365-04">M365-04</a> rather than provisioning the wrong object.
+These are asked for interchangeably and the difference matters.</li>
+<li>Where the mailbox will receive data of a sensitive class — customer
+records, payroll, health, conduct — the request is referred to Tier 4
+before provisioning (<a href="/sops/M365-15">M365-15</a>).</li>
+<li>Tier 2 provisions per §6 and confirms to the requester and the owner
+together, so the owner knows they are the owner. An owner who has not
+been told they are one is not one.</li>
+</ol>
+<h2 id="6-provisioning">6. Provisioning</h2>
+<ol type="1">
+<li>Create the mailbox with the agreed address. Naming follows the
+function, not the person or the current post-holder.</li>
+<li>Set the owner and deputy in the mailbox’s recorded metadata, and in
+the register IT keeps of mailboxes and owners. If that register does not
+exist yet, this document is the reason to start it.</li>
+<li>Add the initial members the owner approved. No more.</li>
+<li>Configure send-as for the members who need it (§8).</li>
+<li>Confirm auditing is on, so that “who sent that” and “who read that”
+are answerable later.</li>
+<li>Set the review date — twelve months, or end of the engagement where
+the membership includes temporary workers.</li>
+<li>Record the request, the approval and the initial membership on the
+ticket.</li>
+</ol>
+<h2 id="7-adding-and-removing-people">7. Adding and removing people</h2>
+<h3 id="71-adding">7.1 Adding</h3>
+<ul>
+<li>Only on the owner’s written approval, on a ticket. A name in a
+reply-all thread is not an approval, and this is the specific practice
+being replaced.</li>
+<li>The person being added must have MFA registered first (<a href="/sops/ACC-03">ACC-03</a>
+§5.1).</li>
+<li>Temporary workers are added under <a href="/sops/ACC-09">ACC-09</a> and their access carries an
+end-date expiry, even if they stay on in another role. This is the
+control whose absence leaves grants with no owner.</li>
+<li>Access is to the mailbox, granted to the person’s own identity —
+never by creating an account for the mailbox, and never by sharing a
+credential.</li>
+</ul>
+<h3 id="72-removing">7.2 Removing</h3>
+<ul>
+<li>On the owner’s request; at the end of the engagement for temporary
+workers; automatically on the leaver procedure (<a href="/sops/ACC-01">ACC-01</a> §7.2); and at
+review where the membership is no longer justified.</li>
+<li>Removal does not need the owner’s approval when it is triggered by a
+leaver or an engagement end date. Those are automatic, and waiting for
+an approval is how access persists.</li>
+</ul>
+<h3 id="73-when-the-owner-leaves">7.3 When the owner leaves</h3>
+<p>Ownership transfers before their access is removed, not after. An
+unowned mailbox is how a departmental address quietly stops being
+answered — and the equivalent failure on SharePoint shows up as
+broken-links tickets nobody can assign. <a href="/sops/ACC-01">ACC-01</a> §7.2 step 4 makes this a
+leaver checklist item.</p>
+<h2 id="8-sending-as-the-department">8. Sending as the department</h2>
+<p>Two mechanisms, and the difference is visible to recipients:</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Permission</th>
+<th>What the recipient sees</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Send as</td>
+<td>The message appears to come from the department. Use this as the
+default — a customer writing to info@ should hear back from the
+department.</td>
+</tr>
+<tr class="even">
+<td>Send on behalf of</td>
+<td>The message shows “<person> on behalf of <department>”. Use where
+individual attribution is wanted, for example in conduct or complaint
+correspondence.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Either way, the mailbox audit log records which member actually sent
+it. That is what makes send-as safe, and it is also the answer to a
+concern raised in <a href="/sops/ACC-02">ACC-02</a>: departmental mail can read as the department
+without giving anybody a second identity.</p>
+<h2 id="9-review-and-closure">9. Review and closure</h2>
+<ol type="1">
+<li>At the review date, Tier 2 sends the owner the current membership
+and asks them to confirm or correct it. A non-response is chased once,
+then escalated to the owner’s manager — never treated as approval.</li>
+<li>Temporary-worker membership is removed at the end of the engagement
+and re-added on fresh approval, rather than confirmed in place.
+Re-approval is a decision; confirmation is a habit.</li>
+<li>Where a mailbox has received no mail in twelve months and the owner
+agrees it is dormant, close it: convert to inactive with retention per
+<a href="/sops/ACC-01">ACC-01</a> §7.3, remove members, and record the closure. Do not delete — a
+published address that starts bouncing is worse than one that is quietly
+monitored.</li>
+<li>Where a mailbox has no identifiable owner at review, it goes to Tier
+4 as a decision, not to IT as a default.</li>
+</ol>
+<h2 id="10-service-levels">10. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Request</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>New shared mailbox, complete request</td>
+<td>P3 — acknowledged within 1 coverage day.</td>
+</tr>
+<tr class="even">
+<td>Add or remove a member, owner-approved</td>
+<td>P3 — acknowledged within 1 coverage day; usually same day.</td>
+</tr>
+<tr class="odd">
+<td>Add a member where MFA is not yet registered</td>
+<td>Held. The requester is told what is needed rather than the request
+being provisioned anyway.</td>
+</tr>
+<tr class="even">
+<td>Sensitive-class mailbox needing Tier 4 referral</td>
+<td>P3, with the Tier 4 decision inside 5 coverage days.</td>
+</tr>
+<tr class="odd">
+<td>Ownership transfer on a leaver</td>
+<td>Follows <a href="/sops/ACC-01">ACC-01</a> §7 timing — completed before the leaver’s access is
+removed.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-records">11. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Register of mailboxes, owners and deputies</td>
+<td>IT register</td>
+<td>Live document</td>
+</tr>
+<tr class="even">
+<td>Request, with owner approval</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Every addition and removal, with who approved it</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Annual review confirmations</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Closure decisions</td>
+<td>Ticket + register</td>
+<td>3 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="12-related-documents">12. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Email &amp; Account Policy</td>
+<td>Your organization's email and account policy</td>
+<td>The existing policy this procedure operates under.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-04">M365-04</a></td>
+<td>Distribution List &amp; Dynamic Group Standard</td>
+<td>The thing people frequently mean when they ask for a shared
+mailbox.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-05">M365-05</a></td>
+<td>Email Alias &amp; Address Change Standard</td>
+<td>An alias is often the cheaper answer to “we need a new
+address”.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-15">M365-15</a></td>
+<td>Data Classification &amp; Handling</td>
+<td>Determines whether §5 step 4 applies.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>§7.2 step 4 reassigns ownership on departure.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-02">ACC-02</a></td>
+<td>Account Naming Standard</td>
+<td>§8 send-as is central to the Option B case.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-09">ACC-09</a></td>
+<td>Temporary Worker &amp; Departmental Access</td>
+<td>End-of-engagement expiry for temporary-worker membership.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-14">ACC-14</a></td>
+<td>Mailbox &amp; Calendar Delegation Standard</td>
+<td>The other thing this is confused with.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-17">ACC-17</a></td>
+<td>Periodic Access Review</td>
+<td>Consumes the §9 review.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments, Priority &amp; Escalation</td>
+<td>Supplies §10.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--request-form-fields">Appendix A — Request form
+fields</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Requested address</td>
+<td>Function-based, not person-based.</td>
+</tr>
+<tr class="even">
+<td>Purpose, in one sentence</td>
+<td>Distinguishes a mailbox from a distribution list at the point of
+request.</td>
+</tr>
+<tr class="odd">
+<td>Named owner (staff member)</td>
+<td>The whole point. A department name is not an owner.</td>
+</tr>
+<tr class="even">
+<td>Named deputy owner</td>
+<td>So the mailbox does not become an IT judgement call during annual
+leave.</td>
+</tr>
+<tr class="odd">
+<td>Initial members</td>
+<td>Each named individually.</td>
+</tr>
+<tr class="even">
+<td>Any temporary workers among them?</td>
+<td>Triggers the end-date expiry in §7.1.</td>
+</tr>
+<tr class="odd">
+<td>Does it receive sensitive data?</td>
+<td>Customer records, payroll, health, conduct — triggers the §5 step 4
+referral.</td>
+</tr>
+<tr class="even">
+<td>Send-as or send-on-behalf?</td>
+<td>Default is send-as; §8 explains the difference.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--owners-one-pager">Appendix B — Owner’s
+one-pager</h2>
+<p>Send this to every new mailbox owner. Most owners do not know they
+have become one.</p>
+<div class="tbl"><table>
+<tbody>
+<tr class="odd">
+<td>You now own a mailbox</td>
+<td>You are the person who decides who can read and answer mail sent to
+this address. IT will administer it, but will not add anybody without
+your say-so.</td>
+</tr>
+<tr class="even">
+<td>To add somebody</td>
+<td>Ask the service desk, naming the person. Please do it that way
+rather than by email thread — it means there is a record of who
+authorised it, which protects you as much as anyone.</td>
+</tr>
+<tr class="odd">
+<td>Temporary workers</td>
+<td>Their access ends automatically at the end of the engagement. If you
+want it to continue, you will be asked to approve it again — that is
+deliberate.</td>
+</tr>
+<tr class="even">
+<td>Once a year</td>
+<td>We will send you the list of people who have access and ask you to
+confirm it is still right. It takes a minute and it is the main thing
+that stops access accumulating.</td>
+</tr>
+<tr class="odd">
+<td>Before you leave or change role</td>
+<td>Please tell us who should take over. A mailbox with no owner stops
+being answered, and nobody notices until an enquirer complains.</td>
+</tr>
+<tr class="even">
+<td>What recipients see</td>
+<td>By default, replies appear to come from the department rather than
+from you personally. We can change that if you would rather.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

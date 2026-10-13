@@ -1,0 +1,703 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACC-04 · Password Standard &amp; Self-Service Password Reset | Known Good</title>
+<meta name="description" content="What a password must be, why one gets rejected, and how a person resets their own without contacting anybody.">
+<meta property="og:title" content="ACC-04 · Password Standard &amp; Self-Service Password Reset | Known Good">
+<meta property="og:description" content="What a password must be, why one gets rejected, and how a person resets their own without contacting anybody.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="acc-04--password-standard--self-service-password-reset">ACC-04 ·
+Password Standard &amp; Self-Service Password Reset</h1>
+<p><em>What a password must be, why one gets rejected, and how a person
+resets their own without contacting anybody.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/ACC-04-Password-Standard-and-Self-Service-Password-Reset.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/ACC-04.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/ACC-04">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>ACC-04</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>B. Account Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 1 — the Service Desk (“the front door”, the service desk
+address). Configuration is Tier 3; the conversation is Tier 1’s.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Every six months while a move to Entra is under way, then
+annually.</td>
+</tr>
+<tr class="even">
+<td>Closes</td>
+<td>Two gaps most Tier 1 password guides have: why a password was
+rejected, and whether Tier 1 can see self-service reset status.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>This document states the organization’s password requirements and the
+self-service path for resetting one. It exists because Tier 1 currently
+cannot answer the most common follow-up question it receives — “why was
+my password rejected?” — and because self-service reset is the single
+largest available reduction in the department’s workload.</p>
+<p>A good Tier 1 password guide names both of these as gaps and leaves
+them blank rather than inventing an answer. This document fills
+them.</p>
+<blockquote>
+<p><strong>The scale of the prize</strong></p>
+<p>On most desks, password resets and lockouts together are one of the
+biggest ticket categories, and login and access problems often make up
+half of what end users raise. Measure your own figure before you change
+anything (§9).</p>
+<p>Every one of those that self-service absorbs is a ticket that never
+opens. Not a ticket closed faster — a ticket that does not exist.</p>
+</blockquote>
+<h2 id="2-scope">2. Scope</h2>
+<ul>
+<li>Password composition, length, reuse and expiry for every account
+class in <a href="/sops/ACC-01">ACC-01</a> §3.</li>
+<li>Self-service password reset: configuration, rollout and the end-user
+path.</li>
+<li>Assisted reset, where self-service cannot serve. Out of scope: MFA
+method registration and recovery, which is <a href="/sops/ACC-03">ACC-03</a>; lockout triage, which
+is <a href="/sops/ACC-05">ACC-05</a>; identity verification before any assisted action, which is
+<a href="/sops/ACC-06">ACC-06</a> and is mandatory before anything in §7.</li>
+</ul>
+<h2 id="3-the-password-standard">3. The password standard</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Requirement</th>
+<th>What to check today</th>
+<th>Target state</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Minimum length</td>
+<td>The default domain policy, every fine-grained policy, and Entra.
+Eight characters is a common legacy setting.</td>
+<td>14 characters for staff, 12 for end users, 16 for privileged
+accounts</td>
+</tr>
+<tr class="even">
+<td>Complexity</td>
+<td>Whether character-class rules are on.</td>
+<td>No character-class requirement. Length and a banned-password list do
+more for security and far less damage to usability.</td>
+</tr>
+<tr class="odd">
+<td>Expiry</td>
+<td>The maximum password age in every policy, read carefully
+(§3.1).</td>
+<td>No scheduled expiry. Forced rotation drives predictable increments
+(Spring2026!, Spring2026!!) and generates lockouts without evidence of
+benefit. Rotation on evidence of compromise only.</td>
+</tr>
+<tr class="even">
+<td>Reuse (history)</td>
+<td>The history count, alongside the minimum password age. A history of
+3 with a minimum age of 0 lets someone cycle back to their original
+password in four changes.</td>
+<td>Previous 10 passwords blocked, with a minimum password age that
+makes cycling impractical.</td>
+</tr>
+<tr class="odd">
+<td>Minimum password age</td>
+<td>Often 0 — a password can be changed any number of times in a
+minute.</td>
+<td>One day, so that history cannot be defeated by rapid cycling.</td>
+</tr>
+<tr class="even">
+<td>Banned passwords</td>
+<td>Whether the Entra custom banned list has anything in it, whether the
+banned-password check is enabled, and whether on-premises enforcement is
+in Audit or Enforce.</td>
+<td>A custom banned list with your organization’s name, abbreviations,
+mascot, town and seasonal and year patterns, ENFORCED — and extended to
+the domain controllers in Enforce mode, not Audit. Local terms are what
+local attackers actually try.</td>
+</tr>
+<tr class="odd">
+<td>Lockout threshold</td>
+<td>The threshold and duration in AD and in Entra, and whether any
+fine-grained policy sets it to 0.</td>
+<td>Aligned across on-premises and cloud so a person cannot be locked in
+one and not the other, and never disabled for any population.</td>
+</tr>
+<tr class="even">
+<td>Cloud password expiry</td>
+<td>The Entra expiry setting, and how many synced accounts carry
+DisablePasswordExpiration. If almost all do, the cloud setting is inert
+and AD governs.</td>
+<td>One expiry regime, stated once, applying to a population somebody
+can name.</td>
+</tr>
+<tr class="odd">
+<td>Reversible encryption</td>
+<td>Should be disabled.</td>
+<td>Unchanged.</td>
+</tr>
+</tbody>
+</table></div>
+<p>How to read it, read-only: Get-ADDefaultDomainPasswordPolicy and
+Get-ADFineGrainedPasswordPolicy against your PDC emulator for the
+on-premises half, and the Entra password protection and authentication
+settings (PowerShell 7 with the Graph SDK, or the admin center) for the
+cloud half. Record who ran it and when. If one half cannot be read, say
+so in the document rather than implying the half you have is the whole
+picture.</p>
+<h3
+id="31-fine-grained-policies-override-the-default-and-they-need-answering-before-this-document-publishes">3.1
+Fine-grained policies override the default, and they need answering
+before this document publishes</h3>
+<p>Active Directory allows fine-grained password policies to override
+the default for named groups. They are often undocumented. Lower
+precedence wins, so where a person is subject to two, the lower number
+governs. For each one, record its precedence, its settings, the group it
+applies to, and who is actually in that group.</p>
+<blockquote>
+<p><strong>COMMON FINDING 1 — a policy that expires passwords every
+hour, not every 90 days</strong></p>
+<p>A default policy renders a 90-day maximum age as “90.00:00:00” —
+days, then hours, minutes, seconds. A fine-grained policy that renders
+as “01:00:00”, with no day component, is ONE HOUR.</p>
+<p>If a population is on an hourly expiry, it is very likely a
+substantial cause of your lockout volume. A password that expires hourly
+does not present to the person as an expiry; it presents as “I cannot
+get in”, which is reported and categorised as a lockout.</p>
+<p>It also defeats itself. With a short history and a minimum password
+age of 0, someone forced to change hourly can return to their original
+password after a few changes. The setting generates the maximum possible
+friction for no security benefit whatever.</p>
+<p>BEFORE ANYONE CHANGES ANYTHING: confirm the value and confirm who is
+in the group. Two commands, both read-only —
+Get-ADFineGrainedPasswordPolicy “<policy name>” | Select MaxPasswordAge,
+AppliesTo, and Get-ADGroupMember for the group it names. A TimeSpan of 1
+hour and a TimeSpan of 1 day render differently and the distinction
+decides whether this is an emergency or a curiosity.</p>
+<p>If confirmed: this is a P1 change under <a href="/sops/GOV-04">GOV-04</a> with a same-day
+back-out, not a scheduled one. It should not wait for this document to
+be approved.</p>
+</blockquote>
+<blockquote>
+<p><strong>COMMON FINDING 2 — account lockout disabled for a whole
+population</strong></p>
+<p>A lockout threshold of 0 in Active Directory means no lockout: an
+attacker may guess a password an unlimited number of times without the
+account ever locking. Check every fine-grained policy for it.</p>
+<p>It also raises a diagnostic question worth pursuing: if a population
+cannot be locked out in AD, where are its lockout tickets coming from?
+Entra smart lockout, a third-party identity provider, or password expiry
+being reported as lockout are the usual candidates. Answering that tells
+you what is actually generating your lockout volume.</p>
+<p>ACTION: Tier 3 to confirm both findings and report to Tier 4 within
+five coverage days. Owner: a named Tier 3 lead.</p>
+</blockquote>
+<h3
+id="32-check-whether-the-on-premises-and-cloud-policies-agree--they-often-do-not">3.2
+Check whether the on-premises and cloud policies agree — they often do
+not</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Control</th>
+<th>What a mismatch looks like</th>
+<th>Consequence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Lockout threshold</td>
+<td>AD locks after 5 failed attempts; Entra after 10.</td>
+<td>A person can exhaust AD and be locked on-premises while the cloud
+has counted half. Tier 1 sees “locked out” for one service and “working”
+for another, on the same credential, in the same minute.</td>
+</tr>
+<tr class="even">
+<td>Lockout duration</td>
+<td>AD locks for 25 minutes; Entra for 60 seconds, increasing.</td>
+<td>The advice “wait a minute and try again” is right for one and wrong
+for the other, and nobody has been told which is which.</td>
+</tr>
+<tr class="odd">
+<td>Password expiry</td>
+<td>AD at 90 days, a fine-grained policy at something else, Entra at 180
+days but overridden for most synced accounts.</td>
+<td>Several different numbers exist. AD governs in practice when almost
+every account is synced and carries DisablePasswordExpiration.</td>
+</tr>
+<tr class="even">
+<td>Banned password list</td>
+<td>On-premises agents off or in Audit; Entra custom list empty and the
+check disabled.</td>
+<td>Only Microsoft’s global list is doing any work. The local terms an
+attacker would actually try are all permitted.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>COMMON FINDING 3 — password protection configured but
+switched off</strong></p>
+<p>A Password Rule Settings object in the tenant means somebody once
+went to configure this. Check EnableBannedPasswordCheck, the custom
+banned list, EnableBannedPasswordCheckOnPremises and
+BannedPasswordCheckOnPremisesMode.</p>
+<p>If the feature is there and doing nothing beyond Microsoft’s global
+list, enabling the custom list and populating it with the terms in the
+target-state column is perhaps an hour of work and needs no project.</p>
+<p>The on-premises half is a larger piece: it requires Entra ID P1 and
+agents on the domain controllers, and if most accounts are synced,
+password protection does not reach the population that matters until
+that is done. Confirm the licence position first (<a href="/sops/M365-20">M365-20</a>), because that
+decides whether this is an afternoon or a project.</p>
+</blockquote>
+<p>The target-state column follows current NIST and Microsoft guidance:
+length over complexity, banned lists over character classes, and no
+scheduled expiry. It is a deliberate reduction in friction on the
+population generating the most lockouts, and it needs Head of IT
+approval because it will read as a relaxation to anyone who learned
+password policy years ago.</p>
+<h2 id="4-why-a-password-gets-rejected--the-tier-1-answer">4. Why a
+password gets rejected — the Tier 1 answer</h2>
+<p>This is the table Tier 1 asked for. It answers the question without
+needing to know the policy by heart.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>What the person says</th>
+<th>Almost certainly because</th>
+<th>What Tier 1 says</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“It says my password doesn’t meet requirements”</td>
+<td>Too short, or on the banned list.</td>
+<td>Ask them to try a longer passphrase — three or four unrelated words.
+Do not ask what they tried.</td>
+</tr>
+<tr class="even">
+<td>“It says I can’t reuse it”</td>
+<td>It is one of their recent passwords.</td>
+<td>Explain that recent passwords are blocked and suggest something
+genuinely new, not an increment.</td>
+</tr>
+<tr class="odd">
+<td>“It won’t accept it but it worked before”</td>
+<td>They are hitting a banned-list term, or a policy differs between the
+portal and the device.</td>
+<td>Take the detail and escalate to Tier 2 if it repeats — a policy
+mismatch is a real finding, not a user error.</td>
+</tr>
+<tr class="even">
+<td>“It changed but my laptop still wants the old one”</td>
+<td>Not a password problem. The device has not synchronised.</td>
+<td>Have them connect to the network or VPN and lock/unlock. This is a
+very common false lockout (<a href="/sops/ACC-05">ACC-05</a>).</td>
+</tr>
+<tr class="odd">
+<td>“It keeps asking me to change it”</td>
+<td>A temporary password requiring change, or an expiry policy still in
+force.</td>
+<td>Check which. If a temporary password was issued, walk them through
+setting a permanent one.</td>
+</tr>
+<tr class="even">
+<td>“I don’t want to change it, I just forgot it”</td>
+<td>Nothing is wrong.</td>
+<td>Self-service reset — §5. Stay with them while they do it.</td>
+</tr>
+</tbody>
+</table></div>
+<p>One rule for this conversation: never ask a person to tell you the
+password they tried, and never ask for their current one. Tier 1 does
+not need it, and asking normalises exactly the behaviour <a href="/sops/ACC-15">ACC-15</a>
+prohibits.</p>
+<h2 id="5-self-service-password-reset">5. Self-service password
+reset</h2>
+<h3 id="51-what-it-does">5.1 What it does</h3>
+<p>A person with two registered authentication methods can reset their
+own password at aka.ms/sspr, verified through those methods, with no
+ticket and no contact. Where the device is Entra-joined, they can do it
+from the Windows sign-in screen without a second device — which matters,
+because the commonest version of this problem is a person locked out of
+the only computer they have.</p>
+<h3 id="52-rollout--in-this-order">5.2 Rollout — in this order</h3>
+<ol type="1">
+<li>Confirm the tenant configuration: two methods required, security
+questions NOT enabled as a method, and the reset actually completing end
+to end on a real test account.</li>
+<li>Enable for a pilot group of IT staff first. Reset a real password.
+Do not proceed on the strength of the configuration screen looking
+correct.</li>
+<li>Enable the Windows sign-in screen option for Entra-joined devices,
+and test it on a device that is genuinely locked out rather than one
+that is merely signed out.</li>
+<li>Extend to staff. Measure assisted-reset volume weekly against the
+April–August baseline.</li>
+<li>Extend to everyone else, the largest population and the largest
+prize. Expect a temporary rise in tickets as people discover the
+feature; this is not failure.</li>
+<li>Put the reset link in the mail signature of every service desk reply
+about access, on the knowledge base portal, and on the Tier 1 desk card.
+A capability nobody knows about does not reduce anything.</li>
+</ol>
+<h3 id="53-who-cannot-use-it-and-what-happens-instead">5.3 Who cannot
+use it, and what happens instead</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Fewer than two methods registered</td>
+<td>Self-service cannot verify them. Verify identity per <a href="/sops/ACC-06">ACC-06</a>, then
+Tier 2 issues a Temporary Access Pass (<a href="/sops/ACC-03">ACC-03</a> §5.4).</td>
+</tr>
+<tr class="even">
+<td>Account is locked rather than forgotten</td>
+<td>Reset does not clear a lockout. See <a href="/sops/ACC-05">ACC-05</a> — resetting a password
+that was not the problem is the commonest wasted action in the
+queue.</td>
+</tr>
+<tr class="odd">
+<td>Account is disabled, unlicensed, or blocked by policy</td>
+<td>Not a password matter at all. <a href="/sops/ACC-05">ACC-05</a> §2 distinguishes these.</td>
+</tr>
+<tr class="even">
+<td>Privileged account</td>
+<td>Never by self-service. Tier 3, after Tier 1 or Tier 2 in-person
+verification (<a href="/sops/ACC-07">ACC-07</a>).</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="6-what-tier-1-can-see-and-what-it-cannot">6. What Tier 1 can
+see, and what it cannot</h2>
+<p>The second gap most Tier 1 guides have. Tier 1 cannot help a person
+register methods it cannot see, and cannot tell whether self-service
+will work for them without knowing their registration state.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Tier 1 should be able to see</th>
+<th>Tier 1 must never be able to do</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Whether the person has registered authentication methods, and how
+many</td>
+<td>Reset a password directly</td>
+</tr>
+<tr class="even">
+<td>Whether the account is enabled, disabled or locked</td>
+<td>Add, remove or reset an MFA method</td>
+</tr>
+<tr class="odd">
+<td>Whether a licence is assigned</td>
+<td>Change group membership or permissions</td>
+</tr>
+<tr class="even">
+<td>Recent sign-in success or failure and its result reason</td>
+<td>Read a BitLocker recovery key (<a href="/sops/DEV-01">DEV-01</a> §5)</td>
+</tr>
+<tr class="odd">
+<td>Whether a Conditional Access policy blocked the sign-in</td>
+<td>Anything requiring an admin centre</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>The access this requires, and why it is worth
+granting</strong></p>
+<p>The left-hand column is satisfied by a read-only directory role
+rather than by any reset capability. Granting it turns a large number of
+escalations into Tier 1 resolutions, because most of them are escalated
+only to find out what the state is.</p>
+<p>This is a Tier 3 configuration decision and a Tier 4 approval. It
+should be taken deliberately: read-only visibility is low risk and high
+leverage, and withholding it is currently costing Tier 2 time on
+questions Tier 1 could answer.</p>
+<p>Record the decision either way, so the Tier 1 guide can stop listing
+it as unknown.</p>
+</blockquote>
+<h2 id="7-assisted-reset">7. Assisted reset</h2>
+<p>Identity verification per <a href="/sops/ACC-06">ACC-06</a> is mandatory and comes first. There
+are no exceptions, including for people the technician knows personally
+— a habit of skipping it for known people is exactly what makes it
+skippable for an impostor.</p>
+<ol type="1">
+<li>Verify identity per <a href="/sops/ACC-06">ACC-06</a> and record the tier used.</li>
+<li>Confirm the password is actually the problem (<a href="/sops/ACC-05">ACC-05</a> §2).</li>
+<li>Prefer a Temporary Access Pass over a temporary password. A
+temporary password does not expire on use and will still work weeks
+later.</li>
+<li>Where a temporary password is unavoidable, require change at next
+sign-in and deliver it in person, on a verified video call, or to the
+manager. Never to a personal address and never in the ticket body.</li>
+<li>Confirm the person has signed in successfully before closing. The
+outcome is access, not a reset.</li>
+<li>While you have them: if they have fewer than two methods registered,
+get the second one registered now. That is what stops the next
+call.</li>
+</ol>
+<h2 id="8-service-levels">8. Service levels</h2>
+<p>Per <a href="/sops/GOV-06">GOV-06</a>. Stated in that document’s terms rather than as a separate
+matrix.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Request</th>
+<th>Commitment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Self-service reset</td>
+<td>Immediate. No ticket, no target.</td>
+</tr>
+<tr class="even">
+<td>“Why was my password rejected?”</td>
+<td>Answered at Tier 1 in the conversation. Not a ticket unless it
+recurs.</td>
+</tr>
+<tr class="odd">
+<td>Assisted reset, identity verified</td>
+<td>P2 — acknowledged within 4 coverage hours; usually resolved in the
+same contact.</td>
+</tr>
+<tr class="even">
+<td>Fewer than two methods, needs a TAP</td>
+<td>P2 at Tier 2.</td>
+</tr>
+<tr class="odd">
+<td>Suspected policy mismatch between cloud and on-premises</td>
+<td>P3 at Tier 3. A real finding, not a user error.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="9-measurement">9. Measurement</h2>
+<ul>
+<li>Assisted resets per week, against a baseline you measure before
+changing anything. This is the number that tells you whether
+self-service is working.</li>
+<li>Share of accounts with two or more methods registered, by
+population. Self-service cannot serve anyone below two.</li>
+<li>Self-service resets completed per week.</li>
+<li>Tier 1 resolution rate on access contacts, before and after the §6
+read-only visibility decision. Report monthly with the <a href="/sops/GOV-06">GOV-06</a> pack.
+Measure the baseline first — without it, any later claim of improvement
+is unfalsifiable.</li>
+</ul>
+<h2 id="10-records">10. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>The confirmed §3 values, with the date and who confirmed them</td>
+<td>This document</td>
+<td>Life of the standard</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-06">ACC-06</a> verification tier for every assisted reset</td>
+<td>Ticket — required field</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>TAP issues: who authorised, why, tier used</td>
+<td>Ticket + Entra audit log</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>The §6 read-only visibility decision</td>
+<td>IT governance record</td>
+<td>Life of the decision</td>
+</tr>
+<tr class="odd">
+<td>Weekly assisted-reset counts</td>
+<td><a href="/sops/GOV-06">GOV-06</a> monthly pack</td>
+<td>3 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-related-documents">11. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tier 1 Guide</td>
+<td>Your password reset and account access guide</td>
+<td>This document answers two gaps such guides usually have. Revise the
+guide to cite this one.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA Enrollment, Reset &amp; Account Recovery</td>
+<td>Method registration, TAP issue, and the phishing-resistant
+migration.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-05">ACC-05</a></td>
+<td>Account Lockout Triage</td>
+<td>Distinguishes a lockout from a forgotten password — §5.3 and §7 both
+depend on it.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-06">ACC-06</a></td>
+<td>Identity Verification Before Any Account Action</td>
+<td>Mandatory gate before anything in §7.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-07">ACC-07</a></td>
+<td>Privileged &amp; Administrative Account Standard</td>
+<td>Stricter length, and no self-service.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-15">ACC-15</a></td>
+<td>Acceptable Use &amp; Credential-Sharing Standard</td>
+<td>The rule behind “never ask for a password” in §4.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments, Priority &amp; Escalation</td>
+<td>Supplies §8.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-05">GOV-05</a></td>
+<td>Knowledge Base Article Standard</td>
+<td>Format for publishing Appendix B.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--desk-card-why-was-my-password-rejected">Appendix A —
+Desk card: “why was my password rejected?”</h2>
+<p>Keep at the desk. Never ask what they tried, and never ask for a
+current password.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>They say</th>
+<th>You say</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Doesn’t meet requirements</td>
+<td>“Try a longer passphrase — three or four unrelated words works
+best.”</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Can’t reuse it</td>
+<td>“Recent passwords are blocked. Try something genuinely different
+rather than adding a number.”</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Worked before, won’t work now</td>
+<td>Take the detail. If it happens twice, escalate — that may be a real
+policy mismatch.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Changed it, laptop wants the old one</td>
+<td>“Connect to the network or VPN, then lock and unlock.” Not a
+password problem.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Keeps asking me to change it</td>
+<td>Check for a temporary password; help them set a permanent one.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Just forgot it</td>
+<td>aka.ms/sspr — stay on the call while they do it.</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Forgot it, and has no MFA registered</td>
+<td>Self-service cannot verify them. Verify per <a href="/sops/ACC-06">ACC-06</a>, escalate to Tier
+2 for a Temporary Access Pass.</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Locked out rather than forgotten</td>
+<td>Go to <a href="/sops/ACC-05">ACC-05</a>. Do not reset — it will not clear a lockout.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--end-user-text-for-publication">Appendix B — End-user
+text for publication</h2>
+<p>Source text for the knowledge base. Format per <a href="/sops/GOV-05">GOV-05</a> before
+publishing.</p>
+<div class="tbl"><table>
+<tbody>
+<tr class="odd">
+<td>Resetting your password</td>
+<td>Go to aka.ms/sspr. You will be verified through one of the security
+methods you registered, then asked for a new password. No need to
+contact anyone.</td>
+</tr>
+<tr class="even">
+<td>Choosing a password</td>
+<td>Length matters more than symbols. Three or four unrelated words make
+a strong password that you can actually remember. Avoid anything
+containing the organization’s name, its mascot, a season or a year.</td>
+</tr>
+<tr class="odd">
+<td>If reset does not work</td>
+<td>You probably have fewer than two security methods registered, which
+means we cannot verify you automatically. Contact the service desk — you
+will be asked to confirm your identity in person or on a short video
+call with photo ID.</td>
+</tr>
+<tr class="even">
+<td>Register a second method now</td>
+<td>The five minutes it takes today is what lets you fix your own
+account at 11pm the night before a deadline. Go to
+aka.ms/mysecurityinfo.</td>
+</tr>
+<tr class="odd">
+<td>We will never ask for your password</td>
+<td>Not by email, not on the phone, not in a ticket. Anyone who does is
+not IT — report it.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

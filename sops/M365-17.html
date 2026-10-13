@@ -1,0 +1,935 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M365-17 · Microsoft Forms &amp; Bookings Standard | Known Good</title>
+<meta name="description" content="When a Form is the right instrument and when it is not, what may be collected in one, who owns it — and why Bookings appointments must never end up inside the ticket record.">
+<meta property="og:title" content="M365-17 · Microsoft Forms &amp; Bookings Standard | Known Good">
+<meta property="og:description" content="When a Form is the right instrument and when it is not, what may be collected in one, who owns it — and why Bookings appointments must never end up inside the ticket record.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="m365-17--microsoft-forms--bookings-standard">M365-17 · Microsoft
+Forms &amp; Bookings Standard</h1>
+<p><em>When a Form is the right instrument and when it is not, what may
+be collected in one, who owns it — and why Bookings appointments must
+never end up inside the ticket record.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/M365-17-Microsoft-Forms-and-Bookings-Standard.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/M365-17.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/M365-17">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>M365-17</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>A. Microsoft 365</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 1 — the front door answers “can I use a Form for this?” from §2
+and §3 in the conversation. Tier 2 creates group-owned Forms and
+Bookings pages. Tier 3 owns the tenant settings in §10.</td>
+</tr>
+<tr class="odd">
+<td>Primary audience</td>
+<td>End users who build Forms and Bookings pages — departmental staff
+and administrators. Also serves IT administrators, for §9 and §10.</td>
+</tr>
+<tr class="even">
+<td>Review cycle</td>
+<td>Annually, and whenever a platform constraint in §4 is found to have
+changed. §4 is the section that goes stale.</td>
+</tr>
+<tr class="odd">
+<td>Relationship to <a href="/sops/GOV-02">GOV-02</a></td>
+<td><a href="/sops/GOV-02">GOV-02</a> governs what a ticket is and how the queue is kept clean. §9
+of this document is the Bookings half of that problem, and in many
+service desks it is a large half.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose--two-tools-two-entirely-different-problems">1. Purpose
+— two tools, two entirely different problems</h2>
+<p>Forms and Bookings are the two Microsoft 365 tools any member of
+staff can stand up in five minutes without asking anybody. That is
+mostly a good thing, and this document does not propose to change it.
+Two specific things go wrong, and neither is anyone’s fault.</p>
+<p>The first is that platform limits are rediscovered per project. A
+typical example: somebody establishes, in a Teams thread, that Microsoft
+Forms will not accept file uploads from external or anonymous
+respondents — the uploaded file has to land in the tenant’s OneDrive or
+SharePoint, and a respondent with no identity in the tenant has nowhere
+to put it. That is a correct and useful finding. It gets recorded in a
+chat message. The next project that needs a document from somebody
+outside will find it out again, usually about a week before the
+deadline, and will spend the same afternoon on it.</p>
+<p>The second is that Bookings writes into the record. When Bookings
+confirmations are addressed to the service desk, every appointment
+becomes a row in the ticketing system. Pull a ticket export to measure
+the desk and a large share of the rows turn out to be appointments and
+automated alerts rather than genuine human tickets. Measuring the
+service desk then requires forensic work before it can begin, and any
+baseline that comes out of it is qualified.</p>
+<p>So this standard does two jobs: it writes the platform down once, in
+§4, so it stops being rediscovered, and it keeps Bookings out of the
+ticket queue, in §9.</p>
+<h2 id="2-when-a-form-is-the-right-tool-and-when-it-is-not">2. When a
+Form is the right tool, and when it is not</h2>
+<p>Most of the trouble in this document is avoided by asking one
+question before building anything: is a Form actually the instrument for
+this?</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>If you need to…</th>
+<th>Use</th>
+<th>Because</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Collect structured answers from people who have organization
+accounts</td>
+<td>A Form. This is what it is for.</td>
+<td>Authenticated, attributable, and the responses land where the
+organization controls them.</td>
+</tr>
+<tr class="even">
+<td>Collect a file from somebody outside the organization</td>
+<td>Not a Form. See §4.1.</td>
+<td>It does not work, it never has, and the failure only becomes visible
+after the form has gone out.</td>
+</tr>
+<tr class="odd">
+<td>Take a payment</td>
+<td>Never a Form. The office that owns the payment process.</td>
+<td>Card data in a Form is a compliance problem that nobody in the
+conversation is authorised to accept (§3).</td>
+</tr>
+<tr class="even">
+<td>Let people book a slot or an appointment</td>
+<td>Bookings, not a Form.</td>
+<td>A Form cannot hold a slot, prevent a double booking or send a
+reminder. People build appointment Forms and then manage the clashes by
+hand.</td>
+</tr>
+<tr class="odd">
+<td>Raise something that IT needs to act on</td>
+<td>The service desk intake (<a href="/sops/GOV-02">GOV-02</a>).</td>
+<td>A Form that emails a person is not a ticket. It has no priority, no
+owner, no history and no SLA.</td>
+</tr>
+<tr class="even">
+<td>Route something through approvals and onward steps</td>
+<td>Not a Form. Power Platform (<a href="/sops/M365-19">M365-19</a>) or an application
+(<a href="/sops/ACC-16">ACC-16</a>).</td>
+<td>Forms collects. It does not route, approve, remind or escalate, and
+building those around it by hand is how an unregistered flow
+starts.</td>
+</tr>
+<tr class="odd">
+<td>Collect genuinely anonymous feedback</td>
+<td>A Form — but read §6 first.</td>
+<td>“Anonymous” has a precise technical meaning and an imprecise
+everyday one, and the gap is where promises get broken.</td>
+</tr>
+<tr class="even">
+<td>Collect anything about a named person that will be kept</td>
+<td>A Form is fine as the collector — but §3, §5 and §7 apply from the
+first response.</td>
+<td>The responses are the record. What matters is not the form, it is
+the workbook it fills.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="3-what-may-be-collected-in-a-form">3. What may be collected in a
+Form</h2>
+<p>The general rule is short: the handling rules that apply to a piece
+of data do not change because it arrived through a Form. Classification
+follows the sensitive classes proposed in <a href="/sops/M365-15">M365-15</a>, and the responses
+inherit the permissions of wherever they land (§7).</p>
+<blockquote>
+<p><strong>Three things never go in a Microsoft Form. No exceptions, no
+approvals, no “just this once”.</strong></p>
+<p>SOCIAL SECURITY NUMBERS, in whole or in part. Not the last four
+digits either — a partial SSN alongside a name and a date of birth is
+not a de-identified value, it is a slightly shorter identifier.</p>
+<p>PAYMENT CARD DATA — number, expiry, security code, or an image of a
+card. Collecting card data in a Form brings the organization’s card
+handling into a scope nobody in that conversation has the authority to
+accept, and the response workbook then has to be treated as cardholder
+data for as long as it exists.</p>
+<p>HEALTH INFORMATION — including anything collected for a disability
+accommodation, a medical absence, an immunisation record, or a wellbeing
+check. There are offices that own each of these and they have
+instruments that are built for it.</p>
+<p>The reason is structural, not a matter of care. Forms has no
+field-level protection, no masking, and no way to make one answer more
+protected than another; the responses arrive in an ordinary workbook
+that is as shareable as any other file; and the person who builds the
+form is very often not the person who would be asked to assess the risk.
+If you have been asked to collect one of these, that is the moment to
+ask the service desk rather than to build it carefully.</p>
+</blockquote>
+<p>Below that hard line, judgement applies:</p>
+<ul>
+<li>Regulated client records, personnel matters and payroll data may be
+collected in a Form only where the form is group-owned (§5), restricted
+to authenticated respondents (§6), and the responses land in a site with
+the right handling controls (§7). If any of those three is not true, the
+answer is no.</li>
+<li>Do not collect a field because it might be useful. Every field is a
+field that has to be protected, retained and eventually disposed of, and
+the ones that get the organization into difficulty are almost always the
+ones nobody needed.</li>
+<li>A form that asks for an organization password, or that asks somebody
+to “verify their account”, is a phishing form whatever the intent behind
+it. IT will never ask for that and neither should you (<a href="/sops/ACC-15">ACC-15</a> §4,
+<a href="/sops/M365-22">M365-22</a>).</li>
+</ul>
+<h2 id="4-recorded-platform-constraints">4. Recorded platform
+constraints</h2>
+<p>Each line in this section is a constraint that has cost somebody an
+afternoon. The rule is that a constraint discovered twice is a
+documentation failure rather than a Microsoft one.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Constraint</th>
+<th>What it means in practice</th>
+<th>Confirmed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>File uploads from external or anonymous respondents</td>
+<td>Not possible. An uploaded file has to be written into the tenant —
+the owner’s OneDrive, or the owning group’s SharePoint site — and a
+respondent with no identity in the tenant has no way to write it. The
+upload question is simply not offered when the form is open to anyone.
+Design around it before the form goes out (§4.1).</td>
+<td>Standing</td>
+</tr>
+<tr class="even">
+<td>Upload size and count limits, internally</td>
+<td>Even internally there is a limit on file count and size, and it is
+lower than people assume. Verify the current figure before designing a
+process around uploads, and record it on this line at the next
+review.</td>
+<td>Not verified</td>
+</tr>
+<tr class="odd">
+<td>Forms is not a workflow tool</td>
+<td>No approvals, routing, reminders or escalation, and no conditional
+logic beyond simple branching. What people build around a Form to supply
+those is either manual work somebody will stop doing, or an unregistered
+flow (<a href="/sops/M365-19">M365-19</a>).</td>
+<td>Standing</td>
+</tr>
+<tr class="even">
+<td>Anonymous responses cannot be de-anonymised</td>
+<td>By design, and correctly. It also means you cannot follow up,
+correct a mistaken entry, or enforce one response per person. IT cannot
+recover the identity later; there is nothing to recover (§6).</td>
+<td>Standing</td>
+</tr>
+<tr class="odd">
+<td>Responses land in an ordinary workbook</td>
+<td>Every sharing, permission and retention rule that applies to a
+spreadsheet applies to them (<a href="/sops/M365-11">M365-11</a>, <a href="/sops/M365-16">M365-16</a>). The Form is not the
+record. The workbook is.</td>
+<td>Standing</td>
+</tr>
+<tr class="even">
+<td>Deleting the Form deletes the responses</td>
+<td>There is no habit of recovery here that people can rely on. Export
+first if the responses matter, and put the export where records go
+(§7).</td>
+<td>Standing</td>
+</tr>
+<tr class="odd">
+<td>Forms does not enforce classification</td>
+<td>A field labelled “SSN” is a text field to the platform. Nothing
+warns, nothing blocks, nothing labels. §3 is enforced by the person
+building the form and by nobody else.</td>
+<td>Standing</td>
+</tr>
+<tr class="even">
+<td>A link is not an access control</td>
+<td>An “anyone can respond” link is public the moment somebody forwards
+it, and people forward things (§6). Long surveys and high-volume
+collections also hit platform ceilings on questions and responses —
+check before you build.</td>
+<td>Standing</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>How this section is maintained — and it is the whole point of
+the section</strong></p>
+<p>When anybody in IT establishes a platform limit the hard way, it is
+added here as one line with a date, raised as a document amendment under
+<a href="/sops/GOV-01">GOV-01</a>. That is the entire mechanism. It requires no project and no
+meeting.</p>
+<p>Lines marked “Not verified” are honest gaps: the constraint is real,
+the current number is not confirmed, and stating that is more useful
+than printing a figure somebody would then rely on.</p>
+</blockquote>
+<h3
+id="41-what-to-do-instead-when-you-need-a-file-from-outside-the-organization">4.1
+What to do instead when you need a file from outside the
+organization</h3>
+<ol type="1">
+<li>Create or identify a SharePoint document library for the purpose,
+owned by the department (<a href="/sops/M365-10">M365-10</a>).</li>
+<li>Share it with a link scoped to the people who need to upload, with
+an expiry, under <a href="/sops/M365-14">M365-14</a>. Where the population is genuinely unknown in
+advance, use a request-files link into a folder they cannot read
+back.</li>
+<li>Use the Form for the structured answers and the library for the
+file, with a reference number joining the two. Two instruments, each
+doing what it is built for.</li>
+<li>Where the volume is small, a monitored departmental shared mailbox
+is often the better answer (<a href="/sops/M365-03">M365-03</a>). People know how to attach a file
+to an email.</li>
+<li>If the file contains anything in §3, none of the above applies and
+the request goes to the office that owns that data.</li>
+</ol>
+<h2 id="5-ownership--a-form-owned-by-a-person-dies-with-the-person">5.
+Ownership — a Form owned by a person dies with the person</h2>
+<p>A Form created in the ordinary way belongs to the individual who
+created it, and lives in their account. When they change role or leave
+and their account is handled under <a href="/sops/ACC-01">ACC-01</a> §7, the form and its responses
+go with it. Nobody is notified, because nothing has failed — the form
+simply stops being anybody’s. This is the same pathology as organization
+records held in a personal OneDrive on a different surface, and it has
+the same fix: the asset belongs to the group, not to the person who
+happened to build it.</p>
+<blockquote>
+<p><strong>The rule</strong></p>
+<p>Any Form that supports an organization process — anything a
+department depends on, anything collecting data that will be kept,
+anything published beyond the person who built it — is created as a
+GROUP form, owned by a Microsoft 365 group.</p>
+<p>This is one extra click at the moment of creation and it is the
+entire control. A group form can be handed on, reviewed, and found by
+somebody other than its author. A personal form can be transferred only
+by its owner, and only while they still have an account — which is to
+say, only before the moment you need it.</p>
+</blockquote>
+<ol type="1">
+<li>Create it in the group. In Forms, choose a new group form and pick
+the department’s group rather than accepting the default of your own
+account.</li>
+<li>If it already exists as a personal form, move it now, while you
+still can. Forms supports transferring a form to a group. Doing this
+today takes two minutes; doing it after somebody has left is not
+possible.</li>
+<li>Personal forms remain entirely appropriate for personal things — a
+straw poll in a meeting, a lunch order, a quick check with four
+colleagues. The test is whether anybody but you would miss it.</li>
+<li>The group owner is accountable for what it collects (§3), who can
+read the responses (§7), and closing it when the thing it was for has
+finished. An open form collecting responses nobody reads is a data
+holding with no purpose.</li>
+<li>At separation, the manager checklist asks about Forms and Bookings
+pages alongside sites and mailboxes (<a href="/sops/ACC-01">ACC-01</a> §7.2, <a href="/sops/ACC-12">ACC-12</a> Appendix A).
+This is the only routine moment at which an orphaned form is
+caught.</li>
+</ol>
+<blockquote>
+<p><strong>Open question — the forms nobody knows exist</strong></p>
+<p>IT cannot currently produce a list of every Form in the tenant with
+its owner. Administrative reporting for Forms is thin, and this document
+is honest that §5 is therefore enforced at the moment of creation and by
+convention, not by audit.</p>
+<p>ACTION: Tier 3 to establish what reporting is available — group forms
+are discoverable through the groups that own them, personal forms
+largely are not — and report to Tier 4 within 90 days of approval. If
+nothing useful exists, say so, and rely on §5 and the leaver checklist
+rather than claiming a control the organization does not have. Owner:
+Tier 3, reporting to the Head of IT.</p>
+</blockquote>
+<h2 id="6-anonymous-or-authenticated">6. Anonymous or authenticated</h2>
+<p>This is a two-click setting with consequences people do not expect,
+in both directions.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Setting</th>
+<th>What it actually means</th>
+<th>Use when</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Only people in my organisation can respond, name recorded</td>
+<td>The respondent signs in and their name and address are captured
+against the response.</td>
+<td>The default for anything operational. Anything you may need to
+follow up on, anything where one response per person matters, anything
+collecting the classes in §3’s second half.</td>
+</tr>
+<tr class="even">
+<td>Only people in my organisation can respond, name not recorded</td>
+<td>The respondent still has to sign in, so the audience is restricted,
+but the form owner does not see who said what.</td>
+<td>Internal feedback where anonymity has been promised. This is the
+right setting for most “anonymous” surveys, and it is not the one people
+usually pick.</td>
+</tr>
+<tr class="odd">
+<td>Anyone with the link can respond</td>
+<td>No sign-in, no identity, and the form is open to the internet the
+moment the link leaves the building.</td>
+<td>Genuine public collection — an event registration, an enquiry form.
+Never for anything in §3, and never where a response needs to be
+attributable.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>If you promise anonymity, do not then ask for department, site, role
+and length of service. In a department of six people, three demographic
+questions are a name. This is the most common way an anonymous survey
+stops being anonymous, and it is always accidental.</li>
+<li>An anonymous form cannot be de-anonymised afterwards. If somebody
+discloses something that needs a response, there is no route back to
+them — so say in the form itself where they should go if they want a
+reply. For the same reason, one response per person cannot be
+enforced.</li>
+<li>Restricting to the organisation is not the same as restricting to
+the right people. Everybody in the tenant can respond, including
+temporary workers and, depending on §10, guests. Where the audience
+matters, say so in the form and check the responses.</li>
+</ul>
+<h2 id="7-where-responses-live-and-how-long-they-last">7. Where
+responses live, and how long they last</h2>
+<ul>
+<li>Responses to a GROUP form live in the owning group’s SharePoint
+site. Responses to a PERSONAL form live in the creator’s OneDrive. That
+single sentence is most of the argument for §5.</li>
+<li>The response workbook is an ordinary file. Whoever can reach the
+site or the OneDrive can reach the responses, subject to the permissions
+that are actually set there rather than the ones people assume
+(<a href="/sops/M365-11">M365-11</a>).</li>
+<li>Exporting to Excel creates a copy, and a copy in somebody’s
+Downloads folder is outside every control the organization has. If the
+responses matter, the export goes to the departmental site
+(<a href="/sops/M365-12">M365-12</a>).</li>
+<li>Retention follows the location, not the form. Responses in a group
+site are covered by the site’s policy; responses in a OneDrive are
+covered by <a href="/sops/M365-16">M365-16</a> §5, which is to say they are at risk once the account
+is unlicensed. A survey with 400 responses is a record.</li>
+<li>CLOSE a form to stop new responses. DELETE it only as a deliberate
+disposition decision, with the responses either exported to the right
+place first or genuinely not needed. Tidying up is not a disposition
+process (<a href="/sops/M365-16">M365-16</a> §2).</li>
+<li>Where a form collects anything in the sensitive classes of <a href="/sops/M365-15">M365-15</a>,
+name in the form itself how long responses will be kept and what they
+will be used for. People answer more honestly when they know, and it
+forces the builder to decide.</li>
+</ul>
+<h2 id="8-bookings--creation-naming-and-staff-calendars">8. Bookings —
+creation, naming and staff calendars</h2>
+<h3 id="81-who-may-create-a-bookings-page">8.1 Who may create a Bookings
+page</h3>
+<p>Bookings pages are requested through the service desk and created by
+Tier 2, owned by a department rather than an individual. The reasons are
+§5’s reasons, plus §9’s: a Bookings page publishes an address, exposes
+staff calendars, and writes notifications into mailboxes — three things
+that should be decided rather than discovered.</p>
+<ul>
+<li>Every page has a named departmental owner and a named deputy.</li>
+<li>Every page has a stated purpose and a review date, and is reviewed
+annually with everything else under <a href="/sops/ACC-17">ACC-17</a>.</li>
+<li>A page for a service that no longer exists still accepts bookings.
+Retiring a service includes retiring its booking page, and that is the
+owner’s job.</li>
+</ul>
+<h3 id="82-naming">8.2 Naming</h3>
+<p>The name appears in the invitation, in the calendar entry, in the
+confirmation email and often in a URL sent to people outside the
+organization. It is a public artefact.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Instead of</th>
+<th>Name it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“Appointments”</td>
+<td>Records Office — Records Requests</td>
+</tr>
+<tr class="even">
+<td>“Book Now”</td>
+<td>Finance — Expense Claim Consultations</td>
+</tr>
+<tr class="odd">
+<td>A person’s name and calendar</td>
+<td>HR — New Starter Onboarding. Staff are assigned inside the page; the
+page is the service, not the person.</td>
+</tr>
+<tr class="even">
+<td>“Test”, “New Booking Page”, “Copy of…”</td>
+<td>Either name it properly at creation or delete it. Test pages that
+survive become live pages nobody owns.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Format: <Department> — <Service>. The department comes first because
+that is what somebody scanning a list of pages needs. Align to the
+object naming conventions in <a href="/sops/ACC-02">ACC-02</a> and <a href="/sops/M365-07">M365-07</a> where they apply.</p>
+<h3 id="83-staff-calendar-exposure--the-part-people-do-not-expect">8.3
+Staff calendar exposure — the part people do not expect</h3>
+<p>Adding somebody as staff on a Bookings page connects their calendar
+to a booking engine. Where availability is set to follow the Microsoft
+365 calendar, the page reads that calendar continuously and hands out
+whatever it finds free.</p>
+<ul>
+<li>Nobody is added as Bookings staff without being told and agreeing.
+Becoming bookable is a change to somebody’s working life, not a
+configuration detail, and it is usually done by a colleague with good
+intentions and no conversation.</li>
+<li>Set business hours on the page rather than relying on the calendar
+to be complete. A personal appointment marked “free”, or a block of
+thinking time nobody put in the calendar, becomes a slot a user can
+take.</li>
+<li>Set buffer time, minimum lead time and maximum lead time at
+creation. A page that lets somebody book a 9.00 appointment at 8.55 will
+generate complaints, and they will arrive at the service desk rather
+than at the department that configured it.</li>
+<li>Decide deliberately whether staff names and addresses are published
+on an externally-facing page. For most externally-facing services the
+answer is the service address, not the individual.</li>
+<li>Where a page is external-facing, the confirmation and reminder text
+is part of the organization’s voice. Read it once before
+publishing.</li>
+</ul>
+<h2 id="9-bookings-must-not-write-into-the-ticket-queue">9. Bookings
+must not write into the ticket queue</h2>
+<blockquote>
+<p><strong>The rule</strong></p>
+<p>A Bookings page does not write into the ticketing system. No
+confirmation, reminder, cancellation, reschedule notice or staff
+notification from a Bookings page is addressed to the service desk
+address, or to any other address that creates a ticket.</p>
+<p>This applies to pages owned by IT as well. Especially to pages owned
+by IT.</p>
+</blockquote>
+<p>The reason shows up the first time anybody tries to report on the
+queue. Producing a ticket report means taking the raw export and working
+out what each row actually is: Bookings appointments, automated alerts,
+genuine human tickets. Establishing even that requires heuristics across
+submitter name, address and title, with a residue of rows set aside for
+manual review.</p>
+<p>None of that is analysis. It is archaeology, performed before any
+analysis can start, on a queue that should have been able to answer the
+question directly.</p>
+<blockquote>
+<p><strong>And the figures will not reconcile — which is the argument,
+not an aside</strong></p>
+<p>Categories counted by heuristic rarely add back up to the total. A
+few dozen rows end up in two categories, or in the manual-review pile,
+or are caught by a filter applied at a different point.</p>
+<p>Nobody does anything wrong, and the gap is usually small. The problem
+is that it cannot be resolved without going back to the raw export and
+repeating the work, because the queue itself does not distinguish an
+appointment from a ticket. A queue that has to be reconstructed to be
+counted cannot produce a baseline anybody should build an SLA on
+(<a href="/sops/GOV-06">GOV-06</a>).</p>
+<p>That is why this is a rule and not a suggestion.</p>
+</blockquote>
+<h3 id="91-how-it-is-implemented">9.1 How it is implemented</h3>
+<ol type="1">
+<li>Bookings notifications are addressed to a departmental shared
+mailbox (<a href="/sops/M365-03">M365-03</a>) or to the assigned staff member. Never to an intake
+address.</li>
+<li>Tier 3 audits every existing Bookings page in the tenant for
+notification addresses that reach the service desk queue, and corrects
+them. OWNER: Tier 3. DUE: within 30 days of approval. This is a finite
+task with a known end.</li>
+<li>Where a booking genuinely should create a ticket — an IT appointment
+that ought to be tracked and closed — that is designed deliberately
+under <a href="/sops/GOV-02">GOV-02</a> with its own ticket category and its own queue treatment,
+not produced as a side effect of a confirmation email nobody chose.</li>
+<li>Appointments that must remain visible in the ticketing system for a
+legitimate reason are categorised so that they can be excluded from
+ticket counts at source. Excluding them at source is better than
+excluding them in the report, because a report is written by one person
+once and the queue is read by everybody forever.</li>
+<li><a href="/sops/GOV-02">GOV-02</a> owns the categorisation. This document owns the rule that
+produces the need for it.</li>
+</ol>
+<h2 id="10-tenant-settings">10. Tenant settings</h2>
+<p>Tier 3 owns these; changes go through <a href="/sops/M365-21">M365-21</a>. Recorded here so that
+the intent sits alongside the standard rather than only in a
+console.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Setting</th>
+<th>Intent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Who can create Forms</td>
+<td>All licensed users. Restricting this would push people to consumer
+survey tools outside the tenant, which is worse in every respect. The
+control is §3 and §5, not prohibition.</td>
+</tr>
+<tr class="even">
+<td>Forms external sharing / anonymous responses</td>
+<td>Permitted, subject to §6. Turning it off would break legitimate
+public collection.</td>
+</tr>
+<tr class="odd">
+<td>Forms credential-harvesting detection</td>
+<td>Left enabled. A form that asks for a password is blocked by the
+platform, which is a genuine protection given how convincing an
+internal-looking Form can be (<a href="/sops/M365-22">M365-22</a>).</td>
+</tr>
+<tr class="even">
+<td>Who can create Bookings pages</td>
+<td>Restricted to a named group. End-user creation is off — this is what
+makes §8.1 a standard rather than a wish.</td>
+</tr>
+<tr class="odd">
+<td>Bookings staff approval</td>
+<td>Staff must approve being added to a page where the platform supports
+it, so §8.3 is a configuration and not a courtesy.</td>
+</tr>
+<tr class="even">
+<td>Bookings external publishing default</td>
+<td>Off by default; enabled per page on request, so that publishing to
+the internet is a decision.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-service-levels">11. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“Can I use a Form for this?”</td>
+<td>Answered at Tier 1 from §2, in the conversation, without a
+ticket.</td>
+</tr>
+<tr class="even">
+<td>Group form creation, or moving a personal form to a group</td>
+<td>P3 — 2 coverage days.</td>
+</tr>
+<tr class="odd">
+<td>Bookings page creation, complete request</td>
+<td>P3 — 3 coverage days.</td>
+</tr>
+<tr class="even">
+<td>A form found to be collecting anything in §3</td>
+<td>Same coverage day. The form is closed first and discussed
+afterwards.</td>
+</tr>
+<tr class="odd">
+<td>Bookings notification found writing into the ticket queue</td>
+<td>Corrected same coverage day (§9.1).</td>
+</tr>
+<tr class="even">
+<td>Adding a newly discovered constraint to §4</td>
+<td>At the point of discovery, by whoever discovered it, under
+<a href="/sops/GOV-01">GOV-01</a>.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="12-records">12. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Form responses</td>
+<td>Owning group’s SharePoint site (§7)</td>
+<td>Per the site’s retention policy, <a href="/sops/M365-16">M365-16</a></td>
+</tr>
+<tr class="even">
+<td>Exports of responses</td>
+<td>Departmental site — never a personal drive</td>
+<td>As the record they constitute</td>
+</tr>
+<tr class="odd">
+<td>Bookings page register: page, owner, deputy, purpose, review
+date</td>
+<td>IT register</td>
+<td>Life of the page + 1 year</td>
+</tr>
+<tr class="even">
+<td>Bookings appointment history</td>
+<td>Bookings calendar / owning mailbox</td>
+<td>Per <a href="/sops/M365-16">M365-16</a></td>
+</tr>
+<tr class="odd">
+<td>Staff consent to being added to a booking page</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Constraint discoveries added to §4</td>
+<td>This document, via <a href="/sops/GOV-01">GOV-01</a></td>
+<td>Permanent — the point is that it accumulates</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13-related-documents">13. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/GOV-02">GOV-02</a></td>
+<td>Service Desk Intake, Ticket Quality &amp; Categorisation</td>
+<td>§9 is the Bookings half of ticket hygiene. <a href="/sops/GOV-02">GOV-02</a> owns the
+categorisation.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-15">M365-15</a></td>
+<td>Data Classification &amp; Handling</td>
+<td>What §3 means by sensitive.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-16">M365-16</a></td>
+<td>Retention, Legal Hold &amp; eDiscovery</td>
+<td>§7 — responses are records and follow the location they land
+in.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-11">M365-11</a></td>
+<td>SharePoint &amp; OneDrive Permission Management</td>
+<td>Who can read the response workbook.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-14">M365-14</a></td>
+<td>External Sharing &amp; Guest Access Governance</td>
+<td>§4.1 — the supported way to receive a file from outside.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-03">M365-03</a></td>
+<td>Shared Mailbox Standard</td>
+<td>Where Bookings notifications go instead of the queue.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-19">M365-19</a></td>
+<td>Power Platform Governance</td>
+<td>What people build around a Form when Forms will not do it (§2).</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>§7 leaver checklist — the moment an orphaned form is caught.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-17">ACC-17</a></td>
+<td>Periodic Access Review</td>
+<td>Annual review of Bookings pages and their owners.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-21">M365-21</a></td>
+<td>Tenant Configuration Change Control</td>
+<td>Changes to §10.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-01">GOV-01</a></td>
+<td>SOP Catalog Governance</td>
+<td>How a new §4 line gets added.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments, Priority &amp; Escalation</td>
+<td>Supplies §11.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--before-you-publish-a-checklist">Appendix A — Before
+you publish: a checklist</h2>
+<p>Five minutes before the form or page goes out. The Evidence column is
+what you would point at if somebody asked.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>✓</th>
+<th>Step</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>☐</td>
+<td>The form is owned by a group, not by me personally (§5)</td>
+<td>The group name shown in Forms</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>It collects nothing in the hard-stop list — no SSN, no card data, no
+health information (§3)</td>
+<td>The question list</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>The audience setting matches what I have promised respondents
+(§6)</td>
+<td>The setting, and the wording of the form</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>If I promised anonymity, nothing in the questions identifies a small
+group (§6)</td>
+<td>The question list, read as a stranger would</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>I am not asking external respondents to upload a file (§4)</td>
+<td>The question types used</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>I know where the responses will land and who can read them (§7)</td>
+<td>The site or OneDrive, and its permissions</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>BOOKINGS: the page is named <Department> — <Service> (§8.2)</td>
+<td>The page name</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>BOOKINGS: every member of staff on the page knows they are on it
+(§8.3)</td>
+<td>The conversation, or the ticket</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>BOOKINGS: business hours, buffer and lead times are set — not left
+at default (§8.3)</td>
+<td>The page configuration</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>BOOKINGS: no notification address reaches the service desk address
+or creates a ticket (§9)</td>
+<td>The notification settings</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>There is a named owner and a deputy, and a date to review this</td>
+<td>The register entry</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--for-end-users-the-plain-version">Appendix B — For
+end users: the plain version</h2>
+<p>Source text for the knowledge base, format per <a href="/sops/GOV-05">GOV-05</a>. This is the
+version people will actually read.</p>
+<p>Forms and Bookings are genuinely useful and you do not need
+permission to use them for ordinary things. A few points will save you
+an afternoon.</p>
+<div class="tbl"><table>
+<tbody>
+<tr class="odd">
+<td>Build it in your group, not in your own account</td>
+<td>When you create a Form, choose your department’s group rather than
+accepting the default. It takes one extra click. A form built in your
+personal account belongs to your account, and if you change role or
+leave, it goes with you — along with every response in it. Nobody gets a
+warning; it just stops being anybody’s. If you have already built one
+that your department relies on, move it into the group today. You can do
+that yourself, and you can only do it while you still have the
+account.</td>
+</tr>
+<tr class="even">
+<td>People outside the organization cannot upload files to a Form</td>
+<td>This one catches everybody. Microsoft Forms cannot accept a file
+from somebody who does not have an organization account, because the
+file has to be saved into our own storage and they have nowhere to save
+it to. It is not a setting and it is not something IT can turn on. If
+you need a document from a job applicant, a customer or a vendor, ask
+the service desk — we will set up a folder they can upload into, or a
+mailbox they can email.</td>
+</tr>
+<tr class="odd">
+<td>Three things never go in a Form</td>
+<td>Social Security numbers, card details, and anything medical. Not
+even the last four digits of an SSN, and not even “just for this one
+event”. If somebody has asked you to collect one of these, that is
+exactly the moment to ask us — there is nearly always a proper route,
+and it is usually quicker than the workaround.</td>
+</tr>
+<tr class="even">
+<td>“Anonymous” means something specific</td>
+<td>If you promise anonymity, set the form so it does not record names —
+and then be careful what else you ask. In a team of six, asking for
+department, role and length of service is asking for their name. And it
+stays anonymous: if somebody tells you something worrying, there is no
+way for anyone, including us, to find out who they were.</td>
+</tr>
+<tr class="odd">
+<td>The responses are a real record</td>
+<td>They live in a spreadsheet in your group’s site, and anyone who can
+get into that site can read them. If you export to Excel, that copy is
+out of our reach — please keep it in the department’s site. And when the
+thing is finished, close the form rather than deleting it, unless you
+are sure nobody needs what is in it.</td>
+</tr>
+<tr class="even">
+<td>Use Bookings for appointments, not a Form</td>
+<td>A Form cannot hold a slot or stop two people booking the same time,
+so people end up sorting out clashes by hand. Bookings does all of that,
+sends the reminders, and handles cancellations. Ask us for a page and we
+will set it up with your business hours and a sensible amount of
+notice.</td>
+</tr>
+<tr class="odd">
+<td>Tell colleagues before you add them to a booking page</td>
+<td>Adding somebody as staff makes them bookable and connects the page
+to their calendar. That is a real change to someone’s day and it should
+be a conversation first. And if a slot looks free in their calendar the
+page will offer it, so set proper business hours rather than relying on
+the calendar being complete.</td>
+</tr>
+<tr class="even">
+<td>Booking confirmations must not go to the service desk</td>
+<td>Please do not put the service desk address on a Bookings page. Every
+confirmation becomes a ticket, and when anyone tries to count the real
+tickets, separating out the appointments takes days. Send confirmations
+to your departmental mailbox instead — and if you are not sure which
+address that is, or whether a Form is the right tool at all, just ask.
+There is no ticket needed and nobody minds being asked.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

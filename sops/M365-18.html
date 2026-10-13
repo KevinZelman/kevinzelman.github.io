@@ -1,0 +1,913 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M365-18 · Generative AI &amp; Copilot Use in Microsoft 365 | Known Good</title>
+<meta name="description" content="What organization data may be put into which assistant — and why deploying Copilot across a tenant whose sharing has never been reviewed is how an organization discovers what it had been over-sharing.">
+<meta property="og:title" content="M365-18 · Generative AI &amp; Copilot Use in Microsoft 365 | Known Good">
+<meta property="og:description" content="What organization data may be put into which assistant — and why deploying Copilot across a tenant whose sharing has never been reviewed is how an organization discovers what it had been over-sharing.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="m365-18--generative-ai--copilot-use-in-microsoft-365">M365-18 ·
+Generative AI &amp; Copilot Use in Microsoft 365</h1>
+<p><em>What organization data may be put into which assistant — and why
+deploying Copilot across a tenant whose sharing has never been reviewed
+is how an organization discovers what it had been over-sharing.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/M365-18-Generative-AI-and-Copilot-Use-in-Microsoft-365.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/M365-18.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/M365-18">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>M365-18</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>A. Microsoft 365</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 4 — IT Management owns this document and every decision in it.
+Tier 3 configures. Tier 1 and Tier 2 answer §3 from the table and
+escalate anything the table does not cover.</td>
+</tr>
+<tr class="odd">
+<td>Primary audience</td>
+<td>Every member of staff, for §2, §3 and Appendix A. IT administrators
+for §5, §7 and §8. IT Leadership and executive leadership for §4, §5 and
+§11.</td>
+</tr>
+<tr class="even">
+<td>Review cycle</td>
+<td>Every six months for the first two years, then annually. This is the
+fastest-moving subject in the catalogue and an annual cycle is not
+sufficient. First review no later than six months after adoption.</td>
+</tr>
+<tr class="odd">
+<td>Relationship to <a href="/sops/M365-11">M365-11</a> and <a href="/sops/M365-14">M365-14</a></td>
+<td>Copilot does not create permission problems. It surfaces the ones
+already present. Those two documents, and the remediation behind them,
+are a prerequisite to deployment rather than a parallel workstream — see
+§5.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose--and-why-this-one-is-written-early">1. Purpose — and
+why this one is written early</h2>
+<p>In many organizations, nobody has yet done anything wrong with a
+generative AI tool — so far as IT is aware. That is the reason to write
+this now rather than the reason not to.</p>
+<p>Every other document in this catalogue exists because something
+happened first — a guest invited with no sponsor, a mailbox request by
+reply-all, a user blocked for the third time. This one usually has no
+such ticket behind it, and should say so rather than dressing a general
+concern up as evidence. What it has instead is timing: assistant
+features are arriving inside tools the organization already pays for,
+switched on by vendors, with no purchase decision and no project to
+attach a review to. By the time there is an incident to point at, the
+practice will be established, and a policy that arrives after the habit
+is arguing with the habit.</p>
+<p>This document answers one question — what organization data may be
+put into which assistant — and names the conditions that must be true
+before Copilot is deployed broadly. It does not write the organization’s
+policy on AI use in people’s own work product, which is senior
+leadership’s (§6), and it does not decide the questions listed in §11,
+which need owners this document cannot assign.</p>
+<blockquote>
+<p><strong>The honest framing for executive leadership</strong></p>
+<p>This is not a document about whether AI is good or bad, and it takes
+no position on that. It is a document about a boundary — the edge of the
+tenant the organization has a contract for — and about what crosses
+it.</p>
+<p>It is recommended for executive leadership approval rather than IT
+approval alone, because it states what may be done with organization
+data by people IT does not manage, in HR, hiring and business contexts
+where IT has no standing to decide. An IT-approved AI policy is an IT
+opinion.</p>
+</blockquote>
+<h2 id="2-the-distinction-almost-everyone-gets-wrong">2. The distinction
+almost everyone gets wrong</h2>
+<p>Almost every argument about AI at work is really an argument about
+one distinction that is rarely made out loud.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>An enterprise assistant, INSIDE the tenant</th>
+<th>A consumer chatbot, OUTSIDE it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>What it is</td>
+<td>Microsoft 365 Copilot, or Copilot Chat signed in with a work
+account, under the data protection terms the organization already
+holds.</td>
+<td>Any assistant the organization has no agreement with — a personal
+ChatGPT, Gemini, Claude or Copilot account, a free web tool, an app on a
+phone.</td>
+</tr>
+<tr class="even">
+<td>Where the content goes</td>
+<td>Within the service boundary the organization has contracted for.
+Prompts and responses are not used to train the underlying model.</td>
+<td>To a third party, on that third party’s terms, which the
+organization has not read, negotiated or accepted.</td>
+</tr>
+<tr class="odd">
+<td>What the organization can do afterwards</td>
+<td>Search it, hold it, export it and account for it under <a href="/sops/M365-16">M365-16</a>,
+because it is inside the estate.</td>
+<td>Nothing. No route to recall it, no audit trail, and no way to answer
+a question about it later.</td>
+</tr>
+<tr class="even">
+<td>What a paste into it is</td>
+<td>Use of an organization tool with organization data. Ordinary.</td>
+<td>A disclosure to a third party — regardless of intent, of whether
+anything bad follows, and of how careful the person was being.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>The question to ask, every time</strong></p>
+<p>It is never “is AI allowed?”. It is “which side of the tenant
+boundary is this tool on, and what have I just put across it?”</p>
+<p>And the honest caveat: this distinction is genuinely hard to see from
+the user’s chair. The consumer and enterprise versions of the same
+assistant frequently look identical, carry the same brand, sit at
+similar web addresses, and differ only by which account happens to be
+signed in. Blaming people for getting that wrong is not a control. §3
+and Appendix A exist so that the answer is a lookup rather than a
+judgement made under time pressure.</p>
+</blockquote>
+<h2 id="3-what-you-may-put-where">3. What you may put where</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>What you may put in it</th>
+<th>What you may never put in it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Microsoft 365 Copilot, signed in with your work account</td>
+<td>organization material you already have access to — your mail, your
+files, meetings you attended, sites you belong to. It reaches what you
+can already reach and nothing else (§4).</td>
+<td>Note the reverse risk instead: anything it shows you that you should
+not be able to see is a permissions defect to report (§4), not a finding
+to act on or forward.</td>
+</tr>
+<tr class="even">
+<td>Copilot Chat with work data protection, signed in with your work
+account</td>
+<td>General questions, drafting, summarising and rewriting. Material you
+paste that is not sensitive under <a href="/sops/M365-15">M365-15</a>.</td>
+<td>The five classes in Appendix A. And do not assume that because a
+colleague sent a link, they were using the protected version.</td>
+</tr>
+<tr class="odd">
+<td>A consumer chatbot — a personal account, any provider</td>
+<td>Public information. Your own general questions. Text you wrote
+yourself containing nothing about a named person, no unpublished
+organization business, and nothing from a system of record.</td>
+<td>Any client record. Any personnel, payroll or conduct matter. Any
+unpublished organization document. Any named individual’s circumstances.
+Anything from the HR system or another system of record. Anything under
+an NDA. Any credential.</td>
+</tr>
+<tr class="even">
+<td>AI features inside third-party software the organization already
+uses</td>
+<td>Nothing, until the <a href="/sops/ACC-16">ACC-16</a> review has asked what the feature does
+with the data (§8). If nobody has asked, the answer is not known — and
+“not known” is not “fine”.</td>
+<td>Anything, until §8 has been done for that application.</td>
+</tr>
+<tr class="odd">
+<td>AI note-takers and meeting bots from outside the tenant</td>
+<td>Nothing. They do not join organization meetings by default and are
+not admitted without the organiser’s decision (§7).</td>
+<td>Anything at all. A bot in the room is a recording device belonging
+to somebody else.</td>
+</tr>
+<tr class="even">
+<td>Assistants embedded in developer or admin tooling</td>
+<td>Code and configuration you wrote for the organization, where the
+tool runs under an organization agreement.</td>
+<td>Anything containing secrets — connection strings, API keys,
+certificates, service account credentials — and any extract of live data
+used as test data.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>“Signed in with my work address” is not the same as “covered”. A
+personal account can have a work address typed into it. What matters is
+whether the organization holds an agreement with the provider, and that
+is a list IT maintains and will answer on at Tier 1 (§9).</li>
+<li>If a tool is not on that list, treat it as consumer. That is the
+safe default and it is almost always the correct one.</li>
+<li>Nobody is in trouble for asking which column something is in. People
+get into difficulty by guessing quietly, and the organization would much
+rather answer the question.</li>
+</ul>
+<h2 id="4-copilot-inherits-your-permissions">4. Copilot inherits your
+permissions</h2>
+<p>This is the single most important operational fact in the document,
+and it is routinely offered as a reassurance when it is in fact the
+central risk. Copilot has no permissions of its own. It has yours. It
+can read what you can read and nothing else, which is exactly the right
+design — and it is precisely why it changes what “nobody will ever find
+that” means.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>An over-shared site with 4,000 files and no navigation</td>
+<td>Effectively invisible. Finding anything in it required knowing it
+existed, knowing what to search for, and being willing to look.
+Discovery was bounded by effort.</td>
+<td>Findable by asking a question in plain English. The effort bound is
+gone.</td>
+</tr>
+<tr class="even">
+<td>A salary band in a spreadsheet in a folder somebody shared broadly
+years ago</td>
+<td>Nobody stumbles across it.</td>
+<td>Answers the question “what is the salary band for that role?” for
+anybody the link ever reached.</td>
+</tr>
+<tr class="odd">
+<td>A permission granted for a project long finished and never
+removed</td>
+<td>Dormant. It never mattered, because nobody went looking.</td>
+<td>Live. It is now the difference between a document existing and a
+document being quoted.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Say this plainly to whoever asks for Copilot</strong></p>
+<p>Copilot does not create over-permissioning. It makes
+over-permissioning VISIBLE and EXPLOITABLE. The exposure was there the
+whole time; what changes is that it is now one question away instead of
+one archaeology project away.</p>
+<p>Deploying Copilot across a tenant whose sharing has never been
+reviewed is how an organization discovers what it had been over-sharing.
+That discovery happens either way. The only decision available is
+whether it happens during a permissions review that IT runs
+deliberately, or in a meeting where somebody reads out a number they
+should never have had.</p>
+</blockquote>
+<h3
+id="41-signs-this-is-live-in-your-organization-rather-than-in-general">4.1
+Signs this is live in your organization, rather than in general</h3>
+<ul>
+<li>Site ownership is not assigned across the estate. If a SharePoint
+issue can sit past its service target because nobody owns the site, then
+nobody is reviewing that site’s permissions either — and there are
+usually more of those than anyone has counted.</li>
+<li>Permissions are actively in flux. Retiring legacy file shares or
+reworking HR and payroll access (<a href="/sops/M365-13">M365-13</a>) means content moving between
+systems, which is content whose permissions are being re-derived — and
+re-derived permissions are where the mistakes live.</li>
+<li>“Anyone” links, “Everyone except external users”, and permissions
+inherited from a migration years ago all count as access for this
+purpose. None of them looks like access when you are browsing; all of
+them are access when you are asking.</li>
+</ul>
+<h3
+id="42-what-to-do-when-copilot-shows-you-something-you-should-not-see">4.2
+What to do when Copilot shows you something you should not see</h3>
+<ol type="1">
+<li>Stop reading it. This is not a test and there is nothing to be
+gained by confirming how bad it is.</li>
+<li>Do not forward it, quote it, or mention its contents to colleagues —
+including as a warning. The second disclosure is the one that does the
+damage.</li>
+<li>Report it to the service desk address, naming the site, library or
+file — not the contents.</li>
+<li>It is handled as a permissions defect under <a href="/sops/M365-11">M365-11</a>, at P2, with the
+site owner engaged under <a href="/sops/M365-10">M365-10</a>. It is not a disciplinary matter for
+the person who found it, and IT says so in the ticket. That last step is
+the control. If finding something is treated as having done something,
+nobody reports the next one, and the organization loses its only
+realistic route to discovering these before somebody less scrupulous
+does.</li>
+</ol>
+<h2 id="5-prerequisites-to-any-broad-copilot-deployment">5.
+Prerequisites to any broad Copilot deployment</h2>
+<p>These are gates, not a wish list. Each one exists because Copilot’s
+value and Copilot’s risk both scale with the same thing: how much the
+assistant can reach.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Gate — what must be true before broad deployment</th>
+<th>Owner</th>
+<th>Document</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Every SharePoint site has a named owner and a named deputy. Sites
+with no owner are assigned one or closed.</td>
+<td>Tier 2 / Tier 3</td>
+<td><a href="/sops/M365-10">M365-10</a></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>“Anyone” links are inventoried and expired, and org-wide sharing
+defaults are set deliberately rather than inherited.</td>
+<td>Tier 3</td>
+<td><a href="/sops/M365-14">M365-14</a></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Permissions are remediated on the sites that matter first — HR,
+Payroll, Finance, Legal, the chief executive’s office, and anything
+holding the sensitive classes of <a href="/sops/M365-15">M365-15</a>.</td>
+<td>Tier 2, with site owners</td>
+<td><a href="/sops/M365-11">M365-11</a></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>The classification decision is closed, or at minimum the four levels
+in <a href="/sops/M365-15">M365-15</a> §3 are endorsed, so “sensitive” denotes something specific
+rather than something felt.</td>
+<td>Executive leadership</td>
+<td><a href="/sops/M365-15">M365-15</a></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Legacy file-share content is migrated with reviewed permissions, or
+declared out of scope for the pilot.</td>
+<td>Tier 2 / Tier 3</td>
+<td><a href="/sops/M365-13">M365-13</a></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>It is settled how long prompts, responses and AI meeting notes are
+retained, and confirmed that they are discoverable.</td>
+<td>Tier 3 reports, Tier 4 decides</td>
+<td><a href="/sops/M365-16">M365-16</a> §6</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>This document has a named owner and an approved review date.</td>
+<td>Head of IT</td>
+<td>§11</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>The sequencing recommendation</strong></p>
+<p>Run a limited pilot with a named group whose sites have been reviewed
+FIRST, rather than a tenant-wide enablement followed by remediation. A
+pilot of twenty-five people in reviewed sites tells IT what it needs to
+know. A tenant-wide switch tells everybody else what IT did not
+know.</p>
+<p>And state the dependency honestly when the question is asked. <a href="/sops/M365-11">M365-11</a>
+and <a href="/sops/M365-14">M365-14</a> remediation is a prerequisite, not a parallel workstream and
+not something to catch up on afterwards. Where IT is small and most
+staff wear several hats, and that remediation is not funded and
+resourced, the truthful answer to “when can we have Copilot?” is “when
+that work is done”, and IT should give that answer rather than a date it
+will not meet.</p>
+</blockquote>
+<h2 id="6-work-product-assessment-and-policy-investigations">6. Work
+product, assessment and policy investigations</h2>
+<p>This document does not write the organization’s policy on how
+generative AI may be used in people’s own work product — assessed work,
+training assessments, hiring exercises — and should not be read as doing
+so. That policy belongs to senior leadership and to the managers who set
+the work. What follows is only what IT commits to, so that the policy
+can be written knowing where the technical boundary is.</p>
+<ul>
+<li>IT does not detect, adjudicate or report on AI use in work product.
+AI-detection tools are unreliable enough that acting on their output is
+unfair, and IT will not supply an accusation it cannot stand behind.
+This is stated in a document rather than left to be inferred, because in
+the absence of a stated position IT is asked to be the detector, and
+that is the worst available allocation of the responsibility.</li>
+<li>Where an investigation needs technical facts, IT supplies them under
+the same rules as <a href="/sops/ACC-15">ACC-15</a> §5 and <a href="/sops/M365-16">M365-16</a> §8 — what was accessed, when,
+from where — and draws no conclusions. Everybody remains subject to the
+acceptable use policy in their use of organization-provided AI tools
+exactly as in everything else.</li>
+<li>Who receives organization-provided AI capability is a licensing
+decision with a business dimension (<a href="/sops/M365-20">M365-20</a>, §10). It is not made by IT
+alone and it is not made by default because a licence bundle
+changed.</li>
+<li>Where a team permits or requires AI use, the tool the organization
+provides is the one to point at, because it is the one inside the
+boundary. A policy that permits AI use while providing no sanctioned
+tool sends people to consumer services with their work and, often, with
+other people’s names in it.</li>
+</ul>
+<h2 id="7-ai-note-takers-joining-teams-meetings">7. AI note-takers
+joining Teams meetings</h2>
+<p>The pattern is now common enough to plan for. An external participant
+brings a third-party note-taker, which joins the meeting as a
+participant, records, transcribes, and stores the transcript on a
+service the organization has no agreement with. A confidential
+organization meeting becomes a document on somebody else’s platform, and
+nobody in the room decided that — the person who brought it usually does
+not think of it as a decision at all.</p>
+<ul>
+<li>The lobby is the control. External participants and unrecognised
+apps wait in it, and the organiser admits them (<a href="/sops/M365-08">M365-08</a>).</li>
+<li>A recording bot is a participant. If you would not admit a stranger
+with a recorder, do not admit their bot; the fact that it is software
+does not make it a smaller decision. Anybody bringing one says so before
+the meeting starts, and the organiser decides — “it joins automatically”
+is an explanation, not consent.</li>
+<li>For meetings involving client records, personnel matters, litigation
+or anticipated litigation, contract negotiation, or executive leadership
+business: no external note-takers, and the organiser states that in the
+invitation so it is settled before anybody arrives.</li>
+<li>Microsoft’s own transcription and Copilot recap, inside the tenant,
+is a different thing under §2 — but it is still a recording, and
+<a href="/sops/M365-08">M365-08</a>’s notification and consent rules apply to it unchanged. “It is
+only the AI summary” is not an exemption.</li>
+<li>Tenant settings: anonymous and external participants cannot record
+or transcribe; lobby defaults admit organisation members only. Tier 3
+owns these; changes go through <a href="/sops/M365-21">M365-21</a>.</li>
+</ul>
+<h2
+id="8-ai-features-switched-on-inside-software-the-organization-already-uses">8.
+AI features switched on inside software the organization already
+uses</h2>
+<p>This is the least visible route and, over the next two years,
+probably the most likely. An application the organization already runs —
+already reviewed, already integrated, already trusted — ships an
+assistant in a routine update. Nobody bought it. Nobody reviewed it. It
+may be on by default, and it may be sending organization content to a
+model provider under terms that were not part of the original
+agreement.</p>
+<p>The rule is short: an application review under <a href="/sops/ACC-16">ACC-16</a> must now ask
+this, at onboarding and again at renewal.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>The question the review must now ask</th>
+<th>What a usable answer looks like</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Does this application include generative AI features today, or
+announced?</td>
+<td>A specific answer naming the features, not “we are exploring
+AI”.</td>
+</tr>
+<tr class="even">
+<td>Where does content go — which model provider, in which jurisdiction,
+under whose terms?</td>
+<td>A named provider and a named jurisdiction. “Our secure cloud” is not
+an answer.</td>
+</tr>
+<tr class="odd">
+<td>Is organization content used for training or product
+improvement?</td>
+<td>A contractual term, in writing. A marketing page saying “we never
+train on your data” is not a contract term and cannot be relied on.</td>
+</tr>
+<tr class="even">
+<td>Can the feature be disabled at tenant level, and is it off by
+default?</td>
+<td>Yes/no, plus where the setting is. A feature that cannot be turned
+off is a decision to make now rather than later.</td>
+</tr>
+<tr class="odd">
+<td>Does the vendor’s data processing agreement cover the AI processing,
+or does it predate it?</td>
+<td>A dated DPA. Many in force today were signed before the feature
+existed.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>For applications already in service: Tier 3 reviews the estate by
+data sensitivity, starting with anything touching client records, HR or
+finance, and reports to Tier 4 within 90 days of approval.</li>
+<li>This is the hardest thing in the document to actually deliver, and
+it is worth saying so. It depends on vendors disclosing changes they
+have no obligation to announce, and no control the organization can
+build will catch all of it. The realistic mitigation is asking at
+renewal, reading release notes for the systems that matter, and treating
+a surprise as a finding rather than a failure.</li>
+<li>Where a vendor cannot or will not answer the questions above, that
+is itself the answer, and it belongs in front of Tier 4 rather than in a
+project plan.</li>
+</ul>
+<h2 id="9-what-it-will-and-will-not-review">9. What IT will and will not
+review</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>IT will</th>
+<th>IT will not</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Maintain the list of assistants covered by an organization
+agreement, and answer “is this tool on the list?” at Tier 1 without a
+ticket.</td>
+<td>Monitor what individuals ask an assistant. There is no routine
+review of prompts and there will not be (<a href="/sops/ACC-15">ACC-15</a> §6).</td>
+</tr>
+<tr class="even">
+<td>Configure and monitor the tenant-side controls — Copilot licensing
+and scope, meeting policies, sharing defaults, sensitivity labels once
+classification is decided.</td>
+<td>Detect or adjudicate AI use in work product, or supply a detection
+tool for that purpose (§6).</td>
+</tr>
+<tr class="odd">
+<td>Review an application’s AI features at onboarding and at renewal
+under <a href="/sops/ACC-16">ACC-16</a> (§8).</td>
+<td>Approve individual pieces of content for pasting. That judgement
+belongs to the person who holds the data, using §3.</td>
+</tr>
+<tr class="even">
+<td>Investigate a suspected disclosure like any other incident, without
+blame attaching to the person who reported it (<a href="/sops/GOV-03">GOV-03</a>).</td>
+<td>Assess a tool the organization has no agreement with. “Is this AI
+tool safe?” about a consumer service has one answer: it is outside the
+boundary, so §3 row three applies.</td>
+</tr>
+<tr class="odd">
+<td>Treat anything Copilot surfaces inappropriately as a permissions
+defect and fix the permission (§4.2), and say plainly when a request
+cannot yet be met safely.</td>
+<td>Act as the organization’s authority on AI in hiring, client
+decisions or research — those need their own owners (§11) — or deploy
+broadly ahead of §5 on the basis that remediation will follow. It does
+not follow; it gets deferred.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10-licensing-and-cost">10. Licensing and cost</h2>
+<ul>
+<li>Copilot licensing is per user per month and is material at
+organization scale. It is a budget decision under <a href="/sops/M365-20">M365-20</a>, not an
+entitlement that follows from having Microsoft 365.</li>
+<li>Assign by role and demonstrated need, review at 90 days, and reclaim
+from non-users exactly as with any other licence. An assigned licence
+nobody uses is the most expensive kind, and it is also the kind that
+survives a budget review because nobody notices it.</li>
+<li>Some assistant capability is included in licences the organization
+already holds and some is not, and that boundary moves — frequently, and
+without a project to attach the change to. Confirm what is included at
+the time rather than relying on this document, which cannot pin it down
+and does not pretend to.</li>
+<li>A free or consumer tier is not a cheaper route to the same
+capability. It is the other side of the boundary in §2, and adopting it
+to save money is buying a disclosure risk at a discount.</li>
+<li>A department funding its own licences is fine, and still goes
+through <a href="/sops/M365-20">M365-20</a> and §5. Local funding does not create a local exemption
+from the prerequisites.</li>
+</ul>
+<h2 id="11-what-this-document-deliberately-does-not-decide">11. What
+this document deliberately does not decide</h2>
+<p>Stated openly rather than left as silence, because silence in a
+policy document reads as permission.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Question left open</th>
+<th>Recommendation</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Whether the organization buys Copilot, for whom, and when.</td>
+<td>Not before §5. Then a reviewed pilot, then a decision with the
+pilot’s findings in front of it.</td>
+<td>Head of IT, decided at executive leadership</td>
+</tr>
+<tr class="even">
+<td>Who receives organization-provided AI capability.</td>
+<td>Decide it deliberately rather than by licence bundle. Providing a
+sanctioned tool is usually safer than the alternative people will
+use.</td>
+<td>Executive leadership with the Head of IT</td>
+</tr>
+<tr class="odd">
+<td>The position on AI use in assessed work product.</td>
+<td>Written by senior leadership with managers. This document commits IT
+to supplying facts and not verdicts (§6).</td>
+<td>Executive leadership</td>
+</tr>
+<tr class="even">
+<td>Whether AI-assisted decision-making is permitted in hiring, credit
+or eligibility decisions, or conduct matters.</td>
+<td>Not addressed here at all, and it needs its own policy. This is the
+highest-risk unaddressed question in the organization’s AI position,
+because it is the one carrying regulatory and legal exposure.</td>
+<td>Executive leadership</td>
+</tr>
+<tr class="odd">
+<td>Use of data held under third-party terms — grants, research
+agreements, client contracts.</td>
+<td>Out of scope here. Such terms frequently prohibit exactly what an
+assistant does.</td>
+<td>Executive leadership / contract owners</td>
+</tr>
+<tr class="even">
+<td>How long prompts, responses and AI notes are retained, and whether
+they are routinely searched.</td>
+<td>Bring under an explicit retention policy rather than a platform
+default (<a href="/sops/M365-16">M365-16</a> §6).</td>
+<td>Head of IT, on Tier 3’s report</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>The most serious finding in this document is about the
+document</strong></p>
+<p>M365-18 has no owner today. Until one is assigned, it is a draft that
+nobody is maintaining — and for a subject that changes this quickly, an
+unmaintained AI policy is worse than none, because people will cite it
+after it has stopped being true.</p>
+<p>ACTION: the Head of IT is recommended as owner, with a first review
+no later than six months after adoption and six-monthly thereafter. If
+the organization is not prepared to own and maintain it at that cadence,
+the honest course is to publish only §2, §3 and Appendix A as standing
+guidance and leave the rest as an unadopted draft.</p>
+<p>Owner: Head of IT. Approval route: executive leadership.</p>
+</blockquote>
+<h2 id="12-service-levels">12. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“Is this tool covered by an organization agreement?”</td>
+<td>Answered at Tier 1 from the list, in the conversation.</td>
+</tr>
+<tr class="even">
+<td>Copilot surfacing content the user should not see (§4.2)</td>
+<td>P2 — permission corrected within 1 coverage day; site owner engaged
+the same day.</td>
+</tr>
+<tr class="odd">
+<td>Suspected disclosure to a consumer assistant</td>
+<td>Treated as a security incident under <a href="/sops/GOV-03">GOV-03</a>. Triage same coverage
+day.</td>
+</tr>
+<tr class="even">
+<td>AI feature discovered in an existing application</td>
+<td>Logged and assessed under <a href="/sops/ACC-16">ACC-16</a> within 10 coverage days.</td>
+</tr>
+<tr class="odd">
+<td>Copilot licence request</td>
+<td>Assessed against §5 and <a href="/sops/M365-20">M365-20</a>. Where §5 is not met, the answer and
+its reason are given in writing within 5 coverage days.</td>
+</tr>
+<tr class="even">
+<td>Review of this document</td>
+<td>Six-monthly. A missed review is escalated to the Head of IT, not
+silently deferred.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13-records">13. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>List of assistants covered by an organization agreement</td>
+<td>IT register, published</td>
+<td>Live, versioned</td>
+</tr>
+<tr class="even">
+<td>Permissions defects surfaced by Copilot, and their remediation</td>
+<td>Ticket, plus the <a href="/sops/M365-11">M365-11</a> register</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Suspected or confirmed disclosures</td>
+<td>Security record (<a href="/sops/GOV-03">GOV-03</a>)</td>
+<td>7 years</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-16">ACC-16</a> AI questions and vendor answers</td>
+<td>Application register</td>
+<td>Life of the contract + 3 years</td>
+</tr>
+<tr class="odd">
+<td>Executive leadership decisions on the §11 open questions</td>
+<td>Governance record</td>
+<td>Permanent</td>
+</tr>
+<tr class="even">
+<td>Prompt and response history, AI meeting notes</td>
+<td>Per <a href="/sops/M365-16">M365-16</a> §6 — currently undecided (§11)</td>
+<td>Open</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="14-related-documents">14. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AUP</td>
+<td>Your organization's acceptable use policy</td>
+<td>The governing policy. This document is subordinate to it and must
+not contradict it.</td>
+</tr>
+<tr class="even">
+<td>Data Policy</td>
+<td>Your organization's information security policy</td>
+<td>What sensitive means until classification is decided.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-11">M365-11</a></td>
+<td>SharePoint &amp; OneDrive Permission Management</td>
+<td>§5 gate 3, and where §4.2 defects are fixed. A prerequisite, not a
+companion.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-14">M365-14</a></td>
+<td>External Sharing &amp; Guest Access Governance</td>
+<td>§5 gate 2. Sharing links are Copilot’s reach.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-10">M365-10</a></td>
+<td>SharePoint Site Request &amp; Ownership</td>
+<td>§5 gate 1. A site with no owner cannot be reviewed.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-15">M365-15</a></td>
+<td>Data Classification &amp; Handling</td>
+<td>What §3 means by sensitive.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-16">M365-16</a></td>
+<td>Retention, Legal Hold &amp; eDiscovery</td>
+<td>Copilot artefacts are retainable, discoverable content.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-08">M365-08</a></td>
+<td>Teams Meetings, Recording &amp; Guest Participation</td>
+<td>§7. The lobby is the control.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-20">M365-20</a></td>
+<td>License Assignment, Reclamation &amp; Cost Attribution</td>
+<td>§10.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-16">ACC-16</a></td>
+<td>Application Onboarding, SSO &amp; SAML Claims</td>
+<td>§8. The review must now ask the AI questions.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-15">ACC-15</a></td>
+<td>Acceptable Use &amp; Credential-Sharing Standard</td>
+<td>§6 monitoring position.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response</td>
+<td>Where a suspected disclosure goes.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments, Priority &amp; Escalation</td>
+<td>Supplies §12.</td>
+</tr>
+</tbody>
+</table></div>
+<h2
+id="appendix-a--for-everyone-the-one-paragraph-version-and-the-five-things-not-to-paste">Appendix
+A — For everyone: the one-paragraph version, and the five things not to
+paste</h2>
+<p>Source text for the knowledge base, format per <a href="/sops/GOV-05">GOV-05</a>. Publishable as
+it stands.</p>
+<h3 id="the-one-paragraph-version">The one-paragraph version</h3>
+<p>Use the AI tools the organization provides, signed in with your
+organization account, and you are on safe ground: they work inside the
+same protected space as your email and your files, they only see what
+you can already see, and nothing you type is used to train anybody’s
+model. Everything else — a personal ChatGPT account, a free tool you
+found, an assistant built into an app on your phone — sits outside that
+space, and anything you paste into it has left the organization. Not in
+a dramatic way, and probably with no consequence at all; but it has gone
+somewhere we have no agreement with, cannot get it back from, and cannot
+answer questions about later. So the question is never whether AI is
+allowed. It is which side of that line the thing in front of you is on.
+If you are not sure, ask us — it takes about ten seconds and nobody
+minds.</p>
+<h3
+id="the-five-things-not-to-paste--into-anything-outside-the-organization">The
+five things not to paste — into anything outside the organization</h3>
+<div class="tbl"><table>
+<tbody>
+<tr class="odd">
+<td>1. Anything about a named client or customer</td>
+<td>Their account, their records, a complaint, an email they sent you, a
+difficult situation you are trying to word carefully. Especially that
+last one — “help me write a sensitive email about a client” is the most
+natural request in the world, and it is the one that puts the most into
+the box.</td>
+</tr>
+<tr class="even">
+<td>2. Anything about a named colleague’s employment</td>
+<td>Pay, performance, a grievance, a health matter, a reference, a
+reorganisation that has not been announced. If you would not leave it on
+the printer, do not paste it.</td>
+</tr>
+<tr class="odd">
+<td>3. Anything the organization has not decided yet</td>
+<td>Draft budgets, draft policies, contract terms under negotiation,
+anything from a leadership paper. Unpublished is unpublished, whatever
+you are using it for.</td>
+</tr>
+<tr class="even">
+<td>4. Anything out of the HR system or another system of record</td>
+<td>An export, a report, a screenshot, a list of IDs. If it came out of
+a system holding the organization’s records, it does not go into a tool
+outside the organization.</td>
+</tr>
+<tr class="odd">
+<td>5. Any password, key or access link</td>
+<td>Yours or anybody else’s, including in a block of configuration you
+are asking for help with. Assistants are very good at reading
+configuration and completely indifferent to what is in it.</td>
+</tr>
+<tr class="even">
+<td>And really the first one:</td>
+<td>Anything you would not be comfortable seeing quoted back, with the
+organization’s name attached. That test catches most of what the five
+above catch, and a few things they do not.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="if-you-have-already-pasted-something">If you have already pasted
+something</h3>
+<p>Tell us. Nobody is looking to make an example of anyone, and this is
+a genuinely easy mistake — the organization-provided tools and the
+consumer ones frequently look identical and sit at almost the same web
+address. What matters is knowing what went where, so we can work out
+whether anything needs doing. Told early, it is usually a five-minute
+conversation. Found out later, it is not.</p>
+<h3 id="if-copilot-shows-you-something-you-should-not-be-able-to-see">If
+Copilot shows you something you should not be able to see</h3>
+<p>It happens, and it is not your fault. Copilot can only reach what you
+already had access to, so if it surfaces a salary spreadsheet or
+somebody’s personnel file, what it has actually found is a permission
+somebody set years ago and forgot. Please do not read on, do not send it
+to anyone — not even as a warning — and let the service desk know which
+site or file it was, without telling us what was in it. We will fix the
+permission. You have not done anything wrong by finding it, and
+reporting it is the most useful thing that can happen to that file.</p>
+<h3 id="a-note-about-meetings">A note about meetings</h3>
+<p>If somebody brings an AI note-taker to a meeting with you, they
+should say so first, and you are entitled to say no. If the meeting is
+about a client, a member of staff, a contract or anything confidential,
+the answer is no — say so in the invitation, so it is settled before
+everybody is in the room.</p>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

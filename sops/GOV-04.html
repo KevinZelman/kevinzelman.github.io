@@ -1,0 +1,1199 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GOV-04 · IT Change Management &amp; Maintenance Windows | Known Good</title>
+<meta name="description" content="Three change classes, one register, an agreed set of windows the organization’s calendar governs — and the rule that a vendor change is an organization change.">
+<meta property="og:title" content="GOV-04 · IT Change Management &amp; Maintenance Windows | Known Good">
+<meta property="og:description" content="Three change classes, one register, an agreed set of windows the organization’s calendar governs — and the rule that a vendor change is an organization change.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="gov-04--it-change-management--maintenance-windows">GOV-04 · IT
+Change Management &amp; Maintenance Windows</h1>
+<p><em>Three change classes, one register, an agreed set of windows the
+organization’s calendar governs — and the rule that a vendor change is
+an organization change.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/GOV-04-IT-Change-Management-and-Maintenance-Windows.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/GOV-04.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/GOV-04">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>GOV-04</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>D. Cross-Cutting Governance</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 4 — IT Management approves normal and emergency changes and
+owns the window and freeze calendar. Tier 3 assesses and executes. Tier
+2 executes standard changes with no approval at all, which is the point
+of §3.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually — and the freeze calendar before each busy season begins,
+against the published calendar rather than last year’s copy.</td>
+</tr>
+<tr class="even">
+<td>Relationship to <a href="/sops/M365-21">M365-21</a></td>
+<td><a href="/sops/M365-21">M365-21</a> is this process applied to one system — the Microsoft 365
+tenant — with the tenant-specific hazards named. A tenant change is a
+change class under this document and uses this register. It does not get
+a second process, and its Appendix A record is this register’s
+record.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose--and-the-question-about-size">1. Purpose — and the
+question about size</h2>
+<p>Picture a common case. A vendor engineer applies vulnerability
+remediation to the test servers of a core business system and then to
+production, inside the maintenance window, coordinated in an email
+thread. The sequencing is right, the window is right, and nothing goes
+wrong.</p>
+<p>It is also unfindable afterwards. There is no record of what changed
+on those servers, on what date, at whose approval, or how it would have
+been reversed. If that system behaves oddly three months later, the
+first question anybody asks is “what changed?” — and the answer lives in
+somebody’s mailbox, if it is still there.</p>
+<p>That is the gap this document closes. Not that changes are made badly
+— they are usually made carefully — but that they are made without a
+record, which means the organization cannot answer that question, cannot
+tell a vendor “not that week” during the busiest week of the year, and
+cannot see that a rising number of emergency fixes is a pattern rather
+than a run of bad luck.</p>
+<blockquote>
+<p><strong>The second thing this document has to get right is its own
+size</strong></p>
+<p>A small IT team does not need a change advisory board and should not
+acquire one. A weekly meeting to approve printer driver updates would
+consume more of this department’s capacity than the changes themselves,
+and it would be quietly abandoned inside two months.</p>
+<p>A change process nobody can staff is a change process nobody follows
+— and an abandoned process is worse than none, because it leaves
+everybody believing a control exists.</p>
+<p>So §3 puts most of the volume into a standard, pre-approved class
+that requires no approval and no meeting, Appendix B is that list as a
+starting set, and §11 defines how the list GROWS as changes prove
+themselves. The process reserved for the changes that can actually hurt
+is then small enough to be followed.</p>
+</blockquote>
+<h2 id="2-what-is-a-change-and-what-is-not">2. What is a change, and
+what is not</h2>
+<p>A change is any planned alteration to a production system, service,
+configuration or integration that could affect availability, security,
+data, or what somebody experiences when they use it.</p>
+<h3 id="21-in-scope">2.1 In scope</h3>
+<ul>
+<li>Server, application and firmware patching, including vendor-applied
+patching (<a href="/sops/DEV-13">DEV-13</a>, §8).</li>
+<li>Microsoft 365 tenant configuration — Conditional Access,
+authentication methods, sharing, retention, mail flow, directory
+attributes (<a href="/sops/M365-21">M365-21</a>).</li>
+<li>Identity provider and federation configuration, including claim
+mapping and application cutovers (<a href="/sops/ACC-16">ACC-16</a>).</li>
+<li>Network, firewall, wireless and VPN configuration (<a href="/sops/DEV-10">DEV-10</a>).</li>
+<li>Device management: compliance and configuration policies, enrollment
+settings, ring definitions (<a href="/sops/DEV-01">DEV-01</a>, <a href="/sops/DEV-02">DEV-02</a>).</li>
+<li>Lab, meeting room and shared-device images and configuration
+(<a href="/sops/DEV-06">DEV-06</a>, <a href="/sops/DEV-18">DEV-18</a>).</li>
+<li>Telephony and Teams voice configuration.</li>
+<li>Backup configuration, schedules and retention.</li>
+<li>Integrations and interfaces between systems, including anything
+scheduled that moves data.</li>
+<li>Anything a vendor does to an organization system, whoever executes
+it (§8).</li>
+</ul>
+<h3 id="22-not-a-change">2.2 Not a change</h3>
+<ul>
+<li>Per-user fulfilment: creating an account, granting a permission,
+provisioning a mailbox or a site. These have their own documents and
+their own records; putting them through a change process would produce a
+register nobody could read.</li>
+<li>Actions taken during an incident to restore service. Those are
+<a href="/sops/GOV-03">GOV-03</a>. They are recorded there, and any fix that follows enters this
+register retrospectively as an emergency change (§10).</li>
+<li>Anything on the standard list at Appendix B — which IS a change, but
+a pre-approved one, recorded in a line rather than a form. The working
+test, for anything genuinely unclear: would somebody be surprised by
+this, and would they be right to be? If yes, it is at least a normal
+change.</li>
+</ul>
+<h2 id="3-the-three-classes">3. The three classes</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Class</th>
+<th>It is this class when…</th>
+<th>Approval</th>
+<th>Window</th>
+<th>Record</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Standard (pre-approved)</td>
+<td>It is on the Appendix B list, it has been done before with a known
+outcome, it has a known back-out, and it meets the conditions stated for
+it on that list.</td>
+<td>None. Pre-approved as a class by Tier 4, annually.</td>
+<td>Per the list; most need none.</td>
+<td>One line in the register afterwards, quoting the standard-change
+ID.</td>
+</tr>
+<tr class="even">
+<td>Normal</td>
+<td>Anything not on the standard list, planned in advance.</td>
+<td>Per §6, by blast radius.</td>
+<td>Per §7.</td>
+<td>Full record (Appendix A) BEFORE it happens.</td>
+</tr>
+<tr class="odd">
+<td>Emergency</td>
+<td>It cannot wait for the normal path without unacceptable risk: an
+actively exploited vulnerability, a failing component, or a fix required
+to restore or protect service.</td>
+<td>Tier 4 verbally or by message before, written retrospectively within
+one coverage day.</td>
+<td>Whenever necessary.</td>
+<td>Full record within one coverage day. PIR always (§11).</td>
+</tr>
+</tbody>
+</table></div>
+<p>There is no fourth class for large work. A change that is really a
+project — a migration wave, a system replacement, an identity provider
+cutover — is a set of normal changes with a plan around it. The plan
+belongs to the relevant SOP (<a href="/sops/DEV-01">DEV-01</a>, <a href="/sops/M365-13">M365-13</a>, <a href="/sops/ACC-16">ACC-16</a> §8); each
+individual cutover event enters this register on its own record.</p>
+<h3 id="31-which-class-is-this--worked-examples">3.1 Which class is
+this? — worked examples</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>The change</th>
+<th>Class</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Monthly operating system quality updates to the pilot and standard
+rings</td>
+<td>Standard</td>
+<td>On the list, staged by ring, known outcome, and the back-out is the
+removal of the update (<a href="/sops/DEV-13">DEV-13</a>).</td>
+</tr>
+<tr class="even">
+<td>Adding a Conditional Access policy in report-only mode</td>
+<td>Standard</td>
+<td>Report-only changes nothing for any user. It is the safest possible
+way to learn what a policy would do.</td>
+</tr>
+<tr class="odd">
+<td>Enabling that same policy</td>
+<td>Normal</td>
+<td>It can lock out a population immediately and at scale, and it has.
+<a href="/sops/M365-21">M365-21</a> §5 sets the additional gates.</td>
+</tr>
+<tr class="even">
+<td>A vendor applying vulnerability remediation to a production business
+system</td>
+<td>Normal</td>
+<td>§8. The vendor executes; the organization approves, holds the
+back-out and verifies.</td>
+</tr>
+<tr class="odd">
+<td>A firewall rule to permit a new integration</td>
+<td>Normal</td>
+<td>It changes what can reach what. Blast radius is assessed before, not
+discovered after.</td>
+</tr>
+<tr class="even">
+<td>Changing the SAML claim mapping on a live application</td>
+<td>Normal</td>
+<td><a href="/sops/ACC-16">ACC-16</a> §4. It can break sign-in for every user of that application
+simultaneously.</td>
+</tr>
+<tr class="odd">
+<td>Rebuilding a training-room image during a quiet period</td>
+<td>Standard</td>
+<td>On the list, provided no session is booked in the room
+(<a href="/sops/DEV-06">DEV-06</a>).</td>
+</tr>
+<tr class="even">
+<td>Rebooting a hung production server</td>
+<td>Emergency if service is down; Normal if it is scheduled to prevent a
+fault.</td>
+<td>The class follows the urgency, not the action.</td>
+</tr>
+<tr class="odd">
+<td>Blocking a sending domain during a live phishing wave</td>
+<td>Emergency</td>
+<td><a href="/sops/GOV-03">GOV-03</a> and <a href="/sops/M365-22">M365-22</a> govern the response; the change record follows
+within one coverage day.</td>
+</tr>
+<tr class="even">
+<td>Disabling a compromised account</td>
+<td>Not a change</td>
+<td>Incident response under <a href="/sops/GOV-03">GOV-03</a>.</td>
+</tr>
+<tr class="odd">
+<td>Creating a mailbox for a new starter</td>
+<td>Not a change</td>
+<td>Fulfilment under <a href="/sops/ACC-01">ACC-01</a>.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="4-the-change-record">4. The change record</h2>
+<p>One record, one register. The full template is Appendix A. Every
+field below is mandatory for a normal change, and a record missing one
+of them is returned rather than approved — which takes a minute and
+saves the argument later.</p>
+<ul>
+<li>Reference and a title somebody could search for.</li>
+<li>Class (§3).</li>
+<li>What changes, specifically enough that another engineer could find
+the setting or the package.</li>
+<li>Why, and who asked.</li>
+<li>Systems and populations affected, with numbers rather than
+adjectives.</li>
+<li>What could go wrong — written before, not after.</li>
+<li>The back-out plan, and whether it has been tested (§5).</li>
+<li>Test evidence, or an explicit statement that testing was not
+possible and why.</li>
+<li>Proposed window and expected duration.</li>
+<li>Communication: who is told, by whom, and when (§9).</li>
+<li>Approver, named, per §6.</li>
+<li>Implementer, named.</li>
+<li>Actual start and finish times. The ACTUAL times — correlating a
+change with the tickets it produced is the main day-to-day use of this
+register, and an approximate date defeats it.</li>
+<li>Verification: what was checked afterwards and what it showed.</li>
+<li>Outcome: succeeded, succeeded with issues, or backed out.</li>
+</ul>
+<blockquote>
+<p><strong>Where the register lives, and one caution about
+it</strong></p>
+<p>It should sit alongside the tickets in the ticketing system, as a
+distinct queue with a distinct type, so that “what changed?” and “what
+broke?” are one search rather than two systems.</p>
+<p>The caution is real. Where ticket hygiene is poor, a ticket export
+fills up with automated noise and duplicates, and its figures do not
+reconcile. A change register allowed to accumulate the same way becomes
+another unusable export.</p>
+<p>So: a distinct type, a small number of mandatory fields, and a
+monthly review that reads it (§11). A register nobody reads monthly will
+be wrong within a quarter, and nobody will find out until they need
+it.</p>
+</blockquote>
+<h2 id="5-the-back-out-plan">5. The back-out plan</h2>
+<blockquote>
+<p><strong>A change with no tested back-out is not
+approved.</strong></p>
+<p>Stated as an absolute, because the alternative is a change that can
+only go forwards — being debugged at nine in the evening, with the
+business opening at eight the next morning and no way back.</p>
+<p>The back-out plan states: the specific action that reverses this
+change, who is able to perform it, how long it takes, THE DECISION POINT
+— the time by which, if the change is not verified working, the back-out
+is executed rather than the problem debugged — and how the organization
+will know the reversal worked.</p>
+<p>“Tested” means somebody has performed the reversal, in test or on a
+non-production instance, or the reversal is a documented and routine
+platform operation. It does not mean somebody believes it would probably
+work.</p>
+</blockquote>
+<h3 id="51-three-back-outs-that-are-not-back-outs">5.1 Three back-outs
+that are not back-outs</h3>
+<ul>
+<li>“We can restore from backup.” Not unless a restore of that system
+has actually been performed and timed. Restores are routinely far slower
+than the person proposing them assumes, and the assumption is only
+tested on the worst possible night.</li>
+<li>“We can reinstall it.” That is a rebuild, not a reversal, and it
+leaves the data question entirely unanswered.</li>
+<li>“It is reversible in the console.” For many changes it is. For
+several it is not: a claim mapping the vendor has already consumed and
+rebound (<a href="/sops/ACC-16">ACC-16</a> §8.1), a retention policy that has already deleted, or a
+directory attribute committed to a system that now depends on it
+(<a href="/sops/M365-21">M365-21</a> §3). Establish which kind this is before, not during.</li>
+</ul>
+<h3 id="52-genuinely-irreversible-changes">5.2 Genuinely irreversible
+changes</h3>
+<p>Some changes cannot be reversed. They are not exempt from this
+section — they are escalated by it. An irreversible change is named as
+irreversible on the record, approved by the Head of IT rather than at
+the normal level, and given a longer pilot and a stated stop point in
+place of a back-out. Irreversibility raises the approval; it never
+removes the requirement to have thought about it.</p>
+<h3 id="53-authority-to-reverse">5.3 Authority to reverse</h3>
+<p>Any Tier 3 engineer may back out a change that is actively causing
+harm, immediately, without approval, and record it afterwards. That
+authority is stated deliberately and it applies across the estate —
+<a href="/sops/M365-21">M365-21</a> §7 grants the same for tenant changes. A process that makes an
+engineer hesitate before undoing a breaking change is worse than no
+process at all.</p>
+<h2 id="6-approval-by-class">6. Approval by class</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Change</th>
+<th>Assessed by</th>
+<th>Approved by</th>
+<th>Additional requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Standard change on the Appendix B list</td>
+<td>Tier 2, against the list</td>
+<td>Pre-approved by Tier 4 annually</td>
+<td>If it does not fit the stated conditions exactly, it is not a
+standard change.</td>
+</tr>
+<tr class="even">
+<td>Normal — single service, no user-visible effect</td>
+<td>Tier 3</td>
+<td>Tier 3 lead</td>
+<td>Recorded. Tier 4 sees it at the monthly review.</td>
+</tr>
+<tr class="odd">
+<td>Normal — user-visible, one department</td>
+<td>Tier 3</td>
+<td>Tier 4</td>
+<td>Department head informed before the window (§9).</td>
+</tr>
+<tr class="even">
+<td>Normal — affects a whole population (all users, all staff,
+everyone)</td>
+<td>Tier 3</td>
+<td>Head of IT, explicitly</td>
+<td>Approval by absence of objection does not count. Piloted or
+report-only first wherever the platform allows it.</td>
+</tr>
+<tr class="odd">
+<td>Normal — identity, authentication or federation</td>
+<td>Tier 3</td>
+<td>Head of IT</td>
+<td>The <a href="/sops/ACC-03">ACC-03</a> §11 and <a href="/sops/ACC-16">ACC-16</a> §9 gates apply on top of this table. This
+is the class most likely to break access.</td>
+</tr>
+<tr class="even">
+<td>Normal — executed by a vendor</td>
+<td>Tier 3 with the system owner</td>
+<td>Tier 4, named organization approver</td>
+<td>The vendor is never the approver (§8).</td>
+</tr>
+<tr class="odd">
+<td>Irreversible (§5.2)</td>
+<td>Tier 3 plus a second named reviewer</td>
+<td>Head of IT</td>
+<td>Named as irreversible on the record. Longer pilot, stated stop
+point.</td>
+</tr>
+<tr class="even">
+<td>Emergency</td>
+<td>Whoever is present</td>
+<td>Tier 4 before where minutes allow; written retrospective approval
+within one coverage day</td>
+<td>PIR at the next monthly review, without exception (§11).</td>
+</tr>
+</tbody>
+</table></div>
+<p>Where the department is small enough that the assessor and the
+approver would be the same person — which in a small team is often — a
+second named person reviews and the Head of IT approves. That is not
+bureaucracy. It is the only thing standing between a tired engineer at
+ten at night and a decision nobody else has looked at.</p>
+<h2 id="7-maintenance-windows-and-the-organizations-calendar">7.
+Maintenance windows and the organization’s calendar</h2>
+<p>The windows are the part of this document the rest of the
+organization cares about, and they are the part a vendor needs in order
+to schedule anything.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Window</th>
+<th>When</th>
+<th>Suitable for</th>
+<th>Notice</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Weekly technical window</td>
+<td>Tuesdays 06:00–08:00</td>
+<td>Low-risk server and application work with no user-visible effect.
+Certificate and DNS work. Most of the standard list.</td>
+<td>2 coverage days on the register. No site notice.</td>
+</tr>
+<tr class="even">
+<td>Primary maintenance window</td>
+<td>Second Saturday of the month, 22:00 – 04:00 Sunday</td>
+<td>Normal changes with a user-visible effect: servers, network, the HR
+and user system of record, identity and federation cutovers.</td>
+<td>10 calendar days to the site.</td>
+</tr>
+<tr class="odd">
+<td>Secondary window</td>
+<td>Last Sunday of the month, 06:00 – 10:00</td>
+<td>Overflow, and vendor work that cannot fit the primary window.</td>
+<td>10 calendar days.</td>
+</tr>
+<tr class="even">
+<td>Quiet-period window</td>
+<td>Your published quiet periods, such as holiday weeks or planned
+shutdowns</td>
+<td>Anything needing hours rather than minutes: image rebuilds and
+shared-device work (<a href="/sops/DEV-06">DEV-06</a>), migrations, wave cutovers (<a href="/sops/DEV-01">DEV-01</a>), major
+upgrades.</td>
+<td>Scheduled a quarter ahead.</td>
+</tr>
+<tr class="odd">
+<td>Out of window</td>
+<td>Any time</td>
+<td>Emergency changes only (§10), or a Head of IT exception with the
+reason recorded.</td>
+<td>As the situation allows.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="71-the-organizations-calendar-governs">7.1 The organization’s
+calendar governs</h3>
+<p>Never during your peak business period. Never during a period-end
+close. Never in the first week after a large intake of new people. Never
+on the day of a major organization event, or the day before it. These
+are not preferences to be balanced against convenience — they are the
+periods in which a failure is least recoverable and most visible.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Freeze</th>
+<th>Covers</th>
+<th>What still proceeds</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Intake freeze</td>
+<td>The week before, and the first full week after, a large intake of
+new starters or temporary workers.</td>
+<td>Emergency and standard changes only. This is often the desk’s peak
+(<a href="/sops/ACC-01">ACC-01</a>, <a href="/sops/ACC-09">ACC-09</a>), and a change made now looks exactly like the ordinary
+confusion of a new intake, so nobody diagnoses it as a change.</td>
+</tr>
+<tr class="even">
+<td>Peak-period freeze</td>
+<td>Your published peak business periods, such as open enrolment, a
+seasonal rush or tax season.</td>
+<td>Emergency only for anything touching the core business system, the
+customer portal, identity or the network. These are the weeks when a
+failure costs the most.</td>
+</tr>
+<tr class="odd">
+<td>Critical-event freeze</td>
+<td>Audits, board meetings, launches, or any fixed-date event the
+organization cannot move.</td>
+<td>Emergency only. A meeting room or authentication failure during a
+fixed-date event cannot be recovered by a service desk, however good it
+is.</td>
+</tr>
+<tr class="even">
+<td>Major organization event</td>
+<td>The day, and the day before.</td>
+<td>Emergency only.</td>
+</tr>
+<tr class="odd">
+<td>Payroll and financial close</td>
+<td>The published payroll runs and year-end close dates.</td>
+<td>No change touching the HR and user system of record, the network
+path to Finance, or the payroll-sensitive shares. Emergency changes here
+are approved by the Head of IT with Finance informed.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="72-windows-capacity-and-gov-06">7.2 Windows, capacity and
+<a href="/sops/GOV-06">GOV-06</a></h3>
+<ul>
+<li>The window and freeze calendar is owned by Tier 4 and published a
+quarter in advance, so that departments and vendors can both plan
+against it.</li>
+<li>A window is capacity consumed. A Saturday-night window is followed
+by a Monday on which the same small number of people are the service
+desk. <a href="/sops/GOV-06">GOV-06</a> §7 exists for exactly this: a major window is a Constrained
+day DECLARED IN ADVANCE, not a surprise discovered on the Monday.</li>
+<li>Under a declared Degraded state only emergency and standard changes
+proceed. The normal queue holds, and the register records what was
+deferred and why — so the backlog is visible rather than implied.</li>
+</ul>
+<blockquote>
+<p><strong>These windows are a proposal, and there is one question to
+settle before they are published</strong></p>
+<p>The windows above are drafted, not observed. They should be checked
+against the organization’s published calendar, against your vendors’
+support arrangements, and against your own peak, event and payroll dates
+before anybody commits to them externally.</p>
+<p>The harder question is staffing. A monthly Saturday-night window has
+to be staffed by people who will also be the desk on Monday. If the
+department cannot hold that, the honest answer is FEWER windows, not the
+same number missed — a published window that is repeatedly not used
+teaches vendors and departments to negotiate outside the calendar, which
+is the condition this document is trying to end.</p>
+<p>ACTION: Tier 4 to confirm the window set against the coming year’s
+calendar and the department’s actual coverage before publication.</p>
+</blockquote>
+<h2 id="8-vendor-changes">8. Vendor changes</h2>
+<blockquote>
+<p><strong>A vendor change is an organization change.</strong></p>
+<p>It enters the same register, with an organization approver, a
+back-out and a communication — whoever executes it, however routine it
+is, and however competent the vendor.</p>
+<p>The vendor’s own change process is their internal control. It is not
+the organization’s record, and it is not visible to anybody at the
+organization three months later when something on that system behaves
+oddly.</p>
+<p>This is the rule a real remediation teaches. Nothing in that kind of
+remediation is done badly. It is simply that the organization has no
+record of it, and could not have told the vendor “not that week” had the
+week been a peak week.</p>
+</blockquote>
+<ol type="1">
+<li>The vendor’s request enters the register as a normal change, raised
+by the organization system or contract owner. It does not stay in the
+email thread it arrived in.</li>
+<li>The organization names an approver. The vendor is never the approver
+of a change to an organization system — not because their judgement is
+doubted, but because approval is an accountability the organization
+cannot outsource.</li>
+<li>The record states what the vendor will do, on which systems, in
+which order, and what the back-out is. Test before Production is the
+correct sequence and it should be visible in the record, as it should be
+in any vendor thread. Where the vendor cannot supply a back-out, that is
+escalated under §5.2 rather than accepted as normal practice.</li>
+<li>An organization engineer is available during the window — not
+necessarily executing, but reachable, and able to verify afterwards. A
+vendor change verified only by the vendor is a change nobody at the
+organization has confirmed.</li>
+<li>Verification is performed by the organization against a stated
+check, and recorded. “The vendor said it went fine” is not a
+verification.</li>
+<li>STANDING vendor maintenance — a recurring patching cadence, for
+example — is approved ONCE as a standing change with a defined scope, a
+named window and a stated back-out, and each execution is then a
+one-line register entry (Appendix B, STD-12). This is the
+standard-change mechanism applied to vendors, and it is what stops the
+process being abandoned for the routine work it was never meant to
+obstruct.</li>
+<li>The requirement to route changes through the organization register
+belongs in the vendor’s contract and in the operating agreement at
+renewal (<a href="/sops/ACC-11">ACC-11</a>). Until it does, this section depends on goodwill —
+which is worth having, and is not a control.</li>
+</ol>
+<h3 id="81-three-vendor-situations-worth-naming">8.1 Three vendor
+situations worth naming</h3>
+<ul>
+<li>THE VENDOR WHO PATCHES YOUR CORE BUSINESS SYSTEM: the case in §1,
+and usually the one with the largest blast radius. Standing approval
+under step 6 is the right shape here, with Prod work in a named window
+and an organization verification step.</li>
+<li>YOUR MANAGED SECURITY (MDR) PROVIDER: a partner ACTING during an
+incident is <a href="/sops/GOV-03">GOV-03</a> and <a href="/sops/DEV-14">DEV-14</a>, not this document. Changes to the
+monitoring or response CONFIGURATION are changes and enter this
+register.</li>
+<li>MICROSOFT’S own service changes: outside the organization’s
+approval, but not outside its awareness. Message centre items with a
+user-visible effect are triaged monthly by Tier 3 and entered in the
+register as informational, so that “what changed?” has an answer even in
+the cases where the organization did not change it.</li>
+</ul>
+<h2 id="9-communication">9. Communication</h2>
+<p>IT drafts, Tier 4 approves, and site-wide notice goes out by the
+agreed route (<a href="/sops/M365-06">M365-06</a>). One rule sits above the table: the service desk
+is told before the site is, always. A desk that learns about a change
+from the first ticket cannot do its job, and will spend the morning
+diagnosing something it could have recognised in one line.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Audience</th>
+<th>Told what</th>
+<th>When</th>
+<th>By</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Service desk (Tier 1 and 2)</td>
+<td>Full detail: what is changing, when, what it looks like when it goes
+wrong, and who to escalate to.</td>
+<td>At approval, and again the day before.</td>
+<td>Tier 3</td>
+</tr>
+<tr class="even">
+<td>Affected department heads</td>
+<td>A plain-language summary and the window.</td>
+<td>10 calendar days ahead.</td>
+<td>Tier 4</td>
+</tr>
+<tr class="odd">
+<td>The whole site (population-wide changes)</td>
+<td>What is happening, when, what to expect, and WHAT TO DO IF SOMETHING
+DOES NOT WORK AFTERWARDS.</td>
+<td>10 calendar days ahead, and a reminder the day before.</td>
+<td>Tier 4, via <a href="/sops/M365-06">M365-06</a></td>
+</tr>
+<tr class="even">
+<td>The site, afterwards</td>
+<td>A short note: completed, completed with issues, or postponed.</td>
+<td>Within one coverage day.</td>
+<td>Tier 4</td>
+</tr>
+<tr class="odd">
+<td>Vendors and partners with dependent access</td>
+<td>The window, and anything required of them.</td>
+<td>10 calendar days ahead.</td>
+<td>The system owner</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>The notice says what to do if it does not work, not only what will
+happen. A notice that ends with “no action is required” and gives no
+contact route produces a week of tickets that never mention the change,
+which then cannot be correlated with it.</li>
+<li>Postponements and cancellations are announced with the same reach as
+the original notice. A change quietly cancelled teaches people that the
+notices need not be read.</li>
+<li>Notices name a window, not a duration. “Between 22:00 and 04:00” is
+honest; “about twenty minutes” is a hostage.</li>
+</ul>
+<h2 id="10-emergency-changes">10. Emergency changes</h2>
+<p>The definition is tight: it cannot wait for the normal path without
+unacceptable risk. It does not mean somebody senior would like it today,
+and the distinction has to be held, because the emergency path exists by
+borrowing the assurance the normal path provides.</p>
+<ol type="1">
+<li>Obtain approval from Tier 4 before acting where a delay of minutes
+is available — verbally or by message. Where Tier 4 is unreachable, the
+Head of IT; where neither is reachable, the most senior person
+available, named on the record afterwards.</li>
+<li>Act. Nothing in this section prevents an engineer from acting to
+protect or restore a service. Acting is correct; not recording it
+afterwards is what this section forbids.</li>
+<li>Write the record within one coverage day, including what back-out
+was available and whether it was used.</li>
+<li>Obtain and record retrospective approval within one coverage
+day.</li>
+<li>Hold a post-implementation review at the next monthly register
+review, for every emergency change, without exception (§11).</li>
+</ol>
+<blockquote>
+<p><strong>The count is the finding, not the individual
+change</strong></p>
+<p>A department with many emergency changes does not have an emergency
+problem. It has a planning problem, a fragility problem, or a vendor
+whose lead times do not fit the organization — and the register is the
+only instrument that makes the difference visible.</p>
+<p>Emergency changes are counted monthly and reported annually. A rising
+count is a matter for Tier 4 to act on, not a fact about a difficult
+month.</p>
+</blockquote>
+<h2
+id="11-post-implementation-review-and-the-monthly-register-review">11.
+Post-implementation review, and the monthly register review</h2>
+<p>Not every change gets a PIR. Doing one for everything guarantees that
+none of them are done properly.</p>
+<h3 id="111-a-pir-is-held-for">11.1 A PIR is held for</h3>
+<ul>
+<li>Every emergency change.</li>
+<li>Every change that was backed out.</li>
+<li>Every change that caused an incident or a measurable spike in
+tickets.</li>
+<li>Every change to identity, authentication or federation, whatever the
+outcome.</li>
+</ul>
+<h3 id="112-five-questions">11.2 Five questions</h3>
+<ol type="1">
+<li>Did it do what it was meant to do?</li>
+<li>What did we not anticipate?</li>
+<li>Was the back-out adequate — and if it was used, did it work within
+the time we said it would?</li>
+<li>Did the communication reach the people who needed it, in time to be
+useful?</li>
+<li>Should this become a standard change — or should it never be
+attempted this way again?</li>
+</ol>
+<h3 id="113-the-monthly-register-review">11.3 The monthly register
+review</h3>
+<p>Fifteen minutes at an existing Tier 4 meeting. Do not create a new
+one; a new meeting is the first thing that will be cancelled.</p>
+<ul>
+<li>Changes made, by class, with outcomes.</li>
+<li>Emergency count and backed-out count, both as trends rather than as
+single months.</li>
+<li>Changes deferred under a declared capacity state (§7.2).</li>
+<li>PIR outcomes and any action arising.</li>
+<li>Additions to, and removals from, the standard change list.</li>
+</ul>
+<blockquote>
+<p><strong>How the process gets lighter instead of heavier</strong></p>
+<p>The standard-change list grows by evidence. A normal change performed
+three times with the same outcome and no surprises is a candidate; Tier
+4 adds it at the monthly review, with its conditions and its back-out
+stated.</p>
+<p>That is the mechanism by which this document becomes cheaper to
+follow over time, which is the only way a process survives in a
+department this size.</p>
+<p>The two failure signals are worth naming. A standard list that never
+grows means the process is not being used. A list that grows without
+evidence means it is being used to avoid the process.</p>
+</blockquote>
+<h2 id="12-service-levels">12. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Normal change assessed after submission</td>
+<td>P3 — 3 coverage days at Tier 3.</td>
+</tr>
+<tr class="even">
+<td>Tier 4 approval of a normal change</td>
+<td>5 coverage days, or at the next monthly review where nothing is
+time-bound.</td>
+</tr>
+<tr class="odd">
+<td>Head of IT approval for a population-wide or irreversible
+change</td>
+<td>5 coverage days.</td>
+</tr>
+<tr class="even">
+<td>Vendor request raised into the register</td>
+<td>Within 2 coverage days of the vendor asking.</td>
+</tr>
+<tr class="odd">
+<td>Emergency change: record written and retrospective approval
+obtained</td>
+<td>Within 1 coverage day.</td>
+</tr>
+<tr class="even">
+<td>Site-wide notice for a user-visible change</td>
+<td>10 calendar days ahead, plus a reminder the day before.</td>
+</tr>
+<tr class="odd">
+<td>Back-out of a change actively causing harm</td>
+<td>Immediate, by any Tier 3 engineer, without approval (§5.3).</td>
+</tr>
+<tr class="even">
+<td>Window and freeze calendar published</td>
+<td>A quarter in advance.</td>
+</tr>
+<tr class="odd">
+<td>Monthly register review</td>
+<td>On schedule. Suspended only under a declared Degraded state, and
+then made up.</td>
+</tr>
+<tr class="even">
+<td>Under Constrained</td>
+<td>Assessment and the window calendar hold. Non-essential normal
+changes may be deferred, with the deferral recorded.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13-records">13. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Change register, all classes</td>
+<td>IT change log</td>
+<td>7 years</td>
+</tr>
+<tr class="even">
+<td>Back-out plans and their test evidence</td>
+<td>Attached to the change record</td>
+<td>7 years</td>
+</tr>
+<tr class="odd">
+<td>Standard change list, with its annual Tier 4 approval</td>
+<td>IT governance record</td>
+<td>Permanent — it is what keeps the process usable</td>
+</tr>
+<tr class="even">
+<td>Vendor change records, including standing approvals</td>
+<td>Change log + contract file</td>
+<td>7 years</td>
+</tr>
+<tr class="odd">
+<td>Site-wide notices issued</td>
+<td><a href="/sops/M365-06">M365-06</a> record</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>PIR outcomes and actions</td>
+<td>IT change log</td>
+<td>7 years</td>
+</tr>
+<tr class="odd">
+<td>Window and freeze calendar as published each year</td>
+<td>IT governance record</td>
+<td>7 years</td>
+</tr>
+<tr class="even">
+<td>Monthly register review notes</td>
+<td>Tier 4 record</td>
+<td>7 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="14-related-documents">14. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/M365-21">M365-21</a></td>
+<td>Tenant Configuration Change Control</td>
+<td>Tenant configuration is a change class governed here. <a href="/sops/M365-21">M365-21</a> is its
+system-specific instance and its record is this register’s record.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-13">DEV-13</a></td>
+<td>Patch, Update &amp; Maintenance Window Standard</td>
+<td>Patching operates inside these windows. <a href="/sops/DEV-13">DEV-13</a> sets the cadence and
+the rings; this document sets the window, the approval and the
+record.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-06">DEV-06</a></td>
+<td>Computer Lab, Meeting Room &amp; Shared Device Standard</td>
+<td>Never during booked hours. Lab work belongs in the quiet-period
+window.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-18">DEV-18</a></td>
+<td>Conference &amp; Meeting Room AV Standard</td>
+<td>Never during booked hours. Room technology is changed when no
+meeting is in the room.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-01">DEV-01</a></td>
+<td>Device Enrollment &amp; Lifecycle</td>
+<td>Enrollment waves are a series of normal changes with a plan around
+them (§3).</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-02">DEV-02</a></td>
+<td>Device Compliance &amp; Configuration Baseline</td>
+<td>Compliance policy changes are normal changes with a population-wide
+blast radius.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-16">ACC-16</a></td>
+<td>Application Onboarding, SSO &amp; SAML Claims Standard</td>
+<td>§8 cutovers and §9 authentication-strength changes are scheduled,
+approved and recorded here.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA Enrollment, Reset &amp; Account Recovery</td>
+<td>§11 there sets gates that apply on top of §6 here.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-11">ACC-11</a></td>
+<td>Vendor, Contractor &amp; Consultant Account Standard</td>
+<td>The account a vendor uses to execute §8, and the contract that
+should require §8.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-17">ACC-17</a></td>
+<td>Periodic Access Review &amp; Entitlement Recertification</td>
+<td>Uses the same freeze calendar, for the same reason (§7.1).</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response &amp; Escalation Matrix</td>
+<td>Incident actions are not changes. The fixes that follow them are,
+retrospectively (§10).</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-02">GOV-02</a></td>
+<td>Service Desk Intake &amp; Ticket Quality</td>
+<td>The register sits beside the tickets so that “what changed” and
+“what broke” are one search.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments, Priority &amp; Escalation</td>
+<td>Windows consume capacity; §7.2 and §12.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-06">M365-06</a></td>
+<td>Mass Communication Approval</td>
+<td>The route for site notice under §9.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-22">M365-22</a></td>
+<td>Phishing Reporting &amp; Email Threat Response</td>
+<td>Emergency mail-flow changes during a live wave.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--change-record-template">Appendix A — Change record
+template</h2>
+<p>Mandatory for every normal and emergency change. A standard change
+needs only the one-line register entry quoting its Appendix B
+identifier. This should take five minutes; if it takes longer, the
+change is bigger than it looked.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Reference and title</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Class</td>
+<td>Standard / Normal / Emergency (§3)</td>
+</tr>
+<tr class="odd">
+<td>Raised by, and date</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>What changes</td>
+<td>Specific enough that another engineer could find the setting or the
+package.</td>
+</tr>
+<tr class="odd">
+<td>Why, and who asked</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Systems affected</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Populations affected, with numbers</td>
+<td>Who cannot easily tell us it broke? People on leave, part-time
+staff, guests.</td>
+</tr>
+<tr class="even">
+<td>What could go wrong</td>
+<td>Written before. This field is the value of the record.</td>
+</tr>
+<tr class="odd">
+<td>BACK-OUT PLAN</td>
+<td>The action, who performs it, how long it takes, and the decision
+point. REQUIRED (§5).</td>
+</tr>
+<tr class="even">
+<td>Back-out tested?</td>
+<td>YES — when and by whom / NO — then this is not approved /
+IRREVERSIBLE — Head of IT approval per §5.2</td>
+</tr>
+<tr class="odd">
+<td>Test evidence</td>
+<td>Or an explicit statement that testing was not possible, and
+why.</td>
+</tr>
+<tr class="even">
+<td>Pilot or report-only first?</td>
+<td>Required for anything in <a href="/sops/M365-21">M365-21</a> §5 or <a href="/sops/ACC-16">ACC-16</a> §9.</td>
+</tr>
+<tr class="odd">
+<td>Proposed window and duration</td>
+<td>Per §7. Confirm it is not inside a freeze.</td>
+</tr>
+<tr class="even">
+<td>Communication plan</td>
+<td>Who, by whom, when (§9).</td>
+</tr>
+<tr class="odd">
+<td>Vendor involved?</td>
+<td>Named vendor, named organization approver (§8).</td>
+</tr>
+<tr class="even">
+<td>Approved by</td>
+<td>Named, per §6.</td>
+</tr>
+<tr class="odd">
+<td>Implemented by, actual start and finish</td>
+<td>Actual times.</td>
+</tr>
+<tr class="even">
+<td>Verification</td>
+<td>What was checked, and what it showed.</td>
+</tr>
+<tr class="odd">
+<td>Outcome</td>
+<td>Succeeded / succeeded with issues / backed out.</td>
+</tr>
+<tr class="even">
+<td>PIR required?</td>
+<td>Per §11.1.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--the-standard-pre-approved-change-list">Appendix B —
+The standard (pre-approved) change list</h2>
+<p>A starting set drafted for review, not an approved list. Tier 4
+approves it once as a whole, then annually, and adds to it at the
+monthly register review as normal changes prove themselves (§11.3). Each
+entry is pre-approved ONLY while its stated conditions hold.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Change</th>
+<th>Conditions</th>
+<th>Back-out</th>
+<th>Window</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>STD-01</td>
+<td>Monthly operating system quality updates to the pilot and standard
+rings</td>
+<td>Per the <a href="/sops/DEV-13">DEV-13</a> ring schedule. No ring skipped, no ring merged.</td>
+<td>Uninstall the update; hold the ring.</td>
+<td>Per <a href="/sops/DEV-13">DEV-13</a></td>
+</tr>
+<tr class="even">
+<td>STD-02</td>
+<td>Third-party application updates deployed through Intune or the
+ticketing system</td>
+<td>Pilot ring first and clean for 3 days.</td>
+<td>Retire the deployment; redeploy the previous version.</td>
+<td>Any</td>
+</tr>
+<tr class="odd">
+<td>STD-03</td>
+<td>Printer and peripheral driver updates</td>
+<td>Not during a scheduled booking in that room.</td>
+<td>Roll back the driver.</td>
+<td>Any</td>
+</tr>
+<tr class="even">
+<td>STD-04</td>
+<td>Endpoint protection signature and engine updates</td>
+<td>Vendor-published, automatic, monitored by your security
+provider.</td>
+<td>Vendor rollback path.</td>
+<td>Any</td>
+</tr>
+<tr class="odd">
+<td>STD-05</td>
+<td>Creating a Conditional Access policy in REPORT-ONLY mode</td>
+<td>Report-only only. Enabling it is a normal change (<a href="/sops/M365-21">M365-21</a> §5).</td>
+<td>Delete the policy.</td>
+<td>Any</td>
+</tr>
+<tr class="even">
+<td>STD-06</td>
+<td>Creating or amending a dynamic group rule</td>
+<td>Fewer than 50 members, no permission or licence attached to the
+group, <a href="/sops/M365-04">M365-04</a> §7 register updated.</td>
+<td>Restore the previous rule, recorded.</td>
+<td>Any</td>
+</tr>
+<tr class="odd">
+<td>STD-07</td>
+<td>Certificate renewal, like for like, ahead of expiry</td>
+<td>Same issuer, same subject, no change of key type.</td>
+<td>Reinstate the previous certificate until its expiry.</td>
+<td>Weekly technical</td>
+</tr>
+<tr class="even">
+<td>STD-08</td>
+<td>DNS record change for a service already in production, like for
+like</td>
+<td>TTL lowered 24 hours ahead.</td>
+<td>Restore the previous record.</td>
+<td>Weekly technical</td>
+</tr>
+<tr class="odd">
+<td>STD-09</td>
+<td>Adding a device to the scope of an existing Intune configuration or
+compliance policy</td>
+<td>The policy itself is unchanged; scope only.</td>
+<td>Remove from scope.</td>
+<td>Any</td>
+</tr>
+<tr class="even">
+<td>STD-10</td>
+<td>Restarting a non-production or Test-tier server</td>
+<td>Not a test instance during scheduled vendor activity on it.</td>
+<td>Not applicable.</td>
+<td>Any</td>
+</tr>
+<tr class="odd">
+<td>STD-11</td>
+<td>Redeploying a lab or meeting-room image from the approved image</td>
+<td>No session booked in the room; <a href="/sops/DEV-06">DEV-06</a> baseline unchanged.</td>
+<td>Redeploy the previous image.</td>
+<td>Quiet period / room free period</td>
+</tr>
+<tr class="even">
+<td>STD-12</td>
+<td>Vendor maintenance under an approved standing scope</td>
+<td>Scope, systems and window exactly as approved under §8 step 6. Test
+before Production.</td>
+<td>As stated in the standing approval.</td>
+<td>The approved recurring window</td>
+</tr>
+<tr class="odd">
+<td>STD-13</td>
+<td>Blocking a confirmed malicious sender, domain or URL</td>
+<td><a href="/sops/M365-22">M365-22</a> triage complete and the message confirmed malicious.</td>
+<td>Remove the block.</td>
+<td>Any</td>
+</tr>
+<tr class="even">
+<td>STD-14</td>
+<td>Adding or amending a monitoring or alerting rule</td>
+<td>Changes what is observed, never what is enforced.</td>
+<td>Delete the rule.</td>
+<td>Any</td>
+</tr>
+</tbody>
+</table></div>
+<p>Anything not on this list, or not meeting the conditions stated for
+it, is a normal change. When in doubt it is a normal change — the cost
+of over-classifying is one form; the cost of under-classifying is the
+thing this document exists to prevent.</p>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

@@ -1,0 +1,418 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M365-02 · Exchange Online Mailbox Standard | Known Good</title>
+<meta name="description" content="Mailbox sizing, retention, forwarding, rules and delegation — stated once, for everyone with a mailbox.">
+<meta property="og:title" content="M365-02 · Exchange Online Mailbox Standard | Known Good">
+<meta property="og:description" content="Mailbox sizing, retention, forwarding, rules and delegation — stated once, for everyone with a mailbox.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="m365-02--exchange-online-mailbox-standard">M365-02 · Exchange
+Online Mailbox Standard</h1>
+<p><em>Mailbox sizing, retention, forwarding, rules and delegation —
+stated once, for everyone with a mailbox.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/M365-02-Exchange-Online-Mailbox-Standard.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/M365-02.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/M365-02">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>M365-02</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>A. Microsoft 365</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 2 — Advanced Technical Services.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually.</td>
+</tr>
+<tr class="even">
+<td>Governing policy</td>
+<td>Your organization’s email and account policy. That policy governs;
+this standard is the operational detail beneath it and must not
+contradict it.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>Most organizations have an email and account policy, and it governs.
+This standard is the operational layer underneath: the numbers, the
+defaults, and the handful of rules that IT applies consistently.</p>
+<h2 id="2-what-every-mailbox-gets">2. What every mailbox gets</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Staff</th>
+<th>Contractor / guest</th>
+<th>Shared / resource</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mailbox size</td>
+<td>Per licence (<a href="/sops/M365-20">M365-20</a>)</td>
+<td>Per licence</td>
+<td>Per licence</td>
+</tr>
+<tr class="even">
+<td>Archive</td>
+<td>Enabled</td>
+<td>Enabled</td>
+<td>Enabled where needed</td>
+</tr>
+<tr class="odd">
+<td>Retention</td>
+<td>Per <a href="/sops/M365-16">M365-16</a></td>
+<td>Per <a href="/sops/M365-16">M365-16</a></td>
+<td>Per <a href="/sops/M365-16">M365-16</a></td>
+</tr>
+<tr class="even">
+<td>Litigation hold</td>
+<td>Applied where required (<a href="/sops/M365-16">M365-16</a>)</td>
+<td>As required</td>
+<td>As required</td>
+</tr>
+<tr class="odd">
+<td>External forwarding</td>
+<td>Blocked (§3)</td>
+<td>Blocked (§3)</td>
+<td>Blocked</td>
+</tr>
+<tr class="even">
+<td>Automatic replies</td>
+<td>Self-service</td>
+<td>Self-service</td>
+<td>Set by the owner</td>
+</tr>
+<tr class="odd">
+<td>Delegation</td>
+<td>By request (§5)</td>
+<td>Not routinely</td>
+<td>Membership, not delegation (<a href="/sops/M365-03">M365-03</a>)</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="3-external-forwarding--the-one-hard-rule">3. External forwarding
+— the one hard rule</h2>
+<blockquote>
+<p><strong>Automatic forwarding of work mail to an external address is
+blocked, for everybody.</strong></p>
+<p>This is the single most valuable mailbox control the organization can
+operate, and it is worth the small amount of annoyance it causes.</p>
+<p>Two reasons. First, it is the standard exfiltration mechanism after
+an account compromise: an attacker sets a forwarding rule and reads
+everything thereafter without signing in again, which is invisible to
+the account holder and survives a password reset. Second, work
+correspondence forwarded to a personal account is outside every
+retention, discovery and security control the organization operates —
+and it is frequently correspondence about other people.</p>
+<p>Manual forwarding of an individual message remains available. That is
+a person making a decision about a specific message, which is a
+different thing entirely.</p>
+</blockquote>
+<p>Where a genuine business need exists — a shared function forwarding
+to a monitored departmental address inside the tenant — that is internal
+forwarding and is fine. External forwarding exceptions require Tier 4
+approval, a stated reason, and an expiry, and should be very rare.</p>
+<h2 id="4-rules-and-automatic-processing">4. Rules and automatic
+processing</h2>
+<ul>
+<li>Users may create their own inbox rules for filing and organisation.
+That is ordinary use and needs no involvement from IT.</li>
+<li>Rules that delete, or that move mail out of the mailbox, are the
+attacker’s pattern (<a href="/sops/M365-22">M365-22</a> §5). IT reports on newly-created rules of
+that shape and follows up — not to police filing habits, but because a
+rule the user did not create is a compromise indicator.</li>
+<li>When investigating a suspected compromise, checking for
+attacker-created rules is mandatory and is the step most often
+missed.</li>
+<li>Automatic replies should say when the person is back and who to
+contact meanwhile. An out-of-office giving neither is a small daily cost
+across the whole organization.</li>
+</ul>
+<h2 id="5-delegation-and-shared-access">5. Delegation and shared
+access</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Mechanism</th>
+<th>Use when</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Delegate access</td>
+<td>One person manages another’s mail or calendar — an assistant, or
+cover during leave. Personal and revocable (<a href="/sops/ACC-14">ACC-14</a>).</td>
+</tr>
+<tr class="even">
+<td>Shared mailbox membership</td>
+<td>Several people answer mail to a departmental address. This is the
+right answer far more often than delegation (<a href="/sops/M365-03">M365-03</a>).</td>
+</tr>
+<tr class="odd">
+<td>Send-as</td>
+<td>Mail should appear to come from the department rather than the
+individual.</td>
+</tr>
+<tr class="even">
+<td>Calendar sharing</td>
+<td>Availability visible to colleagues. Default is free/busy; detail by
+choice.</td>
+</tr>
+<tr class="odd">
+<td>Full mailbox access granted by IT without the owner’s knowledge</td>
+<td>Never, except under <a href="/sops/GOV-03">GOV-03</a> or a Tier 4 decision with a recorded
+reason.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="6-sending-limits-and-moderation">6. Sending limits and
+moderation</h2>
+<ul>
+<li>Platform recipient and rate limits apply and are not adjustable.
+Where somebody hits them, the answer is usually that they should be
+using <a href="/sops/M365-06">M365-06</a> rather than sending manually.</li>
+<li>Whole-population groups are moderated (<a href="/sops/M365-04">M365-04</a> §8). One misdirected
+reply-all to the whole organization is a genuinely bad afternoon.</li>
+<li>Bulk sending for legitimate organization communication goes through
+the approved mechanism, not through a personal mailbox.</li>
+</ul>
+<h2 id="7-retention-and-archiving">7. Retention and archiving</h2>
+<ul>
+<li>Retention policy is applied at tenant level per <a href="/sops/M365-16">M365-16</a>, not chosen
+per mailbox.</li>
+<li>The archive is part of the mailbox, not a backup. Deleting from the
+archive deletes it.</li>
+<li>On separation, mailbox content is retained a minimum of two years
+with no maximum (<a href="/sops/ACC-01">ACC-01</a> §7.3). Confirm that Teams chat retention meets
+the same floor, or the floor is defeated for one content type.</li>
+<li>Individual users do not need to manage retention. Where somebody
+asks how long their mail is kept, the answer is in <a href="/sops/M365-16">M365-16</a> and it should
+be a published answer rather than a per-question one.</li>
+</ul>
+<h2 id="8-mailboxes-that-are-not-people">8. Mailboxes that are not
+people</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Governed by</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Shared mailbox for a department or function</td>
+<td><a href="/sops/M365-03">M365-03</a>. Named owner, membership, review.</td>
+</tr>
+<tr class="even">
+<td>Room and equipment mailboxes</td>
+<td>Booking policy set by the room’s owning department; IT
+provisions.</td>
+</tr>
+<tr class="odd">
+<td>Service or application mailbox</td>
+<td><a href="/sops/ACC-08">ACC-08</a>. Must have a human owner recorded.</td>
+</tr>
+<tr class="even">
+<td>A mailbox for a departed person</td>
+<td>Converted to shared or retained inactive per <a href="/sops/ACC-01">ACC-01</a> §7.3. Never left
+as a live licensed account with somebody else reading it.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="9-service-levels">9. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Request</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mailbox questions</td>
+<td>Answered at Tier 1 from Appendix A.</td>
+</tr>
+<tr class="even">
+<td>Delegation setup</td>
+<td>P3 — 1 coverage day, with the mailbox owner’s consent.</td>
+</tr>
+<tr class="odd">
+<td>External forwarding exception</td>
+<td>P3 to Tier 4. Expect it to be declined with an alternative.</td>
+</tr>
+<tr class="even">
+<td>Suspicious rule detected on a mailbox</td>
+<td>P2 — investigated same coverage day (<a href="/sops/M365-22">M365-22</a>).</td>
+</tr>
+<tr class="odd">
+<td>Mailbox full</td>
+<td>P3 — archive and licence checked (<a href="/sops/M365-20">M365-20</a>) before anything
+else.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10-records">10. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>External forwarding exceptions, with reason and expiry</td>
+<td>Tier 4 record</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Delegation grants, with owner consent</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Full mailbox access granted without owner knowledge</td>
+<td>Tier 4 / incident record</td>
+<td>7 years</td>
+</tr>
+<tr class="even">
+<td>Suspicious rule investigations</td>
+<td>Ticket + security record</td>
+<td>3 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-related-documents">11. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Email Policy</td>
+<td>Your email and account policy</td>
+<td>Governs. This standard sits beneath it.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-01">M365-01</a></td>
+<td>Microsoft 365 Service Description</td>
+<td>What a mailbox is, at service level.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-03">M365-03</a></td>
+<td>Shared Mailbox Request &amp; Ownership</td>
+<td>§8, and the better answer to most delegation requests.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-05">M365-05</a></td>
+<td>Email Alias &amp; Address Change Standard</td>
+<td>Addresses and aliases.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-06">M365-06</a></td>
+<td>Mass Communication &amp; Broadcast Email Approval</td>
+<td>§6.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-16">M365-16</a></td>
+<td>Retention, Legal Hold &amp; eDiscovery</td>
+<td>§7.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-22">M365-22</a></td>
+<td>Phishing Reporting &amp; Email Threat Response</td>
+<td>§3 and §4 — the attacker patterns.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-14">ACC-14</a></td>
+<td>Mailbox &amp; Calendar Delegation Standard</td>
+<td>The detail behind §5.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>§7.3 retention, and mailbox disposition at separation.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-20">M365-20</a></td>
+<td>License Assignment &amp; Reclamation</td>
+<td>Mailbox size follows the licence.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--desk-card">Appendix A — Desk card</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>They ask</th>
+<th>You say</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>“Can I forward my work mail to Gmail?”</td>
+<td>No — external forwarding is blocked for everyone. You can forward
+individual messages by hand. If it is a workload problem, a shared
+mailbox may be the answer.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>“My mailbox is full”</td>
+<td>Check the archive is enabled and the licence is right before
+anything else.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>“Can somebody manage my calendar?”</td>
+<td>Yes — delegation. We need your consent on the ticket.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>“Several of us need to answer this address”</td>
+<td>That is a shared mailbox, not delegation (<a href="/sops/M365-03">M365-03</a>). It needs a named
+owner.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>“How long is my email kept?”</td>
+<td>Per the retention policy — <a href="/sops/M365-16">M365-16</a> has the published answer.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>“There is a rule in my mailbox I did not create”</td>
+<td>Stop. That is a compromise indicator. <a href="/sops/M365-22">M365-22</a> §5, same day.</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>“I need to email everyone”</td>
+<td><a href="/sops/M365-06">M365-06</a>. Through the office that owns that population.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

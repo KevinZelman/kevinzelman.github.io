@@ -1,0 +1,1099 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DEV-17 · Printer, Copier &amp; Peripheral Standard | Known Good</title>
+<meta name="description" content="The most frequent request the front door receives and the least severe. Written down once so it stops being answered forty times — and because a copier is a computer with a hard drive in it.">
+<meta property="og:title" content="DEV-17 · Printer, Copier &amp; Peripheral Standard | Known Good">
+<meta property="og:description" content="The most frequent request the front door receives and the least severe. Written down once so it stops being answered forty times — and because a copier is a computer with a hard drive in it.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="dev-17--printer-copier--peripheral-standard">DEV-17 · Printer,
+Copier &amp; Peripheral Standard</h1>
+<p><em>The most frequent request the front door receives and the least
+severe. Written down once so it stops being answered forty times — and
+because a copier is a computer with a hard drive in it.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/DEV-17-Printer-Copier-and-Peripheral-Standard.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/DEV-17.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/DEV-17">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>DEV-17</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>C. Device Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 1 — the published model names peripherals, printers and
+hardware as front-door work, and this document is written so that the
+front door can finish the job. Tier 2 owns queue and driver deployment;
+Tier 3 owns the print architecture decision in §4; Tier 4 owns the
+exceptions in §2 and the disposal approvals in §11.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually, and whenever the print architecture in §4 changes.</td>
+</tr>
+<tr class="even">
+<td>Why a P3 is worth writing at all</td>
+<td>Because the queue is not sorted by severity, it is filled by
+frequency. A P3 that arrives forty times a quarter consumes more of the
+department’s total capacity than a P1 that arrives twice, and nobody
+notices, because each individual instance is trivially small. §1 does
+the arithmetic. The fix for this class of demand is documentation, not
+staffing (<a href="/sops/GOV-05">GOV-05</a>, <a href="/sops/GOV-06">GOV-06</a>).</td>
+</tr>
+<tr class="odd">
+<td>Relationship to <a href="/sops/DEV-04">DEV-04</a></td>
+<td><a href="/sops/DEV-04">DEV-04</a> decides what the organization buys and on what refresh cycle.
+This document says what the standard peripheral set is once it has been
+bought, and how it is supported. §2 is the shared boundary.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose--the-arithmetic-of-a-p3">1. Purpose — the arithmetic
+of a P3</h2>
+<p>This is the least important document in the catalogue by severity and
+one of the more valuable by return, and it is worth being explicit about
+why, because the instinct in a department this stretched is to leave a
+P3 undocumented and deal with each one as it arrives.</p>
+<blockquote>
+<p><strong>Do the sum, because it is the whole premise of the
+document</strong></p>
+<p>A printer question takes a member of Tier 1 somewhere between ten and
+twenty minutes end to end — the contact, the walk, the driver, the
+ticket. Call it fifteen. Forty of those in a term is ten hours of
+front-door capacity, spent on a problem whose answer has not
+changed.</p>
+<p>A P1 that arrives twice a term and takes four hours each time is
+eight hours. It gets a document, a review, a named owner and a
+post-incident note, because it is frightening. The ten-hour item gets
+nothing, because each instance is fifteen minutes and fifteen minutes
+never looks like a problem worth writing about.</p>
+<p>That is the trap. The queue is not filled by severity, it is filled
+by frequency, and the department is severely understaffed with most
+staff wearing several hats. There is no version of this in which more
+capacity arrives. So the only available lever is that the fortieth
+person answers the question themselves, from a page, without a contact —
+which is <a href="/sops/GOV-05">GOV-05</a>, and which needs a source document to derive from. This
+is that source document.</p>
+</blockquote>
+<p>Two secondary reasons this document is not merely a convenience.
+First, secure release printing and scan-to-email are genuine
+data-handling controls that are usually treated as printer settings (§5,
+§6). Second, a multifunction copier holds a hard drive containing images
+of everything it has ever scanned, copied or printed, and it leaves the
+building at end of lease on a date set by a contract rather than by IT
+(§11). Both of those are in here because there is no other document they
+belong to.</p>
+<h2 id="2-what-the-organization-supplies-as-standard">2. What the
+organization supplies as standard</h2>
+<p>Published so that the answer to “can I have one” is a lookup rather
+than a negotiation with whoever picks up the request. The catalogue and
+the refresh cycle are <a href="/sops/DEV-04">DEV-04</a>; this is the supported set and who supplies
+it.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Standard</th>
+<th>Supplied by</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Docking station or hub</td>
+<td>One per assigned desk for a laptop user.</td>
+<td>IT, with the device</td>
+<td>Matched to the laptop model. A hub bought separately is the
+commonest cause of a “monitor stopped working” report.</td>
+</tr>
+<tr class="even">
+<td>Monitors</td>
+<td>Two, standard size, for a staff desk. One for a shared or hot
+desk.</td>
+<td>IT, with the device</td>
+<td>Cables supplied. A third monitor is a <a href="/sops/DEV-04">DEV-04</a> exception, not a
+request.</td>
+</tr>
+<tr class="odd">
+<td>Keyboard and mouse</td>
+<td>Wired, standard.</td>
+<td>IT</td>
+<td>Wireless on request where there is a reason. Batteries are
+departmental.</td>
+</tr>
+<tr class="even">
+<td>Headset</td>
+<td>One per person whose role includes calls or Teams meetings.</td>
+<td>IT</td>
+<td>Wired USB is the supported default; it does not need pairing and it
+does not run out of charge mid-meeting.</td>
+</tr>
+<tr class="odd">
+<td>Webcam</td>
+<td>Where the device has no usable built-in camera.</td>
+<td>IT</td>
+<td>Room cameras are <a href="/sops/DEV-18">DEV-18</a>, not this.</td>
+</tr>
+<tr class="even">
+<td>Cables and adapters</td>
+<td>USB-C, HDMI, USB-A, DisplayPort, and the common adapters.</td>
+<td>IT — swap stock</td>
+<td>Held as consumable swap stock, not as tracked assets (§9).</td>
+</tr>
+<tr class="odd">
+<td>Printing</td>
+<td>Access to the shared multifunction device serving your area.</td>
+<td>IT / copier vendor</td>
+<td>Shared devices, not personal ones. See below.</td>
+</tr>
+<tr class="even">
+<td>Scanning</td>
+<td>Via the same multifunction device.</td>
+<td>IT / copier vendor</td>
+<td>Scan to OneDrive is the supported default (§6).</td>
+</tr>
+<tr class="odd">
+<td>Accessibility peripherals</td>
+<td>Whatever the person needs.</td>
+<td>IT, without a catalogue argument</td>
+<td>Not a discretionary request and not subject to this table. §10.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="21-not-supplied-as-standard">2.1 Not supplied as standard</h3>
+<ul>
+<li>A personal desktop printer. Stated plainly with the reasons, because
+refusing without them reads as obstruction: consumables for a small
+printer cost several times per page what the fleet costs; it has no
+secure release, so §5 cannot apply to it; it produces no meter or audit
+record; and every model is a driver somebody has to maintain for one
+person. Where there is a genuine case — a device handling continuous
+sensitive output in a private office, a specialist media requirement —
+it is a <a href="/sops/DEV-04">DEV-04</a> exception with Tier 4 approval and the department carries
+the consumables.</li>
+<li>Consumer peripherals bought on a departmental card and then
+presented to IT for support. IT will help, and will not promise to. The
+honest position is that a supported peripheral is one IT has a spare
+of.</li>
+<li>Personally-owned peripherals, other than under §10. They may be used
+on an organization device where they work; IT does not troubleshoot them
+and will not install unsigned vendor software to make them work
+(<a href="/sops/DEV-12">DEV-12</a>).</li>
+<li>Fax. If a business process still requires a fax, that is a process
+question for the department and Tier 4, not a peripheral request.</li>
+</ul>
+<h2 id="3-adding-a-printer-on-a-managed-device">3. Adding a printer on a
+managed device</h2>
+<p>On a managed device the printer should already be there. Printer
+assignment is a deployment, targeted at a group by location or
+department, and it arrives with the rest of the device configuration
+(<a href="/sops/DEV-01">DEV-01</a>, <a href="/sops/DEV-02">DEV-02</a>).</p>
+<blockquote>
+<p><strong>So the first diagnostic question is not “how do I add
+it”</strong></p>
+<p>If a managed device does not already have the printers for its area,
+that is a deployment gap and it belongs in a ticket against the
+assignment, not in a walk-through with the user. Adding it by hand fixes
+one person and leaves the next twelve to discover the same thing.</p>
+<p>Tier 1 adds the printer by hand to unblock the person in front of
+them, and then records that the assignment did not reach the device.
+Both halves. The second half is the one that stops the ticket
+recurring.</p>
+</blockquote>
+<ol type="1">
+<li>Confirm the device is enrolled and compliant. An unenrolled device
+is a <a href="/sops/DEV-01">DEV-01</a> matter and printing is a symptom, not the problem.</li>
+<li>Confirm which printer they should have — by room or department, from
+the printer register. Guessing produces a queue that works today and
+points at the wrong floor after the next move.</li>
+<li>Add it per Appendix B, which is written to be handed to the
+user.</li>
+<li>Print a test page before leaving or ending the contact. A printer
+that was added but never printed is not a closed ticket.</li>
+<li>Where secure release applies, have the person release the test job
+at the device with their badge or PIN, so that the first time they use
+it is not the day it matters (§5).</li>
+<li>Record the deployment gap if there was one. Assignment groups are
+corrected in batches, and the batch is built from these records.</li>
+</ol>
+<h2 id="4-where-print-is-going--servers-universal-print-direct-ip">4.
+Where print is going — servers, Universal Print, direct IP</h2>
+<p>Recorded here because it is the one part of printing that is
+genuinely in motion, and because it will surface as a wave of printer
+tickets during any move to Intune if nobody has planned it.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Architecture</th>
+<th>How it works</th>
+<th>Assessment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Print server (the status quo)</td>
+<td>Queues published from a Windows print server; clients connect over
+the domain by UNC path.</td>
+<td>Works, understood, and depends on the client being domain-joined and
+on site or on VPN. That last dependency is the problem: as devices move
+to Entra-joined Intune management through the <a href="/sops/DEV-01">DEV-01</a> waves, the path
+that publishes those queues stops being available to them. This will
+present as “printing broke after my computer was upgraded”, in volume,
+at a predictable moment.</td>
+</tr>
+<tr class="even">
+<td>Universal Print</td>
+<td>Cloud print service in Microsoft 365. Printers registered to the
+tenant, shared to groups, assigned through Intune. No print server, no
+queue path, no VPN dependency.</td>
+<td>The natural destination for a tenant already committed to Intune and
+Entra. Needs a licence check (it is included in some Microsoft 365 plans
+and not others — confirm against your actual tenant entitlement before
+designing around it, <a href="/sops/M365-20">M365-20</a>), and needs either printer models that
+support it natively or a connector host for those that do not.
+Recommended direction.</td>
+</tr>
+<tr class="odd">
+<td>Direct IP via Intune</td>
+<td>The printer is deployed to the device as a direct TCP/IP queue with
+a driver, by Intune configuration or script.</td>
+<td>The pragmatic interim, and honestly quite serviceable. No server, no
+cloud dependency, no licence question. The costs are that it needs the
+device to reach the printer’s address — so it is site-only unless routed
+— and that driver management moves onto Tier 2. Appropriate for the
+migration period and for printers Universal Print cannot reach.</td>
+</tr>
+<tr class="even">
+<td>Vendor cloud print</td>
+<td>The copier vendor’s own print and release platform.</td>
+<td>Frequently offered with a fleet contract and frequently the least
+bad answer for badge release across a mixed fleet. Assess it as a
+third-party service handling print job content — which is organization
+data leaving the tenant — under <a href="/sops/ACC-16">ACC-16</a> and the sensitive classes in
+<a href="/sops/M365-15">M365-15</a>, not as a printer feature.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Open — decide where print is going</strong></p>
+<p>Many organizations have not decided which of these they are going to,
+and the decision is bound to the Intune migration rather than
+independent of it. Every wave that completes without an answer adds
+users whose printing works by an arrangement that is being retired.</p>
+<p>ACTION: Tier 3 to establish, before the next enrollment wave, (a)
+whether the tenant’s licences include Universal Print, (b) which of the
+current fleet supports it natively, and (c) what the interim is for the
+rest — direct IP by Intune configuration is the presumed answer. Record
+the outcome as an addition to this section and as a <a href="/sops/DEV-01">DEV-01</a>
+prerequisite.</p>
+<p>This is a half-day of investigation and it prevents a predictable,
+visible, self-inflicted wave of tickets. It is also the only genuinely
+urgent item in this document.</p>
+</blockquote>
+<h2 id="5-secure-release-printing-and-the-tray-as-a-data-leak">5. Secure
+release printing, and the tray as a data leak</h2>
+<p>Secure release — badge or PIN at the device, job held until then —
+exists for one reason and it is worth stating without euphemism.</p>
+<blockquote>
+<p><strong>A printed page sitting in an output tray is an unclassified
+copy of organization data, unattended, in a corridor</strong></p>
+<p>Every control the organization operates around a document stops at
+the printer. There is no label on the paper, no access list, no audit
+trail, no encryption, no revocation, and no way to know who picked it
+up. The moment a job prints to an open tray, the organization has taken
+a controlled record and left it in a public space.</p>
+<p>This is not hypothetical or exotic. It is a payroll report, a
+disciplinary letter, a user’s accommodation paperwork, a list of names
+and dates of birth, a draft of something not yet announced. Every
+institution has found one of those in a tray.</p>
+<p>So: anything falling in the sensitive classes proposed in <a href="/sops/M365-15">M365-15</a> is
+printed to a secure-release queue, or it is not printed. That is a rule
+about handling, not about printer configuration, and it belongs to the
+person pressing print as much as to IT.</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Rule</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Secure release is the default queue</td>
+<td>Where a device supports it, the released queue is the one deployed
+and the direct queue is not published. A default that requires a choice
+will not be chosen under time pressure.</td>
+</tr>
+<tr class="even">
+<td>Held jobs expire</td>
+<td>Unreleased jobs are deleted after a set period — 24 hours is a
+reasonable default. A held job queue that never empties is a filing
+cabinet of documents nobody collected.</td>
+</tr>
+<tr class="odd">
+<td>No shared release credentials</td>
+<td>A badge or PIN is an identity (<a href="/sops/ACC-15">ACC-15</a>). Releasing somebody else’s
+job for them, however helpfully, is the same act as reading their
+post.</td>
+</tr>
+<tr class="even">
+<td>Collect immediately</td>
+<td>Published in the end-user guidance: press print, then walk. A job
+released and left in the tray has defeated the entire control.</td>
+</tr>
+<tr class="odd">
+<td>Found paper has a route</td>
+<td>Anything found in a tray that looks sensitive goes to the department
+that owns it or to the service desk, not into recycling and not read.
+This should be said out loud, because the instinctive reaction is
+embarrassment and silence.</td>
+</tr>
+<tr class="even">
+<td>Confidential waste</td>
+<td>Every multifunction device has a confidential waste bin within sight
+of it, or the control has a hole in it at the disposal end. Facilities
+own the bins; IT should say when one is missing.</td>
+</tr>
+<tr class="odd">
+<td>A device without secure release</td>
+<td>Is a device that must not be used for sensitive output, and the
+people using it should be told that plainly rather than left to
+assume.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Honest note on current state: secure release is not uniformly
+deployed across the organization’s fleet, and this document does not
+claim otherwise. Establishing which devices support it, which have it
+enabled, and which areas therefore have no compliant route for sensitive
+printing is a Tier 2 survey of about a day. Until that exists, §5 is a
+standard the organization is working toward and should be described that
+way in any end-user text.</p>
+<h2 id="6-scanning--to-email-to-onedrive-and-the-relay-trap">6. Scanning
+— to email, to OneDrive, and the relay trap</h2>
+<h3 id="61-scan-to-onedrive-or-sharepoint-is-the-supported-default">6.1
+Scan to OneDrive or SharePoint is the supported default</h3>
+<ul>
+<li>The scanned document lands inside the tenant, in a place that
+carries a classification by virtue of being that place (<a href="/sops/M365-15">M365-15</a>), under
+retention, in the boundary the organization actually governs
+(<a href="/sops/M365-12">M365-12</a>).</li>
+<li>It does not travel as an attachment, so it is not copied into three
+mailboxes and a phone on its way to being filed.</li>
+<li>It works from any device the person is signed into, which is the
+practical reason people will accept it.</li>
+<li>Scan to a departmental SharePoint site rather than a personal
+OneDrive for anything that is an organization record. A scanned invoice
+in somebody’s OneDrive is the same problem as a leaver’s OneDrive full
+of departmental files (<a href="/sops/M365-12">M365-12</a>), arriving by a different route.</li>
+</ul>
+<h3 id="62-scan-to-email-and-the-trap">6.2 Scan to email, and the
+trap</h3>
+<blockquote>
+<p><strong>A copier configured to send through an unauthenticated relay
+is a mail security hole with a paper feeder</strong></p>
+<p>The convenient way to make scan-to-email work is to point the device
+at something that will accept mail from it without credentials. Every
+copier vendor knows how to do this and it takes four minutes.</p>
+<p>What the organization then has is a device on the network that will
+send mail appearing to come from the organization, to anybody, at the
+request of anybody who can walk up to it. It bypasses the external-mail
+banner, the phishing controls and any content inspection (<a href="/sops/M365-22">M365-22</a>). It
+is also, eventually, found — open relays are scanned for continuously,
+and the organization learns about it from a blocklist rather than from
+an audit.</p>
+<p>The rule: a multifunction device sends mail by authenticated
+submission, using a dedicated non-human account under <a href="/sops/ACC-08">ACC-08</a> with a
+named owner and a rotation schedule — never a person’s credentials, and
+never a shared password recorded in the device’s configuration page and
+nowhere else.</p>
+<p>And it sends to internal recipients only, unless a specific business
+need is approved by Tier 4 with a recorded reason. Scan-to-external from
+a walk-up device is an unmonitored data export channel with no sender
+identity behind it.</p>
+</blockquote>
+<ol type="1">
+<li>The sending account is created and owned under <a href="/sops/ACC-08">ACC-08</a>. Its
+credential is held in custody, not in the technician’s notes.</li>
+<li>The from-address is a device address that is obviously a device — a
+scanner address, not a person and not a department that receives mail.
+Replies to a scan should bounce somewhere harmless.</li>
+<li>Recipients are restricted to internal addresses at the transport
+level, so the restriction survives somebody changing the device’s
+address book.</li>
+<li>The device’s own address book is treated as a directory extract and
+is reviewed when the device is reconfigured or relocated. Leavers
+accumulate in it (<a href="/sops/ACC-01">ACC-01</a> §7.2).</li>
+<li>Scan-to-self — the device mails the scan to the signed-in user and
+nobody else — is the safest form of scan-to-email and should be
+preferred where the platform supports it.</li>
+<li>Never scan anything in the sensitive classes to a personal address.
+Say it in the end-user guidance, because it is the single most common
+informal workaround in any institution.</li>
+</ol>
+<h2 id="7-consumables-and-who-orders-toner">7. Consumables and who
+orders toner</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Who orders</th>
+<th>How, and the thing that goes wrong</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Toner, fleet multifunction devices</td>
+<td>The copier vendor, automatically</td>
+<td>Fleet contracts normally include auto-replenishment triggered by
+remote meter reads. The failure mode is a device that has lost network
+reachability and therefore stopped reporting — it will run dry silently.
+A device reporting no meter read for a fortnight is a fault, not a quiet
+month.</td>
+</tr>
+<tr class="even">
+<td>Toner, non-fleet printers</td>
+<td>The department that owns the printer</td>
+<td>IT does not hold a toner stock for non-standard devices and should
+say so before the printer is bought, not afterwards. This is one of the
+reasons §2.1 exists.</td>
+</tr>
+<tr class="odd">
+<td>Paper</td>
+<td>Facilities or the department, per local arrangement</td>
+<td>Not an IT consumable. Worth stating, because “the printer is out of
+paper” arrives as an IT ticket several times a term.</td>
+</tr>
+<tr class="even">
+<td>Staples, waste toner bottles, maintenance kits</td>
+<td>The copier vendor under the service contract</td>
+<td>Part of the service call in §8, not a separate purchase.</td>
+</tr>
+<tr class="odd">
+<td>Batteries for wireless peripherals</td>
+<td>The department</td>
+<td>Which is a small argument for the wired default in §2.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>The trigger is the toner-low alert, not the toner-out event. A
+device that stops on the Friday of a deadline week stopped being fine on
+the Tuesday and nobody acted on the warning.</li>
+<li>Departments hold one spare cartridge for a device they depend on.
+That is cheaper than an expedited delivery and very much cheaper than a
+missed deadline.</li>
+<li>Nobody refills or remanufactures cartridges for fleet devices. It
+voids the service contract and the vendor will identify it during the
+next call, at which point the conversation is about the contract rather
+than about the printer.</li>
+</ul>
+<h2 id="8-the-copier-fleet-and-vendor-service-calls">8. The copier fleet
+and vendor service calls</h2>
+<h3 id="81-logging-the-call">8.1 Logging the call</h3>
+<ol type="1">
+<li>The fault is reported to the service desk, which logs it with the
+vendor. Departments calling the vendor directly produces a fleet whose
+fault history exists only in the vendor’s system, which is where the
+register in <a href="/sops/DEV-18">DEV-18</a> §11 and the refresh case in <a href="/sops/DEV-04">DEV-04</a> both come
+from.</li>
+<li>The ticket records the device asset tag, location, error code and
+the vendor reference. The vendor reference is the field people forget
+and the one that makes the follow-up possible.</li>
+<li>The requesting department is told when the technician is expected,
+so that somebody is there and the room is accessible.</li>
+</ol>
+<h3 id="82-a-vendor-technician-on-site-is-a-physical-access-event">8.2 A
+vendor technician on site is a physical access event</h3>
+<blockquote>
+<p><strong>Say this plainly, because it is invisible in the way a remote
+access grant is not</strong></p>
+<p>A copier engineer arrives, unaccompanied, with tools and a bag, and
+works for an hour on a networked device that holds images of everything
+the department has scanned. Nobody logged in. No account was created. No
+ticket in the identity register records that an outside party had
+hands-on access to an organization system.</p>
+<p>The controls in <a href="/sops/ACC-11">ACC-11</a> — named individuals, notification of changes,
+purpose limitation, screening appropriate to the access held, and the
+right to audit — are written for accounts. They apply with at least
+equal force to a person physically in the building, and many
+organizations have no document that says so.</p>
+<p>ACTION: the physical escort and sign-in expectation for vendor
+technicians should be recorded either in <a href="/sops/ACC-11">ACC-11</a> §8 or in a Facilities
+procedure, and cross-referenced from here. Raised as a gap rather than
+legislated here, because it is not IT’s to own alone. Owner: a named IT
+lead, with Facilities and site security.</p>
+</blockquote>
+<ol type="1">
+<li>The technician signs in at the point the organization normally
+requires, and is met by a member of the department or of IT. “Met” is
+not “escorted at all times” for a copier in a corridor; it is “somebody
+knows they are here and who they are”.</li>
+<li>Where the device sits in a restricted area — a payroll office, a
+records room, a server room — the technician is accompanied for the
+duration. Not as a comment on the technician.</li>
+<li>Nothing leaves the building without the organization knowing what it
+is. A replaced part is a part; a replaced hard drive or storage board is
+a data event and §11 applies to it before it goes anywhere.</li>
+<li>Remote fleet management access held by the vendor — the tool that
+reads meters and pushes firmware — is a vendor access grant under <a href="/sops/ACC-11">ACC-11</a>
+with a named owner, and it is in scope for the quarterly vendor access
+review, not exempt because it is “just the copiers”.</li>
+<li>Firmware updates pushed by the vendor are changes to a networked
+device on the organization estate. They belong in the change record
+(<a href="/sops/GOV-04">GOV-04</a>) even when the vendor treats them as routine, and they do not
+happen during a period when the device is needed.</li>
+</ol>
+<h2 id="9-peripheral-faults-and-the-swap-first-principle">9. Peripheral
+faults and the swap-first principle</h2>
+<blockquote>
+<p><strong>Swap first. Diagnose later, or never.</strong></p>
+<p>A technician spending twenty minutes establishing whether a USB-C
+cable has failed has spent more of the organization’s money than a box
+of USB-C cables costs. The diagnosis has no value: the outcome either
+way is a new cable.</p>
+<p>So for anything consumable and cheap — cables, adapters, keyboards,
+mice, headsets, docks — Tier 1 swaps it, restores the person to work,
+and moves on. The suspect item is tested in a quiet moment or binned.
+Not in front of the user, and not instead of the user working.</p>
+<p>This is not carelessness about cost. It is the recognition that in a
+department this size, the scarcest resource is a technician’s attention,
+and it should not be spent on a five-dollar question.</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Symptom</th>
+<th>Swap this first</th>
+<th>Escalate if</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Monitor blank or flickering</td>
+<td>The video cable, then the dock.</td>
+<td>Both swapped and it persists — the port or the laptop is suspect
+(<a href="/sops/DEV-05">DEV-05</a> loaner, ticket to Tier 2).</td>
+</tr>
+<tr class="even">
+<td>Docking station drops devices</td>
+<td>The dock, then its power supply.</td>
+<td>A second dock behaves the same — likely a driver or firmware matter
+for Tier 2, and likely affecting more than one person.</td>
+</tr>
+<tr class="odd">
+<td>Keyboard or mouse unresponsive</td>
+<td>The unit. Do not open it.</td>
+<td>A replacement also fails on that machine — the port or the hub is
+the fault.</td>
+</tr>
+<tr class="even">
+<td>Headset no audio, or mic not heard</td>
+<td>The headset, then the port.</td>
+<td>Two headsets fail — this is the OS audio device selection nine times
+in ten, and it is a two-minute check rather than an escalation (<a href="/sops/DEV-18">DEV-18</a>
+§6).</td>
+</tr>
+<tr class="odd">
+<td>Webcam not detected</td>
+<td>The cable, then the unit.</td>
+<td>Also fails on another machine, or the machine sees no camera at all
+— Tier 2.</td>
+</tr>
+<tr class="even">
+<td>Printer not printing</td>
+<td>Nothing. Go to Appendix A.</td>
+<td>The ladder in Appendix A is exhausted.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="91-where-swap-first-stops">9.1 Where swap-first stops</h3>
+<ul>
+<li>At anything with an asset tag and an inventory record. Laptops,
+monitors above the swap-stock tier, and multifunction devices are assets
+and follow <a href="/sops/DEV-15">DEV-15</a> for reassignment or retirement — not the swap
+pile.</li>
+<li>At anything under warranty where the vendor requires the failed unit
+returned. Binning it costs the organization the replacement.</li>
+<li>At anything that has failed twice in the same place. Two failed
+cables at one desk is not two cable faults; something at that desk is
+damaging them, or the port is. That is worth twenty minutes.</li>
+<li>At a pattern. Six of the same dock model failing in a month is a
+batch or a firmware matter for Tier 2, and the swap stock will run out
+before anybody notices if each one is handled in isolation. Swap stock
+is a consumable budget line, held at the front door, replenished on a
+threshold rather than when it runs out. A swap-first principle with an
+empty swap box is a policy that produces an apology.</li>
+</ul>
+<h2 id="10-accessibility-peripherals">10. Accessibility peripherals</h2>
+<blockquote>
+<p><strong>These are never treated as a discretionary
+request</strong></p>
+<p>An accessibility peripheral is not a preference, an upgrade, or a
+nice-to-have that competes with other requests for the same budget. It
+is the equipment that makes it possible for a colleague or a user to do
+the work at all, and a delay in providing it is a period during which
+somebody cannot work.</p>
+<p>So: it does not go through the standard catalogue argument in §2. It
+is not weighed against a refresh cycle. It is fulfilled, and the funding
+is settled afterwards rather than before.</p>
+</blockquote>
+<ul>
+<li>IT does not assess need and does not ask for medical documentation.
+Where a formal determination is required, that is made by the
+organization’s accommodations function — Human Resources for employees,
+User Accessibility Services for users — and IT acts on their
+instruction. A technician should never be in the position of
+adjudicating a colleague’s health.</li>
+<li>Equally, a person should not have to explain a diagnosis to get a
+larger monitor or a vertical mouse. Where the request is for standard
+equipment the organization already stocks, it is simply provided.</li>
+<li>Specialist equipment — screen readers, magnification hardware,
+alternative input devices, braille displays, FM or loop systems,
+adjustable desks with a technology element — is specified with the
+person, not for them. They know what has worked before.</li>
+<li>A person’s own assistive device is supported on a best-effort basis
+and is explicitly exempt from the §2.1 rule about personally-owned
+peripherals. IT will do what it can to make it work on an organization
+device, will not obstruct its use, and will be honest about what it
+cannot promise. Where making it work requires software that <a href="/sops/DEV-12">DEV-12</a> or
+<a href="/sops/DEV-11">DEV-11</a> would otherwise refuse, that is an exception to be granted, not a
+wall.</li>
+<li>Assistive software follows the same principle under <a href="/sops/DEV-11">DEV-11</a>, and a
+licence cost is not a reason for delay — it is a Tier 4 purchase, made
+quickly.</li>
+<li>Room-level provision — assistive listening in a large meeting room,
+captioning — is <a href="/sops/DEV-18">DEV-18</a> §2, and an R4 room without it is a gap to record
+rather than a preference to note.</li>
+<li>Nothing about a person’s accommodation is recorded in a ticket
+beyond what is needed to deliver it. No diagnosis, no correspondence
+from a clinician, no detail that would be unwelcome in a system several
+dozen people can read (<a href="/sops/GOV-02">GOV-02</a>). Service commitment: an accessibility
+peripheral request is handled at P2 regardless of the capacity state
+(<a href="/sops/GOV-06">GOV-06</a>), and where the equipment must be ordered the person is told the
+date rather than left waiting. A holding arrangement — a loaner, a
+temporary alternative — is offered in the meantime (<a href="/sops/DEV-05">DEV-05</a>).</li>
+</ul>
+<h2 id="11-disposal--a-copier-is-a-computer">11. Disposal — a copier is
+a computer</h2>
+<blockquote>
+<p><strong>The multifunction device in the corridor has a hard drive in
+it, and the drive holds images of what it has processed</strong></p>
+<p>Print jobs, scans, copies, faxes, held secure-release jobs, the
+address book, and in many models a spooled image of every document that
+has passed through it. Depending on configuration and model, that can be
+months of a department’s paperwork.</p>
+<p>It leaves the building at end of lease, on a date set by a contract,
+collected by a logistics firm, and it goes to a vendor’s refurbishment
+floor. Unless somebody acts, the drive goes with it. This is the single
+highest-consequence sentence in this document and it belongs to a P3
+because nobody has ever raised a ticket about it.</p>
+<p><a href="/sops/DEV-15">DEV-15</a> governs the handling. The organization’s existing Disposal of
+Sensitive Data Policy governs the obligation. Both apply to a copier
+exactly as they apply to a laptop, and the fact that it does not look
+like a computer is not a distinction the policy makes.</p>
+</blockquote>
+<ol type="1">
+<li>Every multifunction device on the estate is in the asset register
+with a note of whether it holds a drive and whether that drive is
+encrypted. Most modern fleet devices support both encryption and an
+overwrite-on-completion setting; both should be on, and it is worth
+finding out whether they are.</li>
+<li>End-of-lease dates are held by IT and by whoever holds the contract,
+and they are diarised. A device leaving on a contractual date with no
+action taken is the failure mode, and it happens because the date lives
+in a finance system rather than in an IT calendar.</li>
+<li>Before any device leaves — end of lease, replacement, or vendor
+exchange — the drive is sanitised to the <a href="/sops/DEV-15">DEV-15</a> standard, or removed and
+destroyed and the device leaves without it. Which of those is available
+depends on the lease terms, so it is a question to ask at contract
+signature, not at collection.</li>
+<li>Obtain the certificate. A vendor assurance that “the drives are
+wiped” is not a record; a certificate naming the device, the serial, the
+method and the date is. It is retained per <a href="/sops/DEV-15">DEV-15</a>.</li>
+<li>Clear the address book, the stored credentials, the scan
+destinations and the sending account before release, and rotate the
+<a href="/sops/ACC-08">ACC-08</a> sending credential that device used (§6). A retired copier’s
+configuration page has held a working credential more than once,
+somewhere.</li>
+<li>The same applies to a device being relocated between departments,
+which is the case everybody forgets. A copier moving from Finance to a
+shared corridor carries Finance’s held jobs and Finance’s address book
+with it. Treat a relocation as a reassignment under <a href="/sops/DEV-15">DEV-15</a>.</li>
+<li>Small peripherals with no storage — cables, keyboards, mice,
+monitors — are not a data risk and go to standard e-waste. Anything with
+storage in it, including some newer desk phones and conferencing
+devices, is not in that category.</li>
+</ol>
+<h2 id="12-service-levels">12. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“It will not print”, single user</td>
+<td>P3 — same or next coverage day. Appendix A first; most of these
+should not become a ticket at all once it is published (<a href="/sops/GOV-05">GOV-05</a>).</td>
+</tr>
+<tr class="even">
+<td>A printer or copier down, affecting an area</td>
+<td>P2 — same coverage day, with the vendor call logged the same day
+where it is a fleet fault.</td>
+</tr>
+<tr class="odd">
+<td>A copier down in a department with a hard external deadline</td>
+<td>P2, and the honest answer is a named alternative device within the
+hour rather than a repair.</td>
+</tr>
+<tr class="even">
+<td>Peripheral swap from stock</td>
+<td>Same coverage day. Walk-up where the front door is staffed.</td>
+</tr>
+<tr class="odd">
+<td>Accessibility peripheral request</td>
+<td>P2 in any capacity state. Where it must be ordered, a date is given
+and an interim arrangement offered.</td>
+</tr>
+<tr class="even">
+<td>New printer deployment or assignment change</td>
+<td>P3 — 5 coverage days, batched.</td>
+</tr>
+<tr class="odd">
+<td>Toner for a fleet device that has not auto-replenished</td>
+<td>Same coverage day to log; delivery is the vendor’s SLA, not the
+organization’s.</td>
+</tr>
+<tr class="even">
+<td>Vendor service call, non-urgent</td>
+<td>Logged same coverage day. Attendance per the fleet contract.</td>
+</tr>
+<tr class="odd">
+<td>Copier disposal or relocation with a drive in it</td>
+<td>Not an SLA matter. Planned work, scheduled ahead of the contractual
+date (§11).</td>
+</tr>
+<tr class="even">
+<td>Print architecture decision (§4)</td>
+<td>Before the next <a href="/sops/DEV-01">DEV-01</a> enrollment wave. This is the only dated
+commitment in this document.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13-records">13. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Printer and multifunction device register: location, model, drive,
+encryption, secure release, lease end</td>
+<td>IT asset register</td>
+<td>Live, plus 3 years after disposal</td>
+</tr>
+<tr class="even">
+<td>Multifunction device sending accounts and their owners</td>
+<td>IT register (<a href="/sops/ACC-08">ACC-08</a>)</td>
+<td>Life of the device + 1 year</td>
+</tr>
+<tr class="odd">
+<td>Vendor service calls: device, fault, reference, attendance</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Drive sanitisation or destruction certificates</td>
+<td>IT asset record (<a href="/sops/DEV-15">DEV-15</a>)</td>
+<td>7 years</td>
+</tr>
+<tr class="odd">
+<td>Secure release survey outcome (§5)</td>
+<td>Project record</td>
+<td>Life of the fleet contract</td>
+</tr>
+<tr class="even">
+<td>Printer deployment gaps found by Tier 1 (§3)</td>
+<td>Ticket, batched to Tier 2</td>
+<td>1 year</td>
+</tr>
+<tr class="odd">
+<td>Swap stock levels and replenishment</td>
+<td>Front-door stock record</td>
+<td>1 year</td>
+</tr>
+<tr class="even">
+<td>Accessibility peripheral fulfilment — delivery only, no detail of
+need</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-04">DEV-04</a> exceptions for non-standard printers</td>
+<td>Tier 4 record</td>
+<td>3 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="14-related-documents">14. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Disposal Policy</td>
+<td>the organization Disposal of Sensitive Data Policy (existing)</td>
+<td>The governing policy for §11. A copier is in scope and the policy
+does not need amending to make that true.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-04">DEV-04</a></td>
+<td>Standard Hardware Catalog, Request &amp; Refresh Cycle</td>
+<td>§2 is the peripheral half of that catalogue; §2.1 exceptions run
+through it.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-15">DEV-15</a></td>
+<td>Device Reassignment, Wipe, Retirement &amp; Disposal</td>
+<td>§11. Applies to a copier exactly as to a laptop.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-01">DEV-01</a></td>
+<td>Device Enrollment &amp; Lifecycle</td>
+<td>§3, and the migration exposure in §4.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-02">DEV-02</a></td>
+<td>Device Compliance &amp; Configuration Baseline</td>
+<td>Printer assignment arrives with device configuration.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-11">DEV-11</a></td>
+<td>Software Request, Approval, Licensing &amp; Deployment</td>
+<td>Drivers and assistive software (§10).</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-12">DEV-12</a></td>
+<td>Local Administrator Rights on Endpoints</td>
+<td>Why users do not install their own drivers.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-18">DEV-18</a></td>
+<td>Conference &amp; Meeting Room AV Standard</td>
+<td>Room peripherals and the audio device selection problem in §9.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-08">ACC-08</a></td>
+<td>Service, Application &amp; Non-Human Account Standard</td>
+<td>The device sending account in §6.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-11">ACC-11</a></td>
+<td>Vendor, Contractor &amp; Consultant Account Standard</td>
+<td>§8. Vendor remote fleet access, and the physical access gap raised
+there.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-15">ACC-15</a></td>
+<td>Acceptable Use &amp; Credential-Sharing Standard</td>
+<td>A badge or release PIN is an identity (§5).</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-12">M365-12</a></td>
+<td>OneDrive Institutional Data Boundary</td>
+<td>Where a scan should land (§6.1).</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-15">M365-15</a></td>
+<td>Data Classification &amp; Handling</td>
+<td>The sensitive classes in §5 and §6.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-22">M365-22</a></td>
+<td>Phishing Reporting &amp; Email Threat Response</td>
+<td>What the relay in §6.2 bypasses.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-04">GOV-04</a></td>
+<td>IT Change Management &amp; Maintenance Windows</td>
+<td>Vendor firmware pushes (§8).</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-05">GOV-05</a></td>
+<td>Knowledge Base Article Standard</td>
+<td>Appendices A and B are written to be published under it,
+verbatim.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments, Priority &amp; Escalation</td>
+<td>Supplies §12, and the capacity argument in §1.</td>
+</tr>
+</tbody>
+</table></div>
+<h2
+id="appendix-a--it-will-not-print-the-tier-1-troubleshooting-ladder">Appendix
+A — “It will not print”: the Tier 1 troubleshooting ladder</h2>
+<p>Written to be published to end users exactly as it stands, and to be
+used by Tier 1 in the same order. The steps are ordered by how often
+they turn out to be the answer, not by how technical they are. Most
+printing problems are solved before step 5.</p>
+<h3 id="start-here">Start here</h3>
+<ol type="1">
+<li>Look at the printer itself. Nine times out of ten it is telling you
+what is wrong on its little screen — out of paper, a door open, a tray
+not pushed in, toner low, a paper jam. Fix what it says and try again.
+This is the first step because it is the answer more often than
+everything below it put together.</li>
+<li>Check you are printing to the printer you are standing next to. It
+sounds obvious. It is the most common cause of a job that vanished — it
+printed perfectly, on another floor. Look at the printer name in the
+print window before you press print, and check the name on the sticker
+on the machine.</li>
+<li>If this is a secure-release printer, your job is waiting for you.
+Nothing comes out until you tap your card or enter your PIN at the
+machine. If you have never done this before, come to the service desk
+and we will set you up in two minutes.</li>
+<li>Open your print queue and see whether the job is sitting there. On
+Windows, click the printer icon near the clock, or open Settings and
+find your printer. If there is a stuck job at the top of the list,
+delete everything in the queue and print once — just once. Printing four
+more times while one is stuck is how six copies appear an hour
+later.</li>
+<li>Turn the printer off, wait ten seconds, turn it back on. Give it a
+minute to come back. This resolves a genuine share of faults and costs
+you two minutes.</li>
+<li>Restart your computer. We know. It genuinely fixes the print service
+when it has got itself into a state, and it is faster than waiting for
+us.</li>
+<li>Find out whether it is just you. Ask the person next to you to print
+something. If nobody can print, it is the printer and we already want to
+know. If it is only you, it is your computer or your queue and the steps
+below are the ones that will help.</li>
+<li>Try printing something else — one page from a different document, or
+a test page from the printer settings. If that works, the problem is the
+document you were trying to print, not the printer. Very large files,
+files with unusual fonts, and PDFs from outside the organization are the
+usual suspects. Save it as a PDF and print that.</li>
+<li>Remove the printer and add it back. Appendix B has the steps. This
+clears out a corrupted queue and it works surprisingly often.</li>
+<li>If it is a small printer on your own desk: check both ends of the
+cable and the power. Then swap the cable — come and get one from us, we
+keep a box of them and we would rather give you a cable than book an
+appointment.</li>
+</ol>
+<h3 id="when-to-contact-us-and-what-to-tell-us">When to contact us, and
+what to tell us</h3>
+<p>Contact the service desk at the service desk address once you have
+been through the list, or straight away if the printer is showing a
+hardware error, if nobody in your area can print, or if you have a
+deadline today and no time for any of this. There is no prize for
+struggling.</p>
+<p>Four things make it much faster for us to help, and they are all
+things you already know:</p>
+<ul>
+<li>The name on the sticker on the printer, or the room it is in.</li>
+<li>The exact wording of any message on the printer’s screen or on your
+computer. Not a summary — the words.</li>
+<li>Whether anyone else near you can print.</li>
+<li>Whether it worked yesterday, and whether anything changed — a new
+laptop, a document from somewhere else, a move to a different desk.</li>
+</ul>
+<h3 id="two-things-not-worth-your-time">Two things not worth your
+time</h3>
+<ul>
+<li>Downloading a driver from the manufacturer’s website. It will not
+install on an organization laptop, and if it does it will usually make
+things worse. Ask us instead.</li>
+<li>Buying a printer. A desk printer costs several times as much per
+page as the shared one down the corridor, cannot hold a job securely,
+and will need consumables your department pays for. If the shared
+printer is genuinely in the wrong place, tell us that instead — that is
+a problem worth solving. One last thing, and it matters more than it
+sounds: if you print something confidential, walk to the printer and
+collect it straight away. A page left in a tray has left the
+organization’s control entirely.</li>
+</ul>
+<h2 id="appendix-b--adding-a-printer-step-by-step">Appendix B — Adding a
+printer, step by step</h2>
+<p>Written to be published. On an organization laptop your area’s
+printers should appear on their own; if they have not, this is how to
+add one, and please tell us it did not appear so that we can fix it for
+everybody else.</p>
+<h3 id="on-a-windows-laptop">On a Windows laptop</h3>
+<ol type="1">
+<li>Find the printer’s name. It is on a sticker on the machine. If there
+is no sticker, tell the service desk — that is our fault and we will fix
+it.</li>
+<li>Click the Start button and open Settings.</li>
+<li>Choose Bluetooth &amp; devices, then Printers &amp; scanners.</li>
+<li>Click Add device, and wait about thirty seconds. Nearby printers
+appear in the list.</li>
+<li>When you see the one you want, click Add device next to it. Windows
+will fetch what it needs, which takes a minute or two.</li>
+<li>If your printer does not appear in the list, click “The printer that
+I want isn’t listed” and stop there — the rest of that screen needs
+information you should not have to know. Send us the printer’s name and
+we will add it for you, usually the same day.</li>
+<li>Print a test page. In the same Printers &amp; scanners screen, click
+your new printer, then Printer properties, then Print Test Page. Do this
+now rather than at the moment you need it.</li>
+</ol>
+<h3 id="on-a-mac">On a Mac</h3>
+<ol type="1">
+<li>Open System Settings from the Apple menu.</li>
+<li>Choose Printers &amp; Scanners.</li>
+<li>Click Add Printer, Scanner or Fax.</li>
+<li>Wait for the list to populate, choose your printer, and click
+Add.</li>
+<li>Print a test page from any document.</li>
+</ol>
+<h3 id="making-it-the-one-you-print-to-by-default">Making it the one you
+print to by default</h3>
+<p>Windows tries to be helpful by setting your default to whatever you
+used last, which is exactly wrong if you have just visited another
+building. In Printers &amp; scanners, turn off “Let Windows manage my
+default printer”, then click the printer you want and choose Set as
+default. On a Mac, choose your printer in the Default printer list in
+Printers &amp; Scanners.</p>
+<h3 id="if-you-use-secure-release">If you use secure release</h3>
+<p>Your job will not print until you are at the machine. Send it as
+normal, walk to the printer, tap your ID card on the reader or enter
+your PIN, and pick your job from the list. If your card is not
+recognised, come to the service desk — it takes a couple of minutes to
+register and it is worth doing before you need it.</p>
+<h3 id="if-you-have-moved-desk-or-building">If you have moved desk or
+building</h3>
+<p>Tell us. Your old printers will still be in your list and your new
+ones may not be, and we would rather fix that in one go than have you
+add printers one at a time for a fortnight.</p>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

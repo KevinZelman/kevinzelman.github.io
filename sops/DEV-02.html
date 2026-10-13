@@ -1,0 +1,493 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DEV-02 · Device Compliance &amp; Configuration Baseline | Known Good</title>
+<meta name="description" content="What “compliant” means as a testable list — settled before Conditional Access starts enforcing it.">
+<meta property="og:title" content="DEV-02 · Device Compliance &amp; Configuration Baseline | Known Good">
+<meta property="og:description" content="What “compliant” means as a testable list — settled before Conditional Access starts enforcing it.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="dev-02--device-compliance--configuration-baseline">DEV-02 ·
+Device Compliance &amp; Configuration Baseline</h1>
+<p><em>What “compliant” means as a testable list — settled before
+Conditional Access starts enforcing it.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/DEV-02-Device-Compliance-and-Configuration-Baseline.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/DEV-02.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/DEV-02">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>DEV-02</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>C. Device Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 3 — Expert Services designs the baseline; Tier 2 applies and
+remediates.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Every six months while co-management is live, then annually.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>“Compliant” has to mean something specific before Conditional Access
+can require it. This document is that definition: a testable list of
+conditions a device must meet, per device class, with the rollout
+sequence that gets the estate there without locking anybody out.</p>
+<h2 id="2-the-lesson-this-document-is-built-on">2. The lesson this
+document is built on</h2>
+<blockquote>
+<p><strong>Plenty of IT teams learn this once, expensively.</strong></p>
+<p>A common example is a phishing-resistant MFA rollout that breaks
+access and leaves people stuck in an MFA setup loop, because a control
+was enforced against a population that could not yet satisfy it (<a href="/sops/ACC-03">ACC-03</a>
+§11).</p>
+<p>Device compliance has exactly the same shape and a larger blast
+radius. A Conditional Access policy requiring a compliant device,
+applied before the estate is compliant, does not produce a warning. It
+produces an organization that cannot sign in.</p>
+<p>So section 5 is deliberately slow, and the order in it is not
+negotiable: define, measure, report-only, remediate, then enforce.
+Enforcement is the last step and it follows evidence rather than a
+date.</p>
+</blockquote>
+<h2 id="3-the-baseline">3. The baseline</h2>
+<p>A device is compliant when every line below is true. Each is chosen
+because it is measurable from the management platform without asking
+anybody.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Condition</th>
+<th>Why</th>
+<th>Grace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Enrolled in Intune and checked in within the last 14 days</td>
+<td>A device that has not reported cannot be assessed at all. Silent
+devices are where escrow gaps come from.</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Entra joined with the expected join type for its class</td>
+<td>Required for BitLocker escrow and for Windows Hello for
+Business.</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Disk encrypted, with the recovery key escrowed in Entra</td>
+<td><a href="/sops/DEV-03">DEV-03</a>. Encryption without a recoverable key is a data-destruction
+mechanism, not a control.</td>
+<td>7 days</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Operating system at or above the minimum supported build</td>
+<td>Below it, security updates are not being received at all.</td>
+<td>30 days</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Security updates applied within the defined window</td>
+<td><a href="/sops/DEV-13">DEV-13</a>. Patch currency is the single largest determinant of endpoint
+risk.</td>
+<td>14 days</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Endpoint protection active, healthy, and reporting</td>
+<td>An agent installed but not reporting is worse than none, because it
+looks like coverage.</td>
+<td>3 days</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Firewall enabled</td>
+<td>Baseline hygiene.</td>
+<td>3 days</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>No standing local administrator beyond the <a href="/sops/DEV-12">DEV-12</a> standard</td>
+<td>Standing local admin can disable every condition above it on this
+list.</td>
+<td>30 days</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Secure Boot enabled where the hardware supports it</td>
+<td>Protects the boot chain the other controls assume.</td>
+<td>30 days</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>Screen lock enabled with a maximum idle timeout</td>
+<td>The control that matters in a shared building.</td>
+<td>7 days</td>
+</tr>
+</tbody>
+</table></div>
+<p>Ten conditions is deliberate. A baseline of forty settings cannot be
+explained to a user whose device has failed it, and a compliance failure
+nobody can explain becomes a ticket that Tier 2 cannot close.</p>
+<h2 id="4-by-device-class">4. By device class</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Class</th>
+<th>Baseline</th>
+<th>Variation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Staff laptop and desktop</td>
+<td>All ten.</td>
+<td>The reference case.</td>
+</tr>
+<tr class="even">
+<td>Loaner</td>
+<td>All ten, verified before every issue.</td>
+<td><a href="/sops/DEV-05">DEV-05</a> §3 adds a functional check on top of compliance.</td>
+</tr>
+<tr class="odd">
+<td>Shared and training-room devices</td>
+<td>All ten, except that the screen-lock timeout is longer during
+scheduled sessions.</td>
+<td>Provisional pending <a href="/sops/DEV-06">DEV-06</a>.</td>
+</tr>
+<tr class="even">
+<td>Conference room and kiosk</td>
+<td>All ten, with a longer timeout and no interactive user.</td>
+<td>Compliance is assessed against the device, not a person.</td>
+</tr>
+<tr class="odd">
+<td>macOS</td>
+<td>Equivalents of 1–7 and 10. FileVault replaces BitLocker; local admin
+and Secure Boot equivalents are recorded as gaps.</td>
+<td>Provisional pending <a href="/sops/DEV-09">DEV-09</a>. The gap list IS the <a href="/sops/DEV-09">DEV-09</a>
+specification.</td>
+</tr>
+<tr class="even">
+<td>Personally-owned</td>
+<td>Not assessed by this document.</td>
+<td><a href="/sops/DEV-07">DEV-07</a>. A personal device is never enrolled under <a href="/sops/DEV-01">DEV-01</a>.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="5-rolling-it-out">5. Rolling it out</h2>
+<ol type="1">
+<li>Publish the baseline. Tier 2 and the service desk must be able to
+explain any failure before any user experiences one.</li>
+<li>Measure. Run the compliance policy in monitoring mode across the
+estate and produce the three-number position: compliant, non-compliant
+with reasons, and never checked in. The third number is the one that
+will surprise people.</li>
+<li>Remediate the estate against the measured position, condition by
+condition, worst first. Encryption and escrow lead, per <a href="/sops/DEV-03">DEV-03</a>.</li>
+<li>Chase the silent devices individually. They will not remediate
+themselves and they will not appear as failures — they simply will not
+appear.</li>
+<li>Run the Conditional Access policy in report-only for at least ten
+business days over a pilot group, then over the whole estate. Read the
+would-be-blocked report every day of it.</li>
+<li>Confirm break-glass accounts are excluded, and test that exclusion
+before enforcement (<a href="/sops/ACC-07">ACC-07</a> §6).</li>
+<li>Enforce by wave, by device class, smallest and best-understood
+first. Not by date.</li>
+<li>Keep the report-only evidence. It is what justifies the enforcement
+decision if anything goes wrong.</li>
+</ol>
+<h2 id="6-what-non-compliance-does-and-what-the-user-sees">6. What
+non-compliance does, and what the user sees</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Effect</th>
+<th>What the person is told</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Within grace</td>
+<td>Nothing blocked. The device is marked non-compliant and the user is
+notified.</td>
+<td>A specific, plain message: which condition, what will happen if it
+is not fixed, by when, and what to do. Never a generic compliance
+warning.</td>
+</tr>
+<tr class="even">
+<td>Grace expired, monitoring mode</td>
+<td>Still nothing blocked. Reported to Tier 2 for outreach.</td>
+<td>A second notice, and Tier 2 contacts them.</td>
+</tr>
+<tr class="odd">
+<td>Grace expired, enforcement live</td>
+<td>Access to organization resources blocked until compliant.</td>
+<td>A message naming the condition and a route to fix it — self-service
+where possible, the service desk otherwise.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>The message matters as much as the policy</strong></p>
+<p>“Your device is not compliant” tells somebody nothing they can act
+on, and produces a ticket. “Your laptop has not installed updates since
+3 July — restart it, or contact the service desk” resolves itself.</p>
+<p>Tier 2 should be able to answer, for any device, which of the ten
+conditions failed and what fixes it. Where they cannot, the baseline is
+too complex (§3).</p>
+</blockquote>
+<h2 id="7-grace-periods-and-exceptions">7. Grace periods and
+exceptions</h2>
+<ul>
+<li>Grace periods are per condition, per §3, and start when the device
+first fails rather than when the policy was created.</li>
+<li>A device that cannot meet a condition for a genuine technical reason
+— specialist lab hardware, an instrument controller — gets a recorded
+exception with an owner, a compensating control and an expiry.</li>
+<li>Exceptions are approved by Tier 4, reviewed quarterly, and counted.
+A rising exception count means the baseline is wrong, not that the
+estate is unusual.</li>
+<li>There is no exception for convenience, seniority or "I need it for a
+presentation tomorrow". Those are grace-period conversations.</li>
+</ul>
+<h2 id="8-co-management--two-sources-of-truth">8. Co-management — two
+sources of truth</h2>
+<p>While Configuration Manager and Intune both manage parts of the
+estate, compliance signals can come from either, and they can
+disagree.</p>
+<ul>
+<li>Intune is the authority for compliance state. Where the two
+disagree, Intune is what Conditional Access reads and therefore what
+matters.</li>
+<li>Which workload sits where is recorded per workload, not assumed
+(<a href="/sops/DEV-01">DEV-01</a> §3).</li>
+<li>A device that appears compliant in Configuration Manager and
+non-compliant in Intune is not a reporting error. It is a device that
+will be blocked, and it needs resolving before enforcement.</li>
+<li>Reconcile the two inventories before step 5 of §5. A device in one
+and not the other is the most likely source of an enforcement
+surprise.</li>
+</ul>
+<h2 id="9-service-levels">9. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Device blocked by compliance enforcement</td>
+<td>P2 — 4 coverage hours. Somebody cannot work.</td>
+</tr>
+<tr class="even">
+<td>Remediation of a named condition</td>
+<td>P3, or self-service where the condition allows.</td>
+</tr>
+<tr class="odd">
+<td>Exception request</td>
+<td>P3 to Tier 4 — 5 coverage days.</td>
+</tr>
+<tr class="even">
+<td>Estate compliance report</td>
+<td>Monthly, by Tier 3.</td>
+</tr>
+<tr class="odd">
+<td>A condition failing across many devices at once</td>
+<td>P1 at Tier 3. That is a policy fault, not many device faults.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10-measurement">10. Measurement</h2>
+<ul>
+<li>Compliant / non-compliant / never-checked-in, monthly. Always three
+numbers.</li>
+<li>Non-compliance by condition — which of the ten is actually driving
+the number.</li>
+<li>Devices in grace, and devices past grace.</li>
+<li>Active exceptions, with age. Old exceptions are policy debt.</li>
+<li>Compliance-related tickets per week after enforcement, against the
+pre-enforcement baseline.</li>
+</ul>
+<h2 id="11-records">11. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>The baseline as approved, with version</td>
+<td>This document</td>
+<td>Life of the standard</td>
+</tr>
+<tr class="even">
+<td>Report-only evidence before each enforcement wave</td>
+<td>Project record</td>
+<td>Life of migration + 2 years</td>
+</tr>
+<tr class="odd">
+<td>Exceptions: device, condition, reason, compensating control, expiry,
+approver</td>
+<td>Tier 4 register</td>
+<td>Life of the exception + 3 years</td>
+</tr>
+<tr class="even">
+<td>Monthly compliance position</td>
+<td><a href="/sops/GOV-06">GOV-06</a> monthly pack</td>
+<td>3 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="12-related-documents">12. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/DEV-01">DEV-01</a></td>
+<td>Device Enrollment &amp; Lifecycle</td>
+<td>Exit criterion 4 is compliance against this baseline.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-03">DEV-03</a></td>
+<td>Disk Encryption &amp; BitLocker Recovery Keys</td>
+<td>Condition 3, and the first remediation priority.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-12">DEV-12</a></td>
+<td>Local Administrator Rights on Endpoints</td>
+<td>Condition 8.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-13">DEV-13</a></td>
+<td>Patch, Update &amp; Maintenance Window Standard</td>
+<td>Conditions 4 and 5.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-14">DEV-14</a></td>
+<td>Endpoint Security Agent &amp; MDR Escalation</td>
+<td>Condition 6.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-09">DEV-09</a> / <a href="/sops/DEV-06">DEV-06</a></td>
+<td>macOS / shared-device standards</td>
+<td>The provisional rows of §4.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA Enrollment</td>
+<td>§2 — the same failure mode, and a common one.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-07">ACC-07</a></td>
+<td>Privileged &amp; Administrative Account Standard</td>
+<td>Break-glass exclusion, §5 step 6.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-04">GOV-04</a></td>
+<td>Change Management</td>
+<td>Enforcement waves are changes.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--baseline-checklist">Appendix A — Baseline
+checklist</h2>
+<p>The ten conditions. Tier 2 should be able to name the failing one for
+any device.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>✓</th>
+<th>Condition</th>
+<th>Fixed by</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>☐</td>
+<td>Enrolled and checked in within 14 days</td>
+<td>Reconnect the device; chase if silent</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Entra joined, correct join type</td>
+<td>Tier 2 — join required for escrow and Hello</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Encrypted, key escrowed in Entra</td>
+<td><a href="/sops/DEV-03">DEV-03</a> §6</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>OS at or above minimum build</td>
+<td>Feature update</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Security updates within window</td>
+<td>Restart, or <a href="/sops/DEV-13">DEV-13</a></td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Endpoint protection active and reporting</td>
+<td><a href="/sops/DEV-14">DEV-14</a></td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Firewall enabled</td>
+<td>Policy reapply</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>No standing local admin beyond <a href="/sops/DEV-12">DEV-12</a></td>
+<td><a href="/sops/DEV-12">DEV-12</a> §5</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Secure Boot enabled where supported</td>
+<td>Firmware setting</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Screen lock with maximum idle timeout</td>
+<td>Policy reapply</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

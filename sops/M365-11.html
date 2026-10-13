@@ -1,0 +1,458 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M365-11 · SharePoint &amp; OneDrive Permission Management | Known Good</title>
+<meta name="description" content="How access to organization content is granted, inherited, reviewed and removed — and the four habits that break it.">
+<meta property="og:title" content="M365-11 · SharePoint &amp; OneDrive Permission Management | Known Good">
+<meta property="og:description" content="How access to organization content is granted, inherited, reviewed and removed — and the four habits that break it.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="m365-11--sharepoint--onedrive-permission-management">M365-11 ·
+SharePoint &amp; OneDrive Permission Management</h1>
+<p><em>How access to organization content is granted, inherited,
+reviewed and removed — and the four habits that break it.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/M365-11-SharePoint-and-OneDrive-Permission-Management.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/M365-11.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/M365-11">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>M365-11</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>A. Microsoft 365</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 2 — Advanced Technical Services, which already owns
+permissions. Architecture questions go to Tier 3.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually.</td>
+</tr>
+<tr class="even">
+<td>Depends on</td>
+<td><a href="/sops/M365-15">M365-15</a>. Permission decisions have no anchor without a
+classification scheme; where <a href="/sops/M365-15">M365-15</a> is not yet adopted, treat
+everything holding records about identifiable people as
+CONFIDENTIAL.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>This document says how somebody gets access to a SharePoint site or a
+OneDrive, how that access is structured so it can be understood later,
+and how it goes away. It is short by design: permissions go wrong
+through a handful of specific habits, and naming them is more useful
+than a comprehensive treatment nobody reads.</p>
+<h2 id="2-the-model--groups-not-people">2. The model — groups, not
+people</h2>
+<blockquote>
+<p><strong>Access is granted to a group. Always.</strong></p>
+<p>A person is added to a group; the group has access to the site.
+Nobody is ever granted access as an individual, even for “just this
+once”.</p>
+<p>The reason is legibility. A site permissioned to twelve named
+individuals cannot be reasoned about — you cannot tell why any of them
+are there, whether they still should be, or what to do when one leaves.
+A site permissioned to two groups tells you the answer at a glance.</p>
+<p>It also makes the leaver procedure work. Removing somebody from three
+groups is reliable; hunting for individual grants across an unknown
+number of sites is not, and that is the step <a href="/sops/ACC-01">ACC-01</a> §7.2 depends on.</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Group</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Site Owners</td>
+<td>The named owner and deputy. Can change permissions. Two or three
+people, never more.</td>
+</tr>
+<tr class="even">
+<td>Site Members</td>
+<td>People who work in the site. Can add and edit content.</td>
+</tr>
+<tr class="odd">
+<td>Site Visitors</td>
+<td>People who need to read it. Use this generously — read access is
+cheap and it is what stops people asking for edit access they do not
+need.</td>
+</tr>
+<tr class="even">
+<td>ROLE- groups</td>
+<td>Role-based access from <a href="/sops/ACC-02">ACC-02</a> — for example ROLE-HR-TempWorker.
+Added to Members or Visitors as appropriate, so a role change is one
+membership edit.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="3-the-four-habits-that-break-permissions">3. The four habits
+that break permissions</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Habit</th>
+<th>Why it happens</th>
+<th>What to do instead</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Granting to an individual</td>
+<td>Faster in the moment, and the request named a person.</td>
+<td>Add them to the group. If no group fits, that is a signal the site
+needs a new group, not an exception.</td>
+</tr>
+<tr class="even">
+<td>Breaking inheritance on a subfolder</td>
+<td>One folder needs different access from the rest.</td>
+<td>Almost always means two sites, not one site with a special folder.
+See §5 — broken inheritance is where permissions become
+unauditable.</td>
+</tr>
+<tr class="odd">
+<td>Sharing “anyone with the link”</td>
+<td>It works immediately and needs no thought about who.</td>
+<td>Share with named people. Anonymous links outlive their purpose,
+cannot be traced to a person, and are prohibited above INTERNAL.</td>
+</tr>
+<tr class="even">
+<td>Granting access by email thread</td>
+<td>The request arrived that way and it seemed rude to redirect it.</td>
+<td>Route it to a ticket. The common result of the email route: several
+grants, no owner approval on record, and no revocation trigger.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="4-granting-access">4. Granting access</h2>
+<ol type="1">
+<li>The request comes through the service desk, naming the site and the
+person. Not by reply-all.</li>
+<li>Tier 2 confirms the site has a named owner and a classification. If
+it has neither, that is fixed first — a grant on an unowned,
+unclassified site is a guess.</li>
+<li>The owner approves, on the ticket. For CONFIDENTIAL and above the
+approval is explicit, not inferred from silence.</li>
+<li>Add the person to the appropriate group. Visitors unless they need
+to edit.</li>
+<li>For a temporary worker, the access carries an end-date expiry
+(<a href="/sops/ACC-09">ACC-09</a>).</li>
+<li>For an external person, this is <a href="/sops/M365-14">M365-14</a> and needs a sponsor and an
+expiry before anything is granted.</li>
+<li>Record the grant, who approved it, and any expiry.</li>
+</ol>
+<h2 id="5-inheritance-and-when-to-break-it">5. Inheritance, and when to
+break it</h2>
+<p>By default, everything in a site inherits the site’s permissions.
+That is what makes a site comprehensible.</p>
+<p>Breaking inheritance — giving a library or folder its own permissions
+— is permitted only with Tier 3 agreement, and only where the
+alternative genuinely does not work. In practice the alternative almost
+always works, and it is a second site.</p>
+<blockquote>
+<p><strong>Why broken inheritance is treated this seriously</strong></p>
+<p>A site with unique permissions three folders deep cannot be reviewed,
+cannot be reasoned about by anybody who did not set it up, and produces
+exactly the situation where nobody can say who has access to what.</p>
+<p>It is also self-propagating: once one exception exists, the next
+request gets the same treatment, and within a year the site’s
+permissions are a collection of individual decisions with no model
+behind them.</p>
+<p>Two sites cost nothing. A site nobody understands costs a great deal
+at precisely the moment it matters — a departure, an audit, or an
+incident.</p>
+</blockquote>
+<h2 id="6-onedrive-permissions">6. OneDrive permissions</h2>
+<ul>
+<li>A person’s OneDrive belongs to them while they hold the account. IT
+does not routinely grant others access to it.</li>
+<li>Managers receive delegated access on separation, for 30 days, to
+retrieve institutional records (<a href="/sops/ACC-01">ACC-01</a> §7.2). That is the normal case
+and it is time-bounded.</li>
+<li>Access to a live employee’s OneDrive for any other reason is a Tier
+4 decision with a recorded justification. It is an intrusive act and
+should feel like one.</li>
+<li>Where somebody is routinely sharing from OneDrive, the content
+belongs in a site (<a href="/sops/M365-12">M365-12</a>). Fix the cause rather than the
+permission.</li>
+</ul>
+<h2 id="7-removing-access">7. Removing access</h2>
+<ul>
+<li>On the leaver procedure, automatically (<a href="/sops/ACC-01">ACC-01</a> §7.2 step 3).</li>
+<li>On a role change, as part of the mover delta (<a href="/sops/ACC-01">ACC-01</a> §6.2). This is
+the one that gets skipped.</li>
+<li>At the end of the engagement for temporary workers, without waiting
+for a request.</li>
+<li>At expiry for guests (<a href="/sops/M365-14">M365-14</a>).</li>
+<li>At review, where the owner says the access is no longer needed.
+Removal never requires the owner’s approval when it is triggered by a
+leaver, an engagement end date or an expiry. Those are automatic, and
+waiting for an approval is precisely how access persists past its
+purpose.</li>
+</ul>
+<h2 id="8-review">8. Review</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Classification</th>
+<th>Review cadence</th>
+<th>Reviewed by</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PUBLIC / INTERNAL</td>
+<td>Annually</td>
+<td>Site owner confirms the Owners and Members groups</td>
+</tr>
+<tr class="even">
+<td>CONFIDENTIAL</td>
+<td>Annually, and on any departure from the department</td>
+<td>Site owner, with Tier 2 supplying the list</td>
+</tr>
+<tr class="odd">
+<td>RESTRICTED</td>
+<td>Quarterly</td>
+<td>Site owner and Tier 4</td>
+</tr>
+</tbody>
+</table></div>
+<p>Tier 2 supplies the membership list; the owner confirms or corrects
+it. A non-response is chased once and then escalated to the owner’s
+manager. It is never treated as approval — silence is the commonest way
+a stale permission becomes permanent.</p>
+<h2 id="9-service-levels">9. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Request</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Add somebody to an existing group, owner-approved</td>
+<td>P3 — 1 coverage day, usually same day.</td>
+</tr>
+<tr class="even">
+<td>Grant on a site with no owner or classification</td>
+<td>Held. The site is fixed first; the requester is told why.</td>
+</tr>
+<tr class="odd">
+<td>External access</td>
+<td><a href="/sops/M365-14">M365-14</a>. Not granted until a sponsor and expiry exist.</td>
+</tr>
+<tr class="even">
+<td>Break inheritance</td>
+<td>P3 at Tier 3. Expect to be offered a second site instead.</td>
+</tr>
+<tr class="odd">
+<td>Access to a live employee’s OneDrive</td>
+<td>P3 to Tier 4 as a decision, not a task.</td>
+</tr>
+<tr class="even">
+<td>Annual review pack to owners</td>
+<td>Issued on schedule by Tier 2.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10-records">10. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Grants, with owner approval and any expiry</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Broken-inheritance decisions and their justification</td>
+<td>Site register + Tier 3 record</td>
+<td>Life of the site</td>
+</tr>
+<tr class="odd">
+<td>OneDrive access decisions for live employees</td>
+<td>Tier 4 record</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Review confirmations</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-related-documents">11. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/M365-15">M365-15</a></td>
+<td>Data Classification &amp; Handling</td>
+<td>Supplies the classification every rule here depends on.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-10">M365-10</a></td>
+<td>SharePoint Site Request, Provisioning &amp; Ownership</td>
+<td>Creates the site, owner and groups this document then manages.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-12">M365-12</a></td>
+<td>OneDrive Appropriate Use</td>
+<td>§6 — fix the cause, not the permission.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-13">M365-13</a></td>
+<td>Legacy File Share Retirement</td>
+<td>The largest single application of this document.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-14">M365-14</a></td>
+<td>External Sharing &amp; Guest Access Governance</td>
+<td>Anything involving a person from outside the organization.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-03">M365-03</a></td>
+<td>Shared Mailbox Request &amp; Ownership</td>
+<td>The same model for mailboxes.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>§6.2 mover delta and §7.2 leaver removal.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-02">ACC-02</a></td>
+<td>Account Naming Standard</td>
+<td>ROLE- group naming.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-17">ACC-17</a></td>
+<td>Periodic Access Review</td>
+<td>Consumes §8.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments</td>
+<td>Supplies §9.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--request-card">Appendix A — Request card</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Check</th>
+<th>If not</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Did this arrive as a ticket rather than an email thread?</td>
+<td>Move it to a ticket. Politely, and explain why once.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Does the site have a named owner?</td>
+<td>Fix that first (<a href="/sops/M365-10">M365-10</a>). A grant on an unowned site is a
+guess.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Is the site classified?</td>
+<td>Fix that first (<a href="/sops/M365-15">M365-15</a>). Otherwise you cannot know what the rules
+are.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Has the owner approved, on the ticket?</td>
+<td>Wait. For CONFIDENTIAL and above, silence is not approval.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Is there a group that fits?</td>
+<td>If not, the site needs a group — not an individual grant.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Do they need to edit, or only to read?</td>
+<td>Visitors by default. Read access is cheap.</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Temporary worker?</td>
+<td>End-of-engagement expiry (<a href="/sops/ACC-09">ACC-09</a>).</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>External person?</td>
+<td>Stop. <a href="/sops/M365-14">M365-14</a> — sponsor and expiry first.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--owners-annual-review">Appendix B — Owner’s annual
+review</h2>
+<p>Sent to you by IT with the current membership attached. Five
+minutes.</p>
+<div class="tbl"><table>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Read the list. Is everybody on it still doing work that needs this
+site?</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Anybody who has changed role, even inside your department? They may
+not need it any more.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Anybody who has left? They should already be gone — if they are not,
+tell IT, because that is a process failure worth knowing about.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Anybody on Members who only ever reads? Move them to Visitors.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Reply confirming or correcting. If we do not hear from you we will
+chase once, then ask your manager — we will not treat silence as a
+yes.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

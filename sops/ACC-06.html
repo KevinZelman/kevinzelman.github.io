@@ -1,0 +1,590 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACC-06 · Identity Verification Before Any Account Action | Known Good</title>
+<meta name="description" content="How IT establishes that a person asking for access is who they say they are, before anyone touches the account.">
+<meta property="og:title" content="ACC-06 · Identity Verification Before Any Account Action | Known Good">
+<meta property="og:description" content="How IT establishes that a person asking for access is who they say they are, before anyone touches the account.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="acc-06--identity-verification-before-any-account-action">ACC-06
+· Identity Verification Before Any Account Action</h1>
+<p><em>How IT establishes that a person asking for access is who they
+say they are, before anyone touches the account.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/ACC-06-Identity-Verification-Before-Any-Account-Action.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/ACC-06.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/ACC-06">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>ACC-06</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>B. Account Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 1 — the Service Desk, and every tier that touches an account.
+No tier is exempt.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually, and after any attempted social-engineering incident.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>This document states how IT establishes that a person requesting an
+account action is who they claim to be, and what is recorded about it.
+Many desks have no written procedure for this at all, and fill the gap
+with whatever the person on shift thinks is reasonable.</p>
+<p>The gap shows up in a familiar way: a request to reset multifactor
+sign-in arrives from a personal email address, naming someone else as
+the account holder. Whether that particular request is legitimate is
+beside the point. If the process has no step at which it would be
+caught, the process is the problem.</p>
+<p>An account takeover does not usually begin with a technical exploit.
+It begins with a plausible person asking a helpful person for a reset.
+Every control in <a href="/sops/ACC-03">ACC-03</a> and <a href="/sops/ACC-04">ACC-04</a>, every phishing-resistant method,
+every Conditional Access policy, is bypassed entirely if somebody can
+talk the service desk into handing over access. This procedure is the
+floor under all of it.</p>
+<h2 id="2-scope--what-counts-as-an-account-action">2. Scope — what
+counts as an account action</h2>
+<p>Verification is required before any of the following, at every
+tier:</p>
+<ul>
+<li>Resetting a password, or issuing a Temporary Access Pass.</li>
+<li>Adding, removing or re-registering a multifactor method.</li>
+<li>Unlocking an account.</li>
+<li>Changing group membership, permissions, or mailbox access.</li>
+<li>Retrieving a BitLocker recovery key or any other credential (<a href="/sops/DEV-01">DEV-01</a>
+§9).</li>
+<li>Disclosing account state — including whether an account exists, what
+its address is, or whether it has MFA registered. This one is easy to
+overlook and is how an attacker maps the ground.</li>
+<li>Configuring mail forwarding, delegation, or send-as.</li>
+<li>Enabling or disabling an account. Not in scope: answering a general
+question that reveals nothing account-specific (“how do I set up MFA?”,
+“what is the password standard?”). Publishing good general answers
+reduces the number of contacts that need verification at all, which is
+part of why <a href="/sops/GOV-05">GOV-05</a> matters.</li>
+</ul>
+<h2 id="3-the-rule">3. The rule</h2>
+<blockquote>
+<p><strong>The rule, in full</strong></p>
+<p>No account action is performed until the requester’s identity has
+been verified by one of the tiers in §4, and the tier used has been
+recorded on the ticket.</p>
+<p>The verification tier is a required field. A ticket closed without it
+is an incomplete ticket, regardless of whether the request turned out to
+be genuine.</p>
+<p>This applies to people you know. It applies to senior staff. It
+applies when the person is standing in front of you and you recognise
+them — in which case Tier 1 verification takes about four seconds and
+there is no reason to skip it.</p>
+<p>It applies especially when the request is urgent, because urgency is
+the standard pretext.</p>
+</blockquote>
+<p>One clarification that matters for morale: this is not a statement
+that staff have been careless. Nobody can follow a procedure that has
+never been written. The purpose of writing it down is to move the
+decision off the individual — so that a technician declining to act is
+following the team’s procedure rather than making a personal judgement
+they might be argued out of.</p>
+<h2 id="4-the-four-verification-tiers">4. The four verification
+tiers</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Tier</th>
+<th>Method</th>
+<th>What it requires</th>
+<th>Use when</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>V1</td>
+<td>In person</td>
+<td>Government or organization photo ID presented at the desk, checked
+against the directory record.</td>
+<td>Strongest, and often the fastest. Default for anyone on site and
+mandatory for privileged accounts.</td>
+</tr>
+<tr class="even">
+<td>V2</td>
+<td>Live video call</td>
+<td>Camera on, face visible, photo ID held to the camera, plus two
+directory facts the requester volunteers without being told which ones
+you want.</td>
+<td>The standard remote path. Anyone working remotely, or anyone off
+site.</td>
+</tr>
+<tr class="odd">
+<td>V3</td>
+<td>Vouching by a known party</td>
+<td>The requester’s manager or department head confirms identity from
+their own work account, on the ticket. The voucher must already be
+signed in — which is itself a form of authentication.</td>
+<td>The requester cannot do V1 or V2 — no camera, no ID to hand. Never
+for privileged accounts.</td>
+</tr>
+<tr class="even">
+<td>V4</td>
+<td>Callback to the directory number</td>
+<td>Call the number in the directory record — never a number the
+requester supplies — plus two volunteered directory facts.</td>
+<td>Fallback only. Never alone for a privileged account or for an MFA
+method change.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="5-what-each-tier-requires-in-practice">5. What each tier
+requires in practice</h2>
+<h3 id="51-the-two-facts">5.1 The two facts</h3>
+<p>V2, V3 and V4 all require the requester to volunteer two facts from
+the directory record. The technician does not say which facts are
+wanted. Acceptable facts:</p>
+<ul>
+<li>employee or member ID.</li>
+<li>Department, and the name of their manager.</li>
+<li>The asset tag of their work-issued device.</li>
+<li>Their office or usual work location.</li>
+<li>The month they started with the organization. Not acceptable,
+because they are discoverable or guessable: date of birth, last four
+digits of anything, home address, mother’s maiden name, or anything
+published on your website. A fact that an attacker can look up is not a
+verification.</li>
+</ul>
+<blockquote>
+<p><strong>The volunteering matters more than the facts</strong></p>
+<p>A genuine account holder produces two facts readily. An impostor,
+told which two facts are needed, will frequently produce them too —
+because the prompt tells them what to research or what to guess at.</p>
+<p>So the question is “tell me two things about your record here”, not
+“what is your employee or member ID?”. Record which facts they gave, not
+which you asked for.</p>
+</blockquote>
+<h3 id="52-on-the-photo-id-check">5.2 On the photo ID check</h3>
+<p>Look at the name, look at the photo, look at the person. That is the
+whole check. Nobody is being asked to detect a forged document — the
+objective is to defeat a remote impostor who has a name and a plausible
+story, and holding a matching photo ID to a camera defeats that
+comprehensively at negligible cost.</p>
+<h2 id="6-requests-that-are-never-actioned">6. Requests that are never
+actioned</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Do not action</th>
+<th>Because</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A request from a outside email address, even one that names the
+account holder correctly</td>
+<td>Anyone can put a correct name in an email.</td>
+</tr>
+<tr class="even">
+<td>A request made by a third party on the account holder’s behalf,
+unless that third party is the manager using V3 and the account holder
+is separately contactable</td>
+<td>A helpful colleague and an attacker are indistinguishable at this
+point in the conversation.</td>
+</tr>
+<tr class="odd">
+<td>A request where the facts arrive only after you say what you
+need</td>
+<td>The prompt supplied the answer. Nothing was verified.</td>
+</tr>
+<tr class="even">
+<td>A request that is urgent and also declines verification</td>
+<td>Urgency plus resistance to verification is the signature of the
+attack, not of a busy person. A genuinely busy person joins a two-minute
+video call.</td>
+</tr>
+<tr class="odd">
+<td>Adding a new MFA method while an existing method remains registered
+and reachable</td>
+<td>Ask them to use the working method to add the new one (<a href="/sops/ACC-03">ACC-03</a> §5.3).
+Adding a method for someone is how an attacker gets a foothold that
+survives a password reset.</td>
+</tr>
+<tr class="even">
+<td>Any disclosure of account state to an unverified caller — including
+whether an account exists</td>
+<td>It maps the ground for a later attempt.</td>
+</tr>
+<tr class="odd">
+<td>Anything at all where you feel pressured, hurried, or that something
+is off</td>
+<td>Stop and escalate. See §10.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Declining is not the end of the conversation. Always offer the path
+that will work: “I can’t action this from an outside address, but I can
+help you directly — are you able to join a short video call?” The answer
+is “here is how we can do this”, never “no”.</p>
+<h2 id="7-harder-cases">7. Harder cases</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Case</th>
+<th>How to handle it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Someone travelling with no photo ID to hand</td>
+<td>V3: their manager, sponsor or advisor vouches from their own work
+account. Common and entirely legitimate.</td>
+</tr>
+<tr class="even">
+<td>No camera, or a connection that will not carry video</td>
+<td>V3 first. V4 as a fallback, with two volunteered facts.</td>
+</tr>
+<tr class="odd">
+<td>A person who cannot use video for an accessibility reason</td>
+<td>V3, or V1 by appointment. Never treat an accommodation need as a red
+flag, and never require someone to explain a disability to get their
+account back. Record the tier used, not the reason.</td>
+</tr>
+<tr class="even">
+<td>A new starter who has no directory facts yet</td>
+<td>Their manager vouches (V3). This is the normal path on day one and
+is why <a href="/sops/ACC-01">ACC-01</a> §5.2 hands credentials to the manager or in person.</td>
+</tr>
+<tr class="odd">
+<td>A departing or departed employee requesting access</td>
+<td>Do not action. Route to Tier 4 — this is a leaver question (<a href="/sops/ACC-01">ACC-01</a>
+§7), and a request for access after separation needs a decision, not a
+technician.</td>
+</tr>
+<tr class="even">
+<td>Somebody who is angry about being verified</td>
+<td>Stay calm, stay friendly, do not waive it. “I know it’s a nuisance —
+it’s the same check that stops somebody else doing this to your
+account.” Then escalate to your supervisor rather than negotiating.</td>
+</tr>
+<tr class="odd">
+<td>A very senior member of staff who declines to verify</td>
+<td>The rule does not have a seniority exemption, and senior accounts
+are the most attractive targets. Escalate to Tier 4 rather than deciding
+alone — that is exactly what Tier 4 is for.</td>
+</tr>
+<tr class="even">
+<td>A request relayed by another IT staff member</td>
+<td>The relaying staff member states which tier they used. “Alex asked
+me to reset it” is not a verification.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="8-privileged-accounts">8. Privileged accounts</h2>
+<p>Privileged and administrative accounts require V1 or V2. No vouching,
+no callback, no exceptions, at any tier. A privileged account is the one
+an attacker actually wants, and the population is small enough that
+in-person or video verification is never a real burden.</p>
+<p>The same applies to retrieving a BitLocker recovery key, because a
+48-digit key handed to the wrong person defeats the encryption entirely
+(<a href="/sops/DEV-01">DEV-01</a> §9).</p>
+<h2 id="9-recording">9. Recording</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>What goes in it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Verification tier</td>
+<td>V1, V2, V3 or V4. Required. The ticket does not close without
+it.</td>
+</tr>
+<tr class="even">
+<td>Facts relied on</td>
+<td>Which two facts the requester volunteered. Not their values —
+“employee or member ID and manager name”, not the ID itself.</td>
+</tr>
+<tr class="odd">
+<td>Voucher, where V3</td>
+<td>Who vouched, and confirmation they did so from their own work
+account.</td>
+</tr>
+<tr class="even">
+<td>Number called, where V4</td>
+<td>That the directory number was used. Never a number supplied by the
+requester.</td>
+</tr>
+<tr class="odd">
+<td>Action taken</td>
+<td>What was actually done, and by whom.</td>
+</tr>
+<tr class="even">
+<td>Declined requests</td>
+<td>Recorded too, with the reason and what was offered instead. A
+pattern of declined requests against one account is a security signal
+that is invisible if declines are not logged.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10-pressure-and-what-to-do-about-it">10. Pressure, and what to
+do about it</h2>
+<blockquote>
+<p><strong>If it feels wrong, it is enough that it feels
+wrong.</strong></p>
+<p>Nobody will be criticised for verifying, for taking an extra two
+minutes, or for escalating a request they were not comfortable with.
+That is written here so it can be pointed at.</p>
+<p>The technician who is talked out of a verification is not the person
+who failed. The organisation that left them alone with the decision is.
+This procedure exists so that the answer is “our procedure requires it”
+rather than “I would rather not”.</p>
+<p>Escalate to your supervisor, or to Tier 4, and say plainly that
+something felt off. An attempt that is escalated and turns out to be
+genuine costs somebody four minutes. An attempt that is actioned and
+turns out not to be genuine costs considerably more.</p>
+</blockquote>
+<h2 id="11-training-and-refresh">11. Training and refresh</h2>
+<ol type="1">
+<li>Every person at every tier who can take an account action reads this
+document and Appendix A before their first shift.</li>
+<li>Tier 1 technicians re-read it every quarter, because people change
+and this is the tier attackers call.</li>
+<li>The department runs one deliberate practice attempt per quarter — a
+colleague calls the desk with a plausible unverified request. The
+purpose is to find out whether the procedure holds, not to catch anybody
+out, and the result is discussed openly with no individual named.</li>
+<li>Every real attempt is written up and circulated, with the story of
+what the caller said. Specifics teach; policy statements do not.</li>
+</ol>
+<h2 id="12-measurement">12. Measurement</h2>
+<ul>
+<li>Share of account-action tickets with a verification tier recorded.
+Target: 100%. Anything less means the field is optional in
+practice.</li>
+<li>Distribution across V1–V4. A heavy skew to V3 and V4 suggests V2 is
+impractical for some reason worth understanding.</li>
+<li>Declined requests per month, and how many later completed
+legitimately. Both numbers are healthy; zero declines is the number to
+worry about.</li>
+<li>Practice-attempt outcomes per quarter.</li>
+</ul>
+<h2 id="13-records">13. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Verification tier and facts relied on</td>
+<td>Ticket — required field</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Declined requests, with reason and what was offered</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Suspected social-engineering attempts</td>
+<td>Security record (<a href="/sops/GOV-03">GOV-03</a>)</td>
+<td>7 years</td>
+</tr>
+<tr class="even">
+<td>Practice-attempt results</td>
+<td>Training record</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Confirmation of reading, per staff member per quarter</td>
+<td>Training record</td>
+<td>Duration of employment</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="14-related-documents">14. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA Enrollment, Reset &amp; Account Recovery</td>
+<td>§6 of that document is the summary; this is the full standard.
+Method changes are the highest-risk action here.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-04">ACC-04</a></td>
+<td>Password Standard &amp; Self-Service Password Reset</td>
+<td>Self-service removes the need for verification entirely, which is
+the best possible outcome.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-05">ACC-05</a></td>
+<td>Account Lockout Triage</td>
+<td>Verification precedes any restoration.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-07">ACC-07</a></td>
+<td>Privileged &amp; Administrative Account Standard</td>
+<td>§8 applies to every account it governs.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>§5.2 credential handover, and the §7 leaver case in §7 above.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-01">DEV-01</a></td>
+<td>Device Enrollment &amp; Lifecycle</td>
+<td>Recovery-key retrieval is an account action (§2, §8).</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response &amp; Escalation Matrix</td>
+<td>Where a suspected attempt goes.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-05">GOV-05</a></td>
+<td>Knowledge Base Article Standard</td>
+<td>Format for the end-user explanation of why verification is asked
+for.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--the-verification-script">Appendix A — The
+verification script</h2>
+<p>Read this before any account action. Nine lines. It takes under two
+minutes.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Say / do</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>“Before I make any change to the account, I need to check who I’m
+speaking to. I can do that here at the desk, or on a quick video call —
+whichever is easier for you.”</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Request from a outside address? “I can’t action a request from an
+outside address, but I can help you directly. Can you join a short video
+call?” Do not continue on the email thread.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>On video: “Please turn your camera on and hold your photo ID up.”
+Check name, photo, person. That is the whole check.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>“Without me prompting you, tell me two things about your record here
+— anything you like.” Do NOT list what you are expecting. Note which two
+they gave.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Cannot do either? “I can accept confirmation from your manager
+instead — may I copy them on the ticket?” That is V3, and the manager
+must reply from their own work account.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Before acting: is the password even the problem? Run the <a href="/sops/ACC-05">ACC-05</a>
+triage card first.</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Act. Prefer a Temporary Access Pass over a temporary password.</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Record: verification tier, which facts they volunteered, action
+taken, and the confirmed <a href="/sops/ACC-05">ACC-05</a> cause.</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Confirm they have signed in successfully. Then close.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Stop and escalate if: the request is urgent AND they resist
+verifying; a third party is pressing on someone’s behalf; the facts only
+arrived after you said what you needed; or anything simply feels off.
+You will never be criticised for verifying.</p>
+<h2 id="appendix-b--what-to-say-when-declining">Appendix B — What to say
+when declining</h2>
+<p>Declining well keeps the person on side. Every line below ends with a
+way forward.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>Words that work</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Request from a personal address</td>
+<td>“I’m not able to action account changes from an outside address —
+that’s the same rule that stops someone else doing it to your account. I
+can sort this out with you on a two-minute video call though. What
+works?”</td>
+</tr>
+<tr class="even">
+<td>They are in a hurry</td>
+<td>“I understand, and I’d rather not slow you down — the check takes
+about ninety seconds and then I can get straight into it.”</td>
+</tr>
+<tr class="odd">
+<td>A colleague asking on someone’s behalf</td>
+<td>“I can’t make the change on someone else’s account, but if you can
+put me in touch with them directly I’ll get it done now. Or if you’re
+their manager, you can confirm their identity on the ticket and that
+works too.”</td>
+</tr>
+<tr class="even">
+<td>They push back on principle</td>
+<td>“It’s our procedure rather than my call, and it applies to everybody
+— including our own staff. Let me get it done quickly and then we can
+fix the actual problem.”</td>
+</tr>
+<tr class="odd">
+<td>They stay angry</td>
+<td>“I hear you, and I’m not going to be able to waive it. Let me bring
+my supervisor in so you’re not stuck with me on this.” Then escalate. Do
+not negotiate.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

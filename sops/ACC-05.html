@@ -1,0 +1,537 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACC-05 · Account Lockout Triage &amp; Repeat-Incident Escalation | Known Good</title>
+<meta name="description" content="How to tell apart the five different things people report as “locked out”, and what happens when the same account comes back.">
+<meta property="og:title" content="ACC-05 · Account Lockout Triage &amp; Repeat-Incident Escalation | Known Good">
+<meta property="og:description" content="How to tell apart the five different things people report as “locked out”, and what happens when the same account comes back.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1
+id="acc-05--account-lockout-triage--repeat-incident-escalation">ACC-05 ·
+Account Lockout Triage &amp; Repeat-Incident Escalation</h1>
+<p><em>How to tell apart the five different things people report as
+“locked out”, and what happens when the same account comes
+back.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/ACC-05-Account-Lockout-Triage-and-Repeat-Incident-Escalation.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/ACC-05.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/ACC-05">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>ACC-05</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>B. Account Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 1 — the Service Desk. Escalates to Tier 2 Account Services,
+which holds the directory permissions.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Every six months while you are changing identity platforms, then
+annually.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>“I’m locked out” is a symptom with at least five distinct causes.
+Each has a different fix, and treating them all as a password reset is
+how a modest number of genuine lockouts turns into a lockout category
+twice its size.</p>
+<p>This document gives Tier 1 a decision path that identifies the cause
+before anything is changed, and gives the department a ladder for the
+account that keeps coming back.</p>
+<blockquote>
+<p><strong>Check your own directory before trusting the decision
+path</strong></p>
+<p>Read your password and lockout policies before you assume anything. A
+group policy with a lockout threshold of 0 disables lockout entirely for
+the people it covers, so their “lockout” is coming from somewhere else:
+cloud smart lockout, a separate sign-in service, or an expired password
+experienced as a lockout.</p>
+<p>Check the maximum password age too. A value that expires passwords
+far sooner than intended will fill the desk with “lockouts” that are
+really expiry, arriving under the wrong name.</p>
+<p>Until you have confirmed both, record which population the caller
+belongs to on every lockout ticket. That single field settles the
+question faster than any investigation.</p>
+</blockquote>
+<blockquote>
+<p><strong>The most expensive mistake in this category</strong></p>
+<p>Resetting a password that was never the problem. It consumes the
+contact, does not restore access, destroys the diagnostic trail, and the
+person calls back — so one ticket becomes two and the cause is now
+harder to find.</p>
+<p>Every step in §3 therefore starts with confirming the cause rather
+than acting on the symptom.</p>
+</blockquote>
+<h2 id="2-the-five-causes-and-how-to-tell-them-apart">2. The five
+causes, and how to tell them apart</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Cause</th>
+<th>How it presents</th>
+<th>Confirm by</th>
+<th>Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A — On-premises AD lockout</td>
+<td>Fails immediately, everywhere, including on site. Often started
+overnight.</td>
+<td>AD account lockout flag and bad-password count.</td>
+<td>Common. Usually a stale credential somewhere, not the person typing
+wrong.</td>
+</tr>
+<tr class="even">
+<td>B — Entra smart lockout</td>
+<td>Fails from one location, network or client but works from
+another.</td>
+<td>Entra sign-in logs show the smart-lockout result and the source
+IP.</td>
+<td>Common, and frequently a signal rather than a fault (§4 and <a href="/sops/ACC-03">ACC-03</a>
+§10).</td>
+</tr>
+<tr class="odd">
+<td>C — MFA method unavailable</td>
+<td>Password is accepted, then the second factor never arrives, or the
+app has no account in it.</td>
+<td>Ask what changed about their phone. Almost always a new, reset or
+traded-in device.</td>
+<td>Very common. Not a lockout at all.</td>
+</tr>
+<tr class="even">
+<td>D — Conditional Access or risk block</td>
+<td>A specific policy or compliance message, or failure only from one
+device, network or app.</td>
+<td>Entra sign-in log names the policy or the risk detection.</td>
+<td>Rising as Conditional Access is deployed. Will rise further (<a href="/sops/ACC-03">ACC-03</a>
+§11).</td>
+</tr>
+<tr class="odd">
+<td>E — Not a lockout</td>
+<td>Sign-in succeeds; one application or portal denies access.</td>
+<td>Check licence assignment, group membership, then the
+application.</td>
+<td>Common and frequently misfiled.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Three questions separate almost all of them, and none requires an
+admin centre: does it fail everywhere or only in one place; is the
+password accepted before it fails; and did anything change about their
+phone. Appendix A is that sequence as a card.</p>
+<h2 id="3-cause-by-cause--what-to-do">3. Cause by cause — what to
+do</h2>
+<h3 id="a--on-premises-ad-lockout">A — On-premises AD lockout</h3>
+<ol type="1">
+<li>Confirm the lockout flag. Do not reset the password — the password
+is probably fine.</li>
+<li>Escalate to Tier 2 to unlock. Tier 1 cannot unlock in Entra or
+AD.</li>
+<li>Then find the source, which is the part that stops it recurring. A
+stale credential on a phone mail client, a mapped drive with a saved old
+password, or a scheduled task is the usual culprit. An account that
+locks out again within hours has a machine doing it, not a person.</li>
+<li>Record the source when found. A pattern across several accounts is a
+Tier 3 matter.</li>
+</ol>
+<h3 id="b--entra-smart-lockout">B — Entra smart lockout</h3>
+<ol type="1">
+<li>Read the sign-in log: how many failures, from where, against
+what.</li>
+<li>Where the source is the person’s own location, wait out the lockout
+or have Tier 2 clear it, then address whatever is retrying.</li>
+<li>Where the source is an unfamiliar IP or country, stop treating this
+as a lockout. It is a possible compromise — go to <a href="/sops/ACC-03">ACC-03</a> §10 and notify
+Tier 3.</li>
+</ol>
+<h3 id="c--mfa-method-unavailable">C — MFA method unavailable</h3>
+<ol type="1">
+<li>Do not reset the password. It is not broken and resetting it adds a
+second problem.</li>
+<li>Verify identity per <a href="/sops/ACC-06">ACC-06</a>. This is the case most often exploited,
+because “I have a new phone” is entirely plausible and requires no
+story.</li>
+<li>Escalate to Tier 2 for method re-registration, or a Temporary Access
+Pass where every method is gone (<a href="/sops/ACC-03">ACC-03</a> §5.4).</li>
+<li>Before closing, get a second method registered. This case is almost
+always a person who had only one.</li>
+</ol>
+<h3 id="d--conditional-access-or-risk-block">D — Conditional Access or
+risk block</h3>
+<ol type="1">
+<li>Read the policy name or risk detection in the sign-in log. The log
+says why; guessing wastes the contact.</li>
+<li>Resolve the condition — device compliance, location, app, or risk
+state. A reset will not clear it and will mask the cause.</li>
+<li>Where the block is a device compliance failure, this is a device
+matter (<a href="/sops/DEV-02">DEV-02</a>), not an account one.</li>
+<li>Where the same policy blocks several people in a day, escalate to
+Tier 3 immediately. That is a misconfiguration, not five user problems
+(<a href="/sops/ACC-03">ACC-03</a> §11).</li>
+</ol>
+<h3 id="e--not-a-lockout">E — Not a lockout</h3>
+<ol type="1">
+<li>Reclassify the ticket. The category matters for measurement and
+travels with the ticket on escalation.</li>
+<li>Check licence (<a href="/sops/M365-20">M365-20</a>), then group membership (<a href="/sops/M365-04">M365-04</a>), then the
+application itself (<a href="/sops/ACC-16">ACC-16</a>).</li>
+</ol>
+<h2 id="4-the-one-that-looks-like-a-lockout-and-is-not">4. The one that
+looks like a lockout and is not</h2>
+<blockquote>
+<p><strong>“Somebody else has been logging into my account”</strong></p>
+<p>Do not reset the password and close it. That destroys the evidence
+and does not answer the question.</p>
+<p>It opens at Tier 2. The evidence has to distinguish genuine
+credential sharing from a person travelling with their own device —
+those look identical in a sign-in log alone, and getting it wrong in
+either direction is serious.</p>
+<p>It reaches HR, or whoever handles conduct for that population, on a
+real pattern, not a single event. The tier tells you who looks; the
+evidence tells you how far it goes.</p>
+</blockquote>
+<h2 id="5-repeat-incident-escalation">5. Repeat-incident escalation</h2>
+<p>Picture an account blocked for the third time in a few months. Good
+handling looks like this: brief the person, then notify their manager
+and whoever owns security. This section makes that a standing ladder so
+it does not depend on who picks up the ticket.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Occurrence</th>
+<th>Action</th>
+<th>Decides</th>
+<th>Recorded</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1st</td>
+<td>Restore per §3. Record the confirmed cause. Brief the person on
+credential sharing (<a href="/sops/ACC-15">ACC-15</a>). Get a second MFA method registered.</td>
+<td>Tier 1</td>
+<td>Ticket</td>
+</tr>
+<tr class="even">
+<td>2nd within 90 days</td>
+<td>Restore, then review sign-in history for shared-credential or
+unfamiliar-location patterns. Require re-registration of all MFA
+methods. Flag for watch.</td>
+<td>Tier 1, Tier 2 informed</td>
+<td>Ticket + watch list</td>
+</tr>
+<tr class="odd">
+<td>3rd within 90 days</td>
+<td>Treat as suspected compromise or sharing until shown otherwise.
+Force reset, revoke all sessions, remove and re-register every method.
+Notify the person’s manager in writing.</td>
+<td>Tier 3 decides; Tier 4 informed</td>
+<td>Ticket + security record</td>
+</tr>
+<tr class="even">
+<td>Confirmed sharing or sale of credentials</td>
+<td>Suspend per <a href="/sops/ACC-13">ACC-13</a>. Refer to HR, or whoever handles conduct for that
+population. Do not restore until the referral concludes.</td>
+<td>Tier 4 approves</td>
+<td>Security record + referral</td>
+</tr>
+<tr class="odd">
+<td>Confirmed third-party compromise</td>
+<td>Declare an incident under <a href="/sops/GOV-03">GOV-03</a>. Preserve sign-in and mailbox audit
+data before remediating.</td>
+<td>Tier 4 declares</td>
+<td>Incident record</td>
+</tr>
+</tbody>
+</table></div>
+<p>Two cautions. A repeat count is not evidence of wrongdoing — a person
+with one MFA method and an unreliable phone will legitimately appear
+three times, and treating them as a suspect is both wrong and corrosive.
+And the count is per 90 days rather than per lifetime, so someone who
+had trouble a year ago does not carry it forever.</p>
+<h2 id="6-escalating-properly">6. Escalating properly</h2>
+<p>The governing rule: escalation changes the tier, not the queue. The
+category and the full history travel with the ticket, and nobody starts
+over.</p>
+<ul>
+<li>Set the escalation category and add owner’s notes: what the person
+reported, what you tried, what you confirmed about their identity, and
+which of the five causes you established.</li>
+<li>Tier 2 picks it up under Account Services, which holds the directory
+permissions. Tier 2 may recategorise after review, including back into a
+Tier 1 subcategory.</li>
+<li>Escalate on scope, not difficulty. A fiddly case still inside Tier
+1’s remit stays with Tier 1 — ask in the Tier 1+2 channel rather than
+moving the ticket.</li>
+<li>Never escalate without a confirmed cause from §2, or with “user is
+locked out” as the whole description. That forces Tier 2 to redo the
+triage.</li>
+</ul>
+<h2 id="7-recording--the-required-field">7. Recording — the required
+field</h2>
+<blockquote>
+<p><strong>Every lockout ticket records its confirmed cause: A, B, C, D
+or E.</strong></p>
+<p>This single field is what turns an undifferentiated pile of lockouts
+into a ranked list of fixable root causes. Without it the number can
+move around but cannot come down, because nobody knows which cause
+dominates.</p>
+<p>The prediction worth testing: cause C — a phone that changed — will
+turn out to be a large share of what is currently filed as lockouts, and
+its fix is not password policy at all. It is getting a second MFA method
+registered on every account (<a href="/sops/ACC-03">ACC-03</a> §5.1, <a href="/sops/ACC-04">ACC-04</a> §7).</p>
+</blockquote>
+<h2 id="8-service-levels">8. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Triage to a confirmed cause</td>
+<td>Within the first contact. This is Tier 1’s core work, not a queued
+task.</td>
+</tr>
+<tr class="even">
+<td>Unlock after escalation, identity verified</td>
+<td>P2 — acknowledged within 4 coverage hours.</td>
+</tr>
+<tr class="odd">
+<td>MFA re-registration</td>
+<td>P2 at Tier 2.</td>
+</tr>
+<tr class="even">
+<td>Suspected compromise (§4, or 3rd occurrence)</td>
+<td>P1 — escalated to Tier 3 within 30 minutes.</td>
+</tr>
+<tr class="odd">
+<td>Same Conditional Access policy blocking several people</td>
+<td>P1 at Tier 3. This is an outage in miniature.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="9-measurement">9. Measurement</h2>
+<ul>
+<li>Lockout tickets per week by confirmed cause. The whole point of
+§7.</li>
+<li>Share resolved at Tier 1 without escalation, before and after the
+<a href="/sops/ACC-04">ACC-04</a> §6 read-only visibility decision.</li>
+<li>Repeat rate: accounts appearing twice or more in 90 days.</li>
+<li>Accounts with fewer than two MFA methods. The leading indicator for
+cause C.</li>
+<li>Cause-A recurrence within 24 hours — the signal that the stale
+credential was never found.</li>
+</ul>
+<h2 id="10-records">10. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Confirmed cause A–E</td>
+<td>Ticket — required field</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-06">ACC-06</a> verification tier</td>
+<td>Ticket — required field</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Cause-A source, when found</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Repeat-incident watch list</td>
+<td>Tier 3 security record</td>
+<td>Rolling 12 months</td>
+</tr>
+<tr class="odd">
+<td>Manager notifications</td>
+<td>Security record</td>
+<td>3 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-related-documents">11. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA Enrollment, Reset &amp; Account Recovery</td>
+<td>Summarises this triage at §8; owns risky sign-in handling and the
+phishing-resistant rollout.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-04">ACC-04</a></td>
+<td>Password Standard &amp; Self-Service Password Reset</td>
+<td>The path that prevents most of cause C ever reaching the desk.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-06">ACC-06</a></td>
+<td>Identity Verification Before Any Account Action</td>
+<td>Mandatory before any restoration.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-13">ACC-13</a></td>
+<td>Account Suspension for Misuse</td>
+<td>Where the §5 confirmed-sharing path leads.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-15">ACC-15</a></td>
+<td>Acceptable Use &amp; Credential-Sharing Standard</td>
+<td>The published rule §5 briefs people against.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-02">DEV-02</a></td>
+<td>Device Compliance &amp; Configuration Baseline</td>
+<td>Cause D is frequently a device matter.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response &amp; Escalation Matrix</td>
+<td>Where §4 and the third occurrence escalate.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments, Priority &amp; Escalation</td>
+<td>Supplies §8.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--triage-card">Appendix A — Triage card</h2>
+<p>Three questions identify almost every case. Establish the cause
+before changing anything.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Ask</th>
+<th>If yes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Does it fail everywhere, immediately, including on site?</td>
+<td>Cause A — AD lockout. Escalate to unlock, then hunt the stale
+credential.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Does it work from somewhere else, or on another device?</td>
+<td>Cause B — smart lockout. Read the source IP. Unfamiliar → <a href="/sops/ACC-03">ACC-03</a>
+§10.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Is the password accepted, and then the second factor never
+arrives?</td>
+<td>Cause C — MFA method. Do NOT reset. Verify per <a href="/sops/ACC-06">ACC-06</a>, escalate for
+re-registration.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Did they get a specific policy or compliance message?</td>
+<td>Cause D — Conditional Access. Read the log; fix the condition, not
+the password.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Does sign-in succeed, but one app denies them?</td>
+<td>Cause E — not a lockout. Reclassify: licence, group, or
+application.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Are they saying somebody else has been signing in?</td>
+<td>Go to §4. Do not reset. Tier 2 first.</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Has this account been here before in the last 90 days?</td>
+<td>Go to Appendix B before restoring.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--repeat-incident-ladder-card">Appendix B —
+Repeat-incident ladder card</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Time</th>
+<th>Do</th>
+<th>Tell</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1st</td>
+<td>Restore. Record cause. Brief on credential sharing. Register a
+second MFA method.</td>
+<td>Nobody beyond the ticket.</td>
+</tr>
+<tr class="even">
+<td>2nd in 90 days</td>
+<td>Restore. Review sign-in history. Re-register all methods. Flag for
+watch.</td>
+<td>Tier 2.</td>
+</tr>
+<tr class="odd">
+<td>3rd in 90 days</td>
+<td>Treat as suspected compromise. Force reset, revoke sessions,
+re-register everything.</td>
+<td>Their manager, in writing. Tier 3 decides; Tier 4 informed.</td>
+</tr>
+<tr class="even">
+<td>Sharing confirmed</td>
+<td>Suspend per <a href="/sops/ACC-13">ACC-13</a>. Do not restore pending referral.</td>
+<td>HR, or whoever handles conduct. Tier 4 approves.</td>
+</tr>
+<tr class="odd">
+<td>Compromise confirmed</td>
+<td>Preserve audit data BEFORE remediating. Declare under <a href="/sops/GOV-03">GOV-03</a>.</td>
+<td>Tier 4 declares the incident.</td>
+</tr>
+</tbody>
+</table></div>
+<p>A repeat count is not evidence of wrongdoing. Somebody with one MFA
+method and an unreliable phone will legitimately appear three times.
+Establish the cause each time before you draw a conclusion about the
+person.</p>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

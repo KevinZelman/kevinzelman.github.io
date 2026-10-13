@@ -1,0 +1,405 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DEV-15 · Device Reassignment, Wipe, Retirement &amp; Disposal | Known Good</title>
+<meta name="description" content="What happens to an organization device between one holder and the next, and at the end of its life.">
+<meta property="og:title" content="DEV-15 · Device Reassignment, Wipe, Retirement &amp; Disposal | Known Good">
+<meta property="og:description" content="What happens to an organization device between one holder and the next, and at the end of its life.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="dev-15--device-reassignment-wipe-retirement--disposal">DEV-15 ·
+Device Reassignment, Wipe, Retirement &amp; Disposal</h1>
+<p><em>What happens to an organization device between one holder and the
+next, and at the end of its life.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/DEV-15-Device-Reassignment-Wipe-Retirement-and-Disposal.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/DEV-15.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/DEV-15">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>DEV-15</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>C. Device Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 2 — Advanced Technical Services. Disposal approval is Tier
+4.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually.</td>
+</tr>
+<tr class="even">
+<td>Related existing policy</td>
+<td>Your organization's policy on disposing of sensitive data, if it has
+one. §6 operates under it.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>A device changes hands more often than it is bought, and the handover
+is where data leaks, licences are lost and recovery keys disappear. This
+document is the procedure for doing it properly, and it is deliberately
+short: three checks carry most of the value.</p>
+<h2 id="2-the-three-checks-that-must-never-be-skipped">2. The three
+checks that must never be skipped</h2>
+<blockquote>
+<p><strong>Check 1 — Confirm the BitLocker recovery key is escrowed
+BEFORE any wipe.</strong></p>
+<p>A wipe of an encrypted volume with no escrowed key is unrecoverable
+and permanent. An estate that has never audited escrow can have devices
+in exactly that state without knowing how many (<a href="/sops/DEV-03">DEV-03</a> §2).</p>
+<p>This same check closes a leaver ticket (<a href="/sops/ACC-01">ACC-01</a> §7.2 step 8) and
+satisfies <a href="/sops/DEV-01">DEV-01</a> exit criterion 6. Three procedures depend on it.</p>
+</blockquote>
+<blockquote>
+<p><strong>Check 2 — Confirm resident data has been dealt with BEFORE
+reissue.</strong></p>
+<p>A device reissued carrying the previous holder’s local files is a
+data incident that nobody notices until the new holder opens a
+folder.</p>
+<p>Where institutional records are only on the local disk, they move to
+the right place first (<a href="/sops/M365-12">M365-12</a>).</p>
+</blockquote>
+<blockquote>
+<p><strong>Check 3 — Deregister from Autopilot BEFORE
+disposal.</strong></p>
+<p>A device sold, donated or recycled while still registered to your
+Autopilot tenant will try to enrol into your tenant when the next owner
+sets it up. That is both an operational nuisance and a poor look.</p>
+<p>It is the single most commonly forgotten step at disposal because
+nothing prompts for it.</p>
+</blockquote>
+<h2 id="3-reassignment">3. Reassignment</h2>
+<ol type="1">
+<li>Confirm the device is returned, with its charger and
+accessories.</li>
+<li>Ask the returning holder what did not work. People rarely volunteer
+a fault on a device they are handing back, and this is the cheapest
+fault-finding available (<a href="/sops/DEV-05">DEV-05</a> §6).</li>
+<li>Check for locally-resident data and move anything institutional to
+its proper home (Check 2).</li>
+<li>Confirm the recovery key is escrowed (Check 1). If it is not, <a href="/sops/DEV-03">DEV-03</a>
+§6 before anything else.</li>
+<li>Wipe and re-provision through Autopilot. A reassigned device goes to
+a known-good state, not to whatever state the last holder left it
+in.</li>
+<li>Clear the previous primary user and set the new one in Intune and in
+inventory (<a href="/sops/DEV-01">DEV-01</a> §10).</li>
+<li>Verify the full <a href="/sops/DEV-01">DEV-01</a> §7 exit criteria before issuing. A reassigned
+device is issued to the same standard as a new one.</li>
+<li>Record the reassignment: from whom, to whom, date, asset tag. One
+note on recovery keys after reassignment: where an Autopilot device is
+reused by a new owner, the previous owner’s ability to see the recovery
+key does not automatically transfer. The new holder asks an
+administrator, which is the correct behaviour and worth knowing before
+somebody is confused by it (<a href="/sops/DEV-01">DEV-01</a> §10).</li>
+</ol>
+<h2 id="4-wiping">4. Wiping</h2>
+<ul>
+<li>Wipe means a full reset through the management platform, not a file
+deletion and not a quick format.</li>
+<li>Check 1 first. Always.</li>
+<li>A device that cannot be wiped through the platform — because it will
+not check in, or has been removed from management — is wiped locally by
+a technician, and the record notes that it was done manually.</li>
+<li>A device that cannot be wiped at all, because it is dead, goes to §6
+as physical destruction rather than being set aside "to deal with
+later". Set-aside devices are how estates accumulate unaccounted
+disks.</li>
+<li>For a device that held CONFIDENTIAL or RESTRICTED data, a platform
+wipe of an encrypted volume is sufficient, provided the encryption was
+in place and verified. Where it was not, treat the disk under §6.</li>
+</ul>
+<h2 id="5-retirement">5. Retirement</h2>
+<p>Retirement is the point at which a device leaves service but has not
+yet left the building.</p>
+<ol type="1">
+<li>Wipe per §4.</li>
+<li>Remove from Intune and from Entra device registration.</li>
+<li>Deregister from Autopilot (Check 3).</li>
+<li>Remove from Configuration Manager and from the ticketing system or
+asset tool, if you use them.</li>
+<li>Release any licence or entitlement attached to the device
+(<a href="/sops/M365-20">M365-20</a>).</li>
+<li>Set the inventory status to retired, with the date. Retired is a
+real status and it is not the same as disposed.</li>
+<li>Store retired devices securely until disposal. A retired device in
+an unlocked cupboard is an unaccounted disk.</li>
+</ol>
+<h2 id="6-disposal">6. Disposal</h2>
+<p>Under your organization's policy on disposing of sensitive data,
+which governs where one exists. This section is the operational
+sequence.</p>
+<ol type="1">
+<li>Tier 4 approves disposal, per batch rather than per device.</li>
+<li>Confirm every device in the batch is wiped and retired per §4 and
+§5, and that Check 3 has been done for each.</li>
+<li>Where a device held RESTRICTED data, or where wiping could not be
+verified, the disk is physically destroyed rather than wiped.
+Destruction is the default when there is doubt, because the cost of a
+disk is trivial against the cost of being wrong.</li>
+<li>Obtain a certificate of data destruction from the disposal vendor,
+listing serial numbers. A certificate without serial numbers evidences
+nothing.</li>
+<li>Reconcile the certificate against the batch. Any device on the list
+that is not on the certificate is investigated before the batch is
+closed.</li>
+<li>Update inventory to disposed, with the date and the certificate
+reference.</li>
+<li>Retain the certificate for seven years.</li>
+</ol>
+<h2 id="7-service-levels">7. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Reassignment, device returned</td>
+<td>P3 — 2 coverage days, and not issued until §3 step 7 passes.</td>
+</tr>
+<tr class="even">
+<td>Device found encrypted with no escrowed key</td>
+<td>P2 — <a href="/sops/DEV-03">DEV-03</a> §6 starts the same coverage day. Do not wipe.</td>
+</tr>
+<tr class="odd">
+<td>Retirement processing</td>
+<td>P4 — batched, as protected capacity work.</td>
+</tr>
+<tr class="even">
+<td>Disposal batch</td>
+<td>P4 — scheduled, with Tier 4 approval.</td>
+</tr>
+<tr class="odd">
+<td>Certificate reconciliation discrepancy</td>
+<td>P2 to Tier 4. An unaccounted device is a potential incident.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="8-records">8. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Reassignment: from, to, date, asset tag, exit criteria met</td>
+<td>Ticket + inventory</td>
+<td>Life of the asset + 1 year</td>
+</tr>
+<tr class="even">
+<td>Escrow confirmation before each wipe</td>
+<td>Ticket</td>
+<td>Life of the asset + 1 year</td>
+</tr>
+<tr class="odd">
+<td>Manual wipes, with the reason</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Retirement, including Autopilot deregistration</td>
+<td>Inventory</td>
+<td>Life of the asset + 1 year</td>
+</tr>
+<tr class="odd">
+<td>Disposal approval, certificate with serial numbers,
+reconciliation</td>
+<td>Asset register</td>
+<td>7 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="9-related-documents">9. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Disposal Policy</td>
+<td>Your organization's policy on disposing of sensitive data</td>
+<td>Governs §6.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-03">DEV-03</a></td>
+<td>Disk Encryption &amp; BitLocker Recovery Keys</td>
+<td>Check 1. §8 of that document is this document’s precondition.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-01">DEV-01</a></td>
+<td>Device Enrollment &amp; Lifecycle</td>
+<td>§11, and the exit criteria a reassigned device must meet.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-05">DEV-05</a></td>
+<td>Loaner Device Issue, Support &amp; Return</td>
+<td>The same return-to-service discipline, per issue.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-16">DEV-16</a></td>
+<td>Lost, Stolen or Compromised Device Response</td>
+<td>A device that never comes back.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>§7.2 step 8 depends on Check 1.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-12">M365-12</a></td>
+<td>OneDrive Appropriate Use</td>
+<td>Check 2 — where resident data should have been.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-15">M365-15</a></td>
+<td>Data Classification &amp; Handling</td>
+<td>Determines whether §6 step 3 applies.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-20">M365-20</a></td>
+<td>License Assignment &amp; Reclamation</td>
+<td>§5 step 5.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--reassignment-checklist">Appendix A — Reassignment
+checklist</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>✓</th>
+<th>Step</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>☐</td>
+<td>Device, charger and accessories returned</td>
+<td>Confirmed</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Asked what did not work</td>
+<td>Noted, or “nothing reported”</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Resident data checked; institutional records moved</td>
+<td>Destination</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>RECOVERY KEY CONFIRMED ESCROWED — before any wipe</td>
+<td>Key ID</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Wiped and re-provisioned via Autopilot</td>
+<td>Date</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Previous primary user cleared; new one set</td>
+<td>Both names</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Full <a href="/sops/DEV-01">DEV-01</a> §7 exit criteria met</td>
+<td>Checklist</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Reassignment recorded</td>
+<td>Inventory updated</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--disposal-checklist">Appendix B — Disposal
+checklist</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>✓</th>
+<th>Step</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>☐</td>
+<td>Tier 4 approved the batch</td>
+<td>Approver</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Every device wiped and retired</td>
+<td>Per-device record</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>DEREGISTERED FROM AUTOPILOT — every device</td>
+<td>Confirmed per serial</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Removed from Intune, Entra, Configuration Manager and the ticketing
+system</td>
+<td>Confirmed</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Licences and entitlements released</td>
+<td><a href="/sops/M365-20">M365-20</a></td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>RESTRICTED or unverifiable devices physically destroyed</td>
+<td>List</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Certificate of destruction received, WITH serial numbers</td>
+<td>Certificate reference</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Certificate reconciled against the batch; discrepancies
+investigated</td>
+<td>Reconciliation note</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Inventory set to disposed, with date and certificate reference</td>
+<td>Inventory</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

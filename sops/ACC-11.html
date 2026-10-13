@@ -1,0 +1,891 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACC-11 · Vendor, Contractor &amp; Consultant Account Standard | Known Good</title>
+<meta name="description" content="The account class for people who work with the organization but not for it — the sponsor, the expiry that is not negotiable, and the day the relationship quietly changes.">
+<meta property="og:title" content="ACC-11 · Vendor, Contractor &amp; Consultant Account Standard | Known Good">
+<meta property="og:description" content="The account class for people who work with the organization but not for it — the sponsor, the expiry that is not negotiable, and the day the relationship quietly changes.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="acc-11--vendor-contractor--consultant-account-standard">ACC-11 ·
+Vendor, Contractor &amp; Consultant Account Standard</h1>
+<p><em>The account class for people who work with the organization but
+not for it — the sponsor, the expiry that is not negotiable, and the day
+the relationship quietly changes.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/ACC-11-Vendor-Contractor-and-Consultant-Account-Standard.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/ACC-11.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/ACC-11">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>ACC-11</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>B. Account Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 3 — Expert Services holds vendor identities and all vendor
+privileged access. Tier 4 approves standing privileged access and every
+exception. Tier 2 creates and ends the routine contractor account.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually. The vendor access register is reviewed quarterly, not
+annually — §9.</td>
+</tr>
+<tr class="even">
+<td>Relationship to <a href="/sops/ACC-10">ACC-10</a></td>
+<td><a href="/sops/ACC-10">ACC-10</a> decides whether an outsider needs an identity at all, and
+creates a guest where collaboration is the whole of it. This document is
+the next rung up: the outsider who must act inside organization systems
+rather than collaborate on documents. <a href="/sops/ACC-10">ACC-10</a> §2 hands cases here.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose--two-cases-one-gap">1. Purpose — two cases, one
+gap</h2>
+<p>Two common situations, often years apart, are the same problem seen
+from two ends.</p>
+<p>A departing senior staff member explains that their organization
+records are in a personal OneDrive because they originally joined as a
+consultant. The arrangement made at the beginning was correct for a
+consultant. It was never revisited when they became, in every practical
+sense, a member of staff — and the cost lands years later, under time
+pressure, as a rescue project: standing up a handover SharePoint site
+and re-permissioning content in the middle of somebody’s departure.</p>
+<p>A vendor engineer applies vulnerability remediation to the test and
+then production servers of the organization’s core business system
+inside the maintenance window. That is an outside party holding standing
+privileged access to a system of record, coordinated by an email thread.
+Nothing goes wrong. But often almost nothing about the arrangement is
+written down: not the named individuals who hold the access, not what
+they can reach when they are not patching, not what the organization
+requires of them, and not what happens to any of it when the contract
+ends.</p>
+<p>One case is an account class that never changed when the relationship
+did. The other is an account class that was never defined at all. This
+document defines it, and gives both cases a trigger.</p>
+<h2 id="2-which-account-class">2. Which account class</h2>
+<p>Decided at the point of request, before anything is created. Creating
+the wrong class quickly is worse than taking a day to create the right
+one, because the wrong class is what nobody revisits.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>They are…</th>
+<th>Class</th>
+<th>What they get</th>
+<th>Governed by</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Someone who needs a document, a briefing or a file. No access to
+anything.</td>
+<td>No account</td>
+<td>The document, or a link with an expiry.</td>
+<td><a href="/sops/M365-14">M365-14</a> §6</td>
+</tr>
+<tr class="even">
+<td>At another organisation, collaborating with us on specific work for
+a bounded period. The default for most external relationships.</td>
+<td>Guest (B2B)</td>
+<td>Sign-in with their own organisation’s credentials. No mailbox of
+ours, no licence.</td>
+<td><a href="/sops/ACC-10">ACC-10</a> + <a href="/sops/M365-14">M365-14</a></td>
+</tr>
+<tr class="odd">
+<td>A supplier with operational access to our systems — an
+implementation partner on the HR system, a managed security provider in
+the security tooling, an application vendor doing support.</td>
+<td>Sponsored vendor account</td>
+<td>A named identity of ours per individual, expiring at the contract
+date, with access scoped to the contracted work.</td>
+<td>THIS DOCUMENT, plus <a href="/sops/ACC-07">ACC-07</a> where the access is privileged</td>
+</tr>
+<tr class="even">
+<td>A contractor or consultant engaged directly by the organization,
+working alongside staff on organization work, for a defined
+engagement.</td>
+<td>Sponsored contractor account</td>
+<td>A named identity of ours with an engagement-end expiry, entitlements
+matched to the work and re-baselined at any extension.</td>
+<td>THIS DOCUMENT</td>
+</tr>
+<tr class="odd">
+<td>Doing the work of an organization employee on an ongoing basis,
+whatever the contractual label — the long-term consultant, the seconded
+colleague, the interim postholder.</td>
+<td>Full staff account</td>
+<td>A normal identity with an HR record behind it.</td>
+<td><a href="/sops/ACC-01">ACC-01</a> §5. HR creates the record first; §5 of this document is the
+transition.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The distinction between the third and fourth rows is who engaged them
+and on whose systems the work is done; the distinction between the
+fourth and fifth is whether the relationship is bounded. The fifth row
+is the one people get wrong, and §5 is about that.</p>
+<h2 id="3-the-sponsor">3. The sponsor</h2>
+<p>Every vendor and contractor identity has one named staff member
+accountable for it — normally the person who owns the working
+relationship, not Procurement and not IT. IT operates these accounts; it
+does not vouch for the people holding them.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>The sponsor</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Requests it</td>
+<td>Raises the request with the individual’s name, the organisation, the
+contracted purpose in one sentence, what they need to reach, and the
+contract or engagement end date.</td>
+</tr>
+<tr class="even">
+<td>Vouches for the individual</td>
+<td>Is stating, on the record, that this named person should be able to
+act inside organization systems. For a vendor, that means the individual
+and not merely the firm.</td>
+</tr>
+<tr class="odd">
+<td>Owns the scope</td>
+<td>Answers the question “why does this account need that?” at the
+quarterly review. A sponsor who cannot is the signal that the scope was
+never examined.</td>
+</tr>
+<tr class="even">
+<td>Reports change</td>
+<td>Tells IT when the individual leaves the vendor, when the engagement
+is extended, and when the relationship changes character (§5). The
+contract does not tell IT any of this; the sponsor does.</td>
+</tr>
+<tr class="odd">
+<td>Ends it</td>
+<td>Tells IT at contract end without waiting for the expiry to do it.
+The expiry is the safety net, not the process.</td>
+</tr>
+<tr class="even">
+<td>Is replaced when they leave</td>
+<td>A vendor account whose sponsor has left is reassigned during the
+leaver procedure or expired (<a href="/sops/ACC-01">ACC-01</a> §7.2). An unsponsored vendor account
+with privileged access to the ERP is not a housekeeping matter.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="4-the-expiry-date-is-the-contract-date">4. The expiry date is
+the contract date</h2>
+<blockquote>
+<p><strong>Set at creation. Not negotiable.</strong></p>
+<p>Every vendor, contractor and consultant account carries an expiry
+date equal to the contract or engagement end date, entered when the
+account is created and before the credentials are handed over. Not “we
+will sort it out later”. Not “ongoing”. Not blank.</p>
+<p>Where the agreement genuinely has no end date — a rolling support
+contract, an evergreen licence with support attached — the account
+carries a 12-MONTH expiry renewable on the sponsor’s confirmation. An
+account whose end date is “whenever the relationship ends” has no end
+date at all, and relationships routinely end without anybody telling
+IT.</p>
+<p>The negotiation people expect to have is about whether the expiry can
+be waived. It cannot, and IT should not be drawn into having that
+conversation case by case. What is negotiable is the RENEWAL, which
+takes one email from the sponsor and is granted routinely wherever the
+work is continuing.</p>
+</blockquote>
+<ul>
+<li>Fourteen days before expiry, the sponsor is asked one question: does
+the engagement still run, and does the access still match it?</li>
+<li>No response means expiry. Renewal is the action; expiry is the
+default. This single rule is the difference between a vendor register
+and a vendor accumulation.</li>
+<li>A renewal is not a rubber stamp on the previous scope. It
+re-confirms the entitlements as well as the dates — an extension is the
+natural moment to notice that access granted for a migration years ago
+is still in place.</li>
+<li>Where an extension is agreed after the account has expired, the
+account is re-enabled rather than recreated, and the gap is recorded. A
+gap of a few days is unremarkable; a gap of four months is a fact worth
+having on the record.</li>
+<li>The expiry applies to the identity, to any VPN or remote access
+profile (<a href="/sops/DEV-10">DEV-10</a>), and to any non-human account created for that vendor’s
+integration (<a href="/sops/ACC-08">ACC-08</a> §11).</li>
+</ul>
+<h2
+id="5-when-the-relationship-changes--conversion-in-both-directions">5.
+When the relationship changes — conversion in both directions</h2>
+<p>This is the section the consultant case in §1 wrote. A relationship
+that changes character without the account class changing with it
+produces an identity that is correct for a job the person no longer has,
+and nobody notices for years because everything works.</p>
+<h3 id="51-consultant-becomes-staff">5.1 Consultant becomes staff</h3>
+<p>The person is now doing the work of an employee. HR creates the
+record; a staff identity is created under <a href="/sops/ACC-01">ACC-01</a> §5; and the consultant
+account is closed rather than relabelled.</p>
+<ul>
+<li>The triggers that should prompt a class review, any one of them: the
+person attends standing departmental meetings; they hold or produce
+institutional records; they supervise or direct staff; colleagues use
+their organization address as the primary route to them; they appear in
+an organisation chart; or the engagement has been extended more than
+twice.</li>
+<li>The sponsor raises the class review. IT may also raise it — a
+technician who notices that a “consultant” has held an account for three
+years is doing the organization a service, and should be thanked rather
+than told it is not their business.</li>
+<li>Content held in the consultant’s OneDrive is moved to the
+departmental SharePoint site as part of the transition, not at some
+later departure. This is the exact cost the §1 consultant case pays, and
+the transition is the cheap moment to pay it (<a href="/sops/M365-12">M365-12</a>, <a href="/sops/M365-16">M365-16</a> §5).</li>
+</ul>
+<h3 id="52-staff-becomes-consultant">5.2 Staff becomes consultant</h3>
+<p>The harder direction, because the access already exists and the path
+of least resistance is to leave it alone. A retiring colleague retained
+for a project, or a departing administrator staying on for a handover,
+does not simply keep what they had.</p>
+<ol type="1">
+<li>The full leaver procedure runs (<a href="/sops/ACC-01">ACC-01</a> §7.2). Sessions revoked,
+entitlements removed, disposition set under <a href="/sops/ACC-12">ACC-12</a>. This happens even
+though the person is coming back on Monday.</li>
+<li>A new account is created under this document, with a sponsor and a
+contract-end expiry.</li>
+<li>Entitlements are granted from zero against the contracted work — not
+carried over, and not restored from a list of what they used to
+have.</li>
+<li>Any privileged access is re-approved by Tier 4 as a new grant
+(<a href="/sops/ACC-07">ACC-07</a>). Previous seniority is not an entitlement.</li>
+<li>The class change is recorded (Appendix B), including what was
+removed. The record is what makes the following year’s review
+meaningful.</li>
+</ol>
+<blockquote>
+<p><strong>A class change is a re-baseline, never a
+continuation.</strong></p>
+<p>If entitlements are carried across a class change, the person
+accumulates the union of every role they have ever held — which is how a
+former Finance administrator ends up as a consultant with standing
+access to payroll-sensitive material that nobody granted
+deliberately.</p>
+<p>This will occasionally feel discourteous, and it is worth saying so
+to the person rather than letting them discover it. The framing that
+works is honest: the organization is not withdrawing trust, it is
+matching access to the current engagement, and anything genuinely needed
+is granted the same week on the sponsor’s request.</p>
+<p>The alternative framing — quietly leaving the old access in place
+because it would be awkward to remove — is the one that has to be
+defended later, and it cannot be.</p>
+</blockquote>
+<h2
+id="6-vendor-access-to-servers-standing-scheduled-or-just-in-time">6.
+Vendor access to servers: standing, scheduled or just-in-time</h2>
+<p>The vendor case in §1 is the model: a vendor holding access to a core
+system’s test and production servers, applying remediation in the
+maintenance window, coordinated by email. The question this section
+answers is not whether that access should exist — it must — but what
+shape it should hold between windows.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>How it works</th>
+<th>Assessment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Standing privileged access</td>
+<td>The vendor’s named accounts hold their privileges permanently and
+use them when needed.</td>
+<td>The usual shape for at least part of most estates. Simple, always
+available, and a permanent high-value credential outside the
+organization’s direct control. Acceptable only with §7 in force and
+quarterly review.</td>
+</tr>
+<tr class="even">
+<td>Scheduled window access</td>
+<td>Privileges are enabled for an agreed maintenance window and disabled
+afterwards, under a change record.</td>
+<td>A significant improvement for planned work such as patching, and it
+matches how planned vendor remediation usually runs. The window is
+already agreed; this only adds the enable and disable.</td>
+</tr>
+<tr class="odd">
+<td>Just-in-time elevation</td>
+<td>The account exists but holds no standing privilege. Elevation is
+requested, approved and time-bound, and it expires automatically.</td>
+<td>RECOMMENDED DIRECTION. The credential is worth much less when it is
+not elevated, which is most of the time. Requires tooling and a workflow
+that many organizations do not yet have everywhere.</td>
+</tr>
+<tr class="even">
+<td>Escorted session</td>
+<td>The vendor works in a session one of our engineers is present in and
+can end.</td>
+<td>Right for high-risk or unfamiliar work; too expensive for routine
+support in a department that is already stretched. Reserve it rather
+than aspire to it.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>The recommendation, and an honest word about
+pace</strong></p>
+<p>The organization should move toward time-bound elevation and away
+from standing vendor privilege. That is the direction, and this document
+states it plainly so that each new agreement is written against it
+rather than against the status quo.</p>
+<p>It should equally be said that this is a direction, not a switch. A
+core vendor’s access is usually operationally necessary, small IT teams
+are stretched, and no document turns standing access off on a
+Tuesday.</p>
+<p>The interim steps cost very little and can start now: named
+individual accounts rather than shared logins (§7); the standing set
+enumerated and reported to Tier 4 (§9); privileged vendor sessions
+logged; and every maintenance action carrying a change record under
+<a href="/sops/GOV-04">GOV-04</a> instead of living in an email thread. The last of those is the
+one that turns the §1 vendor case from a habit into a record.</p>
+</blockquote>
+<h2 id="7-vendor-privileged-access-requirements">7. Vendor privileged
+access requirements</h2>
+<ul>
+<li>NAMED INDIVIDUAL ACCOUNTS. Never a shared vendor login. When a
+vendor rotates its engineers — and they do — a shared credential is held
+by an unknown and changing set of people, none of whom the organization
+has ever heard of, and no log will ever say which of them did what.</li>
+<li>Multifactor authentication on every vendor identity, with no
+exemption. A vendor account is a remote credential by definition, and
+remote credentials are the ones that get used from somewhere else.</li>
+<li>Session logging on privileged vendor activity, retained per §12. The
+purpose is not suspicion; it is that when something changes on a system
+of record, the organization can say what changed and who changed
+it.</li>
+<li>A change record under <a href="/sops/GOV-04">GOV-04</a> for every action that alters a
+production system, including vendor-initiated patching. The maintenance
+window is agreed; the record is what makes it reconstructable
+afterwards.</li>
+<li>No vendor account holds standing Global Administrator or Domain
+Admin (<a href="/sops/ACC-07">ACC-07</a> §5). Where a vendor requires it as a condition of support,
+that requirement goes into the contract conversation, not into the
+directory.</li>
+<li>Access from the vendor’s managed device where the contract provides
+for it, and from a defined source where it does not. “From anywhere” is
+a choice, and it should be a recorded one.</li>
+<li>Vendor privileged accounts are reviewed QUARTERLY, not annually
+(§9). They are a small population with a large blast radius, which is
+exactly the case where frequent review is affordable.</li>
+<li>Any non-human account created for a vendor integration is registered
+and governed under <a href="/sops/ACC-08">ACC-08</a>, and its owner is one of our staff — never the
+vendor.</li>
+</ul>
+<h2 id="8-what-the-organization-requires-before-access-is-granted">8.
+What the organization requires before access is granted</h2>
+<p>IT does not write contracts, and this list is not contract language.
+It is what IT needs the agreement to contain, expressed so that
+Procurement can take it to counsel without a translation step. Where an
+agreement is already signed without these, the gap is recorded rather
+than pretended away, and it is raised at renewal.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Requirement</th>
+<th>Why</th>
+<th>Owned by</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Named individuals, with contact details, and notification of any
+change within five business days</td>
+<td>The organization cannot review, log or offboard a set of people it
+cannot name. This is the clause that makes §7 possible.</td>
+<td>Procurement, from IT’s list</td>
+</tr>
+<tr class="even">
+<td>Access used only for the contracted purpose</td>
+<td>Turns the scope from an assumption into a term. It is also what
+makes an out-of-scope action a contract matter rather than an
+argument.</td>
+<td>Procurement</td>
+</tr>
+<tr class="odd">
+<td>Multifactor authentication, and no credential sharing within the
+vendor</td>
+<td>The vendor’s internal convenience must not become the organization’s
+shared credential.</td>
+<td>Procurement + IT</td>
+</tr>
+<tr class="even">
+<td>Security incident notification to the organization within 24
+hours</td>
+<td>A breach at a vendor holding privileged access to a system of record
+is an organization incident (<a href="/sops/GOV-03">GOV-03</a>). The organization should not learn
+of it from the news.</td>
+<td>Procurement</td>
+</tr>
+<tr class="odd">
+<td>Screening appropriate to the access held</td>
+<td>A vendor engineer with administrative access to the system of record
+holds more than most employees do.</td>
+<td>HR + Procurement</td>
+</tr>
+<tr class="even">
+<td>Confidentiality and data handling, referencing the sensitive classes
+in <a href="/sops/M365-15">M365-15</a></td>
+<td>Vendor staff will encounter customer, staff and payroll data in the
+course of ordinary support. The handling expectation has to be written
+before that happens, not after.</td>
+<td>Procurement</td>
+</tr>
+<tr class="odd">
+<td>Right to receive access and session logs, and to audit</td>
+<td>Without it the organization can be told what happened but cannot
+verify it.</td>
+<td>Procurement</td>
+</tr>
+<tr class="even">
+<td>Return or destruction of organization data at contract end,
+confirmed in writing</td>
+<td>Ending the account does not end the copy of the data on the vendor’s
+laptop or in their ticketing system (§10).</td>
+<td>Procurement</td>
+</tr>
+<tr class="odd">
+<td>Subcontractor disclosure</td>
+<td>Access granted to a firm is frequently exercised by another firm.
+The organization should know that before it happens.</td>
+<td>Procurement</td>
+</tr>
+</tbody>
+</table></div>
+<p>Where a contract cannot be changed before access is genuinely needed,
+access may be granted on a Tier 4 exception with a 90-day expiry and the
+gap recorded on the risk register. That is a deliberate, bounded
+decision by somebody with the authority to make it — not a technician
+deciding under pressure at 4pm.</p>
+<h2 id="9-the-quarterly-vendor-access-review">9. The quarterly vendor
+access review</h2>
+<p>Run under <a href="/sops/ACC-17">ACC-17</a>, produced by Tier 3, taken to Tier 4 and copied to
+each sponsor. One page per vendor.</p>
+<ul>
+<li>WHAT IT LISTS: the vendor, the named individuals, the account class,
+the sponsor, the contract end date, the expiry set on each account, the
+entitlements held, whether any privilege is standing, the last sign-in,
+and any change since the previous quarter.</li>
+<li>THE QUESTIONS: does the engagement still run; are these still the
+right individuals; is the access still matched to the work; can any
+standing privilege become scheduled or just-in-time (§6); and has the
+sponsor changed?</li>
+<li>A vendor account with no sign-in for a quarter is not proof that it
+is unneeded — some support relationships are genuinely dormant between
+incidents. A vendor account signing in daily is not proof that it needs
+the level it holds. Both are questions for the sponsor, and the review
+is where they get asked rather than assumed.</li>
+<li>An account whose sponsor does not respond to two consecutive reviews
+is escalated to Tier 4 and disabled. The presumption sits with removal,
+because the alternative presumption is how vendor access becomes
+permanent.</li>
+<li>The review’s output includes a count: how many external individuals
+can act inside organization systems today. That single number is the one
+the Head of IT will be asked for, and it should not require a week’s
+work to produce.</li>
+</ul>
+<h2 id="10-offboarding-at-contract-end">10. Offboarding at contract
+end</h2>
+<ol type="1">
+<li>The sponsor notifies IT at contract or engagement end. Where they do
+not, the expiry set under §4 catches it — which is the entire purpose of
+§4.</li>
+<li>Disable the accounts; do not delete them. Deleting destroys the
+record of what the vendor held, which is exactly what is wanted six
+months later.</li>
+<li>Revoke sessions and tokens, and remove VPN and remote access
+profiles (<a href="/sops/DEV-10">DEV-10</a>).</li>
+<li>ROTATE EVERY CREDENTIAL THE VENDOR HELD OR COULD RETRIEVE — shared
+appliance and console passwords, any service account they were given,
+any certificate or secret they installed (<a href="/sops/ACC-08">ACC-08</a> §6, §10). This is not a
+comment on the vendor. It is what makes it possible to state,
+afterwards, that the credential is no longer outside the
+organization.</li>
+<li>Remove them from privileged groups and record what was removed
+before removing it.</li>
+<li>Confirm in writing that organization data held in the vendor’s own
+systems has been returned or destroyed, per §8. The account ending does
+not reach their laptop, their ticketing system or their backups, and
+this is the only mechanism that does.</li>
+<li>Close the register entry with the date, and note any non-human
+account created for the integration so it goes through <a href="/sops/ACC-08">ACC-08</a> §11 rather
+than being left running.</li>
+<li>Where the vendor relationship ended badly, treat it as an immediate
+separation: same-hour disable, credential rotation first, and Tier 4
+informed (<a href="/sops/GOV-03">GOV-03</a> if there is any suspicion of misuse).</li>
+</ol>
+<blockquote>
+<p><strong>Contract end is rarely a clean event, and the procedure
+should assume it is not</strong></p>
+<p>A support agreement lapses and is renewed six weeks later. A project
+“finishes” but the vendor is still answering questions months later. An
+engineer leaves the vendor and nobody thinks to say so.</p>
+<p>The expiry date handles all three correctly: the account expires, and
+a renewal takes one email from the sponsor. The failure mode this
+prevents is the account staying live across a gap that nobody is
+tracking — which is not a theoretical risk, it is what happens by
+default.</p>
+</blockquote>
+<h2 id="11-service-levels">11. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Vendor or contractor account, complete request with sponsor and end
+date</td>
+<td>P3 — within 3 coverage days.</td>
+</tr>
+<tr class="even">
+<td>Request missing the end date or the sponsor</td>
+<td>Returned same day with what is missing. Not held silently, and not
+created on a best guess.</td>
+</tr>
+<tr class="odd">
+<td>Privileged vendor access request</td>
+<td>Tier 4 decision. Within 5 coverage days, or the next Tier 4
+sitting.</td>
+</tr>
+<tr class="even">
+<td>Scheduled window elevation for agreed maintenance</td>
+<td>Enabled and disabled with the change record (<a href="/sops/GOV-04">GOV-04</a>).</td>
+</tr>
+<tr class="odd">
+<td>Renewal on sponsor confirmation</td>
+<td>Same coverage day.</td>
+</tr>
+<tr class="even">
+<td>Offboarding at contract end</td>
+<td>Within 1 coverage day of notification, or automatically at
+expiry.</td>
+</tr>
+<tr class="odd">
+<td>Urgent removal on security grounds or a bad ending</td>
+<td>P1 — 30 minutes, credential rotation first.</td>
+</tr>
+<tr class="even">
+<td>Quarterly vendor access review to Tier 4</td>
+<td>On schedule.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="12-records">12. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Vendor and contractor register, with class, sponsor, scope,
+expiry</td>
+<td>IT register</td>
+<td>Live, plus 3 years after the account ends</td>
+</tr>
+<tr class="even">
+<td>Sponsor request and vouching</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Class-change records (§5, Appendix B)</td>
+<td>IT register + HR where staff status changes</td>
+<td>7 years</td>
+</tr>
+<tr class="even">
+<td>Tier 4 approvals for privileged vendor access</td>
+<td>Tier 4 record</td>
+<td>7 years</td>
+</tr>
+<tr class="odd">
+<td>Privileged vendor session logs</td>
+<td>Security logging</td>
+<td>Per <a href="/sops/GOV-03">GOV-03</a>; minimum 1 year</td>
+</tr>
+<tr class="even">
+<td>Change records for vendor maintenance actions</td>
+<td>Change record (<a href="/sops/GOV-04">GOV-04</a>)</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Quarterly review outcomes, including the external-individual
+count</td>
+<td>Tier 4 record</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Written confirmation of data return or destruction</td>
+<td>Procurement + IT register</td>
+<td>Life of contract + 7 years</td>
+</tr>
+<tr class="odd">
+<td>Exceptions granted where contract terms were absent (§8)</td>
+<td>Risk register + Tier 4 record</td>
+<td>7 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13-related-documents">13. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/ACC-10">ACC-10</a></td>
+<td>Guest &amp; Sponsored External Account Standard</td>
+<td>The rung below. <a href="/sops/ACC-10">ACC-10</a> §2 routes cases here.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-07">ACC-07</a></td>
+<td>Privileged &amp; Administrative Account Standard</td>
+<td>§7 — vendor privileged access is privileged access held outside the
+organization.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-08">ACC-08</a></td>
+<td>Service, Application &amp; Non-Human Account Standard</td>
+<td>Vendor integrations carry non-human identities; §10 offboarding
+covers them.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>§5.2 — the leaver procedure runs even when the person is coming back
+on contract.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-12">ACC-12</a></td>
+<td>Separation, Retiree &amp; Former-Member Disposition</td>
+<td>The disposition applied when staff status ends, before a contractor
+account begins.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-16">ACC-16</a></td>
+<td>Application Onboarding, SSO &amp; SAML Claims Standard</td>
+<td>Where a vendor brings an application with them.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-17">ACC-17</a></td>
+<td>Periodic Access Review &amp; Entitlement Recertification</td>
+<td>The quarterly review in §9.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-02">ACC-02</a></td>
+<td>Account Naming Standard</td>
+<td>Vendor identities are visibly external at a glance.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-13">DEV-13</a></td>
+<td>Patch, Update &amp; Maintenance Window Standard</td>
+<td>The vendor patching activity this document gives an identity
+to.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-14">DEV-14</a></td>
+<td>Endpoint Security Agent &amp; MDR Escalation Standard</td>
+<td>A managed security provider’s access to the security tooling is
+vendor access under this document.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-10">DEV-10</a></td>
+<td>Remote Access &amp; VPN Standard</td>
+<td>How vendors reach the estate, and what is revoked at §10.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-04">GOV-04</a></td>
+<td>IT Change Management &amp; Maintenance Windows</td>
+<td>§6 and §7 — the change record that replaces the email thread.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response</td>
+<td>Vendor-side incidents, and bad endings.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-12">M365-12</a></td>
+<td>OneDrive Institutional Data Boundary</td>
+<td>§5.1 — the consultant case, and where the records should have
+been.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-15">M365-15</a></td>
+<td>Data Classification &amp; Handling</td>
+<td>§8 handling terms.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--vendor--contractor-access-request">Appendix A —
+Vendor &amp; contractor access request</h2>
+<p>Raised by the sponsor. An incomplete request is returned rather than
+actioned on a best guess — particularly the end date, which is the field
+people leave blank.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Individual’s full name</td>
+<td>One request per individual. Not “the vendor’s team”.</td>
+</tr>
+<tr class="even">
+<td>Organisation</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Class requested (§2)</td>
+<td>Guest / vendor / contractor / staff conversion</td>
+</tr>
+<tr class="even">
+<td>Sponsor</td>
+<td>A named staff member of ours, with their role</td>
+</tr>
+<tr class="odd">
+<td>Contracted purpose</td>
+<td>One sentence</td>
+</tr>
+<tr class="even">
+<td>Systems and data they need to reach</td>
+<td>Named. Not “the usual access”.</td>
+</tr>
+<tr class="odd">
+<td>Is any of it privileged?</td>
+<td>YES requires Tier 4 approval and §7 in full</td>
+</tr>
+<tr class="even">
+<td>Standing, scheduled or just-in-time (§6)</td>
+<td>And the reason, if standing</td>
+</tr>
+<tr class="odd">
+<td>CONTRACT / ENGAGEMENT END DATE</td>
+<td>MANDATORY. If there is no end date, enter “rolling — 12-month
+expiry” (§4).</td>
+</tr>
+<tr class="even">
+<td>Contract reference, and does it contain §8?</td>
+<td>YES / NO / partially — NO requires a Tier 4 exception with a 90-day
+expiry</td>
+</tr>
+<tr class="odd">
+<td>Remote access required?</td>
+<td><a href="/sops/DEV-10">DEV-10</a> profile, and from where</td>
+</tr>
+<tr class="even">
+<td>— IT USE — Class confirmed, expiry set</td>
+<td>Date, by whom</td>
+</tr>
+<tr class="odd">
+<td>— IT USE — Tier 4 approval where privileged</td>
+<td>Name, date</td>
+</tr>
+<tr class="even">
+<td>— IT USE — Register entry created</td>
+<td>Reference</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--class-change-record">Appendix B — Class-change
+record</h2>
+<p>Used in both directions: consultant becoming staff, and staff
+becoming consultant. The point of the record is that the change was
+deliberate, dated and re-baselined — not a continuation nobody decided
+on.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Person</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Change</td>
+<td>Consultant → staff / staff → consultant / guest → contractor /
+other</td>
+</tr>
+<tr class="odd">
+<td>What triggered it (§5.1)</td>
+<td>Named trigger, or the sponsor’s statement</td>
+</tr>
+<tr class="even">
+<td>HR record created or ended</td>
+<td>Reference, and HR contact</td>
+</tr>
+<tr class="odd">
+<td>Entitlements held BEFORE the change</td>
+<td>Full list, attached. Captured before anything is removed.</td>
+</tr>
+<tr class="even">
+<td>Entitlements removed</td>
+<td>Full list</td>
+</tr>
+<tr class="odd">
+<td>Entitlements granted against the NEW role, from zero</td>
+<td>Full list</td>
+</tr>
+<tr class="even">
+<td>Privileged access re-approved by Tier 4?</td>
+<td>YES / NO / not applicable</td>
+</tr>
+<tr class="odd">
+<td>OneDrive content: institutional records moved to the departmental
+site?</td>
+<td>YES — site named / not applicable. This is the step most often
+missed.</td>
+</tr>
+<tr class="even">
+<td>New expiry date, where the new class carries one</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Sponsor for the new class</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Recorded by, date</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

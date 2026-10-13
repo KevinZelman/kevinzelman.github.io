@@ -1,0 +1,566 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M365-13 · Legacy File Share Retirement &amp; Migration Runbook | Known Good</title>
+<meta name="description" content="How legacy network drives are retired without losing content, scattering it into personal OneDrives, or breaking payroll access on the way.">
+<meta property="og:title" content="M365-13 · Legacy File Share Retirement &amp; Migration Runbook | Known Good">
+<meta property="og:description" content="How legacy network drives are retired without losing content, scattering it into personal OneDrives, or breaking payroll access on the way.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1
+id="m365-13--legacy-file-share-retirement--migration-runbook">M365-13 ·
+Legacy File Share Retirement &amp; Migration Runbook</h1>
+<p><em>How legacy network drives are retired without losing content,
+scattering it into personal OneDrives, or breaking payroll access on the
+way.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/M365-13-Legacy-File-Share-Retirement-and-Migration-Runbook.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/M365-13.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/M365-13">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>M365-13</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>A. Microsoft 365</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 3 — Expert Services. Per-share execution is Tier 2; the
+migration itself is Tier 3 protected capacity (<a href="/sops/GOV-06">GOV-06</a> §8).</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Monthly while the migration is live, then retire this document when
+the drives are gone.</td>
+</tr>
+<tr class="even">
+<td>Related existing policy</td>
+<td>Your organization's network shared storage policy, if one exists.
+This runbook executes its retirement; the policy will need revising or
+retiring once the drives are gone.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>When legacy network drives (the classic Z: and Y: mapped drives) are
+retired, this document is the procedure for doing that without losing
+content, without scattering it into individual OneDrives, and without
+breaking access to things people need on a Tuesday morning.</p>
+<p>It exists because the first department to ask what the retirement
+means for them — often HR, asking about payroll access — usually gets a
+conversation rather than a document. That conversation can go well. The
+next twelve go better with a runbook.</p>
+<h2 id="2-three-rules-that-govern-the-whole-migration">2. Three rules
+that govern the whole migration</h2>
+<blockquote>
+<p><strong>Rule 1 — The destination exists before the source
+goes.</strong></p>
+<p>A share is not switched off until its replacement site is live,
+classified, permissioned, and holding the content. Not “planned”.
+Live.</p>
+<p>The failure this prevents is specific and predictable: when a
+familiar shared location disappears and no replacement is obvious,
+people move its contents into their own OneDrive. A shared departmental
+store silently becomes a set of private ones, which is a worse outcome
+than the drives staying (<a href="/sops/M365-12">M365-12</a> §8).</p>
+</blockquote>
+<blockquote>
+<p><strong>Rule 2 — Classify before you migrate.</strong></p>
+<p>The destination site is classified under <a href="/sops/M365-15">M365-15</a> before content lands
+in it. Classifying afterwards means the content sits unclassified for
+however long “afterwards” turns out to be, and in practice that is
+permanent.</p>
+<p>This migration is the largest classification opportunity the
+organization will get. Taking it costs one extra question per share.</p>
+</blockquote>
+<blockquote>
+<p><strong>Rule 3 — Nothing is deleted.</strong></p>
+<p>The drives are made read-only, then dark, then decommissioned — but
+the data is retained until the migration is verified complete and signed
+off. Deletion is a separate, later, deliberate act.</p>
+<p>A migration that deletes as it goes has no way back from a mistake
+nobody noticed for three weeks.</p>
+</blockquote>
+<h2 id="3-before-anything-moves--the-inventory">3. Before anything moves
+— the inventory</h2>
+<p>This is the part that gets skipped and the part that determines
+whether the migration is six weeks or six months.</p>
+<ol type="1">
+<li>List every top-level share on the drives being retired, with its
+size, file count, and the date of its most recently modified file. The
+last of those is the most useful number on the list.</li>
+<li>For each share, identify a departmental owner — a named person, not
+a department. Where nobody can be found, that share goes to §6.</li>
+<li>Classify each share with its owner under <a href="/sops/M365-15">M365-15</a>. One question: what
+is the most sensitive thing in here?</li>
+<li>Record the current access: which groups and individuals, and at what
+level. This is the input to §5 and it will not be clean.</li>
+<li>Flag anything with a last-modified date older than three years. Much
+of it is genuinely dead, and migrating it costs the same as migrating
+live content.</li>
+<li>Flag anything containing a system of record extract — payroll
+spreadsheets, exports from the HR and user system of record. These may
+not need migrating at all (§7).</li>
+<li>Produce the migration order. Smallest and simplest first, so the
+runbook is proven before it meets payroll.</li>
+</ol>
+<h2 id="4-per-share-runbook">4. Per-share runbook</h2>
+<h3 id="41-prepare-t-10-days">4.1 Prepare (T-10 days)</h3>
+<ol type="1">
+<li>Create the destination site under <a href="/sops/M365-10">M365-10</a>, with the named owner and
+the classification from §3.</li>
+<li>Build the permission groups per <a href="/sops/M365-11">M365-11</a> §2, translating the existing
+access per §5. Do not replicate individual grants.</li>
+<li>Agree with the owner what is not coming: dead content, duplicates,
+system-of-record extracts. Every file that does not move is a file that
+never has to be governed again.</li>
+<li>Tell the department: what is moving, when, where it will be, and
+that the old drive stays readable for a period afterwards.</li>
+</ol>
+<h3 id="42-migrate-t-3-to-t-0">4.2 Migrate (T-3 to T-0)</h3>
+<ol type="1">
+<li>Copy — do not move — the content into the destination site. The
+source stays intact.</li>
+<li>Verify: file counts and total size match, and the owner confirms a
+sample of what they actually use is present and openable.</li>
+<li>Fix what did not survive: long paths, illegal characters, files
+locked open. Expect some; they are normal and they are the reason for
+the verification step.</li>
+<li>Run both in parallel for at least one full working week. The source
+is still authoritative during this period and people are told so.</li>
+</ol>
+<h3 id="43-cut-over">4.3 Cut over</h3>
+<ol type="1">
+<li>Make the source share read-only. This is the moment the destination
+becomes authoritative, and it is reversible.</li>
+<li>Re-sync anything changed during the parallel week.</li>
+<li>Leave it read-only for four weeks. Somebody will need something and
+this is much cheaper than a restore.</li>
+<li>Make the source dark — inaccessible but retained. Tell the
+department the date.</li>
+<li>The owner signs off that the share is complete and correct. Record
+it.</li>
+</ol>
+<h3 id="44-after">4.4 After</h3>
+<ol type="1">
+<li>Remove the mapped drive from group policy or the login script for
+that department, so nobody sees a broken drive letter for months
+afterwards. This is the step most often forgotten and the one users
+notice most.</li>
+<li>Update any documentation, shortcut or bookmark that pointed at the
+old path.</li>
+<li>Record the share as complete in the migration register.</li>
+</ol>
+<h2 id="5-translating-drive-permissions-into-site-permissions">5.
+Translating drive permissions into site permissions</h2>
+<p>Drive ACLs and SharePoint groups are not the same shape, and a
+literal translation produces an unmanageable site. Translate the intent,
+not the mechanism.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>On the drive</th>
+<th>Do not</th>
+<th>Do</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A department group with Modify</td>
+<td>Recreate the same AD group as a site permission and stop
+thinking.</td>
+<td>Map it to Site Members. Check with the owner that everybody in it
+still needs edit rather than read.</td>
+</tr>
+<tr class="even">
+<td>Individuals with explicit access</td>
+<td>Recreate each one individually.</td>
+<td>Ask the owner why each exists. Most are historical. The rest belong
+in a group.</td>
+</tr>
+<tr class="odd">
+<td>A subfolder with different access</td>
+<td>Break inheritance to reproduce it.</td>
+<td>Make it a second site (<a href="/sops/M365-11">M365-11</a> §5). This is the single most valuable
+simplification in the migration.</td>
+</tr>
+<tr class="even">
+<td>Read-only access for a wide group</td>
+<td>Assume it is unnecessary.</td>
+<td>Map to Site Visitors. Wide read access is usually right and it
+prevents edit-access requests.</td>
+</tr>
+<tr class="odd">
+<td>Access nobody can explain</td>
+<td>Carry it forward “to be safe”.</td>
+<td>Leave it out and tell the owner you have. If somebody needs it, they
+will say so within a fortnight and you will have learned why it
+existed.</td>
+</tr>
+</tbody>
+</table></div>
+<p>A migration is the only moment when trimming access costs nothing
+politically, because everything is changing anyway. Use it.</p>
+<h2 id="6-content-nobody-owns">6. Content nobody owns</h2>
+<p>Every file share migration finds shares whose owner has left, whose
+department has been reorganised, or which nobody recognises. This is
+normal and it needs a decision path rather than a pause.</p>
+<ol type="1">
+<li>Look at the last-modified date. Nothing touched in three years is a
+candidate for archive rather than migration.</li>
+<li>Ask the department that most plausibly owns it. Give them two weeks
+and one reminder.</li>
+<li>Where somebody claims it, they become the owner and it follows §4
+normally.</li>
+<li>Where nobody claims it, it goes to a single Unclaimed Archive site,
+classified CONFIDENTIAL as a precaution, with Tier 4 as owner and access
+on request.</li>
+<li>It is not deleted. Retention on that archive is a Tier 4 and records
+decision, not a migration decision, and it can be taken calmly
+later.</li>
+</ol>
+<h2 id="7-the-payroll-and-hr-case">7. The payroll and HR case</h2>
+<p>This is the share that prompted the question, and it deserves its own
+treatment because it is the highest-consequence one.</p>
+<ul>
+<li>Payroll content is CONFIDENTIAL at minimum. Anything containing
+social security numbers is RESTRICTED (<a href="/sops/M365-15">M365-15</a> §3).</li>
+<li>The first question is not where it moves but whether it moves. A
+payroll extract in a spreadsheet is a copy of something already held
+safely in the payroll system. Where the system of record can serve the
+need, the right migration is a deletion after confirmation — with HR
+agreeing, and after the retention position is checked.</li>
+<li>What genuinely must persist as files goes to a site classified
+accordingly, with an HR owner, named membership, and no inherited access
+from anywhere.</li>
+<li>Access is granted afresh rather than translated. This is the one
+share where §5’s “carry nothing forward you cannot explain” is
+absolute.</li>
+<li>HR signs off the destination permissions before content moves, not
+after.</li>
+<li>Run this share last, after the runbook has been proven on five
+ordinary ones.</li>
+</ul>
+<blockquote>
+<p><strong>And answer the question that was actually asked</strong></p>
+<p>When HR asks whether the drives are really going away, the answer
+they need in writing is: yes, and here is the date; your content will be
+at this address; these named people will have access; nothing is deleted
+in the process; and the old drive stays readable for four weeks after
+the move.</p>
+<p>Five facts. Most anxiety about a migration is anxiety about not
+knowing those five things.</p>
+</blockquote>
+<h2 id="8-communicating-it">8. Communicating it</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>When</th>
+<th>What the department is told</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>At inventory</td>
+<td>That their share is in scope, who IT thinks owns it, and a request
+to confirm.</td>
+</tr>
+<tr class="even">
+<td>T-10 days</td>
+<td>The date, the destination address, what is not coming and why, and
+who to ask.</td>
+</tr>
+<tr class="odd">
+<td>At cutover</td>
+<td>The destination is now the live copy. The old drive is read-only
+until a named date.</td>
+</tr>
+<tr class="even">
+<td>Going dark</td>
+<td>The date the old drive disappears, sent at least a week ahead.</td>
+</tr>
+<tr class="odd">
+<td>Complete</td>
+<td>A short confirmation, and the removal of the mapped drive so nothing
+broken lingers.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Every message says where things are now and who to ask. A migration
+notice that explains the project rather than the destination has failed
+at its only job.</p>
+<h2 id="9-decommissioning">9. Decommissioning</h2>
+<ol type="1">
+<li>All shares migrated and signed off by their owners.</li>
+<li>Unclaimed content in the archive site.</li>
+<li>Mapped drives removed from every login script and policy.</li>
+<li>A final read-only period across the whole volume, four weeks, after
+the last share.</li>
+<li>Backup of the volume retained per the retention decision,
+independent of the live drives.</li>
+<li>Servers decommissioned under <a href="/sops/GOV-04">GOV-04</a> as a change, not as a migration
+task.</li>
+<li>Revise or retire the network shared storage policy, which describes
+drives that will no longer exist. Retire this runbook at the same time
+(<a href="/sops/GOV-01">GOV-01</a> §11).</li>
+</ol>
+<h2 id="10-service-levels">10. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Migration work generally</td>
+<td>Tier 3 protected capacity, not queue work (<a href="/sops/GOV-06">GOV-06</a> §8).</td>
+</tr>
+<tr class="even">
+<td>“I cannot find a file that used to be on the old drive”</td>
+<td>P2 — 4 coverage hours. Highest-priority category during
+migration.</td>
+</tr>
+<tr class="odd">
+<td>Owner sign-off request</td>
+<td>Two weeks, one reminder, then escalate to their manager.</td>
+</tr>
+<tr class="even">
+<td>A share whose owner cannot be found</td>
+<td>§6. Two weeks, one reminder, then the archive.</td>
+</tr>
+<tr class="odd">
+<td>Cutover window</td>
+<td>Declared under <a href="/sops/GOV-04">GOV-04</a>. Tier 2 and Tier 3 go to Degraded for its
+duration (<a href="/sops/GOV-06">GOV-06</a> §7).</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-records">11. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Migration register: share, owner, classification, size, dates,
+status</td>
+<td>Project record</td>
+<td>Life of migration + 3 years</td>
+</tr>
+<tr class="even">
+<td>Owner sign-off per share</td>
+<td>Project record</td>
+<td>7 years</td>
+</tr>
+<tr class="odd">
+<td>Permission translation decisions, including what was deliberately
+not carried forward</td>
+<td>Project record</td>
+<td>7 years</td>
+</tr>
+<tr class="even">
+<td>HR sign-off on the payroll destination</td>
+<td>Project record</td>
+<td>7 years</td>
+</tr>
+<tr class="odd">
+<td>Unclaimed content inventory</td>
+<td>Tier 4 record</td>
+<td>Until the archive is dispositioned</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="12-related-documents">12. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Storage Policy</td>
+<td>Your organization's network shared storage policy</td>
+<td>Describes what is being retired. Revise or retire at §9.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-15">M365-15</a></td>
+<td>Data Classification &amp; Handling</td>
+<td>Rule 2. Classification before migration.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-10">M365-10</a></td>
+<td>SharePoint Site Request, Provisioning &amp; Ownership</td>
+<td>Creates every destination.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-11">M365-11</a></td>
+<td>SharePoint &amp; OneDrive Permission Management</td>
+<td>§5 translation, and the second-site preference.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-12">M365-12</a></td>
+<td>OneDrive Appropriate Use</td>
+<td>Rule 1 — the failure this prevents.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-16">M365-16</a></td>
+<td>Retention, Legal Hold &amp; eDiscovery</td>
+<td>Retention of the archive and the backups.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-04">GOV-04</a></td>
+<td>IT Change Management &amp; Maintenance Windows</td>
+<td>Cutover windows and decommissioning.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments</td>
+<td>§10, and protected capacity.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--per-share-checklist">Appendix A — Per-share
+checklist</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>✓</th>
+<th>Step</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>☐</td>
+<td>Named owner identified and confirmed</td>
+<td>Owner name</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Classified under <a href="/sops/M365-15">M365-15</a> with the owner</td>
+<td>Level</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Current access recorded</td>
+<td>Access export</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Dead content and system-of-record extracts agreed out of scope</td>
+<td>Exclusion list</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Destination site created, classified, permissioned</td>
+<td>Site URL</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Department told: date, destination, what is not coming, who to
+ask</td>
+<td>Notice sent</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Content COPIED, source intact</td>
+<td>Copy complete</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Counts and size verified; owner confirmed a sample opens</td>
+<td>Verification note</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Parallel running for one full working week</td>
+<td>Dates</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Source made read-only; changes re-synced</td>
+<td>Date</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Read-only period of four weeks observed</td>
+<td>End date</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Owner signed off complete and correct</td>
+<td>Sign-off</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Source made dark, department told the date in advance</td>
+<td>Date</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Mapped drive removed from login script / policy</td>
+<td>Confirmed</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Documentation and shortcuts updated</td>
+<td>Confirmed</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Register updated</td>
+<td>Status: complete</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--what-to-tell-people">Appendix B — What to tell
+people</h2>
+<p>Five facts. Most migration anxiety is not knowing them.</p>
+<div class="tbl"><table>
+<tbody>
+<tr class="odd">
+<td>Yes, it is going away</td>
+<td>And here is the date. Not “soon”.</td>
+</tr>
+<tr class="even">
+<td>Here is where your files will be</td>
+<td>A link, not a description.</td>
+</tr>
+<tr class="odd">
+<td>Here is who will have access</td>
+<td>The named list, so you can tell us now if it is wrong.</td>
+</tr>
+<tr class="even">
+<td>Nothing is being deleted</td>
+<td>The old drive goes read-only first, and stays readable for four
+weeks.</td>
+</tr>
+<tr class="odd">
+<td>Here is who to ask</td>
+<td>A person and the service desk. Not “IT”.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

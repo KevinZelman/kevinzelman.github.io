@@ -1,0 +1,1007 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACC-13 · Account Suspension for Misuse or Policy Investigation | Known Good</title>
+<meta name="description" content="IT contains. The department head, HR or senior leadership sanctions. What the organization suspends, on what basis, what it hands over, and what the person is told.">
+<meta property="og:title" content="ACC-13 · Account Suspension for Misuse or Policy Investigation | Known Good">
+<meta property="og:description" content="IT contains. The department head, HR or senior leadership sanctions. What the organization suspends, on what basis, what it hands over, and what the person is told.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1
+id="acc-13--account-suspension-for-misuse-or-policy-investigation">ACC-13
+· Account Suspension for Misuse or Policy Investigation</h1>
+<p><em>IT contains. The department head, HR or senior leadership
+sanctions. What the organization suspends, on what basis, what it hands
+over, and what the person is told.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/ACC-13-Account-Suspension-for-Misuse-or-Policy-Investigation.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/ACC-13.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/ACC-13">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>ACC-13</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>B. Account Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 4 — IT Management authorises every suspension beyond immediate
+containment, and owns every referral. Tier 3 executes and assembles the
+evidence. Tier 1 and Tier 2 contain and escalate; they do not suspend
+and they do not refer.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually, jointly with HR.</td>
+</tr>
+<tr class="even">
+<td>Relationship to <a href="/sops/ACC-03">ACC-03</a> and <a href="/sops/ACC-15">ACC-15</a></td>
+<td>One ladder, three views. <a href="/sops/ACC-03">ACC-03</a> §9 governs the technical response to
+repeat compromise; <a href="/sops/ACC-15">ACC-15</a> §5 governs the acceptable-use side; this
+document governs suspension and referral. Where the three disagree,
+<a href="/sops/ACC-03">ACC-03</a> governs the technical action and this document governs the
+referral, and the divergence is reported as a defect under <a href="/sops/GOV-01">GOV-01</a>
+§10.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-the-distinction-this-document-exists-to-protect">1. The
+distinction this document exists to protect</h2>
+<p>A familiar case: an account is blocked for the third time in a month.
+The person is told not to use a VPN or to share access with anyone.
+Across that month, several similar IP addresses have passed multifactor
+authentication on the account, consistent with the credential being
+shared. Everything IT does is reasonable, and the instinct to involve
+the person’s manager is right.</p>
+<p>What IT usually does not have is a written ladder, a defined
+referral, or a rule about what it could properly assert. In a matter
+that touches a person’s standing at the organization, those absences
+matter more than they do anywhere else in this catalogue — because the
+consequence of getting it wrong is not an outage, it is an unfair
+outcome that nobody intended and nobody can undo.</p>
+<blockquote>
+<p><strong>Two different actions. IT takes only one of
+them.</strong></p>
+<p>A SECURITY ACTION is containment. Sign-in is blocked because the
+account is behaving as though it is compromised or shared. It is not a
+punishment. It requires no finding of fact about the person. It can be
+taken quickly, by a technician, on a reasonable technical basis — and it
+should be, because speed is the whole value of it. It is reversed as
+soon as the technical position is resolved.</p>
+<p>A DISCIPLINARY ACTION is a sanction against a person for something
+they are said to have done. It requires a finding, a process, and
+somebody with the authority to make it. It is never IT’s to take, and it
+is never IT’s to imply.</p>
+<p>IT CONTAINS. The person’s manager or department head, Human Resources
+or senior leadership SANCTIONS. Where an IT action starts to function as
+a punishment — held longer than the technical need, applied to make a
+point, or described to the person in the language of consequence — the
+boundary has been crossed, and it is raised with Tier 4 the same day
+rather than argued about later.</p>
+</blockquote>
+<p>This is not a technicality. Blocking someone’s account is, in its
+effect on them, a serious thing: they cannot do their work, read their
+mail, reach the systems they depend on, or contact the people they work
+with. Doing that for a security reason is proper and defensible. Doing
+it as a sanction, without a process, because a technician formed a view
+of the case, is neither — and it would not survive being examined by
+anybody outside IT.</p>
+<p>Holding the boundary is also what protects IT. A department that
+contains and refers is doing its job. A department that adjudicates has
+taken on a responsibility it has no authority for, no training in, and
+no way of discharging fairly.</p>
+<h2 id="2-who-decides-what">2. Who decides what</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Action</th>
+<th>Decided by</th>
+<th>Executed by</th>
+<th>Basis required</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Block sign-in, revoke sessions, force a password reset</td>
+<td>Tier 2 or Tier 3, on the technical facts</td>
+<td>Tier 2 / Tier 3</td>
+<td>A reasonable technical basis, recorded in one sentence. No finding
+about the person.</td>
+</tr>
+<tr class="even">
+<td>Re-register all multifactor methods</td>
+<td>Tier 2 or Tier 3</td>
+<td>Tier 2 / Tier 3</td>
+<td>As above (<a href="/sops/ACC-03">ACC-03</a> §9).</td>
+</tr>
+<tr class="odd">
+<td>Hold the block beyond the technical need, pending review</td>
+<td>Tier 4</td>
+<td>Tier 3</td>
+<td>A Tier 4 decision, recorded, with a review date. This is the point
+at which containment stops being routine.</td>
+</tr>
+<tr class="even">
+<td>Refer the matter to the department head or HR</td>
+<td>Tier 4</td>
+<td>Tier 3 assembles, Tier 4 sends</td>
+<td>A referral packet meeting §6.</td>
+</tr>
+<tr class="odd">
+<td>Suspend the account for the duration of a disciplinary process</td>
+<td>The person’s department head, HR or senior leadership — not IT</td>
+<td>Tier 3</td>
+<td>A written instruction from that office.</td>
+</tr>
+<tr class="even">
+<td>Impose any sanction on the person</td>
+<td>The person’s department head, HR or senior leadership</td>
+<td>Not IT</td>
+<td>Their process. IT has no part in it.</td>
+</tr>
+<tr class="odd">
+<td>Restore access</td>
+<td>§10 — depends on the route in</td>
+<td>Tier 2 / Tier 3</td>
+<td>Technical resolution, or written release from the office holding the
+matter.</td>
+</tr>
+<tr class="even">
+<td>Read the person’s mail, files or Teams content</td>
+<td>Only under <a href="/sops/M365-16">M365-16</a> §8</td>
+<td>Tier 3, with Tier 4 authorisation</td>
+<td>Written authorisation from an authority named in <a href="/sops/M365-16">M365-16</a> §8. Never
+on a request to the service desk.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="3-the-ladder">3. The ladder</h2>
+<p>The ladder exists so that the response does not depend on who picks
+up the ticket. Its first rungs are ordinary and should feel ordinary —
+most breaches are somebody helping a friend, or not realising.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Rung</th>
+<th>Trigger</th>
+<th>IT action</th>
+<th>Referral</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>First block, cause identified, no sign of harm.</td>
+<td>Restore per <a href="/sops/ACC-05">ACC-05</a>. Record the confirmed cause. Explain the rule and
+point at the Acceptable Use Policy (<a href="/sops/ACC-15">ACC-15</a> §3).</td>
+<td>None. No further consequence.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Second block within 90 days.</td>
+<td>Restore. Review sign-in history for shared-credential and
+unfamiliar-location patterns. Re-register every multifactor method.
+Brief the person again, in writing this time. Flag for watch.</td>
+<td>None yet. Tier 3 informed.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Third block within 90 days — the §1 case.</td>
+<td>Treat as suspected sharing or compromise until shown otherwise.
+Force reset, revoke sessions and tokens, remove and re-register every
+method. Preserve the sign-in evidence before remediating (<a href="/sops/GOV-03">GOV-03</a>
+§6).</td>
+<td>Tier 4 decides whether to refer. The department head or manager is
+notified in writing either way.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Sharing or misuse indicated by evidence that survives §5.</td>
+<td>Containment held on a recorded Tier 4 decision with a review date.
+Referral packet assembled (§6).</td>
+<td>The person’s department head, or HR for employees. The person is
+told (§8).</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Credentials sold, or used to obtain something of value; or serious
+misuse of organization systems.</td>
+<td>Suspend. Preserve evidence before remediating. Declare an incident
+under <a href="/sops/GOV-03">GOV-03</a>.</td>
+<td>Tier 4 declares. The department head or HR, and potentially beyond
+the organization.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>A wider policy investigation is under way.</td>
+<td>IT supplies the technical facts under §11 and nothing else. IT takes
+no view.</td>
+<td>The organization’s investigation process, through HR or the relevant
+department head.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Two cautions to carry up the ladder</strong></p>
+<p>A REPEAT COUNT IS NOT EVIDENCE. A person with one multifactor method
+and an unreliable phone will legitimately appear three times in ninety
+days. So will an account with a stale credential on an old device
+retrying in a drawer. Establish the cause each time (<a href="/sops/ACC-05">ACC-05</a> §2) — the
+count tells you to look, not what you will find.</p>
+<p>The rungs are not a countdown to a sanction. Most accounts that reach
+rung 3 have a technical explanation, and finding it is a better outcome
+for everybody than a referral. Rung 4 requires evidence that has
+survived §5, not a third occurrence.</p>
+</blockquote>
+<h2 id="4-containment--proportionate-fast-and-time-limited">4.
+Containment — proportionate, fast, and time-limited</h2>
+<h3 id="41-proportion">4.1 Proportion</h3>
+<p>Contain the smallest thing that works. Where the concern is one
+application, block the application. Where it is one session, revoke the
+session. A full account block is the largest available action, and it
+should be recognisable as such by the person taking it rather than
+reached for as the default.</p>
+<h3 id="42-the-sequence">4.2 The sequence</h3>
+<ol type="1">
+<li>PRESERVE FIRST. Capture the sign-in records, the multifactor
+registration history and the relevant audit data before remediating.
+Once sessions are revoked and credentials changed, the trail is
+materially harder to reconstruct, and it is the trail that later decides
+whether this was sharing, compromise or nothing (<a href="/sops/GOV-03">GOV-03</a> §6).</li>
+<li>Block sign-in and revoke sessions and tokens.</li>
+<li>Force a password reset and remove all multifactor methods for
+re-registration (<a href="/sops/ACC-03">ACC-03</a> §9).</li>
+<li>Record the technical basis in one sentence, in neutral terms — what
+was observed, not what it is thought to mean (§5).</li>
+<li>Notify the person promptly, through a channel independent of the
+suspended account (§8). This is a step in the procedure, not a courtesy
+to be fitted in later.</li>
+<li>Escalate to Tier 4 if the block will be held beyond the technical
+need, or if any referral is contemplated.</li>
+<li>Where several accounts share the same indicators — open ONE
+investigation, not several tickets, and notify Tier 3 (<a href="/sops/ACC-03">ACC-03</a> §10).
+Splitting a single pattern across six tickets is how it stops looking
+like a pattern.</li>
+</ol>
+<blockquote>
+<p><strong>Containment has a clock, and somebody has to be watching
+it.</strong></p>
+<p>A containment block still in place after FIVE COVERAGE DAYS without
+either restoration or a Tier 4 decision to hold it is escalated to Tier
+4 automatically, by whoever notices, without waiting to be asked.</p>
+<p>Containment that has quietly become indefinite is a sanction that
+nobody decided to impose. It has all the effect of a suspension and none
+of the process, and it usually happens not through any intent but
+because the ticket moved down the queue.</p>
+<p>In a small, stretched team, tickets do move down queues. That is
+precisely why this one carries an automatic escalation rather than
+relying on somebody remembering.</p>
+</blockquote>
+<h2 id="5-evidence-and-the-discipline-of-not-over-claiming">5. Evidence,
+and the discipline of not over-claiming</h2>
+<p>The technical signals available are genuine and useful, and every one
+of them means less on its own than it appears to. This table is written
+so that a referral describes what is actually known.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Signal</th>
+<th>What it indicates</th>
+<th>What it does not establish</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Several accounts authenticating from the same or similar IP
+addresses — the §1 observation</td>
+<td>Shared network egress. Consistent with one person operating several
+accounts, or with a credential being shared.</td>
+<td>It does not establish sharing. A shared office building, a site
+network, a mobile carrier’s address translation, a public VPN exit node,
+a coffee shop or a family home all put many unrelated people behind one
+address. This is an INDICATOR, not proof, and the difference is the
+whole of this section.</td>
+</tr>
+<tr class="even">
+<td>Multifactor approvals from a device other than the registered
+one</td>
+<td>The second factor is being approved somewhere unexpected.</td>
+<td>It does not establish who approved it. People replace phones,
+register a second method and forget, or approve from a tablet.</td>
+</tr>
+<tr class="odd">
+<td>Concurrent sessions from geographically impossible locations</td>
+<td>A strong technical indicator that the credential is in more than one
+pair of hands.</td>
+<td>It does not distinguish SHARING from COMPROMISE — which are entirely
+different matters with entirely different outcomes for the person, one
+of whom is a victim.</td>
+</tr>
+<tr class="even">
+<td>VPN or proxy egress</td>
+<td>The sign-in location is obscured.</td>
+<td>Not misconduct in itself. People use VPNs legitimately, for reasons
+that are nobody’s business (<a href="/sops/DEV-10">DEV-10</a>). It becomes relevant only alongside
+something else.</td>
+</tr>
+<tr class="odd">
+<td>Repeat lockouts</td>
+<td>A recurring problem with the account.</td>
+<td>More often a stale credential on a forgotten device than a person
+doing anything at all (<a href="/sops/ACC-05">ACC-05</a> §2).</td>
+</tr>
+<tr class="even">
+<td>Sign-in from an unexpected country</td>
+<td>Worth investigating, promptly.</td>
+<td>People travel, families are international, and a work trip abroad
+looks exactly like a compromise on its first day.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>IT presents evidence. IT does not present
+conclusions.</strong></p>
+<p>The temptation runs entirely the other way, and it is worth naming
+because it is strong. It is quicker, clearer and more satisfying to
+write “the person has been sharing their account” than to write “over 24
+days, sign-ins on this account were granted from eleven distinct IP
+addresses across four subnets, of which the account holder’s registered
+device accounts for two.”</p>
+<p>The second sentence is what IT knows. The first is a FINDING, and it
+belongs to the person conducting the process — who will weigh it against
+things IT cannot see: a housemate, a reasonable adjustment, a family
+emergency, a device lent for an afternoon, or a compromise the account
+holder is the victim of.</p>
+<p>Where IT writes the conclusion into the referral, the department head
+is no longer deciding — they are ratifying a decision IT has already
+made and has no authority to have made. That is a poor position for both
+offices, and it is exactly the position that fails when a case is
+challenged.</p>
+<p>The practical test before sending: could every sentence in this
+packet be read aloud to the account holder without IT having to defend
+an inference? If not, rewrite it as an observation.</p>
+</blockquote>
+<h2 id="6-the-referral-packet">6. The referral packet</h2>
+<p>Assembled by Tier 3, approved and sent by Tier 4, addressed to the
+office that holds the process. Appendix A is the template. One packet
+per person.</p>
+<h3 id="61-what-it-contains">6.1 What it contains</h3>
+<ul>
+<li>The account holder, their affiliation, and the account
+concerned.</li>
+<li>A factual chronology with dates and times: what was observed, when,
+and what IT did in response at each point.</li>
+<li>The technical evidence, described in the terms of §5 — observations,
+with their limits stated. A signal presented without its limit is a
+signal presented misleadingly.</li>
+<li>The rule said to be engaged, quoted from the acceptable use policy
+rather than paraphrased (<a href="/sops/ACC-15">ACC-15</a>).</li>
+<li>What the person has already been told, and when, and by whom.</li>
+<li>The current state of the account, and what IT will do next absent
+instruction.</li>
+<li>A named IT contact who can answer technical questions about the
+packet.</li>
+</ul>
+<h3 id="62-what-it-must-not-contain">6.2 What it must not contain</h3>
+<ul>
+<li>A conclusion, a characterisation of the person, or a recommendation
+as to sanction (§5).</li>
+<li>Unrelated ticket history. That somebody has been difficult with the
+service desk is not evidence of anything and does not belong in a
+disciplinary file.</li>
+<li>The content of the person’s mail, files or Teams messages — unless
+obtained under written authorisation through <a href="/sops/M365-16">M365-16</a> §8, in which case
+the authorisation is attached and named (§9).</li>
+<li>Another person’s data. Where the same indicators implicate other
+account holders, they are referred separately or redacted. A packet
+about one person that names three is a second disclosure problem inside
+the first.</li>
+<li>Speculation about motive. IT does not know why, and saying so is
+more useful than guessing.</li>
+</ul>
+<h2 id="7-notification--who-is-told-when-and-by-whom">7. Notification —
+who is told, when, and by whom</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Who</th>
+<th>When</th>
+<th>What they are told</th>
+<th>By whom</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>The account holder</td>
+<td>Within 1 coverage day of the block</td>
+<td>That access has been suspended, the general reason, who took the
+decision, what happens next, and who to contact (§8).</td>
+<td>Tier 3, or the referring office where a process has begun</td>
+</tr>
+<tr class="even">
+<td>The person’s department head</td>
+<td>At rung 3, informed; at rung 4, referred</td>
+<td>The packet, or a notification that a third block has occurred.</td>
+<td>Tier 4</td>
+</tr>
+<tr class="odd">
+<td>Human Resources (employees)</td>
+<td>At rung 3 onwards</td>
+<td>The same, and HR is involved from the start rather than afterwards
+(<a href="/sops/ACC-15">ACC-15</a> §6).</td>
+<td>Tier 4</td>
+</tr>
+<tr class="even">
+<td>The person’s manager</td>
+<td>Where operationally necessary</td>
+<td>That access is suspended and roughly for how long. Not the evidence,
+and not a characterisation.</td>
+<td>Tier 4</td>
+</tr>
+<tr class="odd">
+<td>Tier 4 and IT Security</td>
+<td>At rung 3 onwards, immediately at rung 5</td>
+<td>Everything.</td>
+<td>Tier 3</td>
+</tr>
+<tr class="even">
+<td>Counsel</td>
+<td>Where a matter may become formal or external</td>
+<td>On the Head of IT’s judgement, early rather than late.</td>
+<td>Head of IT</td>
+</tr>
+<tr class="odd">
+<td>Colleagues, the wider department</td>
+<td>Never</td>
+<td>Nothing. A suspension is not announced, and an out-of-office
+implying misconduct is never set.</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="8-what-the-person-is-told-and-the-right-of-appeal">8. What the
+person is told, and the right of appeal</h2>
+<p>A person whose account has been suspended is entitled to know five
+things, and none of them requires IT to disclose investigative detail or
+prejudices any process:</p>
+<ul>
+<li>THAT it has happened — promptly, in plain language, and not by
+discovering it at a sign-in prompt.</li>
+<li>The GENERAL REASON, in terms they can understand. “Your account has
+been suspended because of activity consistent with the credential being
+used by more than one person” is honest, and it discloses nothing that
+helps anybody evade anything.</li>
+<li>WHO took the decision, and on what authority.</li>
+<li>WHAT HAPPENS NEXT, and roughly when. “We do not have a date yet, and
+I will tell you when we do” is a legitimate answer; silence is not.</li>
+<li>WHO THEY MAY SPEAK TO, and to whom any appeal is made — which is the
+office holding the process, not IT.</li>
+</ul>
+<blockquote>
+<p><strong>Send the notice somewhere they can actually read
+it.</strong></p>
+<p>The obvious failure: the notice is sent to the organization mailbox
+of the account that has just been suspended. Nobody intends this; it
+happens because the address is the one on the record.</p>
+<p>The notice goes to the alternate contact on file, or is delivered
+through the person’s manager or HR. Where no alternate contact exists,
+that is itself a finding to fix, and the notification is made by
+telephone with a note on the ticket recording the call.</p>
+<p>A person who cannot sign in and cannot find out why will conclude
+something has broken, open tickets, ask friends, and eventually arrive
+at the service desk distressed — which serves nobody, and puts a Tier 1
+technician in the position of explaining something they were never
+told.</p>
+</blockquote>
+<p>IT cannot restore an account held under a disciplinary process, and
+should say so plainly rather than implying a discretion it does not
+have. The correct sentence is: “I am not able to restore this; the
+office handling it is X, and here is how to reach them.” Anything vaguer
+sends the person back and forth between two offices, each believing the
+other is deciding.</p>
+<h2 id="9-what-it-will-not-do">9. What IT will not do</h2>
+<p>Stated positively, so that a technician under pressure from somebody
+senior has something to point at.</p>
+<ul>
+<li>IT WILL NOT READ A PERSON’S MAIL OR FILES TO BUILD A CASE. Access to
+a mailbox, OneDrive or Teams content for investigative purposes happens
+only under written authorisation through the routes in <a href="/sops/M365-16">M365-16</a> §8. A
+request from a department head, a manager, a family member, a colleague
+or an executive — however senior, however urgent, however reasonable it
+sounds — is declined and referred to that section. This is the single
+most important sentence in this document.</li>
+<li>IT will not suspend an account at the request of a third party
+without a recorded Tier 4 decision. “The department head wants this
+account blocked” is a request, not an instruction, until it is in
+writing from the department head.</li>
+<li>IT will not characterise a person’s conduct in a ticket, an email or
+a referral (§5). Tickets are read by many people and retained for
+years.</li>
+<li>IT will not discuss a suspension with anybody outside the §7 list —
+including a family member, however close. The organization has an office
+for that conversation and it is not the service desk.</li>
+<li>IT will not restore access to end an argument, to relieve pressure,
+or as a favour. If restoration is right, it is right under §10 and
+recorded.</li>
+<li>IT will not hold a suspension in place because a referral has gone
+quiet. It escalates to Tier 4 and asks (§4.2).</li>
+<li>IT will not use access — or the restoration of it — as leverage to
+obtain an explanation from the person. That is an interrogation
+conducted by a technical department, and it is not the organization’s to
+conduct.</li>
+</ul>
+<h2 id="10-restoration">10. Restoration</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Route in</th>
+<th>Who releases it</th>
+<th>Conditions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Containment only; the technical position is resolved</td>
+<td>Tier 2 or Tier 3</td>
+<td>Password reset, all multifactor methods re-registered, sessions
+revoked and confirmed, cause recorded.</td>
+</tr>
+<tr class="even">
+<td>Referral concluded with no action</td>
+<td>The referring office, in writing</td>
+<td>As above, plus a recorded note that the matter concluded without
+action (§10.1).</td>
+</tr>
+<tr class="odd">
+<td>Referral concluded with a sanction that permits access</td>
+<td>The office holding the process</td>
+<td>As above, plus any conditions that office attaches. IT applies
+conditions; it does not set them.</td>
+</tr>
+<tr class="even">
+<td>Sanction that does not permit access</td>
+<td>Not restored</td>
+<td>The account follows the sanction. Where the sanction is separation
+or dismissal, <a href="/sops/ACC-01">ACC-01</a> §7 and <a href="/sops/ACC-12">ACC-12</a> apply from that point.</td>
+</tr>
+<tr class="odd">
+<td>Compromise by a third party — the person was the victim</td>
+<td>Tier 3</td>
+<td>Full recovery per <a href="/sops/ACC-03">ACC-03</a> §9, an apology for the disruption, and no
+referral. This case exists and is regularly mistaken for the first.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="101-restoration-is-recorded-as-carefully-as-suspension">10.1
+Restoration is recorded as carefully as suspension</h3>
+<p>A person who was suspended and then cleared must have a record that
+says so. Without one, the suspension is the only thing on file, and it
+will be read years later by somebody who has no way of knowing how it
+ended. This is a small administrative act with a large effect on
+fairness, and it is the step most often skipped because by then
+everybody has moved on.</p>
+<ul>
+<li>The ticket records the outcome in a sentence, and the outcome is
+written even when it is “no action taken”.</li>
+<li>A watch flag may be set for 90 days after a rung 3 or 4 restoration.
+It is a technical monitoring measure, it is time-bound, and it is
+removed on schedule rather than left in place.</li>
+<li>The conversation about the rule happens at restoration, not at
+suspension, and it is a conversation rather than a warning (<a href="/sops/ACC-15">ACC-15</a>
+§3).</li>
+</ul>
+<h2 id="11-policy-investigations--the-narrow-role-it-plays">11. Policy
+investigations — the narrow role IT plays</h2>
+<p>IT has no role in deciding a policy or disciplinary investigation,
+and should be careful not to acquire one through helpfulness. The risk
+here is not obstruction; it is a technician answering a reasonable
+question from a staff member and, in doing so, becoming the source of
+evidence in a process with no record of how the evidence was
+obtained.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>IT can properly supply, on authorised request</th>
+<th>IT does not supply</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sign-in records: times, locations, addresses, device and
+application, with the §5 limits stated.</td>
+<td>An opinion on what the records mean.</td>
+</tr>
+<tr class="even">
+<td>Multifactor registration and approval history.</td>
+<td>An inference about who was holding the device.</td>
+</tr>
+<tr class="odd">
+<td>Device compliance and enrolment state, where the device is
+organization-managed (<a href="/sops/DEV-02">DEV-02</a>).</td>
+<td>Anything about a personally-owned device beyond what the
+organization legitimately holds (<a href="/sops/DEV-07">DEV-07</a>).</td>
+</tr>
+<tr class="even">
+<td>Confirmation that an account was blocked, when, and for what
+technical reason.</td>
+<td>A characterisation of the person’s conduct or history.</td>
+</tr>
+<tr class="odd">
+<td>Timestamps from a system IT operates, where they exist as ordinary
+records.</td>
+<td>Mail, file or Teams content — that is <a href="/sops/M365-16">M365-16</a> §8, and it is a
+different authorisation entirely.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>The request comes from the department head or senior leadership with
+a case reference, and it is answered in writing. A staff member asking
+the service desk directly is redirected — not because the question is
+improper, but because the answer becomes evidence, and evidence needs a
+route that can be described afterwards.</li>
+<li>IT answers the question asked. It does not volunteer adjacent
+findings, and it does not run additional searches because they might be
+useful.</li>
+<li>Where the technical position is genuinely ambiguous, IT says so in
+the answer. An honest “these records are consistent with both
+explanations” is far more valuable to the process than a confident
+answer that turns out to be wrong.</li>
+</ul>
+<h2 id="12-service-levels">12. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Containment on a reasonable technical basis</td>
+<td>P1 — immediate. Containment is never queued, and never waits for an
+approval.</td>
+</tr>
+<tr class="even">
+<td>Notice to the account holder</td>
+<td>Within 1 coverage day of the block, through a channel they can reach
+(§8).</td>
+</tr>
+<tr class="odd">
+<td>Tier 4 decision on holding a block beyond the technical need</td>
+<td>Within 2 coverage days. Absent a decision, the block is released or
+escalated — not left running.</td>
+</tr>
+<tr class="even">
+<td>Automatic escalation of an unresolved containment</td>
+<td>At 5 coverage days, by whoever notices (§4.2).</td>
+</tr>
+<tr class="odd">
+<td>Referral packet assembled and sent</td>
+<td>Within 3 coverage days of the Tier 4 decision to refer.</td>
+</tr>
+<tr class="even">
+<td>Restoration once released in writing</td>
+<td>Same coverage day.</td>
+</tr>
+<tr class="odd">
+<td>Authorised evidence request from an HR or investigation process</td>
+<td>Within 5 coverage days, in writing (§11).</td>
+</tr>
+<tr class="even">
+<td>Rung 5 — sale of credentials, or serious misuse</td>
+<td>P1, incident declared under <a href="/sops/GOV-03">GOV-03</a>.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13-records">13. Records</h2>
+<p>Retention here is longer than elsewhere in the catalogue, because
+these records are the organization’s evidence that it acted properly —
+and that question is asked long after the event, by people who were not
+there.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Containment actions, with the one-sentence technical basis</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Preserved technical evidence (sign-in, MFA, audit extracts)</td>
+<td>Security record</td>
+<td>7 years</td>
+</tr>
+<tr class="odd">
+<td>Tier 4 decisions to hold, refer, or release</td>
+<td>Tier 4 record</td>
+<td>7 years</td>
+</tr>
+<tr class="even">
+<td>Referral packets, as sent</td>
+<td>Security record; the process file sits with the referring
+office</td>
+<td>7 years</td>
+</tr>
+<tr class="odd">
+<td>Notice issued to the account holder</td>
+<td>Ticket + security record</td>
+<td>7 years</td>
+</tr>
+<tr class="even">
+<td>Outcome of the referral, including “no action taken”</td>
+<td>Security record</td>
+<td>7 years — §10.1</td>
+</tr>
+<tr class="odd">
+<td>Restoration, with conditions applied</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Authorised evidence supplied to an HR or investigation process</td>
+<td>Security record</td>
+<td>7 years</td>
+</tr>
+<tr class="odd">
+<td>Authorisations obtained under <a href="/sops/M365-16">M365-16</a> §8</td>
+<td>IT governance record</td>
+<td>7 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="14-related-documents">14. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/ACC-15">ACC-15</a></td>
+<td>Acceptable Use &amp; Credential-Sharing Standard</td>
+<td>The rule that is engaged, and the same ladder from the
+acceptable-use side (<a href="/sops/ACC-15">ACC-15</a> §5).</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA Enrollment &amp; Account Recovery</td>
+<td>§9 repeat-incident escalation and §10 risky sign-in. Governs the
+technical response.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-05">ACC-05</a></td>
+<td>Account Lockout Triage &amp; Escalation</td>
+<td>§2 — establish the cause before drawing any inference from a repeat
+count.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-16">M365-16</a></td>
+<td>Retention, Legal Hold &amp; eDiscovery Request Handling</td>
+<td>§8 — the ONLY route by which a person’s mail or files may be
+searched. §9 of this document depends on it entirely.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response</td>
+<td>Preserve before you fix; rung 5 declaration.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-01">GOV-01</a></td>
+<td>SOP Catalog Governance</td>
+<td>§10 — reporting a divergence between this ladder and <a href="/sops/ACC-03">ACC-03</a> or
+<a href="/sops/ACC-15">ACC-15</a>.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-10">DEV-10</a></td>
+<td>Remote Access &amp; VPN Standard</td>
+<td>§5 — VPN use is not misconduct in itself.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-14">DEV-14</a></td>
+<td>Endpoint Security Agent &amp; MDR Escalation Standard</td>
+<td>Where a detection from the managed partner starts the chain.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-02">DEV-02</a></td>
+<td>Device Compliance &amp; Configuration Baseline</td>
+<td>§11 — device state as an ordinary record.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-07">DEV-07</a></td>
+<td>Personally-Owned Device Access Standard</td>
+<td>§11 — the limit of what the organization holds about a personal
+device.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>Where a sanction ends the relationship.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-12">ACC-12</a></td>
+<td>Separation, Retiree &amp; Former-Member Disposition</td>
+<td>The disposition that follows a separation or dismissal.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-06">ACC-06</a></td>
+<td>Identity Verification Before Any Account Action</td>
+<td>Verification before restoring anything.</td>
+</tr>
+<tr class="even">
+<td>AUP</td>
+<td>Your organization's acceptable use policy</td>
+<td>The governing policy. Quoted in a referral, never paraphrased.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--the-referral-packet-template">Appendix A — The
+referral packet template</h2>
+<p>Assembled by Tier 3, approved and sent by Tier 4. Every entry is an
+observation. If a field cannot be completed factually, it is left blank
+and the gap is stated — a blank is honest, a guess is not.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Referred to</td>
+<td>HR / the department head / senior leadership</td>
+</tr>
+<tr class="even">
+<td>Date, and referring authority</td>
+<td>Tier 4 approver, named</td>
+</tr>
+<tr class="odd">
+<td>Account holder</td>
+<td>Name, affiliation, ID, account</td>
+</tr>
+<tr class="even">
+<td>Current account state</td>
+<td>Blocked since [date]. Sessions revoked. Credentials reset.</td>
+</tr>
+<tr class="odd">
+<td>Rule said to be engaged</td>
+<td>Quoted from the acceptable use policy, with the section
+reference</td>
+</tr>
+<tr class="even">
+<td>Chronology</td>
+<td>Dated entries. What was observed, and what IT did at each point. No
+commentary.</td>
+</tr>
+<tr class="odd">
+<td>Technical observations</td>
+<td>Each stated with its limit, per §5. For example: “Over 24 days,
+sign-ins were granted from eleven distinct IP addresses across four
+subnets. Two correspond to the account holder’s registered device.
+Shared network egress can place unrelated people behind a single
+address; this is an indicator, not proof.”</td>
+</tr>
+<tr class="even">
+<td>What IT does NOT know</td>
+<td>Stated explicitly. This field is not optional and it is not a
+formality.</td>
+</tr>
+<tr class="odd">
+<td>What the person has been told, and when</td>
+<td>Copy of the notice issued under Appendix B</td>
+</tr>
+<tr class="even">
+<td>Other account holders implicated?</td>
+<td>YES requires a separate referral or redaction — never named here
+(§6.2)</td>
+</tr>
+<tr class="odd">
+<td>Was any mail, file or Teams content examined?</td>
+<td>NO / YES — if YES, the <a href="/sops/M365-16">M365-16</a> §8 authorisation is attached and
+named. Absent that authorisation the answer is NO.</td>
+</tr>
+<tr class="even">
+<td>What IT will do next absent instruction</td>
+<td>For example: “The block remains in place pending your response.
+Absent a decision by [date] it will be escalated to the Head of IT under
+§4.2.”</td>
+</tr>
+<tr class="odd">
+<td>Named IT contact for technical questions</td>
+<td>Name, role, address</td>
+</tr>
+<tr class="even">
+<td>— NOT INCLUDED —</td>
+<td>No conclusion. No recommendation as to sanction. No characterisation
+of the person. No unrelated ticket history.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--notice-to-the-account-holder">Appendix B — Notice to
+the account holder</h2>
+<p>Sent within one coverage day of the block, to an address the person
+can actually reach — not the suspended mailbox. Plain, calm, and short.
+This text is a starting point, not a form to send unedited.</p>
+<div class="tbl"><table>
+<tbody>
+<tr class="odd">
+<td>Subject</td>
+<td>Your organization account</td>
+</tr>
+<tr class="even">
+<td>Opening</td>
+<td>We have suspended sign-in on your organization account. I am writing
+to tell you that directly, so that you are not left to find out at a
+login screen.</td>
+</tr>
+<tr class="odd">
+<td>What has happened</td>
+<td>On [date] we blocked sign-in on your account. The reason is
+[general, factual reason — for example: activity on the account
+consistent with the credential being used by more than one person]. This
+was done as a security measure to protect the account. It is not a
+decision about you, and it is not a penalty.</td>
+</tr>
+<tr class="even">
+<td>Who took the decision</td>
+<td>The decision was taken by [role] in IT, under the organization’s
+Account Suspension standard.</td>
+</tr>
+<tr class="odd">
+<td>What happens next</td>
+<td>[Either: We expect to restore access once [technical condition] is
+complete, which we expect by [date]. Or: The matter has been referred to
+[office], who will be in touch with you. IT is not able to restore
+access while that is in progress.]</td>
+</tr>
+<tr class="even">
+<td>What you can do now</td>
+<td>If you believe your account was used by someone else without your
+knowledge, please tell us — that changes what we are looking at, and it
+is much better for us to know early. If you need access to something
+urgent in the meantime, tell us what it is and we will see what we can
+arrange.</td>
+</tr>
+<tr class="odd">
+<td>Who to contact</td>
+<td>For technical questions: [named IT contact]. For questions about the
+referral or the process itself, or to appeal: [named office and
+contact]. IT cannot answer those and will not try to.</td>
+</tr>
+<tr class="even">
+<td>Closing</td>
+<td>We know this is disruptive, and we are not leaving it sitting.
+Please do get in touch.</td>
+</tr>
+<tr class="odd">
+<td>Tone note (not sent)</td>
+<td>Nothing in the notice implies a finding. Nothing in it uses the
+language of discipline. If a sentence would read badly when quoted back
+at a hearing, it is the wrong sentence.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

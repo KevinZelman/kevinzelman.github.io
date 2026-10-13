@@ -1,0 +1,416 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACC-15 · Acceptable Use &amp; Credential-Sharing Standard | Known Good</title>
+<meta name="description" content="What this standard adds to the organization’s existing acceptable use policy — and how IT applies it when something goes wrong.">
+<meta property="og:title" content="ACC-15 · Acceptable Use &amp; Credential-Sharing Standard | Known Good">
+<meta property="og:description" content="What this standard adds to the organization’s existing acceptable use policy — and how IT applies it when something goes wrong.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="acc-15--acceptable-use--credential-sharing-standard">ACC-15 ·
+Acceptable Use &amp; Credential-Sharing Standard</h1>
+<p><em>What this standard adds to the organization’s existing acceptable
+use policy — and how IT applies it when something goes wrong.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/ACC-15-Acceptable-Use-and-Credential-Sharing-Standard.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/ACC-15.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/ACC-15">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>ACC-15</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>B. Account Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 4 — IT Management owns the policy relationship; every tier
+applies it.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually, aligned to the Acceptable Use Policy review.</td>
+</tr>
+<tr class="even">
+<td>Governing policy</td>
+<td>Your organization's acceptable use policy. That policy governs. This
+standard does not replace it and must not contradict it. If you have no
+such policy yet, write one first; this standard assumes it exists.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose--and-what-this-is-not">1. Purpose — and what this is
+not</h2>
+<blockquote>
+<p><strong>This is not a new acceptable use policy.</strong></p>
+<p>Most organizations already have one, and where yours exists, it
+governs.</p>
+<p>The work here is narrower and more useful — confirming that the
+policy explicitly covers two things IT has repeatedly had to address
+without written backing, giving IT a consistent way to act when it is
+breached, and making the policy findable by the people it applies to.
+Acceptable use policies are often missing from the very page where
+people look for policies.</p>
+</blockquote>
+<p>If any statement in this standard conflicts with the Acceptable Use
+Policy, the policy is right and this document is a defect to be reported
+under <a href="/sops/GOV-01">GOV-01</a> §10.</p>
+<h2 id="2-the-three-things-this-standard-adds">2. The three things this
+standard adds</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Addition</th>
+<th>Why it is needed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Credential sharing, stated explicitly (§3)</td>
+<td>A common case: someone blocked three times is told not to share
+account access with anyone. That instruction is correct, but it is only
+spoken. Verbal guidance cannot be cited, is remembered differently by
+everyone involved, and gives the organization nothing to point at if the
+matter escalates.</td>
+</tr>
+<tr class="even">
+<td>VPN and remote access misuse, stated explicitly (§3)</td>
+<td>The same case. A VPN serves staff who need it, and can also be used
+to hide account sharing. One technology, two populations, and one rule
+that needs writing down.</td>
+</tr>
+<tr class="odd">
+<td>A consistent ladder for IT’s response (§5)</td>
+<td>Without one, the response depends on who picks up the ticket. That
+is unfair to the person on the receiving end and it makes the
+organization’s position inconsistent if a case is ever challenged.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="3-credentials-are-not-transferable">3. Credentials are not
+transferable</h2>
+<p>Stated plainly, because the whole point is that it can be quoted.</p>
+<ul>
+<li>Your organization account is yours. You may not give anybody else
+your password, approve a multifactor prompt on their behalf, or let
+anybody else use your account — including family, including friends,
+including colleagues, and including in an emergency.</li>
+<li>You may not use anybody else’s account, whether or not they
+agreed.</li>
+<li>You may not use a VPN, proxy or remote access service to obscure
+where you are signing in from, or to let somebody else appear to be
+signing in as you.</li>
+<li>Where a job genuinely needs shared access, the organization provides
+mechanisms for it — a shared mailbox, a site, a role group — and every
+one of them records who did what. Ask; the answer is usually yes and
+takes a day (<a href="/sops/M365-03">M365-03</a>, <a href="/sops/M365-11">M365-11</a>).</li>
+</ul>
+<blockquote>
+<p><strong>Why this one is treated seriously</strong></p>
+<p>Every other control the organization operates assumes an account
+belongs to one person. Multifactor authentication, audit logs, access
+reviews, incident investigation and disciplinary processes all rest on
+that assumption. Sharing a credential does not weaken one control; it
+removes the foundation under all of them.</p>
+<p>It also puts the account holder in a poor position. Everything done
+with a shared credential is, on the record, done by them.</p>
+</blockquote>
+<h2 id="4-what-it-will-never-ask-you-for">4. What IT will never ask you
+for</h2>
+<p>Published so that anybody who is asked knows immediately that
+something is wrong.</p>
+<ul>
+<li>Your password. Not by email, not on the phone, not in a ticket, not
+in person. IT does not need it and can do everything it needs without
+it.</li>
+<li>A multifactor code, or approval of a prompt you did not
+trigger.</li>
+<li>Your credentials in order to “verify your account”. That phrasing is
+a hallmark of phishing messages. Conversely, IT will ask you to prove
+who you are before it changes anything on your account, and it will not
+waive that even when you are in a hurry. That is <a href="/sops/ACC-06">ACC-06</a>, and it protects
+you rather than inconveniencing you.</li>
+</ul>
+<h2 id="5-when-it-goes-wrong--the-ladder">5. When it goes wrong — the
+ladder</h2>
+<p>Most breaches are not malicious. Somebody helped a friend, or did not
+realise. The ladder is designed so that the ordinary case is a
+conversation and the serious case is handled consistently.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>IT does</th>
+<th>Decides</th>
+<th>Referred to</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>First occurrence, no evidence of harm</td>
+<td>Restore access, explain the rule, point at the policy. Record it. No
+further consequence.</td>
+<td>Tier 1 or 2</td>
+<td>Nobody</td>
+</tr>
+<tr class="even">
+<td>Second occurrence within 90 days</td>
+<td>Restore. Re-register all MFA methods. Brief the person again, in
+writing this time. Flag for watch.</td>
+<td>Tier 2, Tier 3 informed</td>
+<td>Nobody yet</td>
+</tr>
+<tr class="odd">
+<td>Third occurrence within 90 days</td>
+<td>Treat as suspected sharing or compromise. Force reset, revoke
+sessions, re-register everything. Notify the person’s department head or
+manager in writing.</td>
+<td>Tier 3 decides; Tier 4 informed</td>
+<td>Department head or manager</td>
+</tr>
+<tr class="even">
+<td>Sharing confirmed by evidence</td>
+<td>Suspend access pending referral (<a href="/sops/ACC-13">ACC-13</a>). Do not restore until the
+referral concludes.</td>
+<td>Tier 4 approves</td>
+<td>The person’s manager or department head, or HR for employees</td>
+</tr>
+<tr class="odd">
+<td>Credentials sold, or used to obtain something of value</td>
+<td>Suspend. Preserve evidence before remediating. Declare an
+incident.</td>
+<td>Tier 4 declares</td>
+<td>Manager or department head / HR, and potentially beyond</td>
+</tr>
+<tr class="even">
+<td>Disciplinary or policy-breach implication</td>
+<td>IT supplies the technical facts and nothing else.</td>
+<td>The organization’s disciplinary process</td>
+<td>HR or the relevant department head</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Two cautions IT should hold onto</strong></p>
+<p>A repeat count is not evidence. Somebody with one MFA method and an
+unreliable phone will legitimately appear three times, and treating them
+as a suspect is both wrong and corrosive to the relationship the service
+desk depends on. Establish the cause each time (<a href="/sops/ACC-05">ACC-05</a> §2).</p>
+<p>Distinguishing genuine credential sharing from a person travelling
+with their own device cannot be done from a sign-in log alone. That
+distinction is the whole question, and it is worth taking the time to
+get right before anything reaches a department head.</p>
+</blockquote>
+<h2 id="6-monitoring-and-being-straight-about-it">6. Monitoring, and
+being straight about it</h2>
+<p>The organization logs authentication, mailbox activity, file access
+and device state — as any organization running Microsoft 365 does,
+because those logs are what make security investigation and account
+recovery possible at all.</p>
+<ul>
+<li>Logs are used for security investigation, incident response, and
+troubleshooting. They are not read routinely, and there is no general
+monitoring of what individuals do.</li>
+<li>Access to logs for an investigation is a Tier 4 decision with a
+recorded reason.</li>
+<li>Where an investigation concerns an employee, HR is involved from the
+start rather than afterwards.</li>
+<li>The Acceptable Use Policy is the authority for this; §6 exists to
+state it in language people will actually read. Saying this openly is
+better practice than leaving it implicit. People assume either that
+nothing is logged or that everything is watched, and both assumptions
+cause problems.</li>
+</ul>
+<h2 id="7-making-it-findable">7. Making it findable</h2>
+<p>A policy nobody can find is not operating, whatever its status. Three
+concrete steps, none of which requires new writing:</p>
+<ol type="1">
+<li>Link the acceptable use policy from the page where the organization
+publishes its policies. Check the other IT policies are linked there too
+(<a href="/sops/GOV-01">GOV-01</a> §9 step 4).</li>
+<li>Reference it at the moment it matters: in the <a href="/sops/ACC-01">ACC-01</a> §5.3 day-one
+acknowledgement, in the <a href="/sops/ACC-09">ACC-09</a> temporary-worker card, and in the IT
+signature block on access-related replies.</li>
+<li>Publish Appendix A as an end-user article on the knowledge base
+under <a href="/sops/GOV-05">GOV-05</a>, so that the everyday version is a page rather than a
+PDF.</li>
+</ol>
+<h2 id="8-records">8. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Acceptable Use acknowledgements</td>
+<td>Training / HR record</td>
+<td>Duration of relationship + 1 year</td>
+</tr>
+<tr class="even">
+<td>Ladder actions at each occurrence</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Department head or manager notifications</td>
+<td>Security record</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Referrals to HR or management</td>
+<td>Security record</td>
+<td>7 years</td>
+</tr>
+<tr class="odd">
+<td>Log access decisions, with reason and approver</td>
+<td>Tier 4 record</td>
+<td>7 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="9-related-documents">9. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AUP</td>
+<td>Your organization's acceptable use policy</td>
+<td>The governing policy. This standard is subordinate to it.</td>
+</tr>
+<tr class="even">
+<td>Internet Policy</td>
+<td>Your organization's internet and network usage policy</td>
+<td>Governs the network side of §3; <a href="/sops/DEV-10">DEV-10</a> operationalises it.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-05">ACC-05</a></td>
+<td>Account Lockout Triage &amp; Escalation</td>
+<td>The §5 ladder is the same ladder, seen from the lockout side.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-06">ACC-06</a></td>
+<td>Identity Verification</td>
+<td>§4 — what IT does ask for, and why.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-13">ACC-13</a></td>
+<td>Account Suspension for Misuse or Policy Investigation</td>
+<td>Where confirmed sharing goes.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-09">ACC-09</a></td>
+<td>Temporary Worker &amp; Departmental Access Standard</td>
+<td>Acknowledgement before access.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>Day-one acknowledgement.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-07">DEV-07</a></td>
+<td>Personally-Owned Device Access Standard</td>
+<td>Personal devices under the same policy.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-10">DEV-10</a></td>
+<td>Remote Access &amp; VPN Standard</td>
+<td>The VPN half of §3.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-22">M365-22</a></td>
+<td>Phishing Reporting &amp; Email Threat Response</td>
+<td>§4 is the rule that defeats most of it.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response</td>
+<td>Where the bottom of the ladder leads.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-05">GOV-05</a></td>
+<td>Knowledge Base Article Standard</td>
+<td>Format for publishing Appendix A.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--the-short-version-for-publication">Appendix A — The
+short version, for publication</h2>
+<p>Source text for the knowledge base. Format per <a href="/sops/GOV-05">GOV-05</a>. This is the
+version people will actually read.</p>
+<div class="tbl"><table>
+<tbody>
+<tr class="odd">
+<td>Your account is yours</td>
+<td>Please do not give anybody your password, approve a login prompt you
+did not trigger, or let somebody else use your account. Not family, not
+friends, not colleagues, not in an emergency.</td>
+</tr>
+<tr class="even">
+<td>Do not use somebody else’s</td>
+<td>Even if they said it was fine. Everything done with an account is,
+on the record, done by the person it belongs to.</td>
+</tr>
+<tr class="odd">
+<td>Why it matters more than it sounds</td>
+<td>Multifactor authentication, audit logs and account recovery all
+assume one account, one person. Sharing does not weaken one protection —
+it removes the ground the others stand on. And it leaves you answering
+for whatever happens next.</td>
+</tr>
+<tr class="even">
+<td>If you need shared access, ask</td>
+<td>The organization has proper ways to do it — a shared mailbox, a
+shared site, a role group. They all keep working when somebody is away,
+and they record who did what. Ask the service desk; it usually takes a
+day.</td>
+</tr>
+<tr class="odd">
+<td>VPNs and remote access</td>
+<td>Do not use a VPN or proxy to disguise where you are signing in from,
+or to let somebody else appear to be you. Staff who need remote access
+have a supported way to get it.</td>
+</tr>
+<tr class="even">
+<td>We will never ask for your password</td>
+<td>Not by email, not on the phone, not in a ticket. Anybody who does is
+not IT — please report it.</td>
+</tr>
+<tr class="odd">
+<td>We will ask you to prove who you are</td>
+<td>Before we change anything on your account. It takes about ninety
+seconds and it is the same check that stops somebody else doing it to
+your account.</td>
+</tr>
+<tr class="even">
+<td>If something has gone wrong</td>
+<td>Tell us. If you shared a password, or clicked something, or let
+somebody use your account — telling us early is the single most helpful
+thing you can do, and it is a much smaller problem on the day than it is
+a week later.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

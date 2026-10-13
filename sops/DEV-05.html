@@ -1,0 +1,468 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DEV-05 · Loaner Device Issue, Support &amp; Return | Known Good</title>
+<meta name="description" content="The two-minute check before a loaner goes out, and the ten minutes after it comes back.">
+<meta property="og:title" content="DEV-05 · Loaner Device Issue, Support &amp; Return | Known Good">
+<meta property="og:description" content="The two-minute check before a loaner goes out, and the ten minutes after it comes back.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="dev-05--loaner-device-issue-support--return">DEV-05 · Loaner
+Device Issue, Support &amp; Return</h1>
+<p><em>The two-minute check before a loaner goes out, and the ten
+minutes after it comes back.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/DEV-05-Loaner-Device-Issue-Support-and-Return.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/DEV-05.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/DEV-05">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>DEV-05</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>C. Device Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 1 — the Service Desk, which already holds the storage room.
+Faults escalate to Tier 2.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually, and at the start of each busy season.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>A loaner exists so that somebody whose computer has failed can keep
+working. It follows that a loaner which itself does not work is worse
+than no loaner at all: the person has now lost time twice, and their
+confidence in IT with it.</p>
+<p>Loaner pools tend to produce the same repeat faults: a speaker that
+does not work, discovered during a meeting; a machine on which Settings
+will not open and neither Teams nor the camera works; a person simply
+unable to work on the loaner they were given. These are not difficult
+faults. They are faults that a two-minute check before issue would have
+caught.</p>
+<blockquote>
+<p><strong>The whole document in one idea</strong></p>
+<p>A loaner is checked before it goes out, every single time — not only
+when it was built. A machine that worked when it came back three months
+ago is not evidence about today.</p>
+<p>Everything else here supports that one habit.</p>
+</blockquote>
+<h2 id="2-what-the-loaner-pool-is-for">2. What the loaner pool is
+for</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Loaners are for</th>
+<th>Loaners are not for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A device that has failed or gone for repair.</td>
+<td>Working around a device request that has not been approved
+(<a href="/sops/DEV-04">DEV-04</a>).</td>
+</tr>
+<tr class="even">
+<td>A short-term need — a visitor, a temporary role, a specific
+event.</td>
+<td>A permanent second device by another name.</td>
+</tr>
+<tr class="odd">
+<td>Somebody waiting on a new device to be provisioned.</td>
+<td>Long-term issue to a person whose actual device was never
+ordered.</td>
+</tr>
+<tr class="even">
+<td>A conference, presentation or off-site need where the person’s own
+device is unsuitable.</td>
+<td>Personal use, or issue to somebody who is not a member of the
+organization community.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Where a loaner has been out for more than 30 days, that is not a loan
+any more. Convert it to an assigned device under <a href="/sops/DEV-01">DEV-01</a> or return it — a
+pool that has been quietly absorbed into permanent use cannot serve the
+next emergency, which is the failure nobody sees coming until it
+happens.</p>
+<h2 id="3-the-pre-issue-check">3. The pre-issue check</h2>
+<p>Two minutes, before the device leaves the desk, with the person
+present where possible. Appendix A is the card.</p>
+<ol type="1">
+<li>Power on and sign in. Confirm it reaches a usable desktop without a
+pending update reboot queued.</li>
+<li>Open Settings. This sounds trivial; a documented fault was precisely
+that Settings would not open, and it indicates a broken profile that
+will produce a cascade of other failures.</li>
+<li>Open Teams, and confirm sign-in works. Teams is what most people
+need first and it is the commonest reported loaner fault.</li>
+<li>Test the camera, the microphone and the speakers. Actually test them
+— play a sound, see the picture. A speaker fault discovered in a meeting
+is the exact case on record.</li>
+<li>Confirm network: wired and wireless both, and VPN if the person will
+work remotely (<a href="/sops/DEV-10">DEV-10</a>).</li>
+<li>Confirm it is Intune-enrolled and compliant, and that BitLocker is
+on with the key escrowed (<a href="/sops/DEV-03">DEV-03</a> §5.1). A loaner passes <a href="/sops/DEV-01">DEV-01</a> exit
+criteria before every issue, not only at first build.</li>
+<li>Confirm battery and charger. Send the charger; a loaner without one
+is half a loaner.</li>
+<li>Record the check in the loaner log with the date and who performed
+it.</li>
+</ol>
+<blockquote>
+<p><strong>If any check fails</strong></p>
+<p>Do not issue the device. Take the next one, and put the failed one
+into Tier 2’s queue with a note of exactly what failed.</p>
+<p>Issuing a device you know has a fault, with a caveat to the user, is
+how a pool earns a bad reputation. There is no version of “it mostly
+works” that helps somebody whose own machine has just died.</p>
+</blockquote>
+<h2 id="4-issuing">4. Issuing</h2>
+<ol type="1">
+<li>Record who has it, the asset tag, the date out, the expected return
+date, and the reason.</li>
+<li>Set an expected return date always. “Until my laptop is fixed” is
+not a date, and it is how a loaner becomes permanent.</li>
+<li>Explain what is on it and what is not: their files come from
+OneDrive and SharePoint, not from the loaner, and anything saved only to
+the loaner’s local disk will be wiped on return (<a href="/sops/M365-12">M365-12</a>).</li>
+<li>Explain that it is an organization device under the same rules as
+any other — including the Acceptable Use standard (<a href="/sops/ACC-15">ACC-15</a>) and that it
+may be remotely wiped if lost (<a href="/sops/DEV-16">DEV-16</a>).</li>
+<li>Confirm they can sign in before they leave the desk. This one step
+prevents the majority of “the loaner doesn’t work” contacts.</li>
+</ol>
+<h2 id="5-while-it-is-out">5. While it is out</h2>
+<ul>
+<li>A fault on a loaner is a P2 — the person is already down one device.
+Swap it rather than troubleshooting at length; the pool exists to make
+swapping cheap.</li>
+<li>At the expected return date, chase once. At 30 days, escalate to §2
+— convert or return.</li>
+<li>The loaner stays under Intune management throughout and remains
+subject to compliance and patching (<a href="/sops/DEV-13">DEV-13</a>).</li>
+</ul>
+<h2 id="6-return-to-service">6. Return to service</h2>
+<p>Ten minutes, and it is the step whose omission causes the repeat
+faults. Appendix B is the card.</p>
+<ol type="1">
+<li>Confirm the charger and any accessories came back.</li>
+<li>Ask the person what did not work. Ask directly — people frequently
+do not report a fault on a device they are giving back, and this is the
+cheapest fault-finding available.</li>
+<li>Check for data saved locally. Move anything institutional to the
+right place before wiping (<a href="/sops/M365-12">M365-12</a>).</li>
+<li>Confirm the BitLocker key is escrowed BEFORE wiping (<a href="/sops/DEV-03">DEV-03</a>
+§8).</li>
+<li>Wipe and re-provision via Autopilot. A returned loaner goes back to
+a known-good state rather than to whatever state the last user left it
+in.</li>
+<li>Run the full §3 pre-issue check and record the result. The device is
+not back in the pool until it passes.</li>
+<li>Note any fault found in the loaner log against that asset tag.
+Faults recurring on the same tag are §7.</li>
+<li>Clear the primary user in inventory so the device shows as available
+(<a href="/sops/DEV-01">DEV-01</a> §10).</li>
+</ol>
+<h2 id="7-retiring-a-device-from-the-pool">7. Retiring a device from the
+pool</h2>
+<p>A device that fails its pre-issue check twice in a term leaves the
+pool. Not for repair-and-return — out.</p>
+<p>The reasoning is economic rather than technical: the staff time spent
+re-diagnosing a marginal machine, plus the cost of a failure in front of
+a user, exceeds the residual value of a device that is already at the
+end of its useful life. Tracking faults by asset tag in the loaner log
+is what makes this visible instead of anecdotal.</p>
+<h2 id="8-pool-size-and-condition">8. Pool size and condition</h2>
+<ul>
+<li>The pool needs enough devices that a failed pre-issue check has a
+next device to reach for. One spare is not a pool.</li>
+<li>Loaners are the same standard build as assigned devices wherever
+possible. A loaner that behaves differently generates its own support
+contacts.</li>
+<li>Pool devices are powered on and checked in monthly even when not
+issued, so that they are patched, compliant and escrowed rather than
+three months stale. An untouched loaner is a silent device (<a href="/sops/DEV-01">DEV-01</a>
+§8.3).</li>
+<li>Report pool size, condition and monthly fault count to Tier 4 with
+the <a href="/sops/DEV-04">DEV-04</a> refresh planning. A pool quietly degrading is a budget
+question, not an IT failing.</li>
+</ul>
+<h2 id="9-service-levels">9. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Issue a loaner to somebody whose device has failed</td>
+<td>P2 — same coverage day. Their alternative is not working.</td>
+</tr>
+<tr class="even">
+<td>Pre-issue check</td>
+<td>Before every issue. No exceptions, no “it was fine last time”.</td>
+</tr>
+<tr class="odd">
+<td>Fault reported on a loaner in use</td>
+<td>P2 — swap rather than troubleshoot.</td>
+</tr>
+<tr class="even">
+<td>Return to service after return</td>
+<td>Within 2 coverage days, and not back in the pool until it passes
+§3.</td>
+</tr>
+<tr class="odd">
+<td>Loaner out beyond 30 days</td>
+<td>Escalate to Tier 4 as a device request (<a href="/sops/DEV-04">DEV-04</a>), not a loan
+extension.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="10-measurement">10. Measurement</h2>
+<ul>
+<li>Pre-issue check failures per month. A rising number is good — it
+means faults are being caught at the desk rather than by a user.</li>
+<li>Faults reported by users on issued loaners. This is the number that
+should fall to near zero, and it is the measure of whether §3 is
+actually being done.</li>
+<li>Repeat faults by asset tag — the §7 trigger.</li>
+<li>Loaners out beyond 30 days. A rising number means the pool is being
+used to paper over a hardware refresh gap.</li>
+</ul>
+<h2 id="11-records">11. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Loaner log: issue, return, dates, person, asset tag</td>
+<td>Loaner log</td>
+<td>1 year</td>
+</tr>
+<tr class="even">
+<td>Pre-issue check result, per issue</td>
+<td>Loaner log</td>
+<td>1 year</td>
+</tr>
+<tr class="odd">
+<td>Faults found, by asset tag</td>
+<td>Loaner log + ticket</td>
+<td>Life of the asset</td>
+</tr>
+<tr class="even">
+<td>Return-to-service including escrow confirmation</td>
+<td>Ticket</td>
+<td>Life of the asset</td>
+</tr>
+<tr class="odd">
+<td>Retirement decisions under §7</td>
+<td>Asset register</td>
+<td>Life of the asset + 1 year</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="12-related-documents">12. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/DEV-01">DEV-01</a></td>
+<td>Device Enrollment &amp; Lifecycle</td>
+<td>Exit criterion 11 is the §3 check. Loaners are a device class in §4
+of that document.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-03">DEV-03</a></td>
+<td>Disk Encryption &amp; BitLocker Recovery Key Handling</td>
+<td>§6 step 4 — escrow before wipe.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-04">DEV-04</a></td>
+<td>Standard Hardware Catalog, Request &amp; Refresh</td>
+<td>Where a 30-day loaner should have gone instead.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-10">DEV-10</a></td>
+<td>Remote Access &amp; VPN Standard</td>
+<td>§3 step 5.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-13">DEV-13</a></td>
+<td>Patch, Update &amp; Maintenance Window Standard</td>
+<td>§8 — pool devices go stale if never powered on.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-16">DEV-16</a></td>
+<td>Lost, Stolen or Compromised Device Response</td>
+<td>Explained to the borrower at §4 step 4.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-12">M365-12</a></td>
+<td>OneDrive Appropriate Use</td>
+<td>Where the borrower’s files actually live.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-15">ACC-15</a></td>
+<td>Acceptable Use &amp; Credential-Sharing Standard</td>
+<td>Applies to a loaner as to any organization device.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments</td>
+<td>Supplies §9.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--pre-issue-card">Appendix A — Pre-issue card</h2>
+<p>Two minutes, every issue. If any line fails, take the next
+device.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>✓</th>
+<th>Check</th>
+<th>Watch for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>☐</td>
+<td>Powers on and reaches a usable desktop</td>
+<td>No pending update reboot queued</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Settings opens</td>
+<td>A documented real fault — indicates a broken profile</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Teams opens and signs in</td>
+<td>The commonest reported loaner fault</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Camera shows a picture</td>
+<td>Actually look at it</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Microphone and speakers work</td>
+<td>Actually play a sound — a meeting is not the place to find out</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Wired and wireless network both work</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>VPN connects, if they will work remotely</td>
+<td><a href="/sops/DEV-10">DEV-10</a></td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Intune-enrolled and compliant</td>
+<td><a href="/sops/DEV-01">DEV-01</a> exit criteria</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>BitLocker on, key escrowed in Entra</td>
+<td><a href="/sops/DEV-03">DEV-03</a> — verify, do not assume</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Battery holds charge, charger included</td>
+<td>A loaner without a charger is half a loaner</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Logged: date, who checked, result</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--return-to-service-card">Appendix B —
+Return-to-service card</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>✓</th>
+<th>Step</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>☐</td>
+<td>Charger and accessories returned</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Asked the person what did not work</td>
+<td>Ask directly — they often will not volunteer it</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Checked for locally-saved data and moved anything institutional</td>
+<td><a href="/sops/M365-12">M365-12</a></td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>BitLocker key confirmed escrowed BEFORE wipe</td>
+<td><a href="/sops/DEV-03">DEV-03</a> §8 — never skip</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Wiped and re-provisioned via Autopilot</td>
+<td>Back to a known-good state</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Full pre-issue check passed</td>
+<td>Not in the pool until it passes</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Any fault logged against the asset tag</td>
+<td>Two failures in a quarter → §7, out of the pool</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Primary user cleared in inventory</td>
+<td><a href="/sops/DEV-01">DEV-01</a> §10</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

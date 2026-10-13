@@ -1,0 +1,932 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M365-16 · Retention, Legal Hold &amp; eDiscovery Request Handling | Known Good</title>
+<meta name="description" content="How the two-year retention floor is actually delivered, who may place a hold or export content, on what authority, and how it is evidenced.">
+<meta property="og:title" content="M365-16 · Retention, Legal Hold &amp; eDiscovery Request Handling | Known Good">
+<meta property="og:description" content="How the two-year retention floor is actually delivered, who may place a hold or export content, on what authority, and how it is evidenced.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1
+id="m365-16--retention-legal-hold--ediscovery-request-handling">M365-16
+· Retention, Legal Hold &amp; eDiscovery Request Handling</h1>
+<p><em>How the two-year retention floor is actually delivered, who may
+place a hold or export content, on what authority, and how it is
+evidenced.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/M365-16-Retention-Legal-Hold-and-eDiscovery-Request-Handling.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/M365-16.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/M365-16">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>M365-16</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>A. Microsoft 365</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 4 — IT Management authorises every hold and every export. Tier
+3 executes. No other tier acts on this document.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually, and on any change to the retention decision.</td>
+</tr>
+<tr class="even">
+<td>Why this document exists</td>
+<td>A retention commitment is not a mechanism. This document assumes a
+two-year minimum floor for mailbox and OneDrive content after
+separation, explains how that floor is actually met, and corrects the
+most common wrong assumption about it. Change the number to match your
+own decision.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose-and-the-thing-that-was-nearly-got-wrong">1. Purpose,
+and the thing that was nearly got wrong</h2>
+<p>Say the organization decides that mailbox and OneDrive content —
+files and email both — is retained for a minimum of two years after
+separation, with no maximum. That is the right call for an organization
+that keeps records. It is also, implemented naively, an unbounded
+licence cost: hold a paid licence for every person who ever left,
+forever.</p>
+<p>The obvious answer is to reclaim the licence and let the platform
+hold the content. For mail that is exactly right. For files it is
+exactly wrong, and it is the assumption most first drafts make. This
+document exists so that the difference is written down once, in the
+place people will look for it, rather than discovered two years later
+when somebody asks for a departed colleague’s files and finds an archive
+tier that expired.</p>
+<blockquote>
+<p><strong>The correction, stated plainly</strong></p>
+<p>MAIL survives licence removal at no cost. A shared mailbox needs no
+licence below 50 GB. An inactive mailbox under a Microsoft 365 retention
+hold is preserved indefinitely. Both are supported, documented
+mechanisms. This half is easy.</p>
+<p>FILES COST SOMETHING, OR HAVE TO MOVE. An unlicensed OneDrive is not
+dormant: Microsoft places it in read-only mode after 60 unlicensed days,
+archives it on its 93rd, and beyond that applies a cumulative 365-day
+nonpayment clock carrying a deletion risk. Retention policies and legal
+holds ARE honoured through the archived state — but only while archive
+billing is enabled. Unpaid, the content is at risk at 365 days despite
+the hold.</p>
+<p>REASSIGNING THE OneDrive TO A NEW OWNER DOES NOT SOLVE IT. This is
+the intuitive fix and it does not work. Microsoft states that
+enforcement “doesn’t utilize the ‘owner’ property to validate
+licensing”, so re-pointing the owner does not stop any clock — and that
+modifying the owner property “results in an unsupported state of the
+OneDrive account” which “can cause many issues”. It does grant a
+colleague access, which is genuinely useful for the 30-day handover, but
+it preserves nothing.</p>
+<p>THEREFORE, four routes exist and one must be chosen deliberately. §5
+sets them out with their costs. The default is to MOVE the records into
+a departmental SharePoint site inside the 30-day manager window, because
+it costs nothing, depends on no billing toggle staying correct for two
+years, and puts the content where the colleagues who need it can find
+it.</p>
+<p>AND ONE OPEN QUESTION THAT MAY REMOVE ALL OF THIS. Microsoft states
+that these enforcement changes “don’t apply to EDU, GCC, or DoD
+customers.” An education tenant is any tenant with more than 50%
+education licences. If that is you, see §5.2 — it is the cheapest check
+in the catalogue and potentially the most valuable.</p>
+<p>Verified against Microsoft Learn in August 2026. Re-verify at each
+annual review; Microsoft changes this behaviour and the organization’s
+procedure has to follow it.</p>
+</blockquote>
+<p>Everything else in this document follows from that distinction.</p>
+<h2 id="2-four-different-obligations-routinely-confused">2. Four
+different obligations, routinely confused</h2>
+<p>These four words get used interchangeably in tickets and in meetings,
+and they mean entirely different things with entirely different
+authorities behind them. Getting them apart is most of the work.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>What it actually is</th>
+<th>Who authorises</th>
+<th>Applies to</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Retention</td>
+<td>A standing rule that content is KEPT for a defined minimum. Routine,
+applies to everyone, no trigger event.</td>
+<td>Executive leadership, as a standing decision.</td>
+<td>Every account, all the time.</td>
+</tr>
+<tr class="even">
+<td>Disposition</td>
+<td>A deliberate, approved decision to DELETE content that has passed
+the floor. Never automatic.</td>
+<td>Tier 4, with the record owner.</td>
+<td>Named content, after two years.</td>
+</tr>
+<tr class="odd">
+<td>Legal hold</td>
+<td>A suspension of deletion for specific custodians because litigation
+or investigation is reasonably anticipated. Overrides disposition
+absolutely.</td>
+<td>General Counsel or their delegate, in writing. Never IT.</td>
+<td>Named custodians, named scope.</td>
+</tr>
+<tr class="even">
+<td>eDiscovery / search</td>
+<td>Finding and, where authorised, EXPORTING content. An investigative
+act, not a preservation one.</td>
+<td>Tier 4 plus the requesting authority (§8).</td>
+<td>Named custodians, named scope, named date range.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>The rule that prevents most of the trouble</strong></p>
+<p>Preservation is cheap and reversible. Export is neither. So a hold
+can be placed quickly on a reasonable belief, but content is not
+searched or exported until §8 has been satisfied in writing.</p>
+<p>When in doubt, preserve first and argue about scope afterwards.
+Nobody has ever been criticised for keeping too much for too long; the
+reverse is not true.</p>
+</blockquote>
+<h2 id="3-the-retention-floor--how-it-is-actually-delivered">3. The
+retention floor — how it is actually delivered</h2>
+<p>The floor is delivered by three different mechanisms depending on the
+content type. This table is the operational core of the document.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Content</th>
+<th>Mechanism</th>
+<th>Survives licence removal?</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mailbox, department needs ongoing access</td>
+<td>Convert to a shared mailbox. Block sign-in, reset the password, keep
+the account object.</td>
+<td>Yes, below 50 GB</td>
+<td>Tier 3</td>
+</tr>
+<tr class="even">
+<td>Mailbox, no ongoing access needed</td>
+<td>Apply a Microsoft 365 retention policy set to “retain” or “retain
+and delete”, then make the mailbox inactive.</td>
+<td>Yes — if the hold is applied BEFORE the licence is removed</td>
+<td>Tier 3</td>
+</tr>
+<tr class="odd">
+<td>OneDrive — institutional records</td>
+<td>MOVE to the departmental SharePoint site inside the 30-day manager
+window. Retention policy applies to the site.</td>
+<td>Yes, once moved. Left in place, only on a paid route — §5.</td>
+<td>Manager, with Tier 2</td>
+</tr>
+<tr class="even">
+<td>OneDrive — personal residue</td>
+<td>No retention obligation. Left in place; expires with the
+platform.</td>
+<td>Not applicable</td>
+<td>Manager decides</td>
+</tr>
+<tr class="odd">
+<td>SharePoint site content</td>
+<td>Site-scoped retention policy. Already the right shape.</td>
+<td>Yes</td>
+<td>Site owner (<a href="/sops/M365-10">M365-10</a>)</td>
+</tr>
+<tr class="even">
+<td>Teams chat and channel messages</td>
+<td>Tenant retention policy — see §6. This is currently the weakest
+link.</td>
+<td>Yes, once set</td>
+<td>Tier 3</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="4-mail-shared-mailboxes-and-inactive-mailboxes">4. Mail: shared
+mailboxes and inactive mailboxes</h2>
+<h3 id="41-choosing-between-them">4.1 Choosing between them</h3>
+<ul>
+<li>Convert to SHARED where a named colleague or department needs to
+read the mail — a departing caseworker whose cases continue, a role
+mailbox that was never a role mailbox, an account manager whose clients
+are still writing.</li>
+<li>Make INACTIVE where nobody needs routine access and the obligation
+is purely to keep. This is the default for most separations.</li>
+<li>A shared mailbox can be made inactive later. An inactive mailbox
+cannot be casually re-opened. When the answer is unclear, convert to
+shared — it is the reversible option.</li>
+</ul>
+<h3 id="42-shared-mailbox-conversion--the-four-conditions">4.2 Shared
+mailbox conversion — the four conditions</h3>
+<ol type="1">
+<li>Confirm the mailbox is under 50 GB. An unlicensed shared mailbox is
+capped at 50 GB. Above that, or where an in-place archive or litigation
+hold is required on it, an Exchange Online Plan 2 licence must remain
+assigned — and that is a cost decision under <a href="/sops/M365-20">M365-20</a>, not a technical
+detail to be discovered afterwards.</li>
+<li>RESET THE PASSWORD and confirm sign-in is blocked. Microsoft is
+explicit: if the password is not reset, the original username and
+password continue to work on the shared mailbox after conversion. A
+converted mailbox still answering to the leaver’s old credentials is not
+offboarded, it is a shared credential with a forwarding address.</li>
+<li>Do not delete the user account. The account object anchors the
+shared mailbox. Deleting it destroys what it anchors. Disable; never
+delete (<a href="/sops/ACC-01">ACC-01</a> §7.2).</li>
+<li>IF THE ORGANIZATION IS IN EXCHANGE HYBRID: run Set-RemoteMailbox
+-Identity <identity> -Type Shared on-premises as well. Converting only
+in Exchange Online causes directory synchronisation to revert the
+mailbox to a regular mailbox, which then disconnects. Microsoft states
+that permanent loss of the mailbox contents can occur if these steps are
+not completed within 30 days. Whether the organization is still in
+hybrid at the time of any given separation is a question Tier 3 answers
+before the conversion, not after.</li>
+</ol>
+<blockquote>
+<p><strong>Verify this once, on a test account, before the first
+separation is processed under the floor</strong></p>
+<p>Create a test mailbox with known content. Convert it. Remove the
+licence. Wait a week. Confirm the content is still there and still
+searchable. Record the result as a permanent project record (<a href="/sops/M365-20">M365-20</a>
+§9).</p>
+<p>This is a Tier 3 task and a prerequisite to publishing <a href="/sops/ACC-01">ACC-01</a> (<a href="/sops/ACC-01">ACC-01</a>
+§9.2). It takes an afternoon and it is the difference between a policy
+and a hope.</p>
+</blockquote>
+<h3 id="43-inactive-mailboxes--the-sequence-that-matters">4.3 Inactive
+mailboxes — the sequence that matters</h3>
+<ol type="1">
+<li>Apply the hold FIRST. A Microsoft 365 retention policy configured to
+retain, or to retain and then delete, is the recommended mechanism. A
+delete-only policy is not a hold and will not preserve anything.</li>
+<li>Confirm the hold is applied and reporting. Do not proceed on the
+basis that the policy exists somewhere in the tenant; confirm it covers
+this mailbox.</li>
+<li>Only then remove the licence. If the licence is removed from a
+mailbox before the hold is in place, the mailbox is no longer searchable
+— which means it can no longer be placed on hold, found, or exported.
+This failure is silent and irreversible.</li>
+<li>An in-place archive attached to the mailbox is disabled immediately
+on licence removal, with a 30-day grace period. Where the archive holds
+content that matters, either the licence stays or the archive content is
+dealt with before reclamation.</li>
+</ol>
+<h2 id="5-files-why-onedrive-needs-a-decision">5. Files: why OneDrive
+needs a decision</h2>
+<p>This section exists because the intuitive answer is wrong, and the
+second-most intuitive answer is also wrong. The obvious approach is that
+a OneDrive behaves like a mailbox: strip the licence, the content sits
+there dormant, retention policy holds it, somebody restores it if
+needed. The refinement most administrators reach next is that
+reassigning the OneDrive to a new licensed owner keeps it alive. Neither
+is how the platform behaves, and both failures are slow enough to be
+discovered long after the decision was made.</p>
+<h3
+id="51-what-the-platform-actually-does-to-an-unlicensed-onedrive">5.1
+What the platform actually does to an unlicensed OneDrive</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Microsoft’s documented behaviour</th>
+<th>What it means for the organization</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cleanup and retention for a OneDrive begin when the user account is
+DELETED from Entra ID. “No other action causes the cleanup process to
+occur, including blocking the user from signing in or removing the
+user’s license.”</td>
+<td>This catalogue disables rather than deletes leaver accounts (<a href="/sops/ACC-01">ACC-01</a>
+§7.2), and rightly so. So the deletion pipeline never starts — but the
+unlicensed-account pipeline below does, and it is the one that
+matters.</td>
+</tr>
+<tr class="even">
+<td>Unlicensed OneDrive accounts are placed in READ-ONLY mode after 60
+unlicensed days and ARCHIVED after 93. “Neither admins nor end users
+have access to their content unless an admin takes a supported
+action.”</td>
+<td>Two months after reclamation the OneDrive stops accepting changes;
+three months after, nobody can reach it without a deliberate admin
+action. It appears fine for the whole of the first two months.</td>
+</tr>
+<tr class="odd">
+<td>A cumulative 365-day NONPAYMENT clock applies. Past 365 unpaid days
+the account is subject to deletion. Day 275: “the account is no longer
+available in eDiscovery.”</td>
+<td>The two-year floor is not survivable on the unpaid path. And the
+organization loses the ability to find the content in eDiscovery nine
+months in, which is well before the floor expires.</td>
+</tr>
+<tr class="even">
+<td>Retention policies and holds ARE honoured — “when billing is enabled
+for unlicensed OneDrive accounts.” Unpaid, accounts “will be subject to
+deletion 365 days after being unlicensed even if retention policies,
+settings, or holds exist.”</td>
+<td>A hold does protect the content, and does block an administrator
+from deleting a held account. What it does not survive is nonpayment.
+The condition is billing, not licensing.</td>
+</tr>
+<tr class="odd">
+<td>Enforcement “doesn’t utilize the ‘owner’ property to validate
+licensing.” Modifying the owner property “results in an unsupported
+state of the OneDrive account” and “can cause many issues for the
+account.”</td>
+<td>Reassigning the OneDrive to a colleague grants access — which is
+genuinely the documented way to reach a former employee’s files — but
+stops no clock, and takes the site into a configuration Microsoft does
+not support. Useful for the 30-day handover; useless as retention.</td>
+</tr>
+<tr class="even">
+<td>Purview eDiscovery and Content Search remain discoverable against
+archived content, and export does not require manual reactivation.</td>
+<td>Between day 93 and day 275 the content is still findable for a legal
+matter even though nobody can browse it. Beyond day 275 it is not.</td>
+</tr>
+</tbody>
+</table></div>
+<h3
+id="52-the-edu-exclusion--check-it-because-it-may-change-what-the-rest-of-this-section-is-for">5.2
+The EDU exclusion — check it, because it may change what the rest of
+this section is for</h3>
+<blockquote>
+<p><strong>Education, GCC and DoD tenants may be excluded from
+unlicensed-OneDrive enforcement</strong></p>
+<p>Microsoft’s guidance on unlicensed OneDrive accounts states, twice:
+“These changes don’t apply to EDU, GCC, or DoD customers.” It defines an
+education tenant as any tenant with more than 50% education
+licences.</p>
+<p>IF YOU HOLD THE EXCLUSION, the read-only-at-60-days, archive-at-93
+and deletion-at-365 milestones in §5.1 do not apply. An unlicensed
+OneDrive is not on a clock, and the paid routes in §5.3 are not needed
+to meet the retention floor. Have somebody with tenant admin rights
+confirm it, record who determined it and when, and ask for it in writing
+at the next licensing renewal, so the basis is on file when that person
+has moved on.</p>
+<p>WHAT STILL HOLDS. The exclusion is derived from licensing, so it
+lasts as long as the licensing does. If the licence mix falls below the
+50% threshold, or Microsoft narrows the exclusion, every milestone in
+§5.1 becomes live again and applies retroactively to accounts already
+unlicensed. That makes it a standing item for the annual review rather
+than a closed one.</p>
+<p>IF YOU DO NOT HOLD IT, which is most businesses and nonprofits, the
+milestones in §5.1 apply in full, and the default route in §5.3 is how
+the floor is met at no cost.</p>
+<p>EITHER WAY, THE RECOMMENDATION IS THE SAME. Moving institutional
+records to the departmental SharePoint site remains the default in §5.3,
+now for its own reasons rather than for preservation: a personal site
+named after somebody who left is invisible to the colleagues who need
+what is in it, sits outside the department’s own permissions and
+retention model, and is governed by nothing in this catalogue. The
+exclusion removes a risk; it does not make a dead OneDrive a good place
+to keep institutional records.</p>
+</blockquote>
+<h3 id="53-the-four-routes-with-their-costs">5.3 The four routes, with
+their costs</h3>
+<p>The first of these is the standing answer. The other three are paid
+fallbacks: needed if you do not hold the §5.2 exclusion and records were
+left in place, and kept on file if you do, because the exclusion is
+licensing-derived and could lapse.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Route</th>
+<th>How it works</th>
+<th>Assessment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MOVE the records (default)</td>
+<td>Institutional content is moved into the departmental SharePoint site
+inside the 30-day manager window. A site-scoped retention policy holds
+it.</td>
+<td>ADOPTED AS DEFAULT. Costs nothing, depends on no billing toggle
+remaining correct for two years, and is what Microsoft itself recommends
+for an account without an active owner. Above all it puts the content
+where colleagues can find it, instead of in a personal site named after
+somebody who left. This is the outcome <a href="/sops/M365-12">M365-12</a> was written to make
+cheap.</td>
+</tr>
+<tr class="even">
+<td>Extend the tenant active-storage period</td>
+<td>Set-SPOTenant -UnlicensedOneDriveAccountsActiveStoragePeriod 730.
+Supported range 93–3,650 days.</td>
+<td>NOT REQUIRED where the §5.2 exclusion holds, because there is no
+archive clock to extend. Otherwise, a way to keep unlicensed OneDrives
+active for longer.</td>
+</tr>
+<tr class="odd">
+<td>Pay for archive</td>
+<td>Enable billing for unlicensed OneDrive accounts. Archived accounts
+then honour retention policies, settings and litigation holds.
+$0.05/GB/month storage; $0.60/GB one-time reactivation.</td>
+<td>NOT REQUIRED where the §5.2 exclusion holds. Otherwise a documented
+fallback, not a planned cost. The prices were correct in August 2026;
+check them before relying on them.</td>
+</tr>
+<tr class="even">
+<td>Keep a licence</td>
+<td>Leave the licence assigned for the full retention period.</td>
+<td>Rejected as a general rule. It is the unbounded cost that the
+retention floor would otherwise create and this document exists to
+avoid. Retained as an option for a single named custodian under a
+specific legal hold, on Tier 4 approval, where it is the least bad
+answer.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Turning billing on and off to game the clock is explicitly out of
+bounds: Microsoft states that the 365 days of nonpayment is cumulative
+and that billing settings “should not be used to bypass retention
+enforcement”, which “is not supported under the service terms.” The
+organization does not do this.</p>
+<blockquote>
+<p><strong>The consequence for <a href="/sops/M365-12">M365-12</a>, and it is a significant
+one</strong></p>
+<p>The OneDrive institutional data boundary is no longer a matter of
+tidiness. It is the route by which the organization’s retention decision
+is delivered for files at zero cost, and the reason none of the paid
+routes above has to be the default.</p>
+<p>If people keep departmental records in personal OneDrives, every
+separation becomes a bespoke rescue project standing up a new site and
+re-permissioning content under time pressure — and every one of them now
+also carries a licensing decision. If they do not, the 30-day window is
+a formality and nobody notices it happening.</p>
+<p><a href="/sops/M365-12">M365-12</a> should be read as a retention control, and communicated as
+one.</p>
+</blockquote>
+<h2 id="6-teams-chat-channel-messages-and-copilot-artefacts">6. Teams
+chat, channel messages and Copilot artefacts</h2>
+<p>Retention decisions usually say “mailbox and OneDrive”. They rarely
+say Teams, and Teams is where a great deal of institutional
+decision-making now happens.</p>
+<ul>
+<li>Teams one-to-one and group chat messages are stored in the
+participants’ mailboxes and are governed by a Teams-specific retention
+policy, not by the Exchange one.</li>
+<li>Channel messages are stored in the Team’s group mailbox and follow
+the Team, not the person. They survive a member’s departure.</li>
+<li>Files shared in a chat live in the sender’s OneDrive — which means
+§5 applies to them, and a leaver’s chat attachments are subject to
+exactly the same problem as the rest of their OneDrive.</li>
+<li>Meeting recordings and transcripts follow the same rule: organiser’s
+OneDrive for a meeting, the Team’s site for a channel meeting
+(<a href="/sops/M365-08">M365-08</a>).</li>
+<li>Copilot interaction history and AI-generated meeting notes are
+retainable content and should be brought under an explicit policy rather
+than left to a default (<a href="/sops/M365-18">M365-18</a>).</li>
+</ul>
+<blockquote>
+<p><strong>An open item with a named owner</strong></p>
+<p>A tenant Teams retention policy shorter than two years silently
+defeats the retention floor for one content type, and nobody would
+notice until it mattered. A 90-day chat policy is a common default.</p>
+<p>ACTION: Tier 3 to report the current Teams retention configuration to
+Tier 4 within 30 days of this document being approved, and to raise it
+to meet the two-year floor or record why not.</p>
+<p>This is the highest-priority open item in this document.</p>
+</blockquote>
+<h2 id="7-legal-hold--authority-scope-and-the-preservation-notice">7.
+Legal hold — authority, scope and the preservation notice</h2>
+<h3 id="71-who-may-place-one">7.1 Who may place one</h3>
+<p>A legal hold is placed on the written instruction of the
+organization’s General Counsel or their named delegate. IT does not
+decide that litigation is anticipated, and IT does not decline a
+properly authorised hold on grounds of inconvenience or cost.</p>
+<p>Absent counsel, the Head of IT may place a hold on a reasonable
+belief and must obtain ratification within two business days.
+Preservation is reversible; the failure to preserve is not.</p>
+<h3 id="72-what-a-hold-instruction-must-contain">7.2 What a hold
+instruction must contain</h3>
+<ul>
+<li>The named custodians. “Everyone in Finance” is not a custodian list;
+it is a request for one.</li>
+<li>The subject matter, in enough detail that scope can be judged.</li>
+<li>The date range, or an explicit statement that there is none.</li>
+<li>The content types in scope: mail, files, Teams messages, or
+all.</li>
+<li>The authorising person and the date.</li>
+</ul>
+<h3 id="73-executing-it">7.3 Executing it</h3>
+<ol type="1">
+<li>Tier 3 applies the hold to the named custodians’ mailboxes, OneDrive
+and, where in scope, the relevant sites and Teams.</li>
+<li>Where a custodian has already separated and their OneDrive is
+unlicensed, escalate immediately to Tier 4 — §5 applies and the content
+may already be at risk. This is the case where paid archive is
+considered.</li>
+<li>Suspend any disposition activity affecting the custodians, and
+record that it has been suspended.</li>
+<li>Issue the preservation notice to each custodian, drafted by counsel,
+telling them plainly not to delete anything in scope. A hold the
+custodian does not know about still permits them to delete on the client
+side in ways that create argument later.</li>
+<li>Record the hold in the hold register: custodians, scope, authority,
+date applied, and the person who applied it.</li>
+<li>Review every open hold quarterly with counsel. Holds that are never
+released become the reason nothing can ever be deleted, which is its own
+governance failure.</li>
+<li>Release only on written instruction from the same authority that
+placed it, and record the release.</li>
+</ol>
+<h2
+id="8-ediscovery-and-content-search--who-may-ask-and-who-may-run-it">8.
+eDiscovery and content search — who may ask, and who may run it</h2>
+<p>Searching a person’s mail and files is an intrusive act. It is
+sometimes necessary and it is sometimes lawful, and it is never routine.
+This section defines the only routes by which it happens at the
+organization.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Requesting authority</th>
+<th>Legitimate basis</th>
+<th>What is additionally required</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>General Counsel or outside counsel</td>
+<td>Litigation, subpoena, regulatory demand, or a formal
+investigation.</td>
+<td>Written instruction under §7.2. Tier 4 authorises execution.</td>
+</tr>
+<tr class="even">
+<td>Human Resources, at Director level or above</td>
+<td>A formal workplace investigation with a case reference.</td>
+<td>Written request, plus Head of IT authorisation. HR does not receive
+tenant access; IT executes and delivers a defined export.</td>
+</tr>
+<tr class="odd">
+<td>The Head of IT</td>
+<td>A security incident where the account itself is the subject
+(<a href="/sops/GOV-03">GOV-03</a>).</td>
+<td>Recorded on the incident record. Scoped to the incident, not to the
+person.</td>
+</tr>
+<tr class="even">
+<td>A manager</td>
+<td>Business continuity — recovering a specific document a departed or
+absent colleague held.</td>
+<td>Not an eDiscovery matter. Use delegated access or a targeted restore
+under <a href="/sops/ACC-14">ACC-14</a>. A manager never receives a search of a subordinate’s
+mailbox.</td>
+</tr>
+<tr class="odd">
+<td>Anyone else</td>
+<td>None.</td>
+<td>Declined, and referred to this section.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="81-execution">8.1 Execution</h3>
+<ol type="1">
+<li>Tier 4 authorises. Tier 3 executes. The two are never the same
+person on the same request — if the department is small enough that they
+might be, the Head of IT authorises and a second named person
+witnesses.</li>
+<li>Scope the search as narrowly as the request permits: custodians,
+date range, keywords. A tenant-wide search with no date bound is almost
+never the right instrument.</li>
+<li>Run the search and report the hit count before exporting anything.
+Counsel frequently refines scope once the volume is visible, and an
+export that was never needed is an intrusion that was never
+justified.</li>
+<li>Export only what is authorised, to a defined location with defined
+access, and record who received it.</li>
+<li>Record the whole action: requester, authority, scope, date,
+executor, volume, recipient. This record is itself retained for seven
+years.</li>
+<li>Do not discuss the existence of a search with the custodian or with
+colleagues. Where the custodian must be notified, counsel decides that,
+not IT.</li>
+</ol>
+<h2 id="9-what-it-will-not-do">9. What IT will not do</h2>
+<p>Stated positively, so that a person under pressure has something to
+point at.</p>
+<ul>
+<li>IT will not search or read a person’s mail or files at the request
+of their manager, their colleague, or their department, however senior.
+The routes in §8 are the only routes.</li>
+<li>IT will not build a disciplinary case. IT produces evidence when
+properly authorised; it does not draw conclusions about a person’s
+conduct (<a href="/sops/ACC-13">ACC-13</a>).</li>
+<li>IT will not delete content on request where a hold applies, and will
+say so plainly rather than quietly not doing it.</li>
+<li>IT will not confirm or deny the existence of a hold or a search to
+anyone outside the authorised chain.</li>
+<li>IT will not accept a verbal hold or a verbal search authorisation.
+Every one of these is in writing, and “in writing” means an email from
+the authorising person, not a message relayed by a third party.</li>
+</ul>
+<h2 id="10-service-levels">10. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Legal hold, properly authorised</td>
+<td>Applied same coverage day. This is P1 regardless of the capacity
+state — a hold is never deferred.</td>
+</tr>
+<tr class="even">
+<td>Preservation at separation (routine)</td>
+<td>With the <a href="/sops/ACC-01">ACC-01</a> leaver procedure.</td>
+</tr>
+<tr class="odd">
+<td>eDiscovery search, scoped and authorised</td>
+<td>Hit count within 3 coverage days; export within 5 coverage days of
+scope confirmation.</td>
+</tr>
+<tr class="even">
+<td>Urgent search under a court-ordered deadline</td>
+<td>P1 to Tier 4. The deadline governs; other work moves.</td>
+</tr>
+<tr class="odd">
+<td>Hold release</td>
+<td>Within 2 coverage days of written instruction.</td>
+</tr>
+<tr class="even">
+<td>Quarterly hold review</td>
+<td>Produced by Tier 4 with counsel.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-records">11. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Hold register: custodians, scope, authority, applied, released</td>
+<td>IT governance record</td>
+<td>Permanent</td>
+</tr>
+<tr class="even">
+<td>Preservation notices issued</td>
+<td>Counsel record, copy on the hold register</td>
+<td>Life of the matter + 7 years</td>
+</tr>
+<tr class="odd">
+<td>Search and export log: requester, authority, scope, volume,
+recipient</td>
+<td>IT governance record</td>
+<td>7 years</td>
+</tr>
+<tr class="even">
+<td>Verification that content survives licence reclamation</td>
+<td>Project record</td>
+<td>Permanent — it underpins <a href="/sops/ACC-01">ACC-01</a> §7.3</td>
+</tr>
+<tr class="odd">
+<td>Disposition approvals after the two-year floor</td>
+<td>IT governance record</td>
+<td>Permanent</td>
+</tr>
+<tr class="even">
+<td>Annual re-verification of Microsoft platform behaviour</td>
+<td>IT governance record</td>
+<td>7 years</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="12-related-documents">12. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data Policy</td>
+<td>Your information security policy</td>
+<td>The governing policy. This procedure operates under it.</td>
+</tr>
+<tr class="even">
+<td>Disposal Policy</td>
+<td>Your sensitive data disposal policy</td>
+<td>Governs physical and media disposal; §2 disposition aligns to
+it.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-01">ACC-01</a></td>
+<td>Account Lifecycle</td>
+<td>§7.3 is the retention decision; this document is how it is
+delivered.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-12">ACC-12</a></td>
+<td>Separation, Retiree &amp; Former-Member Disposition</td>
+<td>What happens to the person; this document is what happens to the
+content.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-13">ACC-13</a></td>
+<td>Account Suspension for Misuse</td>
+<td>§8 is the lawful route when a case needs evidence.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-14">ACC-14</a></td>
+<td>Mailbox &amp; Calendar Delegation</td>
+<td>The business-continuity alternative to a search.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-12">M365-12</a></td>
+<td>OneDrive Institutional Data Boundary</td>
+<td>§5 — the boundary rule is a retention control.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-15">M365-15</a></td>
+<td>Data Classification &amp; Handling</td>
+<td>What classes carry longer obligations.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-20">M365-20</a></td>
+<td>Licence Assignment &amp; Reclamation</td>
+<td>Appendix A is the reclamation sequence this document mandates.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-03">GOV-03</a></td>
+<td>Security Incident Response</td>
+<td>§8 route for incident-driven search.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--the-order-of-operations-at-separation">Appendix A —
+The order of operations at separation</h2>
+<p>The order is the control. Each step is safe only because the one
+before it has been done.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Step</th>
+<th>Why the order matters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Sign-in disabled, sessions and tokens revoked (<a href="/sops/ACC-01">ACC-01</a> §7.2)</td>
+<td>Access and data are separate questions. Close access first.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Manager granted delegated access to the OneDrive for 30 days</td>
+<td>Nothing else preserves the files. This window is the mechanism.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Institutional records MOVED into the departmental SharePoint
+site</td>
+<td>The window closes at 60 unlicensed days when the OneDrive goes
+read-only, and at 93 when it is archived. Later is not free.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Manager confirms IN WRITING that nothing institutional remains, OR a
+§5.3 paid route is approved</td>
+<td>After archiving nobody can browse it to check. The confirmation is
+the evidence.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Mailbox converted to shared, OR retention hold applied then made
+inactive</td>
+<td>A hold applied after licence removal is not possible — an unlicensed
+mailbox is not searchable.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>If Exchange hybrid: Set-RemoteMailbox -Type Shared run
+on-premises</td>
+<td>Without it, dirsync reverts the conversion; contents can be lost
+within 30 days.</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Password reset; sign-in block confirmed on the converted
+mailbox</td>
+<td>The original credentials keep working on a shared mailbox until the
+password is reset.</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Content confirmed present — verified, not assumed</td>
+<td>The first of two verifications. This one catches configuration
+errors.</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Licence removed (<a href="/sops/M365-20">M365-20</a>)</td>
+<td>Only now. Everything above is a precondition of this step.</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>Content confirmed STILL present after licence removal</td>
+<td>The second verification. This is the one that matters.</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>Account object retained, disabled, not deleted</td>
+<td>It anchors the shared mailbox. Deleting it also starts the OneDrive
+cleanup clock.</td>
+</tr>
+</tbody>
+</table></div>
+<p>If any step cannot be completed, stop at that step and escalate to
+Tier 4. Do not proceed to step 9 with an unresolved step above it. The
+failure mode is silent and there is nothing to restore from.</p>
+<h2 id="appendix-b--hold-and-export-request-form">Appendix B — Hold and
+export request form</h2>
+<p>Submitted to the IT management address. An incomplete form is
+returned, not actioned on a best guess.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Request type</td>
+<td>Legal hold / Hold release / Content search / Export</td>
+</tr>
+<tr class="even">
+<td>Requesting authority</td>
+<td>Name, role, and the basis under §8</td>
+</tr>
+<tr class="odd">
+<td>Matter or case reference</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Custodians</td>
+<td>Named individuals. Not a department.</td>
+</tr>
+<tr class="odd">
+<td>Content types in scope</td>
+<td>Mail / OneDrive / SharePoint site / Teams messages / All</td>
+</tr>
+<tr class="even">
+<td>Date range</td>
+<td>Or explicit statement that there is none</td>
+</tr>
+<tr class="odd">
+<td>Subject matter / keywords</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Any custodian already separated?</td>
+<td>YES requires immediate Tier 4 escalation — §5 may already apply</td>
+</tr>
+<tr class="odd">
+<td>Recipient of any export</td>
+<td>Named person, and where it will be held</td>
+</tr>
+<tr class="even">
+<td>Authorised by</td>
+<td>Name, role, date. Written authorisation attached.</td>
+</tr>
+<tr class="odd">
+<td>— IT USE — Tier 4 authorisation</td>
+<td>Name, date</td>
+</tr>
+<tr class="even">
+<td>— IT USE — Executed by</td>
+<td>Name, date, hit count, volume exported</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

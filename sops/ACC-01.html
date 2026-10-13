@@ -1,0 +1,1243 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACC-01 · Account Lifecycle: Joiner, Mover, Leaver | Known Good</title>
+<meta name="description" content="How an identity at the organization is created, changed and removed so that access always matches a person’s current relationship with the organization.">
+<meta property="og:title" content="ACC-01 · Account Lifecycle: Joiner, Mover, Leaver | Known Good">
+<meta property="og:description" content="How an identity at the organization is created, changed and removed so that access always matches a person’s current relationship with the organization.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1 id="acc-01--account-lifecycle-joiner-mover-leaver">ACC-01 · Account
+Lifecycle: Joiner, Mover, Leaver</h1>
+<p><em>How an identity at the organization is created, changed and
+removed so that access always matches a person’s current relationship
+with the organization.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/ACC-01-Account-Lifecycle-Joiner-Mover-Leaver.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/ACC-01.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/ACC-01">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>ACC-01</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>B. Account Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 2 — Advanced Technical Services. Onboarding prep already sits
+with Tier 2 under the published tier model. Tier 4 owns this
+document.</td>
+</tr>
+<tr class="odd">
+<td>Primary audience</td>
+<td>IT Account Services and IT administrators. HR and hiring managers
+act as requesters.</td>
+</tr>
+<tr class="even">
+<td>Review cycle</td>
+<td>Annually, and on any change to the HR and user system of record,
+Entra ID, or the HR onboarding process.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose">1. Purpose</h2>
+<p>This procedure establishes one repeatable path by which an identity
+at the organization is created when a person arrives, changed when their
+role changes, and removed when they leave. Its object is that access at
+any moment reflects the person’s current relationship with the
+organization, and that no step in that sequence depends on a particular
+member of staff remembering it.</p>
+<p>It is written because, in many shops, provisioning and
+de-provisioning are handled case by case. That produces outcomes like
+these:</p>
+<ul>
+<li>Organization records held in a departing senior staff member’s
+personal OneDrive, because they first joined as a consultant and no
+boundary rule was ever stated. Recovering them means standing up a
+SharePoint site and re-permissioning it by hand.</li>
+<li>Several temporary-worker accounts added to a departmental shared
+mailbox through a reply-all email thread, with no named mailbox owner
+and no revocation trigger at the end of the engagement.</li>
+<li>A naming convention for departmental user accounts extended to a new
+department while still openly contested inside IT.</li>
+<li>HR asking IT, mid-migration, what retiring the old network drives
+means for payroll-sensitive access. None of these are failures of skill.
+They are what happens when a sequence exists only in the heads of the
+people who run it.</li>
+</ul>
+<blockquote>
+<p><strong>Where this sits in the tier model</strong></p>
+<p>Provisioning and de-provisioning execute at Tier 2, which already
+owns onboarding prep under the published tier model. Tier 1 receives the
+request and routes it; Tier 3 handles identity architecture questions
+this procedure raises but does not answer; Tier 4 owns this document and
+every approval it names.</p>
+<p>The governing rule of the tier model applies throughout: escalation
+changes the tier, not the queue. A provisioning ticket that moves to
+Tier 3 keeps its category and its history. Nobody starts over.</p>
+</blockquote>
+<h2 id="2-scope">2. Scope</h2>
+<h3 id="in-scope">In scope</h3>
+<ul>
+<li>Every identity in your Microsoft 365 tenant and in on-premises
+Active Directory, for every account class listed in section 3.</li>
+<li>The entitlements attached to those identities: licences, group
+memberships, shared mailbox membership, SharePoint and OneDrive
+permissions, mailbox delegations, and privileged role assignments.</li>
+<li>The link between an identity and an assigned device, to the extent
+needed to complete or close a lifecycle event.</li>
+</ul>
+<h3 id="out-of-scope">Out of scope</h3>
+<ul>
+<li>Accounts local to an application and not federated to the
+organization identity. Application onboarding and claim mapping are
+governed by <a href="/sops/ACC-16">ACC-16</a>.</li>
+<li>Local accounts on endpoints, governed by <a href="/sops/DEV-12">DEV-12</a>.</li>
+<li>The lifecycle of the person’s record in the HR and user system of
+record. This procedure consumes that record; it does not manage it.</li>
+<li>Physical access, keys and ID cards, which are not IT-owned.</li>
+</ul>
+<h2 id="3-systems-of-record-and-account-classes">3. Systems of record
+and account classes</h2>
+<p>Two rules govern everything that follows.</p>
+<blockquote>
+<p><strong>Rule 1 — the HR and user system of record is the system of
+record.</strong></p>
+<p>An identity is created from a record that already exists in the HR
+and user system of record. Where no record exists in the HR and user
+system of record, the request goes back to HR or the records owner; IT
+does not create a manual identity to work around a missing record. This
+is what keeps dynamic group membership, licensing and reporting coherent
+(see <a href="/sops/M365-04">M365-04</a>).</p>
+</blockquote>
+<blockquote>
+<p><strong>Rule 2 — Only IT Account Services creates
+identities.</strong></p>
+<p>This includes guests. The failure this prevents: a staff member
+invites an external identity into the tenant, it completes MFA
+registration, and nobody has recorded a sponsor, purpose or expiry.
+End-user guest invitation is disabled under <a href="/sops/ACC-10">ACC-10</a>; guests are
+requested, not created.</p>
+</blockquote>
+<h3 id="account-classes">Account classes</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Account class</th>
+<th>Source of record</th>
+<th>Requested by</th>
+<th>Naming</th>
+<th>Default licence</th>
+<th>Default expiry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Employee (staff)</td>
+<td>the HR system</td>
+<td>HR</td>
+<td>Per <a href="/sops/ACC-02">ACC-02</a></td>
+<td>Standard staff licence</td>
+<td>None — ends on separation</td>
+</tr>
+<tr class="even">
+<td>Staff, part-time or fixed-term</td>
+<td>the HR system, per contract</td>
+<td>HR</td>
+<td>Per <a href="/sops/ACC-02">ACC-02</a></td>
+<td>Standard staff licence</td>
+<td>Contract end + 30 days unless renewed</td>
+</tr>
+<tr class="odd">
+<td>End user (non-staff)</td>
+<td>the HR and user system of record</td>
+<td>Automated</td>
+<td>Per <a href="/sops/ACC-02">ACC-02</a></td>
+<td>Per <a href="/sops/M365-20">M365-20</a></td>
+<td>Per <a href="/sops/ACC-12">ACC-12</a></td>
+</tr>
+<tr class="even">
+<td>Temporary worker — departmental access</td>
+<td>Hiring dept + HR</td>
+<td>Hiring department</td>
+<td>Per <a href="/sops/ACC-02">ACC-02</a> — see §9 open decision</td>
+<td>Uses existing licence</td>
+<td>End of engagement, re-approved each engagement</td>
+</tr>
+<tr class="odd">
+<td>Vendor / contractor</td>
+<td>Sponsoring director</td>
+<td>Sponsoring director</td>
+<td>Per <a href="/sops/ACC-11">ACC-11</a></td>
+<td>As needed</td>
+<td>90 days, renewable</td>
+</tr>
+<tr class="even">
+<td>Guest (external)</td>
+<td>Named internal sponsor</td>
+<td>Sponsor via IT</td>
+<td>#EXT# in tenant</td>
+<td>None</td>
+<td>90 days</td>
+</tr>
+<tr class="odd">
+<td>Service / non-human</td>
+<td>IT</td>
+<td>IT</td>
+<td>Per <a href="/sops/ACC-08">ACC-08</a></td>
+<td>As needed</td>
+<td>Reviewed annually</td>
+</tr>
+<tr class="even">
+<td>Administrative (privileged)</td>
+<td>IT</td>
+<td>IT</td>
+<td>Per <a href="/sops/ACC-07">ACC-07</a></td>
+<td>As needed</td>
+<td>Reviewed quarterly</td>
+</tr>
+</tbody>
+</table></div>
+<p>Default licence and expiry values above are drafting proposals. They
+become policy when the approver in the control block signs this
+document.</p>
+<h2 id="4-roles-and-responsibilities">4. Roles and responsibilities</h2>
+<p>R = does the work. A = accountable and signs off. C = consulted
+before the step completes. I = informed after.</p>
+<blockquote>
+<p><strong>Onboarding is HR-owned</strong></p>
+<p>Human Resources holds the onboarding process and is accountable for
+it end to end. HR takes the intake and feeds the appropriate departments
+— IT, Facilities, Payroll, the hiring department — to fulfil the needs
+each of them owns.</p>
+<p>IT is accountable for executing the technical provisioning it is
+handed, and for telling HR what it needs in order to do that. IT is not
+accountable for chasing the existence of a new hire, and does not
+maintain a parallel intake form.</p>
+<p>If HR is piloting this arrangement, write it down here anyway, so the
+rest of the organization can adopt it once the pilot holds.</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>HR</th>
+<th>Hiring manager</th>
+<th>Records owner</th>
+<th>IT Account Services</th>
+<th>IT Security</th>
+<th>Head of IT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Own the onboarding process end to end</td>
+<td>A / R</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>—</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Take the intake and route it to the departments that must act</td>
+<td>A / R</td>
+<td>C</td>
+<td>C</td>
+<td>I</td>
+<td>—</td>
+<td>I</td>
+</tr>
+<tr class="odd">
+<td>Supply IT with the §5.1 fields it needs to provision</td>
+<td>A / R</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>—</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Approve access beyond the role default</td>
+<td>C</td>
+<td>R</td>
+<td>—</td>
+<td>I</td>
+<td>C</td>
+<td>A</td>
+</tr>
+<tr class="odd">
+<td>Create, modify or disable the identity</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>R / A</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Confirm device issue and return</td>
+<td>I</td>
+<td>R</td>
+<td>—</td>
+<td>C</td>
+<td>—</td>
+<td>I</td>
+</tr>
+<tr class="odd">
+<td>Notify IT of a role change</td>
+<td>A / R</td>
+<td>R</td>
+<td>—</td>
+<td>I</td>
+<td>—</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Escalate a provisioning request between tiers</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+<td>R / A</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr class="odd">
+<td>Notify IT of a separation</td>
+<td>A / R</td>
+<td>R</td>
+<td>—</td>
+<td>I</td>
+<td>I</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>Approve retention of a departed person’s mail or files</td>
+<td>C</td>
+<td>R</td>
+<td>—</td>
+<td>I</td>
+<td>C</td>
+<td>A</td>
+</tr>
+<tr class="odd">
+<td>Reassign ownership of sites, Teams and shared mailboxes</td>
+<td>I</td>
+<td>R</td>
+<td>—</td>
+<td>R</td>
+<td>—</td>
+<td>A</td>
+</tr>
+<tr class="even">
+<td>Quarterly access review (<a href="/sops/ACC-17">ACC-17</a>)</td>
+<td>C</td>
+<td>R</td>
+<td>C</td>
+<td>R</td>
+<td>C</td>
+<td>A</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="5-joiner-procedure">5. Joiner procedure</h2>
+<h3 id="51-trigger-and-lead-time">5.1 Trigger and lead time</h3>
+<p>HR initiates onboarding and routes the technical provisioning request
+to IT at least five business days before the start date. A request
+inside five days is still actioned, but the organization accepts that
+day-one readiness is not guaranteed. IT does not refuse late requests;
+it records them, because the pattern is the evidence HR needs to tighten
+the upstream process.</p>
+<p>Because HR owns the process, IT’s job at this step is narrow and
+specific: state what it needs, act on it when it arrives, and report
+back. The fields below are that statement of need. They are not an IT
+form competing with HR’s — they are the IT section of HR’s.</p>
+<p>The provisioning request is incomplete, and goes back to HR, unless
+it carries all of the following:</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Why IT needs it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Legal name and preferred name</td>
+<td>Legal name must match the HR and user system of record; preferred
+name drives the display name and mail alias.</td>
+</tr>
+<tr class="even">
+<td>Which other departments HR has routed this to</td>
+<td>So IT knows whether Facilities, Payroll and the hiring department
+are already in motion, and does not duplicate or assume.</td>
+</tr>
+<tr class="odd">
+<td>HR record ID</td>
+<td>The join key. Without it the identity cannot be reconciled and
+dynamic groups will not resolve.</td>
+</tr>
+<tr class="even">
+<td>Role title, department, manager</td>
+<td>Determines the role default entitlement set and the approver for
+anything beyond it.</td>
+</tr>
+<tr class="odd">
+<td>Account class</td>
+<td>Selects the row in the §3 table — licence, naming and expiry all
+follow from it.</td>
+</tr>
+<tr class="even">
+<td>Start date, and end date if fixed-term</td>
+<td>The end date becomes the automated expiry. Its absence is why
+contractor accounts outlive contracts.</td>
+</tr>
+<tr class="odd">
+<td>Work location and hybrid pattern</td>
+<td>Determines device class, remote access need (<a href="/sops/DEV-10">DEV-10</a>) and telephony
+need (<a href="/sops/M365-09">M365-09</a>).</td>
+</tr>
+<tr class="even">
+<td>Device and telephony requirement</td>
+<td>Triggers <a href="/sops/DEV-01">DEV-01</a> provisioning in parallel rather than after the
+fact.</td>
+</tr>
+<tr class="odd">
+<td>Any access beyond the role default, with business reason</td>
+<td>Captured at the point of request, where the manager is present to
+justify it, rather than as a later exception.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="52-provisioning-steps-t-5-to-t-0">5.2 Provisioning steps (T-5 to
+T-0)</h3>
+<ol type="1">
+<li>Validate the request against the HR and user system of record. If
+the record does not exist, return it to HR — who own the process and can
+resolve it at source. Do not create a manual identity to bridge the
+gap.</li>
+<li>Create the identity per <a href="/sops/ACC-02">ACC-02</a>. Do not deviate from the naming
+standard to accommodate a personal preference or a departmental habit;
+raise a change against <a href="/sops/ACC-02">ACC-02</a> instead. Local deviations are how a
+convention becomes contested.</li>
+<li>Assign the licence for the account class per §3 and record it
+(<a href="/sops/M365-20">M365-20</a>).</li>
+<li>Confirm that dynamic group membership resolves. Dynamic groups
+derive from the HR and user system of record attributes, so an identity
+created before its record in the HR and user system of record is
+complete will land outside its groups and the person will appear to have
+no access on day one. Verify, do not assume (<a href="/sops/M365-04">M365-04</a>).</li>
+<li>Grant the role default entitlements only. Anything beyond the
+default requires the manager’s written approval recorded on the ticket —
+not a verbal agreement, and not an inference from what the previous
+post-holder had.</li>
+<li>Where the role needs a departmental shared mailbox, raise it through
+<a href="/sops/M365-03">M365-03</a> so the mailbox acquires a named owner. Do not add the person
+directly.</li>
+<li>Provision the device per <a href="/sops/DEV-01">DEV-01</a> and record the assignment against
+the person, including asset tag.</li>
+<li>Issue a Temporary Access Pass rather than a plain password where the
+platform supports it, so that first sign-in forces MFA registration and
+no shared secret ever exists in an email (<a href="/sops/ACC-03">ACC-03</a>).</li>
+<li>Deliver credentials in person or to the manager. Never to a personal
+email address. A reset request from a personal email account, on behalf
+of a differently-named person, is a classic social-engineering move; the
+control that stops that class of request is <a href="/sops/ACC-06">ACC-06</a>, and it starts
+here.</li>
+<li>Record on the ticket: account name, licence assigned, groups
+resolved, device asset tag, MFA enrollment deadline, and who received
+the credentials.</li>
+</ol>
+<h3 id="53-day-one--actions-by-the-person">5.3 Day one — actions by the
+person</h3>
+<ol type="1">
+<li>Sign in, set a password meeting <a href="/sops/ACC-04">ACC-04</a>, and register at least two
+MFA methods within 24 hours (<a href="/sops/ACC-03">ACC-03</a>).</li>
+<li>Read and acknowledge the organization’s acceptable use policy,
+including the prohibition on credential sharing. Where that policy
+already exists, <a href="/sops/ACC-15">ACC-15</a> governs how it is presented and evidenced at this
+step rather than replacing it.</li>
+<li>Confirm mailbox, Teams and file access. Report any gap on the
+original provisioning ticket rather than opening a new one, so that the
+joiner record stays in one place.</li>
+</ol>
+<h3 id="54-exit-criteria">5.4 Exit criteria</h3>
+<p>The account is not “provisioned”, and the ticket does not close,
+until every one of these is true:</p>
+<ul>
+<li>The person has signed in successfully.</li>
+<li>Two MFA methods are registered.</li>
+<li>The correct licence is assigned.</li>
+<li>Dynamic group membership has resolved and been observed, not
+assumed.</li>
+<li>Any device is recorded against the person and is compliant per
+<a href="/sops/DEV-02">DEV-02</a>.</li>
+<li>The Acceptable Use acknowledgement is on file.</li>
+</ul>
+<h2 id="6-mover-procedure">6. Mover procedure</h2>
+<blockquote>
+<p><strong>The governing principle</strong></p>
+<p>A role change is a removal followed by an addition. The addition
+always happens, because the person needs it and will ask. The removal is
+the step that gets skipped — and it is the step that matters. Every
+stale entitlement in the tenant was once a legitimate grant to someone
+whose role subsequently changed.</p>
+</blockquote>
+<h3 id="61-trigger">6.1 Trigger</h3>
+<p>HR submits a Role Change notification on or before the effective
+date, naming the outgoing role, the incoming role, the new manager and
+the effective date.</p>
+<h3 id="62-steps">6.2 Steps</h3>
+<ol type="1">
+<li>Retrieve the person’s current entitlements in full: group
+memberships (assigned and dynamic), shared mailbox membership,
+SharePoint and OneDrive permissions, mailbox and calendar delegations,
+application roles, privileged roles, and device assignments.</li>
+<li>Produce the delta against the incoming role’s default entitlement
+set. Attach it to the ticket. This list is the deliverable of the step,
+not a by-product.</li>
+<li>Remove every entitlement not in the incoming role default. Retention
+of a legacy entitlement requires the new manager’s written justification
+on the ticket and expires automatically after 90 days unless
+renewed.</li>
+<li>Add the incoming role’s defaults.</li>
+<li>Where the person owned a shared mailbox, Team or SharePoint site for
+the outgoing department, reassign ownership before removing their
+access. An unowned site is where link rot starts; broken-link tickets
+sit past SLA for exactly this reason.</li>
+<li>Where the person sponsored guest accounts, reassign sponsorship or
+expire the guests (<a href="/sops/ACC-10">ACC-10</a>).</li>
+<li>Update the device assignment if the device moves with the
+department, and re-scope any device-based configuration.</li>
+<li>Record the before and after entitlement lists on the ticket. This is
+the evidence the quarterly access review in <a href="/sops/ACC-17">ACC-17</a> depends on.</li>
+</ol>
+<h3
+id="63-special-case--an-existing-account-holder-becoming-a-temporary-worker">6.3
+Special case — an existing account holder becoming a temporary
+worker</h3>
+<p>The person retains their user identity. Departmental access is
+provisioned per <a href="/sops/ACC-02">ACC-02</a> and <a href="/sops/ACC-09">ACC-09</a>, and it expires at the end of the
+engagement, even though the person’s main relationship with the
+organization continues. The two relationships must expire independently;
+conflating them is how temporary workers end up holding departmental
+mail access with no revocation trigger.</p>
+<h2 id="7-leaver-procedure">7. Leaver procedure</h2>
+<h3 id="71-timing-by-notice-type">7.1 Timing by notice type</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Notice type</th>
+<th>IT action</th>
+<th>Deadline</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Planned separation, notice given</td>
+<td>Complete the §7.2 checklist; disable sign-in at end of last working
+day.</td>
+<td>On the date and time HR states</td>
+</tr>
+<tr class="even">
+<td>Immediate or involuntary</td>
+<td>Disable sign-in, revoke all sessions and refresh tokens, remove
+registered MFA methods, disable assigned devices. Then complete the full
+checklist.</td>
+<td>Sign-in disabled within 1 hour of HR instruction</td>
+</tr>
+<tr class="odd">
+<td>Death in service</td>
+<td>Disable and preserve. No forwarding, no delegation without Head of
+IT approval.</td>
+<td>Within 4 hours; Head of IT notified immediately</td>
+</tr>
+<tr class="even">
+<td>Non-staff end user leaving</td>
+<td>Per <a href="/sops/ACC-12">ACC-12</a>.</td>
+<td>Per <a href="/sops/ACC-12">ACC-12</a></td>
+</tr>
+<tr class="odd">
+<td>Part-time or fixed-term staff, contract ended and not renewed</td>
+<td>Disable at the end of the engagement + 30 days.</td>
+<td>Automated from the HR and user system of record</td>
+</tr>
+<tr class="even">
+<td>Vendor or contractor, engagement ended</td>
+<td>Disable at the stated end date.</td>
+<td>Automated by account expiry</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="72-steps-in-order">7.2 Steps, in order</h3>
+<ol type="1">
+<li>Disable sign-in. Do not delete the account. Deletion destroys the
+mailbox and the OneDrive with it, and both are frequently needed after
+the person has gone.</li>
+<li>Revoke active sessions and refresh tokens, and remove registered MFA
+methods. A disabled account with a live token is not disabled.</li>
+<li>Remove all group memberships, shared mailbox membership,
+delegations, SharePoint and OneDrive permissions, application roles and
+privileged roles.</li>
+<li>Reassign ownership of every SharePoint site, Team and shared mailbox
+the person owned, before their access is removed. Record the new
+owner.</li>
+<li>Handle the mailbox. Where the department needs continued access,
+convert it to a shared mailbox — this preserves all mail and calendar
+and needs no licence below 50 GB. Where it does not, place the mailbox
+under a retention hold and make it inactive. Either way the sign-in
+stays blocked and the password is reset, because a converted shared
+mailbox still answers to the departed person’s original credentials
+until it does not. Do not configure forwarding to a personal address
+under any circumstances. The order in §7.3 is not optional.</li>
+<li>Handle the OneDrive: grant the manager delegated access for 30 days
+and MOVE institutional records into the department’s SharePoint site
+inside that window. For files, unlike mail, the move is the retention —
+an unlicensed OneDrive is not a preserved OneDrive (§7.3). The
+alternative is a bespoke recovery project for one departure
+(<a href="/sops/M365-12">M365-12</a>).</li>
+<li>Reclaim the licence only once the mailbox is shared or inactive
+under hold AND the OneDrive move is confirmed complete — in that order,
+verified, not assumed (<a href="/sops/M365-20">M365-20</a> Appendix A).</li>
+<li>Confirm device return per <a href="/sops/DEV-15">DEV-15</a>. Before wiping, verify the
+BitLocker recovery key is escrowed in Entra ID. Some devices may have no
+escrowed key at all, so this check must be performed and recorded rather
+than presumed (<a href="/sops/DEV-03">DEV-03</a>).</li>
+<li>Expire or reassign every guest account the person sponsored.</li>
+<li>Record completion of each step on the ticket. A leaver ticket with
+unrecorded steps is not closed, whatever its status field says.</li>
+</ol>
+<h3 id="73-retention">7.3 Retention</h3>
+<blockquote>
+<p><strong>Two years is a floor, not a window</strong></p>
+<p>Mailbox and OneDrive content — both files and email — is retained for
+a MINIMUM of two years after separation. There is no maximum. Nothing is
+deleted at the two-year mark; two years is the point before which
+deletion is not permitted at all.</p>
+<p>Deletion after that floor is a deliberate, approved act with a
+recorded reason, not an automatic expiry. The default in the absence of
+a decision is to keep.</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Asset</th>
+<th>Treatment</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sign-in</td>
+<td>Disabled on the separation date.</td>
+<td>Not subject to retention — access and data are separate
+questions.</td>
+</tr>
+<tr class="even">
+<td>Mailbox (email)</td>
+<td>Retained a minimum of two years. No maximum.</td>
+<td>Shared mailbox (unlicensed, under 50 GB) or inactive mailbox under a
+retention hold. Both survive licence removal.</td>
+</tr>
+<tr class="odd">
+<td>OneDrive (files)</td>
+<td>Institutional records MOVED to the departmental SharePoint site
+inside the 30-day manager window, and retained there a minimum of two
+years.</td>
+<td>The default route. Free, supported, and it makes the content usable
+rather than archived. Alternatives in <a href="/sops/M365-16">M365-16</a> §5.</td>
+</tr>
+<tr class="even">
+<td>OneDrive residue after the move</td>
+<td>Whatever the manager judged personal or superseded. No retention
+obligation attaches to it.</td>
+<td>If anything institutional is still there when the window closes, the
+window has not closed.</td>
+</tr>
+<tr class="odd">
+<td>Teams chat and channel messages</td>
+<td>Per tenant retention policy, which must be set to meet the same
+two-year floor.</td>
+<td>Check this. A 90-day chat policy silently undercuts the decision
+(<a href="/sops/M365-16">M365-16</a>).</td>
+</tr>
+<tr class="even">
+<td>Licence</td>
+<td>Reclaimed after the mailbox is shared or inactive and the OneDrive
+move is confirmed — in that order.</td>
+<td>Sequence matters. Reclaiming early is how content is lost.</td>
+</tr>
+<tr class="odd">
+<td>Account object</td>
+<td>Retained disabled for as long as any associated data is
+retained.</td>
+<td>The account object anchors a shared mailbox. Deleting it destroys
+what it anchors. Disable, do not delete.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Mail and files do not behave the same way, and the difference
+decides the procedure</strong></p>
+<p>A two-year floor with no maximum is the right call for an
+organization that keeps records. Implemented naively — by leaving the
+account licensed — it means paying for a licence for every person who
+ever left, forever. So the floor has to be delivered without a licence.
+For mail that is straightforward. For files it needs a deliberate choice
+between four routes, only one of which is free.</p>
+<p>MAIL. A shared mailbox needs no licence up to 50 GB, and an inactive
+mailbox under a Microsoft 365 retention hold survives licence removal
+indefinitely. Both are documented, supported mechanisms. The floor is
+met at no cost.</p>
+<p>FILES. An unlicensed OneDrive is not simply dormant. Microsoft places
+unlicensed OneDrive accounts into read-only mode after 60 unlicensed
+days and archives them after 93, and a cumulative 365-day nonpayment
+clock carries a deletion risk beyond that. Retention policies and legal
+holds ARE honoured through the archived state — but only while archive
+billing is enabled; unpaid, the content is at risk at 365 days despite
+any hold. Reassigning the OneDrive’s owner does not change this:
+Microsoft states that enforcement does not use the owner property to
+validate licensing, and that changing it is an unsupported state.</p>
+<p>IF YOUR TENANT IS AN EDUCATION OR NONPROFIT TENANT, check Microsoft’s
+current guidance: some enforcement changes have been stated not to apply
+to EDU customers. The scope of that exclusion is not stated cleanly
+enough to build a two-year retention commitment on. Obtaining it in
+writing from Microsoft is an open prerequisite (§9.2) and would
+materially simplify this procedure.</p>
+<p>THEREFORE, unless an exclusion has been confirmed in writing for your
+tenant, the default is to MOVE the records: institutional content goes
+into the departmental SharePoint site during the 30-day manager window,
+where a retention policy holds it and colleagues can actually use it. It
+costs nothing, depends on no billing toggle, and is what Microsoft
+itself recommends for a OneDrive with no active owner. The three
+alternatives — a longer tenant active-storage period, paid archive, or a
+retained licence — are set out in <a href="/sops/M365-16">M365-16</a> §5 with their costs.</p>
+</blockquote>
+<p>Check these behaviours against Microsoft Learn before relying on them
+(Exchange Online shared and inactive mailboxes; OneDrive retention and
+deletion; Manage unlicensed OneDrive user accounts; Standard storage for
+unlicensed OneDrive accounts). The full comparison of the four routes is
+<a href="/sops/M365-16">M365-16</a> §5; the ordered reclamation checklist is <a href="/sops/M365-20">M365-20</a> Appendix A.
+Confirm the behaviour once on a test account before the first separation
+is processed under this rule — verify, do not assume.</p>
+<h2 id="8-service-levels">8. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Request type</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Joiner, five or more business days’ notice</td>
+<td>Ready on the start date</td>
+</tr>
+<tr class="even">
+<td>Joiner, under five business days’ notice</td>
+<td>Two business days from a complete request</td>
+</tr>
+<tr class="odd">
+<td>Mover</td>
+<td>Three business days from the effective date</td>
+</tr>
+<tr class="even">
+<td>Leaver, planned</td>
+<td>Completed on the date HR states</td>
+</tr>
+<tr class="odd">
+<td>Leaver, immediate</td>
+<td>Sign-in disabled within one hour; full checklist within one business
+day</td>
+</tr>
+<tr class="even">
+<td>Access beyond the role default</td>
+<td>Three business days from written manager approval</td>
+</tr>
+</tbody>
+</table></div>
+<p>These are proposals for ratification under <a href="/sops/GOV-06">GOV-06</a>, not commitments
+already in force. Where a service desk is already carrying P3 tickets
+months past their targets, that shows the current matrix is not
+operating, rather than that these targets are unrealistic.</p>
+<h2 id="9-decisions">9. Decisions</h2>
+<p>Three decisions shape how this document is applied. Record your
+answers here so that the next reader can see what was decided, by whom,
+and what still needs doing.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Decision</th>
+<th>Outcome</th>
+<th>Where it landed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>D2 — onboarding ownership</td>
+<td>Recommended: onboarding is HR-owned. HR takes the intake and feeds
+the departments that must act.</td>
+<td>§4 callout and RACI; §5.1</td>
+</tr>
+<tr class="even">
+<td>D3 — retention after separation</td>
+<td>Recommended: minimum two years for mailbox and OneDrive, files and
+email, no maximum.</td>
+<td>§7.3</td>
+</tr>
+<tr class="odd">
+<td>D1 — temporary-worker naming</td>
+<td>Open: both conventions are drafted, and <a href="/sops/ACC-02">ACC-02</a> §5 recommends the
+role-group model. See §9.1.</td>
+<td><a href="/sops/ACC-02">ACC-02</a></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>9.1 Departmental temporary-worker account model — owner:
+<a href="/sops/ACC-02">ACC-02</a></strong></p>
+<p>A common pattern gives departmental temporary workers a second
+account, with a suffix appended to their original user account.
+Extending that pattern to the next department is usually when it gets
+contested inside IT.</p>
+<p>The alternative is a role-group model on the single user identity,
+with departmental access granted by group membership and removed at the
+end of the engagement.</p>
+<p>Both conventions are drafted in <a href="/sops/ACC-02">ACC-02</a> as Option A and Option B, and
+<a href="/sops/ACC-02">ACC-02</a> §5 recommends the pivot to Option B. This SOP refers throughout
+to “the departmental access account or role group per <a href="/sops/ACC-02">ACC-02</a>”, so it
+does not need rewriting whichever option is adopted.</p>
+</blockquote>
+<blockquote>
+<p><strong>9.2 What D3 requires before the first separation under
+it</strong></p>
+<p>Once the two-year floor is decided, three things must be true in the
+tenant before the first separation is processed under it, and none of
+them is decided by this document:</p>
+<ol type="1">
+<li>Mailbox behaviour confirmed by Tier 3 on a test account — shared
+conversion and inactive-mailbox hold both surviving licence removal. If
+the organization is still in Exchange hybrid at that point, the
+on-premises Set-RemoteMailbox -Type Shared step must be confirmed as
+part of the same test: without it, directory sync reverts the conversion
+and the mailbox contents can be lost permanently within 30 days.</li>
+</ol>
+<p>1a. If your tenant is an education or nonprofit tenant, confirm in
+writing whether it is excluded from unlicensed-OneDrive enforcement. If
+it is, there is no archive or deletion clock on a leaver’s OneDrive and
+no paid route is needed to meet the two-year floor. An exclusion that
+comes from licensing is re-checked at each renewal and at the <a href="/sops/M365-16">M365-16</a>
+annual review (<a href="/sops/M365-16">M365-16</a> §5.2).</p>
+<p>1b. The OneDrive route chosen and configured — move to SharePoint
+(default), tenant active-storage period, paid archive, or retained
+licence — per <a href="/sops/M365-16">M365-16</a> §5, with the cost recorded.</p>
+<ol start="2" type="1">
+<li><p>Teams chat and channel retention raised to meet the same two-year
+floor, or the decision is quietly defeated for one content type
+(<a href="/sops/M365-16">M365-16</a>).</p></li>
+<li><p>HR concurrence recorded for employee records, and a view from
+counsel on any record class carrying an external retention obligation
+longer than two years — the floor is a minimum, and some records will
+exceed it.</p></li>
+</ol>
+</blockquote>
+<h2 id="10-records">10. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Completed account request, with all §5.1 fields</td>
+<td>Service desk ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Written manager approval for access beyond role default</td>
+<td>Service desk ticket</td>
+<td>3 years, or until the entitlement is removed — whichever is
+later</td>
+</tr>
+<tr class="odd">
+<td>Mover before/after entitlement lists</td>
+<td>Service desk ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Leaver checklist with each step evidenced</td>
+<td>Service desk ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Identity verification method used (<a href="/sops/ACC-06">ACC-06</a>)</td>
+<td>Service desk ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Device assignment and return, with escrow check</td>
+<td>Asset register + ticket</td>
+<td>Life of the asset + 1 year</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-related-documents">11. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="/sops/ACC-02">ACC-02</a></td>
+<td>Account Naming, UPN &amp; Identifier Standard</td>
+<td>Supplies the naming rule this procedure applies. Holds open decision
+9.1.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-03">ACC-03</a></td>
+<td>MFA Enrollment, Reset &amp; Account Recovery</td>
+<td>Governs the MFA registration required at §5.3 and revocation at
+§7.2.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-06">ACC-06</a></td>
+<td>Identity Verification Before Any Account Action</td>
+<td>Governs credential handover at §5.2 step 9.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-09">ACC-09</a></td>
+<td>Temporary Worker &amp; Departmental Access Account Standard</td>
+<td>Governs the special case at §6.3.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-10">ACC-10</a></td>
+<td>Guest &amp; Sponsored External Account Standard</td>
+<td>Governs guest sponsorship reassignment at §6.2 and §7.2.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-12">ACC-12</a></td>
+<td>Separation, Retiree &amp; Former-Member Disposition</td>
+<td>Governs user and retiree leaver treatment.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/ACC-15">ACC-15</a></td>
+<td>Acceptable Use &amp; Credential-Sharing Standard</td>
+<td>Governs the acknowledgement at §5.3. Aligns to your existing
+acceptable use policy.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/ACC-17">ACC-17</a></td>
+<td>Periodic Access Review &amp; Entitlement Recertification</td>
+<td>Consumes the entitlement records this procedure produces.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-03">M365-03</a></td>
+<td>Shared Mailbox Request, Provisioning &amp; Ownership</td>
+<td>Route for shared mailbox access at §5.2 step 6.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-04">M365-04</a></td>
+<td>Distribution List &amp; Dynamic Group Standard</td>
+<td>Explains the membership derived from the HR and user system of
+record, verified at §5.2 step 4.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-12">M365-12</a></td>
+<td>OneDrive Appropriate Use &amp; Institutional Data Boundary</td>
+<td>The boundary rule that makes §7.2 step 6 enforceable.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-20">M365-20</a></td>
+<td>License Assignment, Reclamation &amp; Cost Attribution</td>
+<td>Licence assignment and reclaim.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-01">DEV-01</a></td>
+<td>Device Enrollment &amp; Lifecycle</td>
+<td>Device provisioning at §5.2 step 7.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-03">DEV-03</a></td>
+<td>Disk Encryption &amp; BitLocker Recovery Key Handling</td>
+<td>The escrow check at §7.2 step 8.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-15">DEV-15</a></td>
+<td>Device Reassignment, Wipe, Retirement &amp; Disposal</td>
+<td>Device return at §7.2 step 8.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>SLA Definition, Priority Matrix &amp; Escalation</td>
+<td>Ratifies the targets in §8.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--joiner-checklist">Appendix A — Joiner checklist</h2>
+<p>Print or paste into the ticket. Every line is evidenced before the
+ticket closes.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Done</th>
+<th>Step</th>
+<th>Evidence recorded</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>☐</td>
+<td>Request complete against all §5.1 fields</td>
+<td>Ticket</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Record in the HR and user system of record validated</td>
+<td>HR record ID on ticket</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Identity created per <a href="/sops/ACC-02">ACC-02</a></td>
+<td>Account name</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Licence assigned per account class</td>
+<td>Licence SKU</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Dynamic group membership observed to resolve</td>
+<td>Group list, screenshot or export</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Role default entitlements granted</td>
+<td>Entitlement list</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Any beyond-default access carries written manager approval</td>
+<td>Approval text on ticket</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Shared mailbox access raised via <a href="/sops/M365-03">M365-03</a>, not granted directly</td>
+<td><a href="/sops/M365-03">M365-03</a> ticket reference</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Device provisioned per <a href="/sops/DEV-01">DEV-01</a> and recorded</td>
+<td>Asset tag</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Temporary Access Pass issued (not a plain password)</td>
+<td>Method noted</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Credentials delivered in person or to manager — never a personal
+address</td>
+<td>Recipient named</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Person signed in successfully</td>
+<td>Sign-in log</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Two MFA methods registered within 24 hours</td>
+<td>Methods listed</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Acceptable Use acknowledged (<a href="/sops/ACC-15">ACC-15</a>)</td>
+<td>Acknowledgement on file</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--mover-checklist">Appendix B — Mover checklist</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Done</th>
+<th>Step</th>
+<th>Evidence recorded</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>☐</td>
+<td>HR Role Change notification received with effective date</td>
+<td>Ticket</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Full current entitlement list retrieved</td>
+<td>Before list attached</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Delta against incoming role default produced</td>
+<td>Delta attached</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Every entitlement not in the new default removed</td>
+<td>After list attached</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Any retained legacy entitlement carries written justification and a
+90-day expiry</td>
+<td>Justification + expiry date</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Incoming role defaults added</td>
+<td>After list</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Ownership of sites, Teams and shared mailboxes reassigned before
+access removal</td>
+<td>New owner named</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Sponsored guests reassigned or expired</td>
+<td>Guest list actioned</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Device assignment updated</td>
+<td>Asset register</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Before and after lists recorded for <a href="/sops/ACC-17">ACC-17</a></td>
+<td>Both attached</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-c--leaver-checklist">Appendix C — Leaver checklist</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Done</th>
+<th>Step</th>
+<th>Evidence recorded</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>☐</td>
+<td>Sign-in disabled (not deleted) at the stated time</td>
+<td>Timestamp</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Sessions and refresh tokens revoked</td>
+<td>Timestamp</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Registered MFA methods removed</td>
+<td>Method list</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>All groups, shared mailboxes, delegations, permissions and roles
+removed</td>
+<td>Entitlement list</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Ownership of every owned site, Team and mailbox reassigned</td>
+<td>New owners named</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Mailbox converted to shared or time-bound delegation applied</td>
+<td>Method + window</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>No forwarding to any personal address configured</td>
+<td>Confirmed</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Manager granted OneDrive delegation, 30 days, to move records
+out</td>
+<td>Window recorded</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Institutional records moved to departmental SharePoint inside the
+window</td>
+<td>Destination site</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>BitLocker recovery key confirmed escrowed in Entra BEFORE wipe</td>
+<td>Key ID or explicit “none found” + remediation</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Device returned, wiped and recorded per <a href="/sops/DEV-15">DEV-15</a></td>
+<td>Asset tag + disposition</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Sponsored guest accounts expired or reassigned</td>
+<td>Guest list actioned</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Mailbox shared or inactive under hold; password reset; sign-in
+blocked</td>
+<td>Method + confirmation content survives</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>OneDrive institutional records MOVED to the departmental site inside
+30 days</td>
+<td>Destination site + date the move completed</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Licence reclaimed WITHOUT loss of retained content — verified, not
+assumed</td>
+<td>Date + SKU + verification</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Every step above evidenced on the ticket</td>
+<td>Ticket complete</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>

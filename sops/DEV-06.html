@@ -1,0 +1,1191 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DEV-06 · Computer Lab, Meeting Room &amp; Shared Device Standard | Known Good</title>
+<meta name="description" content="The target configuration for a machine that belongs to nobody and is used by everybody — and the readiness check that decides whether rooms work on day one.">
+<meta property="og:title" content="DEV-06 · Computer Lab, Meeting Room &amp; Shared Device Standard | Known Good">
+<meta property="og:description" content="The target configuration for a machine that belongs to nobody and is used by everybody — and the readiness check that decides whether rooms work on day one.">
+<meta property="og:site_name" content="Known Good SOP Catalog">
+<meta name="theme-color" content="#2F6B55">
+<link rel="stylesheet" href="/sops/sop.css">
+</head><body>
+<header class="top"><div class="in"><b>Known Good · SOP Catalog</b>
+<nav><a href="/sops/">All SOPs</a><a href="https://kevinzelman.github.io/process-tree/">Process Tree</a><a href="https://kevinzelman.github.io/">Kevin Zelman</a></nav></div></header>
+<main><h1
+id="dev-06--computer-lab-meeting-room--shared-device-standard">DEV-06 ·
+Computer Lab, Meeting Room &amp; Shared Device Standard</h1>
+<p><em>The target configuration for a machine that belongs to nobody and
+is used by everybody — and the readiness check that decides whether
+rooms work on day one.</em></p><div class="meta"><a class="btn solid" href="/sops/pdf/DEV-06-Computer-Lab-Meeting-Room-and-Shared-Device-Standard.pdf">Download PDF</a><a class="btn" href="https://github.com/KevinZelman/kevinzelman.github.io/commits/main/sops/src/DEV-06.md">Change history</a><a class="btn" href="https://kevinzelman.github.io/process-tree/#sop/DEV-06">Open in Process Tree</a></div>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Document ID</td>
+<td>DEV-06</td>
+</tr>
+<tr class="even">
+<td>Version</td>
+<td>1.0 · Known Good edition, by Kevin Zelman</td>
+</tr>
+<tr class="odd">
+<td>Catalogue domain</td>
+<td>C. Device Usage</td>
+</tr>
+<tr class="even">
+<td>Operating tier</td>
+<td>Tier 2 — Advanced Technical Services owns labs, imaging and
+meeting-room technology, and runs §9. Tier 3 owns the shared-device
+configuration in the management platform. Tier 4 approves the cutover in
+§5 and the rollback in §6.</td>
+</tr>
+<tr class="odd">
+<td>Review cycle</td>
+<td>Annually, and after every busy-season readiness cycle — the
+readiness check produces the defect list that revises this
+document.</td>
+</tr>
+<tr class="even">
+<td>Governing policy</td>
+<td>Your organization's computer and shared-device use policy, if it has
+one. That policy governs user conduct on these machines. This document
+operationalises it — it does not restate it and must not contradict it.
+Where the two differ, the policy is right and this document is a defect
+to be reported under <a href="/sops/GOV-01">GOV-01</a>.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="1-purpose--and-the-policy-this-operationalises">1. Purpose — and
+the policy this operationalises</h2>
+<blockquote>
+<p><strong>This is not a new lab policy.</strong></p>
+<p>Most organizations with shared machines already have a use policy for
+them. Where yours exists, it governs how people may use these machines,
+and it stands.</p>
+<p>What is usually missing is the technical half: what a shared machine
+is actually configured to do, who builds it, and how the organization
+knows a room is ready on the first day of a busy period. A pilot run
+without a written target configuration has nothing to be judged
+against.</p>
+<p>This document is that target configuration. Making sure the use
+policy is linked where people look for policies is a separate and much
+smaller job (<a href="/sops/GOV-01">GOV-01</a>).</p>
+</blockquote>
+<p>The audience is Tier 2 and the staff who depend on Tier 2. Section 9
+is the part staff care about, and it is written as a runbook for that
+reason.</p>
+<h2 id="2-what-makes-a-shared-device-different">2. What makes a shared
+device different</h2>
+<p>A staff laptop and a lab machine look like the same object and are
+governed by almost opposite assumptions. Every rule in §3 follows from
+one of these five differences.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Difference</th>
+<th>What follows from it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>No persistent user state</td>
+<td>The machine keeps nothing between sessions: no profile, no cached
+documents, no browser history, no saved credentials. This is a feature,
+not a limitation. A lab machine that remembers the last user is a lab
+machine that leaks one user’s work to the next.</td>
+</tr>
+<tr class="even">
+<td>No per-user data on the local disk</td>
+<td>Anything saved to the desktop or to C: is lost at sign-out, and
+should be. Users save to OneDrive; work that belongs to a team or
+project lives in its site (<a href="/sops/M365-12">M365-12</a>). This has to be stated in the room,
+not discovered at the end of a session.</td>
+</tr>
+<tr class="odd">
+<td>A queue of people waiting</td>
+<td>Logon time is the specification that matters most and is measured
+least. Twenty-five people signing in at the start of a training session,
+each waiting ninety seconds for a profile to build, spends the first
+quarter of an hour of session time on authentication. Shared multi-user
+mode exists to fix exactly this.</td>
+</tr>
+<tr class="even">
+<td>The device is the unit, not the person</td>
+<td>Compliance is assessed against the device (<a href="/sops/DEV-02">DEV-02</a> §4). Inventory
+records a room and a seat, not an assignee. A fault report names a
+machine — “ROOM-214-07” — which means the asset label must be legible
+from a seated position.</td>
+</tr>
+<tr class="odd">
+<td>A booking calendar, not a working day</td>
+<td>Maintenance, patching, reboots and software deployment happen when
+no session is in the room, and never during booked hours (<a href="/sops/DEV-13">DEV-13</a>). A
+busy-season change window is narrower than any other window the
+organization operates.</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>The thing users must be told, once, in the room</strong></p>
+<p>Anything you save on this computer is deleted when you sign out. Save
+your work in OneDrive — it is already signed in, and it will be there on
+any other organization machine and at home.</p>
+<p>This belongs on a card at the seat and in the sign-in screen text,
+not only in a policy document. The commonest and most upsetting
+shared-machine incident is somebody losing an afternoon’s work because
+nobody told them, and it is entirely preventable with one sentence in
+the right place.</p>
+</blockquote>
+<h2 id="3-the-target-configuration">3. The target configuration</h2>
+<p>This is what a lab machine looks like when the migration in §5 is
+complete. Tier 3 owns these settings in the management platform; changes
+go through <a href="/sops/M365-21">M365-21</a> and <a href="/sops/GOV-04">GOV-04</a>.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Setting</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Management</td>
+<td>Entra joined and Intune-enrolled, configured in Windows shared
+multi-user mode (shared PC configuration). Not co-managed via
+Configuration Manager once migrated.</td>
+<td>One source of truth. A shared machine reporting to two management
+systems is the case where nobody can say what is actually applied
+(<a href="/sops/DEV-02">DEV-02</a> §8).</td>
+</tr>
+<tr class="even">
+<td>Sign-in</td>
+<td>Organization credentials only. No local accounts for users, no Guest
+account, no cached credential reuse, no “stay signed in”.</td>
+<td>Attribution. Every action on an organization machine must map to an
+identity, which is the assumption every other control rests on (<a href="/sops/ACC-15">ACC-15</a>
+§3).</td>
+</tr>
+<tr class="odd">
+<td>Profiles</td>
+<td>Temporary profile per session, deleted at sign-out. Account
+management enabled so profiles are removed on a threshold rather than
+accumulating.</td>
+<td>Disk exhaustion on lab machines is almost always accumulated
+profiles. It presents as “the lab is slow” three weeks into a busy
+period.</td>
+</tr>
+<tr class="even">
+<td>Automatic sign-out</td>
+<td>Idle sign-out after 15 minutes in an open-access lab; 30 minutes
+during a booked session; forced sign-out and reboot at building
+close.</td>
+<td>Somebody who walks away from a signed-in session has left their
+mailbox open in a public room. The longer session value exists so a
+person is not signed out during an exercise.</td>
+</tr>
+<tr class="odd">
+<td>Local storage</td>
+<td>Known-folder redirection to OneDrive. Local disk cleared at sign-out
+and on reboot. No local “User Work” share.</td>
+<td>§2. A local share becomes a permanent unmanaged data store within
+months, and then somebody’s work is in it.</td>
+</tr>
+<tr class="even">
+<td>Encryption</td>
+<td>BitLocker enabled, recovery key escrowed to Entra and verified
+(<a href="/sops/DEV-03">DEV-03</a> §5).</td>
+<td>Labs are the population most likely to be missed by an escrow sweep,
+because nobody signs into them interactively for weeks at a time — which
+is precisely how escrow gaps happen. A lab machine that needs reimaging
+and has no escrowed key is a machine that gets rebuilt from nothing, in
+week one, by hand.</td>
+</tr>
+<tr class="odd">
+<td>Local administrator</td>
+<td>No standing local admin. One unique per-device local break-glass
+administrator account, password escrowed and rotated automatically
+(<a href="/sops/DEV-12">DEV-12</a> §4).</td>
+<td>A shared local admin password across a lab is one password away from
+every machine in the building.</td>
+</tr>
+<tr class="even">
+<td>Patching</td>
+<td>Update rings scheduled for quiet-period and out-of-hours windows
+only. Deadline-driven with a forced restart outside booked hours
+(<a href="/sops/DEV-13">DEV-13</a>).</td>
+<td>A reboot at 10:40 in a booked session is a training incident. A
+machine three months behind on updates is a security incident. The
+window is the answer to both.</td>
+</tr>
+<tr class="odd">
+<td>Endpoint security</td>
+<td>Defender for Endpoint onboarded and reporting, per <a href="/sops/DEV-14">DEV-14</a>.</td>
+<td>Labs are the highest-exposure population in the estate: shared use,
+removable media, user-downloaded material.</td>
+</tr>
+<tr class="even">
+<td>Kiosk mode</td>
+<td>Used for single-purpose stations only — lobby check-in terminals,
+print release stations, information and wayfinding screens.
+Assigned-access single-app configuration, no interactive sign-in.</td>
+<td>Kiosk is the right answer for a station that does one thing and the
+wrong answer for a general-use lab machine. Keeping the distinction
+sharp prevents a lab being locked down into uselessness.</td>
+</tr>
+<tr class="odd">
+<td>Peripherals and removable media</td>
+<td>USB storage permitted and scanned. No user-installable printers or
+drivers (<a href="/sops/DEV-17">DEV-17</a>).</td>
+<td>Users genuinely use USB drives, and blocking them moves the problem
+rather than solving it. User-installed drivers are the commonest cause
+of a lab machine behaving differently from its neighbours.</td>
+</tr>
+<tr class="even">
+<td>Browser</td>
+<td>No saved passwords, no persistent profile, no sync. Cleared at
+sign-out.</td>
+<td>The other half of §2. A signed-in browser profile surviving a
+session is the same exposure as a surviving Windows profile.</td>
+</tr>
+<tr class="odd">
+<td>Power</td>
+<td>Never sleep during opening hours; wake for the maintenance window;
+shut down at building close.</td>
+<td>A device that is never awake during the maintenance window never
+patches, and never reports — so it looks compliant by absence (<a href="/sops/DEV-02">DEV-02</a>
+condition 1).</td>
+</tr>
+<tr class="even">
+<td>Naming and labelling</td>
+<td>Room-and-seat naming, matching a physical label legible from the
+seat.</td>
+<td>§2. It is also what makes a fault report actionable instead of “a
+computer in the lab is broken”.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Guests and visitors: there is no Guest account. A visiting specialist
+or an event delegate who needs a machine gets a sponsored identity under
+<a href="/sops/ACC-10">ACC-10</a>, or supervised use of a staff-signed session where that is
+genuinely appropriate. Standing up a shared local account for a two-day
+event is how permanent unattributable accounts are created.</p>
+<h2 id="4-software-baseline-and-training-specific-software">4. Software
+baseline, and training-specific software</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Layer</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Core (every shared machine)</td>
+<td>Windows at the supported build, Microsoft 365 apps, Edge and one
+alternate browser, Adobe Acrobat Reader, Teams, Zoom where the
+organization licenses it, the print client (<a href="/sops/DEV-17">DEV-17</a>), and assistive
+technology — screen reader, magnifier and read-aloud — enabled and
+tested rather than merely installed.</td>
+</tr>
+<tr class="even">
+<td>Function layer (per lab)</td>
+<td>The software that defines what a lab is for: statistical packages,
+design and media suites, development toolchains, line-of-business
+applications. Recorded per lab, per quarter, in the lab register.</td>
+</tr>
+<tr class="odd">
+<td>Session layer (per quarter)</td>
+<td>Software requested by a staff member for a specific training
+programme in a specific quarter. Requested via §4.1, deployed to named
+labs, and removed when it is no longer required and its licence has
+lapsed.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="41-requesting-training-software--and-the-deadline">4.1
+Requesting training software — and the deadline</h3>
+<blockquote>
+<p><strong>The deadline is the whole mechanism</strong></p>
+<p>Recommended: training software requests close six weeks before the
+first day of the busy season. Count back six weeks from your own
+busy-season start. Confirm the exact dates against the organization’s
+calendar with the relevant department.</p>
+<p>A request arriving in the week before a busy season will not be in
+the lab in the week before a busy season, and saying so in advance is
+kinder than discovering it together on the first day of the busy season.
+Packaging, licensing and testing an unfamiliar application takes days of
+Tier 2 time that is already committed to the readiness runbook in
+§9.</p>
+<p>A deadline with no consequence is a suggestion. So: requests after
+the deadline are accepted, queued behind readiness work, and given an
+honest date — which will often be three weeks in.</p>
+</blockquote>
+<ol type="1">
+<li>Staff member raises the request via the department head, who
+confirms it is needed for a scheduled training session. This is the only
+approval, and it belongs to the department rather than to IT.</li>
+<li>The request names the application, the version, the labs and seats
+needed, the training session, and — critically — the licence: who holds
+it, how many seats, whether it needs a licence server or a hardware key,
+and who pays (<a href="/sops/DEV-11">DEV-11</a>).</li>
+<li>Tier 2 confirms the licence exists before any packaging work starts.
+Packaging software the organization is not licensed to run wastes the
+work and creates an exposure.</li>
+<li>Tier 2 packages it and deploys to one machine in the target
+configuration first. A silent installer that works on a technician’s
+laptop and fails under shared multi-user mode is the standard outcome,
+not the unusual one.</li>
+<li>The requesting staff member tests it on that machine and confirms it
+works for the actual exercise — not that it launches. This step is
+skipped constantly and it is the one that catches the licence prompt,
+the missing sample dataset and the feature that needs local admin.</li>
+<li>Deploy to the named labs. Record it in the lab register against the
+quarter.</li>
+<li>At the end of the engagement, review: still required next quarter,
+licence still valid, still installed. Software nobody has asked about
+for a year comes off, with notice to the department. No staff-installed
+software. There is no standing local admin on a shared machine (§3),
+which means the answer to “can I just install it myself” is no — and the
+reason is that an application installed on one machine in a lab of
+twenty-five produces a session where four people cannot do the exercise.
+<a href="/sops/DEV-11">DEV-11</a> is the route.</li>
+</ol>
+<h2
+id="5-cutover--from-the-ticketing-system-and-unmanaged-to-intune-managed">5.
+Cutover — from the ticketing system and unmanaged to Intune-managed</h2>
+<p>Rather than write a procedure that is wrong now or wrong later, both
+states are stated. The current-state text governs a given lab until that
+lab has passed §6.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Current state — governs today</th>
+<th>Target state — after per-lab cutover</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Management</td>
+<td>A mix: some machines the ticketing system-managed, some managed by
+Configuration Manager, some effectively unmanaged and maintained by
+hand.</td>
+<td>Intune-enrolled, Entra joined, shared multi-user configuration
+(§3).</td>
+</tr>
+<tr class="even">
+<td>Build method</td>
+<td>Imaging, per lab, by hand, with the image maintained locally.</td>
+<td>Provisioning from the management platform against the §3
+configuration, so a rebuild is a repeatable action rather than a craft
+skill.</td>
+</tr>
+<tr class="odd">
+<td>Software delivery</td>
+<td>the ticketing system packages, plus manual installs on individual
+machines.</td>
+<td>Intune app deployment. Every the ticketing system package for a lab
+application must be re-packaged and re-tested — this is the largest
+single item of work in the cutover and it should be estimated
+honestly.</td>
+</tr>
+<tr class="even">
+<td>Sign-in</td>
+<td>Mixed. Some labs use local or shared accounts.</td>
+<td>Organization credentials only. No local user accounts (§3).</td>
+</tr>
+<tr class="odd">
+<td>Patching</td>
+<td>the ticketing system-driven where managed; ad hoc where not.</td>
+<td>Update rings on the quiet-period and out-of-hours windows
+(<a href="/sops/DEV-13">DEV-13</a>).</td>
+</tr>
+<tr class="even">
+<td>Encryption and escrow</td>
+<td>Inconsistent, and labs are the least visible population in the
+escrow position.</td>
+<td>BitLocker with a verified escrowed key on every machine
+(<a href="/sops/DEV-03">DEV-03</a>).</td>
+</tr>
+<tr class="odd">
+<td>Inventory</td>
+<td>Partial and split across systems. The number of shared machines the
+organization operates is not currently a number anybody can state with
+confidence.</td>
+<td>One inventory, per room and seat, reconciled (<a href="/sops/DEV-01">DEV-01</a> §10).</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Cutover trigger — per lab, never estate-wide</strong></p>
+<p>A lab moves to target state when all five are true, and not
+before:</p>
+<ol type="1">
+<li><p>Every application in that lab’s function layer has been
+re-packaged, deployed and tested by somebody who trains with it (§4.1
+step 5).</p></li>
+<li><p>Printing works from the target configuration in that room, tested
+with the actual queues, not assumed (<a href="/sops/DEV-17">DEV-17</a>).</p></li>
+<li><p>One machine has run the full target configuration through a real
+session, and the staff member who ran it has said it worked.</p></li>
+<li><p>Escrow is verified for every machine in the lab, and the rebuild
+path has been tested once on a machine nobody needs.</p></li>
+<li><p>The rollback in §6 is available and has been tested — not merely
+written down.</p></li>
+</ol>
+<p>And one rule that overrides all of them: no lab cuts over during a
+busy period. The windows are your published quiet periods. The pilot is
+the vehicle for proving the configuration; it is not a licence to
+migrate a room mid-season because the pilot went well.</p>
+</blockquote>
+<p>Enforcing a control against a population that cannot yet satisfy it
+has a classic cost: a rushed phishing-resistant MFA rollout that leaves
+people stuck in an MFA setup loop (<a href="/sops/ACC-03">ACC-03</a> §11). The lab equivalent is a
+room of twenty-five people who cannot sign in, in front of the trainer,
+in week one. The order in §6 is what prevents it.</p>
+<h2 id="6-per-lab-migration-and-the-rollback">6. Per-lab migration, and
+the rollback</h2>
+<ol type="1">
+<li>Survey the lab: machine count, models, ages, current management
+state, the full application list, the peripherals, the print queues, and
+who presents in it. Write it down — this becomes the lab register
+entry.</li>
+<li>Identify everything that will not survive the move: the ticketing
+system-packaged applications, licence servers and hardware keys,
+room-control or screen-sharing software, locally-installed drivers,
+anything reading an old mapped network drive (<a href="/sops/M365-13">M365-13</a>), and any local
+account somebody depends on.</li>
+<li>Re-package and test the application set on one machine in the target
+configuration. Expect this to be the bulk of the elapsed time.</li>
+<li>Confirm hardware fitness. A machine that will not run the target
+configuration acceptably is a <a href="/sops/DEV-04">DEV-04</a> §8 refresh line, not a migration
+problem to be solved with effort.</li>
+<li>Migrate one machine. Leave it for a week of real use, in the room,
+with a notice on it inviting people to report anything odd.</li>
+<li>Migrate the remainder of the lab in one window, leaving one machine
+on the current-state build until exit is confirmed. That machine is the
+rollback (below) and the comparison.</li>
+<li>Run the §9 readiness check against the whole lab.</li>
+<li>Staff who present in the room confirm it works. Tier 4 records the
+lab as cut over, and the lab register entry is updated with the
+date.</li>
+<li>Retire the ticketing system management of those machines
+deliberately — an object left in the ticketing system after the machine
+is Intune-managed is exactly the two-sources-of-truth problem in <a href="/sops/DEV-02">DEV-02</a>
+§8.</li>
+</ol>
+<h3 id="61-rollback">6.1 Rollback</h3>
+<ul>
+<li>Rollback means restoring the lab to its pre-migration management and
+build. It is a decision for Tier 3 with Tier 4 informed, and it is not a
+failure — it is the reason step 6 leaves one machine alone.</li>
+<li>Trigger: sessions cannot proceed and the cause cannot be fixed
+within one coverage day. The threshold is deliberately about the people
+in the room, not about tidiness.</li>
+<li>Precondition: the current-state image for that lab is retained and
+known to work for the whole quarter following the migration. Deleting
+the old image the week after a migration removes the rollback and nobody
+notices until it is needed.</li>
+<li>Window: rollback is available up to the start of the busy period.
+Mid-season, the answer is to fix forward or to relocate the session,
+because rebuilding a room during a busy week is worse than the fault it
+is trying to undo.</li>
+<li>Every rollback is written up: what failed, why it was not caught in
+step 5, and what changes in this document as a result. A rollback with
+no write-up is a rollback the next lab repeats.</li>
+</ul>
+<h2 id="7-presenter-and-meeting-room-machines">7. Presenter and
+meeting-room machines</h2>
+<p>A presenter machine is not a lab machine, and configuring it as one
+causes a specific, humiliating failure: a presenter signed out
+mid-presentation.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Lab machine</th>
+<th>Presenter machine</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Who signs in</td>
+<td>A user, for one session.</td>
+<td>The presenter in the room, for the length of a session — and
+sometimes back-to-back sessions.</td>
+</tr>
+<tr class="even">
+<td>Idle sign-out</td>
+<td>15–30 minutes (§3).</td>
+<td>Never during a scheduled session. Sign-out at the end of the booked
+block, or at building close. A presenter who steps to the whiteboard for
+twenty minutes must not return to a sign-in screen.</td>
+</tr>
+<tr class="odd">
+<td>Local state</td>
+<td>Discarded at sign-out.</td>
+<td>Discarded at sign-out, with the same OneDrive rule — but the
+presenter needs to be able to open their material immediately, which
+makes OneDrive and the team site the only sane place for it to
+live.</td>
+</tr>
+<tr class="even">
+<td>Peripherals</td>
+<td>Keyboard, mouse, headset.</td>
+<td>The AV chain: projector or display, room audio, document camera,
+microphone, capture. All of it is <a href="/sops/DEV-18">DEV-18</a>, and most presenter faults are
+AV faults rather than computer faults.</td>
+</tr>
+<tr class="odd">
+<td>Patching and reboots</td>
+<td>Quiet-period and out-of-hours windows.</td>
+<td>The same window, and never in the ten minutes before a session. A
+pending-restart prompt at 9:25 is a P1 waiting to happen.</td>
+</tr>
+<tr class="even">
+<td>Failure impact</td>
+<td>One person moves to the next seat.</td>
+<td>A room of thirty watches. This is why presenter readiness is its own
+line in §9 and why the fault path in §10 is a meeting room emergency
+rather than a normal ticket.</td>
+</tr>
+<tr class="odd">
+<td>Spare provision</td>
+<td>One spare machine per lab (§10).</td>
+<td>A tested loaner laptop with the right adapters, reachable in minutes
+(<a href="/sops/DEV-05">DEV-05</a>).</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Every presentation room has a card at the presenter: how to sign in,
+how to select the display source, and the one number to call.
+Photographed by staff constantly, which is the sign it is the right
+artefact.</li>
+<li>The presenter machine is signed in by the presenter, never left
+signed in under a shared or departmental identity. A permanently
+signed-in presenter account is an unattributable identity in a public
+room.</li>
+<li>Guest speakers and external presenters: a sponsored identity where
+there is time (<a href="/sops/ACC-10">ACC-10</a>), otherwise the host presenter signs in and stays
+with the machine. Presenting from a personal laptop is legitimate and
+often the fastest answer — the room-side requirement is an adapter that
+works (<a href="/sops/DEV-18">DEV-18</a>).</li>
+</ul>
+<h2 id="8-printing-and-peripherals">8. Printing and peripherals</h2>
+<ul>
+<li>Printing from shared machines goes through the organization print
+service and its release stations. The full standard is <a href="/sops/DEV-17">DEV-17</a>; what
+belongs here is that printing is the single commonest cause of a lab
+being declared broken, and it is therefore an explicit line in the §9
+check and in the §5 cutover trigger.</li>
+<li>Queues are deployed by policy, not installed by users. A
+user-installed printer on one machine in a lab produces the “it works on
+that one” report that consumes an afternoon.</li>
+<li>After a cutover, print queues must be tested from the target
+configuration in the actual room. Driver behaviour under a shared,
+non-administrative session is not the same as under a technician’s
+session, and this is where cutovers most often disappoint.</li>
+<li>Scanners, document cameras, headsets and specialist peripherals are
+recorded per lab in the register, with their driver requirement, because
+a peripheral needing a manually-installed driver is a migration blocker
+that only shows up if somebody wrote it down.</li>
+</ul>
+<blockquote>
+<p><strong>Open — owner: Finance, with the relevant
+department</strong></p>
+<p>Print quotas: whether one exists, what it is, and who resets it. Tier
+1 is currently asked this and does not have a published answer, which
+turns a thirty-second question into a ticket.</p>
+<p>ACTION: a stated position, published in the same place as the
+shared-device use policy, and reflected in <a href="/sops/DEV-17">DEV-17</a>.</p>
+</blockquote>
+<h2 id="9-start-of-season-readiness--the-runbook">9. Start-of-season
+readiness — the runbook</h2>
+<p>This is the section that determines whether staff experience the
+organization’s IT as competent. It runs before every busy period, on a
+schedule, whether or not anything has changed — because the reason a lab
+fails in week one is almost never a change somebody made
+deliberately.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>When</th>
+<th>What</th>
+<th>Owner</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>T–8 weeks</td>
+<td>Confirm from the booking calendar which rooms and labs are in use,
+for what, and at what capacity. Ask the question rather than assuming
+last season repeats.</td>
+<td>Tier 2, with the room bookers</td>
+<td>Room and lab list for the season</td>
+</tr>
+<tr class="even">
+<td>T–6 weeks</td>
+<td>Training software deadline closes (§4.1). Licence checks
+complete.</td>
+<td>Tier 2, with department heads</td>
+<td>Confirmed software list per lab</td>
+</tr>
+<tr class="odd">
+<td>T–4 weeks</td>
+<td>Packaging and deployment. Staff testing of anything new (§4.1 step
+5).</td>
+<td>Tier 2</td>
+<td>Tested packages, staff sign-off</td>
+</tr>
+<tr class="even">
+<td>T–3 weeks</td>
+<td>Patch and reboot every shared machine. Verify check-in, compliance
+and escrow across the whole shared estate (<a href="/sops/DEV-02">DEV-02</a>, <a href="/sops/DEV-03">DEV-03</a>).</td>
+<td>Tier 2 / Tier 3</td>
+<td>Three-number position: ready, faults, never checked in</td>
+</tr>
+<tr class="odd">
+<td>T–2 weeks</td>
+<td>Physical walk-through of every room: power on every machine, sign
+in, print, test the AV chain, test peripherals, check labels and
+cards.</td>
+<td>Tier 2</td>
+<td>Per-room checklist (Appendix A)</td>
+</tr>
+<tr class="even">
+<td>T–1 week</td>
+<td>Fix the defect list. Anything unfixable gets a stated workaround and
+the affected staff are told before the busy season, by name.</td>
+<td>Tier 2, escalating to Tier 3</td>
+<td>Closed defects, communicated exceptions</td>
+</tr>
+<tr class="odd">
+<td>T–2 days</td>
+<td>Final sweep: reboot everything, confirm nothing is sitting on a
+pending-restart prompt, confirm no update deadline lands inside week
+one.</td>
+<td>Tier 2</td>
+<td>Green list issued to the relevant department</td>
+</tr>
+<tr class="even">
+<td>Week 1</td>
+<td>Named person reachable for meeting room faults, with a spare machine
+and a loaner laptop staged (§10).</td>
+<td>Tier 2</td>
+<td>Week-one fault log</td>
+</tr>
+<tr class="odd">
+<td>End of week 2</td>
+<td>Review the week-one fault log against the T–2 week checklist. Every
+fault that the checklist should have caught becomes a new line in
+Appendix A.</td>
+<td>Tier 2 / Tier 4</td>
+<td>Revised checklist</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Two rules that make the difference between a runbook and a
+ritual</strong></p>
+<p>Somebody physically sits at every machine and signs in as a user
+would. Remote checks confirm a machine is reporting; they do not confirm
+that the seat works. The faults that ruin week one — a dead keyboard, a
+monitor input on the wrong source, a print queue that prompts for
+credentials, a projector that no longer syncs — are all invisible to a
+management console.</p>
+<p>The week-one fault log feeds back into the checklist. A readiness
+check that never grows is a readiness check that keeps missing the same
+things. This is the mechanism by which this document actually
+improves.</p>
+</blockquote>
+<h2 id="10-faults-spares-and-the-loaner-path">10. Faults, spares and the
+loaner path</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>Priority and route</th>
+<th>What is expected to happen</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Presenter or meeting room machine fails during a scheduled
+session</td>
+<td>P1 meeting room emergency to Tier 2, by phone rather than a ticket
+first.</td>
+<td>Somebody comes to the room. Where the fix is not immediate, the
+staged loaner laptop and adapter go in and the session continues
+(<a href="/sops/DEV-05">DEV-05</a>). The ticket is raised afterwards — the room first, the record
+second.</td>
+</tr>
+<tr class="even">
+<td>One lab machine faulty, session in progress</td>
+<td>Not an emergency. The person moves to the spare seat.</td>
+<td>Reported against the machine name, fixed in the next window, and the
+machine is labelled out of service so the next session does not
+rediscover it.</td>
+</tr>
+<tr class="odd">
+<td>A lab-wide fault — nobody can sign in, print or reach a licence
+server</td>
+<td>P1 to Tier 2, escalating to Tier 3 if authentication, network or a
+licence server is involved.</td>
+<td>Treated as an outage, with the affected staff told directly rather
+than left to work it out from the room.</td>
+</tr>
+<tr class="even">
+<td>A machine repeatedly faulty</td>
+<td>Tier 2 pulls it from service.</td>
+<td>Three faults in a quarter is a hardware replacement line (<a href="/sops/DEV-04">DEV-04</a>
+§8), not a fourth repair. Recurring faults on the same units is exactly
+the pattern that damaged the loaner pool’s reputation.</td>
+</tr>
+<tr class="odd">
+<td>Software missing or broken for an exercise</td>
+<td>P2 to Tier 2 with the session and its date.</td>
+<td>Honest answer within the coverage day: fixed before the session, or
+an alternative for it. Not silence.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Spares: recommend one spare machine per twenty seats in each lab,
+built to the same configuration and kept powered on so that it patches
+and reports. A spare in a cupboard is a machine three months behind on
+updates that will not sign in when it is finally needed.</li>
+<li>Loaners for presenters: at least one tested laptop with the standard
+adapter set, staged and checked weekly during busy periods (<a href="/sops/DEV-05">DEV-05</a> §3).
+A loaner that fails in front of a room is worse than no loaner.</li>
+<li>A faulty shared machine is retired through <a href="/sops/DEV-15">DEV-15</a> like any other
+device — escrowed key handled, disk wiped, inventory closed. Labs are
+where machines quietly disappear from the record.</li>
+</ul>
+<h2 id="11-service-levels">11. Service levels</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Commitment (per <a href="/sops/GOV-06">GOV-06</a>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Meeting room or presenter failure during a scheduled session</td>
+<td>P1 — attend the room within 15 minutes in Normal capacity; loaner in
+place within 30.</td>
+</tr>
+<tr class="even">
+<td>Lab-wide fault, no session in progress</td>
+<td>P2 — 4 coverage hours.</td>
+</tr>
+<tr class="odd">
+<td>Single lab machine faulty</td>
+<td>P3 — next maintenance window, machine labelled out of service same
+day.</td>
+</tr>
+<tr class="even">
+<td>Training software request received by the §4.1 deadline</td>
+<td>Deployed and staff-tested before the busy period starts.</td>
+</tr>
+<tr class="odd">
+<td>Training software request received after the deadline</td>
+<td>Accepted, queued behind readiness work, with an honest date given
+within 2 coverage days.</td>
+</tr>
+<tr class="even">
+<td>Start-of-season readiness runbook (§9)</td>
+<td>Before every busy period, on the schedule. Not compressible — a
+shortened readiness cycle is paid for in week one.</td>
+</tr>
+<tr class="odd">
+<td>Per-lab cutover (§6)</td>
+<td>Scheduled in quiet periods only. Never during a busy period.</td>
+</tr>
+<tr class="even">
+<td>Rollback decision</td>
+<td>Within one coverage day of the trigger (§6.1).</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="12-records">12. Records</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Record</th>
+<th>Held in</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Lab register: room, seats, machines, software, peripherals, print
+queues</td>
+<td>IT register</td>
+<td>Live, revised per quarter</td>
+</tr>
+<tr class="even">
+<td>Per-quarter software requests and staff test sign-off</td>
+<td>Ticket</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Per-lab cutover record, with the trigger conditions evidenced</td>
+<td>Ticket + Tier 4 record</td>
+<td>7 years</td>
+</tr>
+<tr class="even">
+<td>Rollback decisions and write-ups</td>
+<td>Tier 4 record</td>
+<td>7 years</td>
+</tr>
+<tr class="odd">
+<td>Start-of-season readiness checklists, completed</td>
+<td>IT record</td>
+<td>3 years</td>
+</tr>
+<tr class="even">
+<td>Week-one fault logs and the checklist revisions they produced</td>
+<td>IT record</td>
+<td>3 years</td>
+</tr>
+<tr class="odd">
+<td>Escrow verification for shared machines</td>
+<td>Per <a href="/sops/DEV-03">DEV-03</a></td>
+<td>Per <a href="/sops/DEV-03">DEV-03</a></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13-related-documents">13. Related documents</h2>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Title</th>
+<th>Relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Use policy</td>
+<td>Your organization's computer and shared-device use policy</td>
+<td>The governing policy. This document operationalises it and is
+subordinate to it.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-01">DEV-01</a></td>
+<td>Device Enrollment &amp; Lifecycle</td>
+<td>Shared devices are a device class in it; §5 depends on its inventory
+reconciliation.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-02">DEV-02</a></td>
+<td>Device Compliance &amp; Configuration Baseline</td>
+<td>§4 records shared and training-room devices as “provisional pending
+DEV-06”. §3 here is what that becomes.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-03">DEV-03</a></td>
+<td>Disk Encryption &amp; BitLocker Recovery Key Handling</td>
+<td>Labs are the population most easily missed by an escrow sweep.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-04">DEV-04</a></td>
+<td>Standard Hardware Catalog, Request &amp; Refresh Cycle</td>
+<td>Shared machines are not in that catalogue; their replacement is
+still a refresh line in its §8.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-05">DEV-05</a></td>
+<td>Loaner Device Issue, Support &amp; Return</td>
+<td>The staged presenter loaner, and the pre-issue check that makes it
+trustworthy.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-11">DEV-11</a></td>
+<td>Software Request, Approval, Licensing &amp; Deployment</td>
+<td>The route for §4. No staff-installed software.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-12">DEV-12</a></td>
+<td>Local Administrator Rights on Endpoints</td>
+<td>§3 — no standing admin, and the per-device break-glass account.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-13">DEV-13</a></td>
+<td>Patch, Update &amp; Maintenance Window Standard</td>
+<td>The busy-season window. Never during booked hours.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-14">DEV-14</a></td>
+<td>Endpoint Security Agent &amp; MDR Escalation Standard</td>
+<td>Shared machines are the highest-exposure population.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-15">DEV-15</a></td>
+<td>Device Reassignment, Wipe, Retirement &amp; Disposal</td>
+<td>Where a retired lab machine goes.</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/DEV-17">DEV-17</a></td>
+<td>Printer, Copier &amp; Peripheral Standard</td>
+<td>Printing — §8, and the cutover trigger.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/DEV-18">DEV-18</a></td>
+<td>Conference &amp; Meeting Room AV Standard</td>
+<td>The AV chain around a presenter machine (§7).</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/M365-12">M365-12</a></td>
+<td>OneDrive Appropriate Use &amp; Institutional Data Boundary</td>
+<td>Where user work is saved, since the local disk keeps nothing.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/M365-13">M365-13</a></td>
+<td>File Share Retirement Runbook</td>
+<td>Old mapped drives in lab builds are a migration blocker (§6 step
+2).</td>
+</tr>
+<tr class="even">
+<td><a href="/sops/GOV-04">GOV-04</a></td>
+<td>Change Management &amp; Maintenance Windows</td>
+<td>A lab cutover is a change with a room full of witnesses.</td>
+</tr>
+<tr class="odd">
+<td><a href="/sops/GOV-06">GOV-06</a></td>
+<td>Service Commitments, Priority &amp; Escalation</td>
+<td>Supplies §11.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-a--start-of-season-lab-readiness-checklist">Appendix A
+— Start-of-season lab readiness checklist</h2>
+<p>One sheet per room, completed at the machine by a person sitting in
+the seat. Every fault found in week one that this sheet should have
+caught becomes a new line on it (§9).</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>✓</th>
+<th>Check</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>☐</td>
+<td>Room and seat labels present and legible from the seat</td>
+<td>Walk-through</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Every machine powers on, and none is sitting on a pending-restart or
+update prompt</td>
+<td>Sign-in at the seat</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Sign-in with a real organization test account completes in under 60
+seconds</td>
+<td>Timed, at the seat</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>OneDrive known-folder redirection active; a test file saves and
+appears elsewhere</td>
+<td>Test file</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Sign-out clears the profile; the next sign-in shows no trace of the
+previous session</td>
+<td>Sign in twice</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Every application in the lab’s software list launches and opens a
+real file</td>
+<td>Per-application tick</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Training software for this quarter present on every seat that needs
+it</td>
+<td>Software list vs seat count</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Licence servers and hardware keys reachable, with no expiry inside
+the quarter</td>
+<td>Launch test + licence date</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Print queues present, and a test page releases at the station
+without a credential prompt</td>
+<td>Printed page</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Peripherals work: keyboard, mouse, headset, scanner, document camera
+as applicable</td>
+<td>Per-device tick</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Assistive technology present and functional, not merely
+installed</td>
+<td>Launch test</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Compliant in Intune, checked in within 14 days, no unresolved
+conditions (<a href="/sops/DEV-02">DEV-02</a>)</td>
+<td>Console</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>BitLocker on, recovery key escrowed and verified for every machine
+(<a href="/sops/DEV-03">DEV-03</a> §5)</td>
+<td>Console</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Defender onboarded, healthy and reporting (<a href="/sops/DEV-14">DEV-14</a>)</td>
+<td>Console</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>No standing local admin; break-glass account password escrowed and
+rotated (<a href="/sops/DEV-12">DEV-12</a>)</td>
+<td>Console</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Update ring set to the busy-season window; no deadline falls inside
+the first two weeks (<a href="/sops/DEV-13">DEV-13</a>)</td>
+<td>Console</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>No local user accounts, no Guest account, no saved browser
+credentials</td>
+<td>At the machine</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Idle sign-out timing correct for the room type (§3, §7)</td>
+<td>Console + observed</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Spare machine present, powered, patched and to the same build
+(§10)</td>
+<td>At the machine</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Presenter rooms: AV chain tested end to end — display, audio,
+document camera, capture (<a href="/sops/DEV-18">DEV-18</a>)</td>
+<td>Observed</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>Presenter rooms: sign-in card at the presenter, current, with the
+right number on it</td>
+<td>Walk-through</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Save-your-work-to-OneDrive card at each seat or on the sign-in
+screen (§2)</td>
+<td>Walk-through</td>
+</tr>
+<tr class="odd">
+<td>☐</td>
+<td>People presenting in this room told of any unresolved defect, by
+name, before the busy season</td>
+<td>Email on the ticket</td>
+</tr>
+<tr class="even">
+<td>☐</td>
+<td>Room signed off; defects with owners and dates recorded</td>
+<td>Tier 2 signature</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="appendix-b--training-software-request-card">Appendix B —
+Training software request card</h2>
+<p>Raised by the staff member through the department head, six weeks
+before the busy period starts (§4.1). A request missing the licence rows
+cannot be started.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Training programme or session</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Quarter, and first date it is needed in a session</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Application, exact version</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Labs and number of seats</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Licence: who holds it, how many seats, expiry</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Licence server or hardware key required?</td>
+<td>YES / NO — if yes, details</td>
+</tr>
+<tr class="odd">
+<td>Cost, and which budget pays</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Does it need administrative rights to run?</td>
+<td>YES / NO — if yes, say what it does, because this may not be
+deployable as requested</td>
+</tr>
+<tr class="odd">
+<td>Sample data or configuration needed for the exercise</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Staff member who will test it (§4.1 step 5)</td>
+<td>Name — the test is on the target machine, doing the real
+exercise</td>
+</tr>
+<tr class="odd">
+<td>Department head confirmation</td>
+<td>Name, date</td>
+</tr>
+<tr class="even">
+<td>— IT use —</td>
+<td>Licence verified · packaged · tested on target build · staff
+sign-off · labs deployed · register updated</td>
+</tr>
+</tbody>
+</table></div>
+<div class="foot">Part of the Known Good SOP Catalog by Kevin Zelman, written for small IT shops, contractors and consultants, career-changers and help desk technicians. Adapt the names, tiers and times to your own shop: the times here are cushion, not a promise. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</div></main></body></html>
