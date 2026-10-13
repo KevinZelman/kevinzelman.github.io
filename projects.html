@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects — Kevin Zelman</title>
-  <meta name="description" content="Free tools and references built by Kevin Zelman, including the Known Good Process Tree: an interactive help desk reference anyone can use." />
+  <meta name="description" content="Free tools and live demos built by Kevin Zelman: the Known Good Process Tree help desk reference and the Account Manager demo." />
   <meta name="author" content="Kevin Zelman" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kevinzelman.github.io/projects.html" />
@@ -50,6 +50,23 @@
               <li><a href="https://github.com/KevinZelman/process-tree" target="_blank" rel="noopener">Source on GitHub ↗</a></li>
             </ul>
           </li>
+          <li class="has-sub">
+            <button class="dd-label" type="button" aria-expanded="false" aria-haspopup="true"><span>Account Manager demo<small>Try the account console in your browser</small></span><span class="caret" aria-hidden="true">▸</span></button>
+            <ul class="dd-sub">
+              <li><a href="/account-manager-demo/">Open the live demo</a></li>
+              <li class="sep" role="separator"></li>
+              <li class="grp">Jump to</li>
+              <li><a href="/account-manager-demo/#people">People</a></li>
+              <li><a href="/account-manager-demo/#service-desk">Service Desk</a></li>
+              <li><a href="/account-manager-demo/#investigate">Investigate</a></li>
+              <li><a href="/account-manager-demo/#tenant">Tenant</a></li>
+              <li><a href="/account-manager-demo/#lifecycle">Lifecycle</a></li>
+              <li><a href="/account-manager-demo/#admin">Admin</a></li>
+              <li><a href="/account-manager-demo/guide.html">Companion guide</a></li>
+              <li class="sep" role="separator"></li>
+              <li><a href="https://github.com/KevinZelman/account-manager-demo" target="_blank" rel="noopener">Source on GitHub ↗</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
       <a href="mentoring.html">Mentoring</a>
@@ -65,7 +82,7 @@
       <div class="hero-cta">
         <a class="btn btn-primary" href="/process-tree/">Open the Process Tree</a>
         <a class="btn" href="/process-tree/help.html">See the help center</a>
-        <a class="btn btn-ghost" href="https://github.com/KevinZelman/process-tree" target="_blank" rel="noopener">View on GitHub ↗</a>
+        <a class="btn btn-ghost" href="/account-manager-demo/">Try the Account Manager demo</a>
       </div>
     </div>
   </section>
@@ -134,7 +151,50 @@
       </div>
     </section>
 
-    <section id="more" class="section">
+
+    <section id="account-manager" class="section">
+      <div class="section-head reveal">
+        <span class="kicker">Account Manager · live demo</span>
+        <h2>One window for AD and Entra accounts</h2>
+      </div>
+      <div class="project-hero">
+        <div class="reveal">
+          <p>Account Manager is a Windows console for small IT teams: unlock, reset, lock down and offboard people across on-prem Active Directory and Microsoft Entra in one place, with mailbox tools and threat triage alongside.</p>
+          <p>The live demo runs in your browser with invented people at a fictional organization. Every button works against that sample data, including the failures, so you can see how each error explains what happened and what to try next.</p>
+          <p>The companion guide shows how to do every action by hand: the admin portal path and the PowerShell.</p>
+          <div class="hero-cta"><a class="btn btn-primary" href="/account-manager-demo/">Open the live demo</a><a class="btn" href="/account-manager-demo/guide.html">Companion guide</a></div>
+        </div>
+        <aside class="card about-card reveal">
+          <span class="badge">Demo · sample data</span>
+          <h3>At a glance</h3>
+          <ul class="facts">
+            <li><span>What</span><strong>AD + Entra account console</strong></li>
+            <li><span>Editions</span><strong>Service Desk · Management</strong></li>
+            <li><span>Demo</span><strong>Runs in your browser, never signs in</strong></li>
+            <li><span>Product</span><strong>Licensed separately</strong></li>
+          </ul>
+        </aside>
+      </div>
+      <div class="jump" style="margin-top:28px">
+        <a class="card reveal" href="/account-manager-demo/#people">
+          <h3>People</h3>
+          <p>Search both directories, then unlock, enable, disable, reset or lock down. Each side reports on its own.</p>
+          <span class="go">Try People →</span>
+        </a>
+        <a class="card reveal" href="/account-manager-demo/#investigate">
+          <h3>Investigate</h3>
+          <p>Sign-ins flagged only when the country and browser are both new, plus incidents and audit sweeps.</p>
+          <span class="go">Try Investigate →</span>
+        </a>
+        <a class="card reveal" href="/account-manager-demo/#lifecycle">
+          <h3>Lifecycle</h3>
+          <p>Offboarding in one pass with a per-step report, and a retry that repeats only the step that failed.</p>
+          <span class="go">Try Lifecycle →</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="more" class="section section-alt">
       <div class="section-head reveal">
         <span class="kicker">Go deeper</span>
         <h2>The full SOP catalogue</h2>
