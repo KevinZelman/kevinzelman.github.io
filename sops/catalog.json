@@ -4,440 +4,1363 @@
   "name": "Account Lifecycle: Joiner, Mover, Leaver",
   "lede": "How an identity at the organization is created, changed and removed so that access always matches a person\u2019s current relationship with the organization.",
   "domain": "ACC",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 2 \u2014 Advanced Technical Services. Onboarding prep already sits with Tier 2 under the published tier model. Tier 4 owns this document.",
+  "sections": [
+   "Systems of record and account classes",
+   "Joiner procedure",
+   "Mover procedure",
+   "Leaver procedure",
+   "Joiner checklist",
+   "Mover checklist",
+   "Leaver checklist"
+  ],
+  "pdf": "ACC-01-Account-Lifecycle-Joiner-Mover-Leaver.pdf"
  },
  {
   "id": "ACC-02",
   "name": "Account Naming, UPN & Identifier Standard",
   "lede": "What every class of account is called, and how departmental access for temporary workers is structured \u2014 presented as Option A and Option B pending decision.",
   "domain": "ACC",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 3 \u2014 Expert Services (\u201cthe attic\u201d, the Tier 3 escalation address). Identity architecture is Tier 3 work. Tier 4 owns this document.",
+  "sections": [
+   "Naming rules that are not in question",
+   "Departmental access for temporary workers",
+   "Recommendation",
+   "Migration path, if Option B is adopted",
+   "Rules that apply under either option",
+   "Prohibited patterns",
+   "Change control for this standard",
+   "Naming quick reference",
+   "Decision matrix for executive leadership"
+  ],
+  "pdf": "ACC-02-Account-Naming-UPN-and-Identifier-Standard.pdf"
  },
  {
   "id": "ACC-03",
   "name": "MFA Enrollment, Reset & Account Recovery",
   "lede": "How multifactor authentication is registered, how a person who cannot sign in is verified and restored, and how repeat incidents escalate.",
   "domain": "ACC",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who it's for",
+  "who": "All account holders for sections 5 and 7. Service desk and IT administrators for sections 6, 8, 9 and 10.",
+  "sections": [
+   "Current state, target state and the cutover trigger",
+   "MFA enrollment",
+   "Identity verification before any account action",
+   "Password reset",
+   "Lockout triage",
+   "Repeat-incident and compromise escalation",
+   "Risky sign-in and impossible travel",
+   "Phishing-resistant MFA rollout",
+   "Help desk verification script",
+   "Lockout triage card",
+   "End-user quick reference"
+  ],
+  "pdf": "ACC-03-MFA-Enrollment-Reset-and-Account-Recovery.pdf"
  },
  {
   "id": "ACC-04",
   "name": "Password Standard & Self-Service Password Reset",
   "lede": "What a password must be, why one gets rejected, and how a person resets their own without contacting anybody.",
   "domain": "ACC",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 1 \u2014 the Service Desk (\u201cthe front door\u201d, the service desk address). Configuration is Tier 3; the conversation is Tier 1\u2019s.",
+  "sections": [
+   "The password standard",
+   "Why a password gets rejected",
+   "Self-service password reset",
+   "What Tier 1 can see, and what it cannot",
+   "Assisted reset",
+   "Desk card: \u201cwhy was my password rejected?\u201d",
+   "End-user text for publication"
+  ],
+  "pdf": "ACC-04-Password-Standard-and-Self-Service-Password-Reset.pdf"
  },
  {
   "id": "ACC-05",
   "name": "Account Lockout Triage & Repeat-Incident Escalation",
   "lede": "How to tell apart the five different things people report as \u201clocked out\u201d, and what happens when the same account comes back.",
   "domain": "ACC",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 1 \u2014 the Service Desk. Escalates to Tier 2 Account Services, which holds the directory permissions.",
+  "sections": [
+   "The five causes, and how to tell them apart",
+   "Cause by cause",
+   "The one that looks like a lockout and is not",
+   "Repeat-incident escalation",
+   "Escalating properly",
+   "Recording",
+   "Triage card",
+   "Repeat-incident ladder card"
+  ],
+  "pdf": "ACC-05-Account-Lockout-Triage-and-Repeat-Incident-Escalation.pdf"
  },
  {
   "id": "ACC-06",
   "name": "Identity Verification Before Any Account Action",
   "lede": "How IT establishes that a person asking for access is who they say they are, before anyone touches the account.",
   "domain": "ACC",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 1 \u2014 the Service Desk, and every tier that touches an account. No tier is exempt.",
+  "sections": [
+   "The rule",
+   "The four verification tiers",
+   "What each tier requires in practice",
+   "Requests that are never actioned",
+   "Harder cases",
+   "Privileged accounts",
+   "Recording",
+   "Pressure, and what to do about it",
+   "Training and refresh",
+   "The verification script",
+   "What to say when declining"
+  ],
+  "pdf": "ACC-06-Identity-Verification-Before-Any-Account-Action.pdf"
  },
  {
   "id": "ACC-07",
   "name": "Privileged & Administrative Account Standard",
   "lede": "How the accounts that can change everything are created, authenticated, used and reviewed.",
   "domain": "ACC",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 3 \u2014 Expert Services. Tier 4 approves every assignment.",
+  "sections": [
+   "What counts as privileged",
+   "Separate identities",
+   "Authentication",
+   "Assigning a role",
+   "Break-glass accounts",
+   "Using a privileged account",
+   "Privileged account checklist"
+  ],
+  "pdf": "ACC-07-Privileged-and-Administrative-Account-Standard.pdf"
  },
  {
   "id": "ACC-08",
   "name": "Service, Application & Non-Human Account Standard",
   "lede": "The identities that are not people \u2014 which kind to use, who owns them, how their credentials are held and rotated, and how they end.",
   "domain": "ACC",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 3 \u2014 Expert Services creates, holds and reviews every non-human identity. Tier 4 approves any privileged assignment and every multifactor exemption. Tier 1 and Tier 2 act on this document only by refusing an interactive sign-in request and escalating it.",
+  "sections": [
+   "The four kinds of non-human identity",
+   "Which one to use",
+   "The owner",
+   "The register, and naming",
+   "Credentials, rotation, and the 3am expiry",
+   "Sign-in, and the multifactor exemptions that hide here",
+   "Permissions, consent, and standing Global Administrator",
+   "Where a secret must never be",
+   "When the owner leaves",
+   "Decommissioning",
+   "The register: mandatory fields",
+   "New non-human identity checklist"
+  ],
+  "pdf": "ACC-08-Service-Application-and-Non-Human-Account-Standard.pdf"
  },
  {
   "id": "ACC-09",
   "name": "Temporary Worker & Departmental Access Standard",
   "lede": "How a temporary worker employed by a department gets the access their job needs, and how it ends at the end of the engagement.",
   "domain": "ACC",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 2 \u2014 Advanced Technical Services.",
+  "sections": [
+   "Two relationships, expiring independently",
+   "How access is provisioned",
+   "Requesting it",
+   "What a temporary worker may and may not hold",
+   "The engagement boundary",
+   "When employment ends mid-engagement",
+   "Supervision and training",
+   "Engagement-start card",
+   "End-of-engagement card"
+  ],
+  "pdf": "ACC-09-Temporary-Worker-and-Departmental-Access-Standard.pdf"
  },
  {
   "id": "ACC-10",
   "name": "Guest & Sponsored External Account Standard",
   "lede": "Which kind of identity an outsider should have, who sponsors it, and how it ends. The account side of external collaboration.",
   "domain": "ACC",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 2 \u2014 Advanced Technical Services creates and manages; Tier 3 owns the tenant identity configuration.",
+  "sections": [
+   "Choosing the right kind of identity",
+   "The sponsor",
+   "Creating a guest",
+   "What a guest is not",
+   "Expiry, renewal and removal",
+   "Identity configuration",
+   "Which identity does this person need?"
+  ],
+  "pdf": "ACC-10-Guest-and-Sponsored-External-Account-Standard.pdf"
  },
  {
   "id": "ACC-11",
   "name": "Vendor, Contractor & Consultant Account Standard",
   "lede": "The account class for people who work with the organization but not for it \u2014 the sponsor, the expiry that is not negotiable, and the day the relationship quietly changes.",
   "domain": "ACC",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 3 \u2014 Expert Services holds vendor identities and all vendor privileged access. Tier 4 approves standing privileged access and every exception. Tier 2 creates and ends the routine contractor account.",
+  "sections": [
+   "Which account class",
+   "The sponsor",
+   "The expiry date is the contract date",
+   "When the relationship changes",
+   "Vendor access to servers: standing, scheduled or just-in-time",
+   "Vendor privileged access requirements",
+   "What the organization requires before access is granted",
+   "The quarterly vendor access review",
+   "Offboarding at contract end",
+   "Vendor & contractor access request",
+   "Class-change record"
+  ],
+  "pdf": "ACC-11-Vendor-Contractor-and-Consultant-Account-Standard.pdf"
  },
  {
   "id": "ACC-12",
   "name": "Separation, Retiree & Former-Member Disposition",
   "lede": "What a person keeps after they stop working here, for how long, and who decides. The identity side of leaving.",
   "domain": "ACC",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 4 \u2014 the disposition classes are an executive-level policy question. Tier 3 configures; Tier 2 executes the individual case.",
+  "sections": [
+   "The disposition classes",
+   "What each class actually gets",
+   "Retirees and long-service affiliates",
+   "Former members and alumni",
+   "The awkward cases",
+   "Announcing it, and the courtesy that costs nothing",
+   "What is never granted",
+   "Disposition decision sheet"
+  ],
+  "pdf": "ACC-12-Separation-Retiree-and-Former-Member-Disposition.pdf"
  },
  {
   "id": "ACC-13",
   "name": "Account Suspension for Misuse or Policy Investigation",
   "lede": "IT contains. The department head, HR or senior leadership sanctions. What the organization suspends, on what basis, what it hands over, and what the person is told.",
   "domain": "ACC",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 4 \u2014 IT Management authorises every suspension beyond immediate containment, and owns every referral. Tier 3 executes and assembles the evidence. Tier 1 and Tier 2 contain and escalate; they do not suspend and they do not refer.",
+  "sections": [
+   "The distinction this document exists to protect",
+   "Who decides what",
+   "The ladder",
+   "Containment",
+   "Evidence, and the discipline of not over-claiming",
+   "The referral packet",
+   "Notification",
+   "What the person is told, and the right of appeal",
+   "What IT will not do",
+   "Restoration",
+   "Policy investigations",
+   "The referral packet template",
+   "Notice to the account holder"
+  ],
+  "pdf": "ACC-13-Account-Suspension-for-Misuse-or-Policy-Investigation.pdf"
  },
  {
   "id": "ACC-14",
   "name": "Mailbox & Calendar Delegation Standard",
   "lede": "Delegation, shared mailboxes and send-as are three different things. Choosing the wrong one is the most common access request the desk receives.",
   "domain": "ACC",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 2 \u2014 Advanced Technical Services grants and removes. Tier 1 answers the \u201cwhich one do I need?\u201d question using \u00a72.",
+  "sections": [
+   "The four things people mean by \u201caccess to their email\u201d",
+   "Choosing correctly",
+   "How delegation is requested",
+   "Calendar delegation and the visibility question",
+   "Send-as and send-on-behalf",
+   "Absence, illness and departure",
+   "Review and removal",
+   "Delegation request form",
+   "For end users: setting up delegation yourself"
+  ],
+  "pdf": "ACC-14-Mailbox-and-Calendar-Delegation-Standard.pdf"
  },
  {
   "id": "ACC-15",
   "name": "Acceptable Use & Credential-Sharing Standard",
   "lede": "What this standard adds to the organization\u2019s existing acceptable use policy \u2014 and how IT applies it when something goes wrong.",
   "domain": "ACC",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 4 \u2014 IT Management owns the policy relationship; every tier applies it.",
+  "sections": [
+   "The three things this standard adds",
+   "Credentials are not transferable",
+   "What IT will never ask you for",
+   "When it goes wrong",
+   "Monitoring, and being straight about it",
+   "Making it findable",
+   "The short version, for publication"
+  ],
+  "pdf": "ACC-15-Acceptable-Use-and-Credential-Sharing-Standard.pdf"
  },
  {
   "id": "ACC-16",
   "name": "Application Onboarding, SSO & SAML Claims Standard",
   "lede": "What IT needs before an application is federated, which protocol it gets, the claim set every application receives \u2014 and how an application moves from one identity provider to another without breaking on the day.",
   "domain": "ACC",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 3 \u2014 Expert Services owns federation, claim configuration and the identity provider. Tier 4 approves every cutover of an application already in use. Tier 1 and Tier 2 do not configure federation, and should not be asked to.",
+  "sections": [
+   "The intake",
+   "Choosing the protocol",
+   "The organization\u2019s claims standard",
+   "NameID",
+   "Group and role claims, and the claim-size limit",
+   "Provisioning and deprovisioning",
+   "Current state, target state, and migrating an application",
+   "Authentication strength and vendor MFA deadlines",
+   "The application register",
+   "Application onboarding intake form",
+   "SAML claim mapping worksheet"
+  ],
+  "pdf": "ACC-16-Application-Onboarding-SSO-and-SAML-Claims-Standard.pdf"
  },
  {
   "id": "ACC-17",
   "name": "Periodic Access Review & Entitlement Recertification",
   "lede": "Without recertification, every grant becomes permanent by default. What is reviewed, on what cycle, by whom \u2014 and what actually happens when nobody answers.",
   "domain": "ACC",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 4 \u2014 IT Management owns the cycle and receives the annual report. Tier 3 produces the lists; Tier 2 executes the removals. No tier of IT decides whether a person still needs access.",
+  "sections": [
+   "What is reviewed, and how often",
+   "Who reviews",
+   "The review packet",
+   "What \u201cno response\u201d means",
+   "Remediation, and its service level",
+   "Exceptions",
+   "Evidencing the review",
+   "The annual report to Tier 4",
+   "The reviewer\u2019s one-page instruction sheet"
+  ],
+  "pdf": "ACC-17-Periodic-Access-Review-and-Entitlement-Recertification.pdf"
  },
  {
   "id": "DEV-01",
   "name": "Device Enrollment & Lifecycle",
   "lede": "How an organization-owned endpoint is enrolled, made compliant, assigned, reassigned and retired \u2014 through a move to Intune and after it.",
   "domain": "DEV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who it's for",
+  "who": "IT administrators and desktop support. Section 10 and Appendix C are used by the service desk.",
+  "sections": [
+   "Current state, target state and the cutover trigger",
+   "Device classes and target configuration",
+   "Enrollment paths",
+   "Definition of done",
+   "Wave runbook for existing devices",
+   "BitLocker key escrow verification and remediation",
+   "Assignment, primary user and the inventory record",
+   "Reassignment, retirement and disposal",
+   "Per-device enrollment checklist",
+   "Wave runbook checklist",
+   "Escrow verification and remediation card"
+  ],
+  "pdf": "DEV-01-Device-Enrollment-and-Lifecycle.pdf"
  },
  {
   "id": "DEV-02",
   "name": "Device Compliance & Configuration Baseline",
   "lede": "What \u201ccompliant\u201d means as a testable list \u2014 settled before Conditional Access starts enforcing it.",
   "domain": "DEV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 3 \u2014 Expert Services designs the baseline; Tier 2 applies and remediates.",
+  "sections": [
+   "The lesson this document is built on",
+   "The baseline",
+   "By device class",
+   "Rolling it out",
+   "What non-compliance does, and what the user sees",
+   "Grace periods and exceptions",
+   "Co-management",
+   "Baseline checklist"
+  ],
+  "pdf": "DEV-02-Device-Compliance-and-Configuration-Baseline.pdf"
  },
  {
   "id": "DEV-03",
   "name": "Disk Encryption & BitLocker Recovery Key Handling",
   "lede": "How organization devices are encrypted, how recovery keys are held, and how to find and fix a device whose key is not where it should be.",
   "domain": "DEV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 2 \u2014 Advanced Technical Services. Key retrieval for a user is Tier 1 or Tier 2; policy and remediation design is Tier 3.",
+  "sections": [
+   "The three states the estate is in",
+   "The standard",
+   "How escrow actually works, and how it silently fails",
+   "Verification",
+   "Remediation",
+   "Retrieving a key for a user",
+   "Before any wipe, reimage or reissue",
+   "Verification and remediation card"
+  ],
+  "pdf": "DEV-03-Disk-Encryption-and-BitLocker-Recovery-Key-Handling.pdf"
  },
  {
   "id": "DEV-04",
   "name": "Standard Hardware Catalog, Request & Refresh Cycle",
   "lede": "What the organization buys, how you ask for it, how often it is replaced, and what it honestly costs in weeks.",
   "domain": "DEV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 4 \u2014 IT Management owns the catalogue, approves every off-catalogue exception and owns the annual refresh position. Tier 2 confirms technical fit and builds the device. Tier 1 answers \u201cwhat will I get and when\u201d.",
+  "sections": [
+   "Why a catalogue at all",
+   "The standard catalogue",
+   "Monitors, docks and peripherals",
+   "Requesting a device",
+   "Off-catalogue requests",
+   "The refresh cycle",
+   "The annual refresh list, and how it becomes a budget",
+   "The device being replaced",
+   "Lead times, stated honestly",
+   "Device request card",
+   "\u201cWhat will I get?\u201d, for publication"
+  ],
+  "pdf": "DEV-04-Standard-Hardware-Catalog-Request-and-Refresh-Cycle.pdf"
  },
  {
   "id": "DEV-05",
   "name": "Loaner Device Issue, Support & Return",
   "lede": "The two-minute check before a loaner goes out, and the ten minutes after it comes back.",
   "domain": "DEV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 1 \u2014 the Service Desk, which already holds the storage room. Faults escalate to Tier 2.",
+  "sections": [
+   "What the loaner pool is for",
+   "The pre-issue check",
+   "Issuing",
+   "While it is out",
+   "Return to service",
+   "Retiring a device from the pool",
+   "Pool size and condition",
+   "Pre-issue card",
+   "Return-to-service card"
+  ],
+  "pdf": "DEV-05-Loaner-Device-Issue-Support-and-Return.pdf"
  },
  {
   "id": "DEV-06",
   "name": "Computer Lab, Meeting Room & Shared Device Standard",
   "lede": "The target configuration for a machine that belongs to nobody and is used by everybody \u2014 and the readiness check that decides whether rooms work on day one.",
   "domain": "DEV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 2 \u2014 Advanced Technical Services owns labs, imaging and meeting-room technology, and runs \u00a79. Tier 3 owns the shared-device configuration in the management platform. Tier 4 approves the cutover in \u00a75 and the rollback in \u00a76.",
+  "sections": [
+   "What makes a shared device different",
+   "The target configuration",
+   "Software baseline, and training-specific software",
+   "Cutover",
+   "Per-lab migration, and the rollback",
+   "Presenter and meeting-room machines",
+   "Printing and peripherals",
+   "Start-of-season readiness",
+   "Faults, spares and the loaner path",
+   "Start-of-season lab readiness checklist",
+   "Training software request card"
+  ],
+  "pdf": "DEV-06-Computer-Lab-Meeting-Room-and-Shared-Device-Standard.pdf"
  },
  {
   "id": "DEV-07",
   "name": "Personally-Owned Device Access Standard",
   "lede": "What your own phone or laptop may reach, what the organization can and cannot see on it, and what happens when you leave.",
   "domain": "DEV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 4 \u2014 IT Management owns the position; Tier 2 supports it.",
+  "sections": [
+   "The bargain",
+   "Two ways a personal device can be used",
+   "What a personal device may reach",
+   "What the organization can and cannot see",
+   "When you leave",
+   "The phone carrying your Authenticator",
+   "What is never permitted",
+   "End-user text"
+  ],
+  "pdf": "DEV-07-Personally-Owned-Device-Access-Standard.pdf"
  },
  {
   "id": "DEV-08",
   "name": "Mobile Device Access to Organization Data",
   "lede": "Your phone became part of the organization\u2019s security perimeter the day you set up Authenticator. What that means, what we can and cannot see, and what to do when you change phones.",
   "domain": "DEV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 1 \u2014 the front door handles almost everything in this document: setting up mail on a phone, the phone-change case in \u00a79, and answering \u201cwhat can you see?\u201d. Tier 3 owns the app protection and Conditional Access configuration; Tier 4 approves full enrollment and the \u00a710 cutover.",
+  "sections": [
+   "The three postures, and which one the organization should adopt",
+   "What the organization can and cannot see on a personal phone",
+   "The app protection baseline",
+   "Organization-owned mobile devices",
+   "Selective wipe, full wipe, and the lost phone",
+   "When you leave",
+   "The identity dimension",
+   "Changing your phone",
+   "Cutover",
+   "Getting your work email on your phone, and what we can and cannot see"
+  ],
+  "pdf": "DEV-08-Mobile-Device-Access-to-Organization-Data.pdf"
  },
  {
   "id": "DEV-09",
   "name": "macOS Device Management Standard",
   "lede": "The target state the macOS enrollment pilot can be judged against \u2014 mapped condition by condition onto the Windows baseline, so the two platforms are comparable rather than divergent.",
   "domain": "DEV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 2 \u2014 Advanced Technical Services enrolls, builds and supports Macs. Tier 3 owns the Apple Business Manager relationship, the Intune configuration and the Platform SSO deployment. Tier 4 declares the pilot production against \u00a712.",
+  "sections": [
+   "Who runs macOS, and why it matters",
+   "Enrollment",
+   "The configuration baseline, mapped onto DEV-02",
+   "FileVault and recovery-key escrow",
+   "Admin rights, and the first-user problem",
+   "Sign-in",
+   "Software delivery",
+   "Updates",
+   "Endpoint security, printing and peripherals",
+   "Migrating the Macs that already exist",
+   "Pilot exit criteria",
+   "Mac build checklist",
+   "Pilot exit criteria sign-off"
+  ],
+  "pdf": "DEV-09-macOS-Device-Management-Standard.pdf"
  },
  {
   "id": "DEV-10",
   "name": "Remote Access & VPN Standard",
   "lede": "What the VPN is actually for, who gets it, and why most people no longer need it.",
   "domain": "DEV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 2 \u2014 Advanced Technical Services, which already owns VPN.",
+  "sections": [
+   "Two populations, one technology",
+   "What the VPN is for",
+   "Who gets it",
+   "Conditions of use",
+   "Requesting and removing it",
+   "The non-staff question",
+   "Where this is going",
+   "\u201cDo I need the VPN?\u201d"
+  ],
+  "pdf": "DEV-10-Remote-Access-and-VPN-Standard.pdf"
  },
  {
   "id": "DEV-11",
   "name": "Software Request, Approval, Licensing & Deployment",
   "lede": "How a request for software is answered \u2014 the \u201cdo we already have it?\u201d check, the approval path by cost and by risk, the licence register, and the deployment mechanism of record through a move to Intune.",
   "domain": "DEV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 2 \u2014 Advanced Technical Services runs intake, packaging and deployment. Tier 3 owns the security and compatibility assessment and the deployment mechanism. Tier 4 approves cost and anything material. Tier 1 answers \u201cwhere do I get X?\u201d from the published catalogue rather than raising a request.",
+  "sections": [
+   "Do we already have it?  The first substantive step",
+   "The request",
+   "The approval path: cost, and risk",
+   "The security and privacy review",
+   "The licence register, and the true-up problem",
+   "Free and open-source software, treated honestly",
+   "Browser extensions",
+   "Deployment: current state, target state, and what to expect during the transition",
+   "Self-service or assisted",
+   "Renewals, the annual review, and what happens at separation",
+   "The software request form",
+   "The security review questions IT asks"
+  ],
+  "pdf": "DEV-11-Software-Request-Approval-Licensing-and-Deployment.pdf"
  },
  {
   "id": "DEV-12",
   "name": "Local Administrator Rights on Endpoints",
   "lede": "Who has administrative rights on an organization computer, why the answer should be almost nobody, and how to say yes safely when it must be yes.",
   "domain": "DEV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 3 \u2014 Expert Services designs; Tier 2 applies; Tier 4 approves exceptions.",
+  "sections": [
+   "Why this one matters disproportionately",
+   "The standard",
+   "The built-in administrator account",
+   "When somebody genuinely needs it",
+   "Removing standing rights from the estate",
+   "Who never gets it",
+   "Exception request card"
+  ],
+  "pdf": "DEV-12-Local-Administrator-Rights-on-Endpoints.pdf"
  },
  {
   "id": "DEV-13",
   "name": "Patch, Update & Maintenance Window Standard",
   "lede": "Eight classes of estate in one governing table, remediation timeframes the department can actually hold \u2014 and the rule that a vendor patch is an organization change.",
   "domain": "DEV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 3 \u2014 Expert Services owns the update rings, the server and infrastructure regime, and the vulnerability triage. Tier 2 executes endpoint, lab and meeting room patching. Tier 4 approves exceptions and emergency changes and receives the monthly position.",
+  "sections": [
+   "What this document commits to, and what it cannot",
+   "The estate, by class",
+   "Managed Windows endpoints: rings, deadlines and the grace period",
+   "macOS, labs and meeting rooms",
+   "Servers, network and infrastructure",
+   "Vendor-managed systems",
+   "Remediation timeframes by severity",
+   "The vulnerability input side",
+   "Emergency and out-of-band patching",
+   "Exceptions, and their expiry",
+   "Reboots, and the people who never restart",
+   "Reporting compliance to Tier 4",
+   "The monthly patch cycle calendar",
+   "The vulnerability triage decision table"
+  ],
+  "pdf": "DEV-13-Patch-Update-and-Maintenance-Window-Standard.pdf"
  },
  {
   "id": "DEV-14",
   "name": "Endpoint Security Agent & MDR Escalation Standard",
   "lede": "How many devices actually have a healthy agent reporting \u2014 and then who acts on an MDR case, in what time, on whose authority, and what closes it.",
   "domain": "DEV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 3 \u2014 Expert Services owns the agent estate and the MDR relationship. Tier 2 remediates unhealthy agents and executes containment within \u00a76. Tier 4 authorises isolation above the \u00a76 threshold and declares incidents under GOV-03.",
+  "sections": [
+   "Coverage first",
+   "Measuring coverage, and the path for a device that has stopped reporting",
+   "One agent, not two",
+   "The MDR relationship",
+   "Authority",
+   "The 24\u00d77 problem, and what the MDR provider is pre-authorised to do",
+   "The weekly MDR review, and keeping the partner\u2019s picture accurate",
+   "Case closure",
+   "When a case becomes an incident, and when it becomes a person",
+   "MDR case triage and authority matrix"
+  ],
+  "pdf": "DEV-14-Endpoint-Security-Agent-and-MDR-Escalation-Standard.pdf"
  },
  {
   "id": "DEV-15",
   "name": "Device Reassignment, Wipe, Retirement & Disposal",
   "lede": "What happens to an organization device between one holder and the next, and at the end of its life.",
   "domain": "DEV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 2 \u2014 Advanced Technical Services. Disposal approval is Tier 4.",
+  "sections": [
+   "The three checks that must never be skipped",
+   "Reassignment",
+   "Wiping",
+   "Retirement",
+   "Disposal",
+   "Reassignment checklist",
+   "Disposal checklist"
+  ],
+  "pdf": "DEV-15-Device-Reassignment-Wipe-Retirement-and-Disposal.pdf"
  },
  {
   "id": "DEV-16",
   "name": "Lost, Stolen or Compromised Device Response",
   "lede": "One number to call, and what happens in the first hour.",
   "domain": "DEV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 2 \u2014 Advanced Technical Services acts; Tier 4 authorises remote wipe and declares incidents.",
+  "sections": [
+   "What the person does",
+   "The first hour",
+   "The question that determines everything",
+   "Remote wipe",
+   "Personal devices",
+   "Theft, and the police report",
+   "If it comes back",
+   "First-hour card",
+   "What to tell the person"
+  ],
+  "pdf": "DEV-16-Lost-Stolen-or-Compromised-Device-Response.pdf"
  },
  {
   "id": "DEV-17",
   "name": "Printer, Copier & Peripheral Standard",
   "lede": "The most frequent request the front door receives and the least severe. Written down once so it stops being answered forty times \u2014 and because a copier is a computer with a hard drive in it.",
   "domain": "DEV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 1 \u2014 the published model names peripherals, printers and hardware as front-door work, and this document is written so that the front door can finish the job. Tier 2 owns queue and driver deployment; Tier 3 owns the print architecture decision in \u00a74; Tier 4 owns the exceptions in \u00a72 and the disposal approvals in \u00a711.",
+  "sections": [
+   "What the organization supplies as standard",
+   "Adding a printer on a managed device",
+   "Where print is going",
+   "Secure release printing, and the tray as a data leak",
+   "Scanning",
+   "Consumables and who orders toner",
+   "The copier fleet and vendor service calls",
+   "Peripheral faults and the swap-first principle",
+   "Accessibility peripherals",
+   "Disposal",
+   "\u201cIt will not print\u201d: the Tier 1 troubleshooting ladder",
+   "Adding a printer, step by step"
+  ],
+  "pdf": "DEV-17-Printer-Copier-and-Peripheral-Standard.pdf"
  },
  {
   "id": "DEV-18",
   "name": "Conference & Meeting Room AV Standard",
   "lede": "Room technology fails in front of an audience. The cost is not the repair \u2014 it is forty people watching. Written for the ninety seconds that actually matter, and for the person standing at the lectern.",
   "domain": "DEV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 2 \u2014 meeting room and AV emergencies are Tier 2 work. Where a separate AV or room support desk exists, this document attaches to it rather than replacing it. Tier 1 takes the call and runs the ladder in \u00a76. Tier 3 owns the Teams Rooms tenant configuration. Tier 4 owns room investment and the \u00a711 replacement decisions.",
+  "sections": [
+   "The room tiers, and what each is guaranteed to have",
+   "The connection path, and the choice at the plate",
+   "Teams Rooms",
+   "The pre-event check",
+   "The in-room recovery ladder",
+   "Escalation, and what Tier 2 actually is during booked hours",
+   "Hybrid meetings and recording",
+   "Room and endpoint telephony",
+   "The start-of-season room readiness sweep",
+   "The fault register, and knowing which rooms fail repeatedly",
+   "Patching windows",
+   "The presenter quick card",
+   "Room readiness checklist"
+  ],
+  "pdf": "DEV-18-Conference-and-Meeting-Room-AV-Standard.pdf"
  },
  {
   "id": "M365-01",
   "name": "Microsoft 365 Service Description & Supported Baseline",
   "lede": "What the organization provides, what it does not, and which configurations IT can actually help with. The document every other M365 procedure points back to.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 4 \u2014 IT Management owns the service description; Tier 1 uses it daily.",
+  "sections": [
+   "What the organization provides",
+   "What is supported, and what is tolerated",
+   "Where things live",
+   "What the organization does not provide",
+   "Availability and support hours",
+   "Where to go for what",
+   "Staff FAQ"
+  ],
+  "pdf": "M365-01-Microsoft-365-Service-Description-and-Supported-Baseline.pdf"
  },
  {
   "id": "M365-02",
   "name": "Exchange Online Mailbox Standard",
   "lede": "Mailbox sizing, retention, forwarding, rules and delegation \u2014 stated once, for everyone with a mailbox.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 2 \u2014 Advanced Technical Services.",
+  "sections": [
+   "What every mailbox gets",
+   "External forwarding",
+   "Rules and automatic processing",
+   "Delegation and shared access",
+   "Sending limits and moderation",
+   "Retention and archiving",
+   "Mailboxes that are not people",
+   "Desk card"
+  ],
+  "pdf": "M365-02-Exchange-Online-Mailbox-Standard.pdf"
  },
  {
   "id": "M365-03",
   "name": "Shared Mailbox Request, Provisioning & Ownership",
   "lede": "How a departmental mailbox is requested, who owns it, who may be added to it, and when that access goes away.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 2 \u2014 Advanced Technical Services, which already owns permissions.",
+  "sections": [
+   "What a shared mailbox is for, and what it is not",
+   "Roles",
+   "Requesting one",
+   "Provisioning",
+   "Adding and removing people",
+   "Sending as the department",
+   "Review and closure",
+   "Request form fields",
+   "Owner\u2019s one-pager"
+  ],
+  "pdf": "M365-03-Shared-Mailbox-Request-Provisioning-and-Ownership.pdf"
  },
  {
   "id": "M365-04",
   "name": "Distribution List & Dynamic Group Standard",
   "lede": "How mail reaches a group of people at the organization, how dynamic membership is derived from the HR and user system of record, and what IT will not build.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 3 \u2014 Expert Services. Membership rules and directory attributes are Tier 3 architecture.",
+  "sections": [
+   "The four things people mean by \u201ca group\u201d",
+   "Naming",
+   "Who may request what",
+   "Dynamic groups",
+   "The attribute register",
+   "What IT will not build, and why",
+   "Aliases are not groups",
+   "Which object do I need?",
+   "Attribute register"
+  ],
+  "pdf": "M365-04-Distribution-List-and-Dynamic-Group-Standard.pdf"
  },
  {
   "id": "M365-05",
   "name": "Email Alias & Address Change Standard",
   "lede": "When the organization adds an address, when it changes one, and why those are very different operations.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 2 \u2014 Advanced Technical Services.",
+  "sections": [
+   "The distinction that causes the trouble",
+   "Aliases",
+   "Changing a primary address",
+   "Aliases on groups and shared mailboxes",
+   "What is not permitted",
+   "Desk card"
+  ],
+  "pdf": "M365-05-Email-Alias-and-Address-Change-Standard.pdf"
  },
  {
   "id": "M365-06",
   "name": "Mass Communication & Broadcast Email Approval",
   "lede": "Who may email an entire population at the organization, how they ask, and what IT will not build to help them avoid asking.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 4 \u2014 IT Management approves; Tier 2 executes.",
+  "sections": [
+   "What counts as mass communication",
+   "Who may send to which population",
+   "Requesting it",
+   "What a broadcast message must contain",
+   "What IT will not do",
+   "Emergency communication",
+   "Why this is a security control too",
+   "Request card"
+  ],
+  "pdf": "M365-06-Mass-Communication-and-Broadcast-Email-Approval.pdf"
  },
  {
   "id": "M365-07",
   "name": "Teams Provisioning, Naming & Lifecycle",
   "lede": "When a Team is the right object and when it is not, what creating one actually creates, and how one stops being somebody\u2019s problem when its owner leaves.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 2 \u2014 Advanced Technical Services renames, reassigns ownership and archives. Tier 1 answers the \u00a72 \u201cwhich object do I need?\u201d question in the conversation. Tier 3 owns the creation, naming and expiration configuration in \u00a710.",
+  "sections": [
+   "Team, channel, site or chat",
+   "Self-service creation: kept on, with three conditions",
+   "Naming",
+   "Channels",
+   "The SharePoint site behind every Team",
+   "Owners, members and guests",
+   "Expiry, orphan detection and ownership reassignment",
+   "Archive, and why deleting is almost never the answer",
+   "Tenant configuration",
+   "For end users: Team, channel, site or chat?",
+   "Orphaned Team reassignment checklist"
+  ],
+  "pdf": "M365-07-Teams-Provisioning-Naming-and-Lifecycle.pdf"
  },
  {
   "id": "M365-08",
   "name": "Teams Meetings, Recording & Guest Participation",
   "lede": "One stated rule for recording and consent, where recordings and transcripts actually end up, and who is allowed into your meeting.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 1 \u2014 the front door answers almost everything in this document, and \u00a79 is written to be worked through at Tier 1 without escalating. Tier 3 owns the meeting-policy configuration; Tier 4 owns \u00a72 and \u00a77.",
+  "sections": [
+   "Recording, and the consent rule",
+   "Where recordings and transcripts actually land",
+   "Transcripts, Copilot notes and AI note-takers",
+   "Who gets into your meeting",
+   "A meeting guest is not a tenant guest",
+   "Recording a session",
+   "Live events, town halls and webinars",
+   "Tier 1 troubleshooting",
+   "For end users: meetings, recordings and visitors",
+   "Organiser\u2019s card for a meeting with people outside the organization"
+  ],
+  "pdf": "M365-08-Teams-Meetings-Recording-and-Guest-Participation.pdf"
  },
  {
   "id": "M365-09",
   "name": "Teams Phone, Desk Phone & Voicemail Standard",
   "lede": "Who gets a number, how a desk phone is re-registered, and where an emergency call says you are. Written because a request with no procedure has no owner.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 2 \u2014 Advanced Technical Services owns phones, devices and the \u00a74 runbook. Tier 1 triages from Appendix A. Tier 3 owns numbering, routing and the emergency location map; Tier 4 owns the entitlement decision at \u00a72 and the compliance position at \u00a78.",
+  "sections": [
+   "Who gets a number, and who does not",
+   "Number assignment and the DID register",
+   "Desk phone re-registration",
+   "Softphone or desk phone",
+   "Call queues and auto attendants",
+   "Voicemail and transcription",
+   "Emergency calling and dynamic emergency address",
+   "Shared area and common-area phones",
+   "What happens to a number at separation",
+   "Tier 1 / Tier 2 triage table",
+   "Prerequisites, with owners"
+  ],
+  "pdf": "M365-09-Teams-Phone-Desk-Phone-and-Voicemail-Standard.pdf"
  },
  {
   "id": "M365-10",
   "name": "SharePoint Site Request, Provisioning & Ownership",
   "lede": "How a site is created with an owner, a classification and a purpose \u2014 so it does not become the thing nobody maintains.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 3 \u2014 Expert Services owns SharePoint architecture; Tier 2 provisions.",
+  "sections": [
+   "Three things every site has from the moment it exists",
+   "Do you need a site?",
+   "Requesting one",
+   "Provisioning",
+   "The owner\u2019s job",
+   "Ownership changes",
+   "Review and closure",
+   "Request fields",
+   "Owner\u2019s one-pager"
+  ],
+  "pdf": "M365-10-SharePoint-Site-Request-Provisioning-and-Ownership.pdf"
  },
  {
   "id": "M365-11",
   "name": "SharePoint & OneDrive Permission Management",
   "lede": "How access to organization content is granted, inherited, reviewed and removed \u2014 and the four habits that break it.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 2 \u2014 Advanced Technical Services, which already owns permissions. Architecture questions go to Tier 3.",
+  "sections": [
+   "The model",
+   "The four habits that break permissions",
+   "Granting access",
+   "Inheritance, and when to break it",
+   "OneDrive permissions",
+   "Removing access",
+   "Request card",
+   "Owner\u2019s annual review"
+  ],
+  "pdf": "M365-11-SharePoint-and-OneDrive-Permission-Management.pdf"
  },
  {
   "id": "M365-12",
   "name": "OneDrive Appropriate Use & Institutional Data Boundary",
   "lede": "Which files belong in a person\u2019s OneDrive, which belong to the organization, and where the line falls.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 1 \u2014 the conversation happens at the front door. Remediation is Tier 2.",
+  "sections": [
+   "The rule",
+   "What belongs where",
+   "Why this matters more than it sounds",
+   "Sharing from OneDrive",
+   "What happens at separation",
+   "Remediation",
+   "During the file share retirement",
+   "End-user text"
+  ],
+  "pdf": "M365-12-OneDrive-Appropriate-Use-and-Institutional-Data-Boundary.pdf"
  },
  {
   "id": "M365-13",
   "name": "Legacy File Share Retirement & Migration Runbook",
   "lede": "How legacy network drives are retired without losing content, scattering it into personal OneDrives, or breaking payroll access on the way.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 3 \u2014 Expert Services. Per-share execution is Tier 2; the migration itself is Tier 3 protected capacity (GOV-06 \u00a78).",
+  "sections": [
+   "Three rules that govern the whole migration",
+   "Before anything moves",
+   "Per-share runbook",
+   "Translating drive permissions into site permissions",
+   "Content nobody owns",
+   "The payroll and HR case",
+   "Communicating it",
+   "Decommissioning",
+   "Per-share checklist",
+   "What to tell people"
+  ],
+  "pdf": "M365-13-Legacy-File-Share-Retirement-and-Migration-Runbook.pdf"
  },
  {
   "id": "M365-14",
   "name": "External Sharing & Guest Access Governance",
   "lede": "How somebody outside the organization gets access to something inside it \u2014 with a sponsor, a purpose and an end date.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 3 \u2014 Expert Services owns the tenant configuration; Tier 2 executes individual requests.",
+  "sections": [
+   "The three things every external access must have",
+   "Who may create a guest",
+   "Requesting external access",
+   "What may be shared externally, by classification",
+   "Anonymous links",
+   "Expiry and review",
+   "Removing a guest",
+   "Tenant configuration",
+   "Request card"
+  ],
+  "pdf": "M365-14-External-Sharing-and-Guest-Access-Governance.pdf"
  },
  {
   "id": "M365-15",
   "name": "Data Classification & Handling",
   "lede": "Four levels, applied to places rather than files \u2014 and the handling rules that follow from each. Written as a proposal for leadership to decide.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 4 \u2014 IT Management. Classification is an organization decision that IT implements, not an IT decision.",
+  "sections": [
+   "The design choice that makes this work",
+   "The four levels",
+   "Which level is this?",
+   "Handling rules",
+   "Where each level is allowed to live",
+   "Applying this during the file share retirement",
+   "Worked examples",
+   "What must happen before this is published",
+   "Handling matrix, one page",
+   "Site owner\u2019s classification card"
+  ],
+  "pdf": "M365-15-Data-Classification-and-Handling.pdf"
  },
  {
   "id": "M365-16",
   "name": "Retention, Legal Hold & eDiscovery Request Handling",
   "lede": "How the two-year retention floor is actually delivered, who may place a hold or export content, on what authority, and how it is evidenced.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 4 \u2014 IT Management authorises every hold and every export. Tier 3 executes. No other tier acts on this document.",
+  "sections": [
+   "Purpose, and the thing that was nearly got wrong",
+   "Four different obligations, routinely confused",
+   "The retention floor",
+   "Mail: shared mailboxes and inactive mailboxes",
+   "Files: why OneDrive needs a decision",
+   "Teams chat, channel messages and Copilot artefacts",
+   "Legal hold",
+   "eDiscovery and content search",
+   "What IT will not do",
+   "The order of operations at separation",
+   "Hold and export request form"
+  ],
+  "pdf": "M365-16-Retention-Legal-Hold-and-eDiscovery-Request-Handling.pdf"
  },
  {
   "id": "M365-17",
   "name": "Microsoft Forms & Bookings Standard",
   "lede": "When a Form is the right instrument and when it is not, what may be collected in one, who owns it \u2014 and why Bookings appointments must never end up inside the ticket record.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 1 \u2014 the front door answers \u201ccan I use a Form for this?\u201d from \u00a72 and \u00a73 in the conversation. Tier 2 creates group-owned Forms and Bookings pages. Tier 3 owns the tenant settings in \u00a710.",
+  "sections": [
+   "When a Form is the right tool, and when it is not",
+   "What may be collected in a Form",
+   "Recorded platform constraints",
+   "Ownership",
+   "Anonymous or authenticated",
+   "Where responses live, and how long they last",
+   "Bookings",
+   "Bookings must not write into the ticket queue",
+   "Tenant settings",
+   "Before you publish: a checklist",
+   "For end users: the plain version"
+  ],
+  "pdf": "M365-17-Microsoft-Forms-and-Bookings-Standard.pdf"
  },
  {
   "id": "M365-18",
   "name": "Generative AI & Copilot Use in Microsoft 365",
   "lede": "What organization data may be put into which assistant \u2014 and why deploying Copilot across a tenant whose sharing has never been reviewed is how an organization discovers what it had been over-sharing.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 4 \u2014 IT Management owns this document and every decision in it. Tier 3 configures. Tier 1 and Tier 2 answer \u00a73 from the table and escalate anything the table does not cover.",
+  "sections": [
+   "The distinction almost everyone gets wrong",
+   "What you may put where",
+   "Copilot inherits your permissions",
+   "Prerequisites to any broad Copilot deployment",
+   "Work product, assessment and policy investigations",
+   "AI note-takers joining Teams meetings",
+   "AI features switched on inside software the organization already uses",
+   "What IT will and will not review",
+   "Licensing and cost",
+   "What this document deliberately does not decide",
+   "For everyone: the one-paragraph version, and the five things not to paste"
+  ],
+  "pdf": "M365-18-Generative-AI-and-Copilot-Use-in-Microsoft-365.pdf"
  },
  {
   "id": "M365-19",
   "name": "Power Platform Governance (Power Automate / Power Apps)",
   "lede": "A flow built by one person, running on their personal connection, moving organization data, that stops silently when they change role. The register, the guardrails, and the point at which a departmental solution has become an application.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 3 \u2014 Expert Services owns the environments, the DLP policies and the register. Tier 4 approves the connector classification and every exception to it. Tier 2 supports departmental builders on connections and permissions, which is where most faults actually are.",
+  "sections": [
+   "The core failure mode, stage by stage",
+   "What departments may build without asking",
+   "The register",
+   "Environments, and the default-environment problem",
+   "Data loss prevention: connector groupings",
+   "Connections, service accounts and ownership",
+   "What must never be built as a citizen solution",
+   "When a departmental solution has become an application",
+   "Annual attestation and quarterly reconciliation",
+   "Support",
+   "Registration form",
+   "For departmental builders: building something that outlives you"
+  ],
+  "pdf": "M365-19-Power-Platform-Governance-Power-Automate-Power-Apps.pdf"
  },
  {
   "id": "M365-20",
   "name": "License Assignment, Reclamation & Cost Attribution",
   "lede": "Who gets which licence, how it is assigned by rule rather than by hand, and how it comes back.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 4 \u2014 IT Management owns the licence position; Tier 2 assigns.",
+  "sections": [
+   "Assignment by rule, not by hand",
+   "Who gets what",
+   "Requesting something beyond the default",
+   "Reclamation",
+   "Cost attribution",
+   "The annual position",
+   "Reclamation checklist"
+  ],
+  "pdf": "M365-20-License-Assignment-Reclamation-and-Cost-Attribution.pdf"
  },
  {
   "id": "M365-21",
   "name": "Tenant Configuration Change Control",
   "lede": "How a change to the Microsoft 365 tenant is proposed, recorded and reversed \u2014 and why the directory attribute register matters more than it sounds.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 4 \u2014 IT Management approves; Tier 3 executes.",
+  "sections": [
+   "What counts as a tenant change",
+   "The finite resources",
+   "Proposing a change",
+   "Changes that require extra care",
+   "Recording it",
+   "Reversing it",
+   "Change record"
+  ],
+  "pdf": "M365-21-Tenant-Configuration-Change-Control.pdf"
  },
  {
   "id": "M365-22",
   "name": "Phishing Reporting & Email Threat Response",
   "lede": "What a person does when a message looks wrong, and what IT does after they report it.",
   "domain": "M365",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 2 \u2014 Advanced Technical Services, which already owns malware containment. Escalates to Tier 3 and Tier 4.",
+  "sections": [
+   "What the community is asked to do",
+   "Triage",
+   "Containment",
+   "When somebody has already clicked",
+   "Telling the community",
+   "Targeted attacks on IT itself",
+   "Triage card",
+   "End-user text"
+  ],
+  "pdf": "M365-22-Phishing-Reporting-and-Email-Threat-Response.pdf"
  },
  {
   "id": "GOV-01",
   "name": "SOP Catalog Governance & Document Control",
   "lede": "How the catalogue is numbered, owned, approved, reviewed and retired \u2014 and how the material that already exists is consolidated into it.",
   "domain": "GOV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 4 \u2014 IT Management. Tier 4 owns every document in the catalogue, which keeps ownership in one place.",
+  "sections": [
+   "The two document types, and why both exist",
+   "Numbering",
+   "Ownership and approval",
+   "The control block",
+   "Review cadence",
+   "Recording gaps",
+   "Where documents live",
+   "Consolidating what already exists",
+   "Change intake",
+   "Retirement",
+   "Control block template",
+   "Consolidation worklist"
+  ],
+  "pdf": "GOV-01-SOP-Catalog-Governance-and-Document-Control.pdf"
  },
  {
   "id": "GOV-02",
   "name": "Service Desk Intake, Ticket Quality & Categorisation",
   "lede": "How work reaches IT, how a ticket is set up so it can be measured, and why a messy ticket record cannot answer basic questions about the team.",
   "domain": "GOV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 1, \u201cthe front door\u201d. Configuration is Tier 3; reporting is Tier 4.",
+  "sections": [
+   "The measurement problem, stated plainly",
+   "One front door",
+   "What pollutes the record, and how to stop it",
+   "Setting up a ticket so it can be measured",
+   "Choosing the tier",
+   "When it is not ours",
+   "Escalation hygiene",
+   "What good looks like",
+   "## Appendix A \u00b7 Ticket setup card",
+   "## Appendix B \u00b7 Redirection card"
+  ],
+  "pdf": "GOV-02-Service-Desk-Intake-Ticket-Quality-and-Categorisation.pdf"
  },
  {
   "id": "GOV-03",
   "name": "Security Incident Response & Escalation Matrix",
   "lede": "Who declares an incident, who is told, what the clock is, and what must be preserved before anything is fixed.",
   "domain": "GOV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 4 \u2014 IT Management, which owns security and regulated-data incidents. Detection and containment are Tiers 2 and 3.",
+  "sections": [
+   "Severity",
+   "Who does what",
+   "The first hour",
+   "Preserve before you fix",
+   "Notification",
+   "Working with the managed detection partner",
+   "Closing an incident, and the review",
+   "First-hour card",
+   "Declaration record"
+  ],
+  "pdf": "GOV-03-Security-Incident-Response-and-Escalation-Matrix.pdf"
  },
  {
   "id": "GOV-04",
   "name": "IT Change Management & Maintenance Windows",
   "lede": "Three change classes, one register, an agreed set of windows the organization\u2019s calendar governs \u2014 and the rule that a vendor change is an organization change.",
   "domain": "GOV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 4 \u2014 IT Management approves normal and emergency changes and owns the window and freeze calendar. Tier 3 assesses and executes. Tier 2 executes standard changes with no approval at all, which is the point of \u00a73.",
+  "sections": [
+   "What is a change, and what is not",
+   "The three classes",
+   "The change record",
+   "The back-out plan",
+   "Approval by class",
+   "Maintenance windows and the organization\u2019s calendar",
+   "Vendor changes",
+   "Communication",
+   "Emergency changes",
+   "Post-implementation review, and the monthly register review",
+   "Change record template",
+   "The standard (pre-approved) change list"
+  ],
+  "pdf": "GOV-04-IT-Change-Management-and-Maintenance-Windows.pdf"
  },
  {
   "id": "GOV-05",
   "name": "Knowledge Base Article Standard & End-User Guide Format",
   "lede": "An SOP is for the person who does the work. An article is for the person with the problem. This is how the second one gets written, published, and kept true \u2014 starting from whatever guide library you already have.",
   "domain": "GOV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 2 \u2014 Advanced Technical Services writes and maintains most articles, because Tier 2 is where the escalated version of every Tier 1 question already lands. Tier 1 identifies what is missing and is the primary consumer. Tier 3 writes for tiers 3 and 4. Tier 4 approves publication of anything stating an organization position rather than a procedure.",
+  "sections": [
+   "Adopt, do not invent",
+   "An SOP and an article are not the same document",
+   "The article template and its required elements",
+   "The writing rules",
+   "Screenshots, and the honest cost of them",
+   "Where an article lives",
+   "Owner, review date, and the staleness problem",
+   "How a ticket becomes an article",
+   "Honesty about what is not known",
+   "Measuring whether articles work, without pretending",
+   "The published tier pages",
+   "What happens to earlier documentation efforts",
+   "The article template, ready to copy",
+   "Worked example: \u201cI am locked out of my account\u201d",
+   "## I can\u2019t sign in to my work account"
+  ],
+  "pdf": "GOV-05-Knowledge-Base-Article-Standard-and-End-User-Guide-Format.pdf"
  },
  {
   "id": "GOV-06",
   "name": "Service Commitments, Priority & Escalation",
   "lede": "A capacity-aware replacement for the SLA matrix \u2014 built on the published four-tier model, and designed to be held by a department that is understaffed and whose people wear several hats.",
   "domain": "GOV",
-  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman"
+  "version": "1.0 \u00b7 Known Good edition, by Kevin Zelman",
+  "who_label": "Who runs it",
+  "who": "Tier 4 \u2014 IT Management (\u201cthe homeowners\u201d). Every tier operates under it; Tier 4 owns and declares.",
+  "sections": [
+   "Four principles this model is built on",
+   "Priority",
+   "What IT commits to, and what it does not",
+   "Coverage",
+   "Capacity states",
+   "Protected capacity",
+   "Escalation and notification",
+   "What \u201cresolved\u201d means",
+   "Measurement, and the one number leadership should read",
+   "Adopting this",
+   "Priority decision card",
+   "Capacity state declaration",
+   "Monthly report template"
+  ],
+  "pdf": "GOV-06-Service-Commitments-Priority-and-Escalation.pdf"
  }
 ]
