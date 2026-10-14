@@ -266,3 +266,18 @@ section.section-alt > *{max-width:var(--maxw);margin-left:auto;margin-right:auto
   .has-sub>.dd-label .caret{transform:rotate(90deg)}
   .has-sub.open>.dd-label .caret{transform:rotate(-90deg)}
 }
+
+/* ===== Known Good live Discord card ===== */
+.kg-discord{display:flex;flex-direction:column;gap:14px;padding:24px;border-radius:var(--radius);background:linear-gradient(135deg,#1f2a5a 0%,#2b3a7a 55%,#3b4fb0 100%);color:#fff;box-shadow:var(--shadow)}
+.kg-discord .kg-top{display:flex;align-items:center;gap:12px}
+.kg-discord .kg-logo{width:44px;height:44px;border-radius:12px;background:#fff;display:grid;place-items:center;flex:none}
+.kg-discord .kg-logo svg{width:26px;height:26px}
+.kg-discord h3{color:#fff;font-size:1.1rem;margin:0}
+.kg-discord .kg-sub{font-size:.85rem;color:rgba(255,255,255,.82);margin:2px 0 0}
+.kg-discord li{color:#fff}
+.kg-discord .kg-stats{display:flex;flex-wrap:wrap;gap:8px}
+.kg-discord .kg-pill{display:inline-flex;align-items:center;gap:7px;font-size:.85rem;font-weight:600;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.14)}
+.kg-discord .kg-dot{width:9px;height:9px;border-radius:50%;background:#3ba55d;box-shadow:0 0 0 3px rgba(59,165,93,.3)}
+.kg-discord ul{margin:0;padding-left:1.1em;font-size:.92rem;line-height:1.55;opacity:.95}
+.kg-discord .btn{align-self:flex-start;background:#fff;color:#1f2a5a;border-color:#fff}
+.kg-discord .btn:hover{background:#eef1ff}
